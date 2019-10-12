@@ -5,15 +5,23 @@
   
 
   
-  <title>Hexo</title>
+  <title>JavaWeb项目jsp导入包时报错 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="java文件放在默认包下jsp导入时会报错，新建一个包放下面就好了。还有一点就是web项目导入jar包时直接拷贝放WebContent/WEB-INF/lib目录下就好，按照通常的方法导入反而会报ClassNotFoundException。">
+<meta name="keywords" content="javaWeb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb项目jsp导入包时报错">
+<meta property="og:url" content="http://yoursite.com/2019/10/12/JavaWeb项目jsp导入包时报错/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="java文件放在默认包下jsp导入时会报错，新建一个包放下面就好了。还有一点就是web项目导入jar包时直接拷贝放WebContent/WEB-INF/lib目录下就好，按照通常的方法导入反而会报ClassNotFoundException。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191008155340851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191008155711571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-10-12T03:12:51.918Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="JavaWeb项目jsp导入包时报错">
+<meta name="twitter:description" content="java文件放在默认包下jsp导入时会报错，新建一个包放下面就好了。还有一点就是web项目导入jar包时直接拷贝放WebContent/WEB-INF/lib目录下就好，按照通常的方法导入反而会报ClassNotFoundException。">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191008155340851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,9 +68,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-JavaWeb项目jsp导入包时报错" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JavaWeb项目jsp导入包时报错" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/12/JavaWeb项目jsp导入包时报错/" class="article-date">
   <time datetime="2019-10-12T02:59:28.845Z" itemprop="datePublished">2019-10-12</time>
@@ -75,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/12/JavaWeb项目jsp导入包时报错/">JavaWeb项目jsp导入包时报错</a>
+    <h1 class="article-title" itemprop="name">
+      JavaWeb项目jsp导入包时报错
     </h1>
   
 
@@ -98,58 +104,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-写在前面的话" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/12/写在前面的话/" class="article-date">
-  <time datetime="2019-10-12T02:23:11.664Z" itemprop="datePublished">2019-10-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/12/写在前面的话/">关于我</a>
-    </h1>
+    <a href="/2019/10/12/写在前面的话/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于我</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>大一学的工业设计，大二上学期转到计算机科学与技术（<del>说多了都是泪</del> ）。</li>
-<li>写这篇博文时是个大二学生。</li>
-<li>写博文的原因是督促自己学习。</li>
-<li>有些博文是写给自己看的。</li>
-<li>希望我的博文能够帮到你。</li>
-<li>==与君共勉==。</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/12/写在前面的话/" data-id="ck1mxsul40001mwla8pp4nxi6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/关于/">关于</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
