@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>眼里有星星</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="邮箱201705500216@smail.xtu.edu.cn">
+<meta property="og:type" content="website">
+<meta property="og:title" content="眼里有星星">
+<meta property="og:url" content="https://xinghailiao.github.io/page/16/index.html">
+<meta property="og:site_name" content="眼里有星星">
+<meta property="og:description" content="邮箱201705500216@smail.xtu.edu.cn">
+<meta property="og:locale" content="zh-cn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="眼里有星星">
+<meta name="twitter:description" content="邮箱201705500216@smail.xtu.edu.cn">
+  
+    <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">眼里有星星</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xinghailiao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Java适配器模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/23/Java适配器模式/" class="article-date">
+  <time datetime="2019-07-23T07:13:12.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/Java适配器模式/">Java适配器模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-适配器模式介绍"><a href="#1-适配器模式介绍" class="headerlink" title="1.适配器模式介绍"></a>1.适配器模式介绍</h2><blockquote>
+<p>在设计模式中，适配器模式（英语：adapter pattern）有时候也称包装样式或者包装(wrapper)。将一个类的接口转接成用户所期待的。一个适配使得因接口不兼容而不能在一起工作的类能在一起工作，做法是将类自己的接口包裹在一个已存在的类中。</p>
+</blockquote>
+<h2 id="2-简单理解"><a href="#2-简单理解" class="headerlink" title="2.简单理解"></a>2.简单理解</h2><p>生活中我们经常遇到插座接口不兼容的问题，比如有些空调的插头不能直接插在普通的插座上。这时候我们就会买一个转接口，把空调插头插在转接口上，然后在把转接口插在普通的插座上，这样就可以使用空调了。适配器模式便是这样的思想，当有一个类有对应功能但是接口不兼容时，就可以通过写适配器来使用这个接口不兼容但是有对应功能的类。适配器一般分为下面四个部分。</p>
+<ol>
+<li><p>被适配的类Adaptee，有对应的功能，但是没有对应的接口，所有用户不能正常使用，就像上面例子中的空调。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package adapter;</span><br><span class="line"></span><br><span class="line">public class Adaptee &#123;</span><br><span class="line">    public void request() &#123;</span><br><span class="line">        System.out.println(&quot;我有对应的功能，但是没有对应的接口&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Target接口，在这里这个接口只有一个处理请求的方法。对应于用户想要的功能，在上面的例子中就是让空调工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">package adapter;</span><br><span class="line"></span><br><span class="line">public interface Target &#123;</span><br><span class="line">    void handleRequest();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>适配器类Adapter，适配不兼容的类。对应于上面例子中的转接头， 让不能直接插到插座上的空调插到转接头，转接头再插到插座上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package adapter;</span><br><span class="line"></span><br><span class="line">public class Adapter implements Target &#123;</span><br><span class="line">    private Adaptee adaptee;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void handleRequest() &#123;</span><br><span class="line">        this.adaptee.request();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Adapter(Adaptee adaptee) &#123;</span><br><span class="line">        this.adaptee = adaptee;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这下客户就可以通过适配器来使用不兼容的类了。对应于上面例子的通过转接头来使用空调。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package adapter;</span><br><span class="line"></span><br><span class="line">public class Client &#123;</span><br><span class="line">    public void test1(Target target) &#123;</span><br><span class="line">        target.handleRequest();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Client c = new Client();</span><br><span class="line">        Adapter adapter = new Adapter(new Adaptee());</span><br><span class="line">        c.test1(adapter);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><ol>
+<li><strong>这是本人学习过程中的记录，如果有不对的地方恳请指正。|ू･ω･` )</strong></li>
+<li>想要深入理解设计模式，还是得靠自己实战。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/23/Java适配器模式/" data-id="ck1n69hlf0027mslahh7tu5mk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java原型模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/23/Java原型模式/" class="article-date">
+  <time datetime="2019-07-23T06:02:18.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/Java原型模式/">Java原型模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-原型模式介绍"><a href="#1-原型模式介绍" class="headerlink" title="1.原型模式介绍"></a>1.原型模式介绍</h2><blockquote>
+<p>原型模式是创建型模式的一种，其特点在于通过“复制”一个已经存在的实例来返回新的实例,而不是新建实例。被复制的实例就是我们所称的“原型”，这个原型是可定制的。</p>
+</blockquote>
+<blockquote>
+<p>原型模式多用于创建复杂的或者耗时的实例，因为这种情况下，复制一个已经存在的实例使程序运行更高效；或者创建值相等，只是命名不一样的同类数据。</p>
+</blockquote>
+<h2 id="2-克隆实现原型模式"><a href="#2-克隆实现原型模式" class="headerlink" title="2.克隆实现原型模式"></a>2.克隆实现原型模式</h2><p>原型模式就是通过“复制”一个已经存在的实例来返回新的实例，然后修改新实例的属性来获得想要的对象。这一点相信很好理解，重要的是了解怎么完全克隆一个已经存在的实例来获得一个新的实例。克隆分为浅克隆和深克隆，下面我们通过一个例子来理解一下两种克隆的区别。</p>
+<ol>
+<li>浅克隆。这里写了一个Sheep类实现了Cloneable接口，一个测试类Client。代码如下。    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package prototype;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">*浅克隆Sheep类。</span><br><span class="line">*/</span><br><span class="line">public class Sheep implements Cloneable &#123;</span><br><span class="line">    private String sname;</span><br><span class="line">    private Date birthday;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line">        return super.clone();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSname() &#123;</span><br><span class="line">        return sname;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSname(String sname) &#123;</span><br><span class="line">        this.sname = sname;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getBirthday() &#123;</span><br><span class="line">        return birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBirthday(Date birthday) &#123;</span><br><span class="line">        this.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     public Sheep(String name, Date birthday) &#123;</span><br><span class="line">        this.sname = name;</span><br><span class="line">        this.birthday = birthday;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package prototype;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 测试原型模式（浅克隆）</span><br><span class="line"> */</span><br><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Date date = new Date(123465421L);</span><br><span class="line">        Sheep sheep1 = new Sheep(&quot;多利&quot;, date);</span><br><span class="line">        System.out.println(&quot;===============原型=================&quot;);</span><br><span class="line">        System.out.println(sheep1);</span><br><span class="line">        System.out.println(sheep1.getSname());</span><br><span class="line">        System.out.println(sheep1.getBirthday());</span><br><span class="line">        System.out.println(&quot;===================================&quot;);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            Sheep sheep2 = (Sheep) sheep1.clone();</span><br><span class="line">            System.out.println(sheep2);</span><br><span class="line">            System.out.println(sheep2.getSname());</span><br><span class="line">            System.out.println(sheep2.getBirthday());</span><br><span class="line">            //拷贝后可以直接更改属性来获得想要的对象</span><br><span class="line">            sheep2.setSname(&quot;少利&quot;);</span><br><span class="line">            System.out.println(sheep2.getSname());</span><br><span class="line"></span><br><span class="line">           //这里改变原型引用的Date对象发现克隆的对象的属性也跟着改变了</span><br><span class="line">            date.setTime(4564532154L);</span><br><span class="line">            System.out.println(sheep2.getBirthday());</span><br><span class="line">        &#125; catch (CloneNotSupportedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候可以发现改变原型对象（sheep1）的birthday属性引用的Date对象（date）的时候，克隆对象（sheep2）的属性（birthday）也跟着改变了。这是因为原型对象（sheep1）和克隆对象（sheep2）的birthday引用的是同一个对象。这就是浅拷贝的简单例子，拷贝的是原型属性的引用。</p>
+<ol start="2">
+<li>深拷贝。代码和上面基本相同。但是，在Sheep0类的拷贝方法中，先调用父类（Object）的clone方法获得了原型对象的浅拷贝对象，然后再调用birthday.clone方法获得了原型对象的birthday属性的拷贝，然后再把浅拷贝对象的birthday属性设置成了原型的birthday属性的拷贝（Date类实现了Cloneable接口）。这样拷贝对象得到的就是一个完全的拷贝了。代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">package prototype;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 深克隆Sheep类</span><br><span class="line"> */</span><br><span class="line">public class Sheep0 implements Cloneable &#123;</span><br><span class="line">    private String sname;</span><br><span class="line">    private Date birthday;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected Object clone() throws CloneNotSupportedException &#123;</span><br><span class="line">        Object obj = super.clone();</span><br><span class="line"></span><br><span class="line">        Sheep0 sheep = (Sheep0)obj;</span><br><span class="line">        sheep.birthday = (Date)this.birthday.clone();</span><br><span class="line"></span><br><span class="line">        return obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSname() &#123;</span><br><span class="line">        return sname;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSname(String sname) &#123;</span><br><span class="line">        this.sname = sname;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getBirthday() &#123;</span><br><span class="line">        return birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBirthday(Date birthday) &#123;</span><br><span class="line">        this.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Sheep0(String name, Date birthday) &#123;</span><br><span class="line">        this.sname = name;</span><br><span class="line">        this.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package prototype;</span><br><span class="line"></span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 测试原型模式（深克隆）</span><br><span class="line"> */</span><br><span class="line">public class Client2 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Date date = new Date(123465421L);</span><br><span class="line">        Sheep0 sheep1 = new Sheep0(&quot;多利&quot;, date);</span><br><span class="line">        System.out.println(&quot;===============原型=================&quot;);</span><br><span class="line">        System.out.println(sheep1);</span><br><span class="line">        System.out.println(sheep1.getSname());</span><br><span class="line">        System.out.println(sheep1.getBirthday());</span><br><span class="line">        System.out.println(&quot;===================================&quot;);</span><br><span class="line"></span><br><span class="line">        //浅克隆</span><br><span class="line">        try &#123;</span><br><span class="line">            Sheep0 sheep2 = (Sheep0)sheep1.clone();</span><br><span class="line">            System.out.println(sheep2);</span><br><span class="line">            System.out.println(sheep2.getSname());</span><br><span class="line">            System.out.println(sheep2.getBirthday());</span><br><span class="line">            sheep2.setSname(&quot;少利&quot;);</span><br><span class="line">            System.out.println(sheep2.getSname());</span><br><span class="line"></span><br><span class="line">			//改变原型对象的属性 此时克隆对象的属性不变</span><br><span class="line">            date.setTime(4564532154L);</span><br><span class="line">            System.out.println(&quot;原型birthday：&quot; + sheep1.getBirthday());</span><br><span class="line">            System.out.println(&quot;克隆birthday：&quot; + sheep2.getBirthday());</span><br><span class="line">        &#125; catch (CloneNotSupportedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时可以发现改变原型对象的引用属性后，克隆对象的对应属性并不改变，这便是深拷贝的一个简单例子。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><ol>
+<li>**这是我学习时的笔记，如有错误的地方恳请大家指正。</li>
+<li>原型模式多用于创建复杂的或者耗时的实例，因为这种情况下，复制一个已经存在的实例使程序运行更高效。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/23/Java原型模式/" data-id="ck1n6gnou0000wwlalzu70p96" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java单例设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/22/Java单例设计模式/" class="article-date">
+  <time datetime="2019-07-22T02:41:53.000Z" itemprop="datePublished">2019-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/22/Java单例设计模式/">Java单例设计模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-单例模式的介绍"><a href="#1-单例模式的介绍" class="headerlink" title="1.单例模式的介绍"></a>1.单例模式的介绍</h2><blockquote>
+<p>单例模式，也叫单子模式，是一种常用的软件设计模式。在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个的全局对象，这样有利于我们协调系统整体的行为。比如在某个服务器程序中，该服务器的配置信息存放在一个文件中，这些配置数据由一个单例对象统一读取，然后服务进程中的其他对象再通过这个单例对象获取这些配置信息。这种方式简化了在复杂环境下的配置管理。</p>
+</blockquote>
+<h2 id="2-单例模式的两种基本实现"><a href="#2-单例模式的两种基本实现" class="headerlink" title="2.单例模式的两种基本实现"></a>2.单例模式的两种基本实现</h2><ol>
+<li><p><strong>饿汉式：</strong> 饿汉式单例模式在类初始化时就加载了单例对象，本身就是线程安全的。但是当加载类的时间很长，但是后面又没有用这个示例时，就造成了资源浪费。饿汉式示例代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 测试饿汉式单例模式</span><br><span class="line"> * 加载类时创建对象线程安全 调用效率高</span><br><span class="line"> * @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo01 &#123;</span><br><span class="line">    //类初始化时，立即加载这个对象 后面可能根本没有用 造成资源浪费</span><br><span class="line">    private static SingletonDemo01 instance = new SingletonDemo01();</span><br><span class="line"></span><br><span class="line">    private SingletonDemo01() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //方法不用考虑线程同步问题 调用效率高</span><br><span class="line">    public static SingletonDemo01 getInstance() &#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>懒汉式：</strong> 真正用到单例对象时才加载，但是当多个线程去调用同一个对象的getInstance时会有并发问题。比如线程A调用getInstance的时候发现instance是null，然后进入挂起状态；之后线程B调用getInstance方法new了一个对象，这时线程A接着运行时就又建立了一个新的对象，从而违背类单例模式的初衷。所以懒汉式的单例模式在getInstance方法前面加上synchronized关键字来解决线程同步问题，带来的问题也就是调用效率降低了。懒汉式的示例代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *@author XinghaiLiao</span><br><span class="line"> *懒汉式 延时加载</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo02 &#123;</span><br><span class="line">    private static SingletonDemo02 instance;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo02() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 真正用的时候才加载 但是当多个线程去调用的时候会有并发问题 比如A调用的时候发现instance是null</span><br><span class="line">     * 然后进入了挂起状态 B调用的时候new了一个新对象 这时候就会有两个单例对象</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static synchronized SingletonDemo02 getInstance() &#123;</span><br><span class="line">        if(instance == null) &#123;</span><br><span class="line">            instance = new SingletonDemo02();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="3-其他方法实现单例模式"><a href="#3-其他方法实现单例模式" class="headerlink" title="3.其他方法实现单例模式"></a>3.其他方法实现单例模式</h2><ol>
+<li><p>双重检测锁来实现。<strong>由于编译器优化原因和JVM底层内部模型原因，偶尔会出现问题。不建议使用。</strong> 但是也给大家介绍一下。这种模式将同步内容放到if内部，只有当instance为空时不同线程访问时才需要同步，当已经有单例实例时则直接获取单例实例。demo代码如下。    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo03 &#123;</span><br><span class="line">    private static SingletonDemo03 instance;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo03() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static SingletonDemo03 getInstance() &#123;</span><br><span class="line">        if(instance == null) &#123;</span><br><span class="line">            SingletonDemo03 s;</span><br><span class="line">            synchronized (SingletonDemo03.class) &#123;</span><br><span class="line">                s = instance;</span><br><span class="line">                if(s == null) &#123;</span><br><span class="line">                    synchronized (SingletonDemo03.class) &#123;</span><br><span class="line">                        if(s == null) &#123;</span><br><span class="line">                            s = new SingletonDemo03();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    instance = s;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>静态内部类来实现优化。这种方法兼备了线程安全、调用效率高和延迟加载等优点。这种方法添加了一个私有静态内部类，由于初始化这个类时并不会初始化静态内部类，只有调用内部类时才会初始化内部类，从而实现延时加载，而且类加载时线程是安全的。demo代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 静态内部类的实现</span><br><span class="line"> 2. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo04 &#123;</span><br><span class="line">    private static class SingletonClassInstance &#123;</span><br><span class="line">        private static final SingletonDemo04 instance = new SingletonDemo04();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo04() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static SingletonDemo04 getInstance() &#123;</span><br><span class="line">        return SingletonClassInstance.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用枚举实现单例模式。优点是实现简单，枚举类本身就是单例模式，可以避免通过反射和反序列化来创建对象。demo代码如下。这种方法调用效率也比较高，遗憾的是不能实现延时加载。demo代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 枚举实现单例模式</span><br><span class="line"> 2. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public enum SingletonDemo05 &#123;</span><br><span class="line">    //这个枚举元素本身就是单例对象</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 添加自己的方法</span><br><span class="line">     */</span><br><span class="line">    public void singletonOperation() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><ol>
+<li><p><strong>这篇是本人学习笔记，有错误的地方希望大家指正(^_−)☆</strong>。</p>
+</li>
+<li><p>大家可以写个简单的测试程序测试一下单例模式，比如测试demo。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">public class Demo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SingletonDemo01 s1 = SingletonDemo01.getInstance();</span><br><span class="line">        SingletonDemo01 s2 = SingletonDemo01.getInstance();</span><br><span class="line">        System.out.println(s1 == s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于暴力反射破解单例模式的测试代码如下，可以发现暴力反射创建的对象和原来的不同。    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package reflection;</span><br><span class="line"></span><br><span class="line">import singleton.SingletonDemo01;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 暴力反射获取实例</span><br><span class="line"> 2. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class Demo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SingletonDemo01 s1 = SingletonDemo01.getInstance();</span><br><span class="line">        SingletonDemo01 s2 = SingletonDemo01.getInstance();</span><br><span class="line">        System.out.println(s1);</span><br><span class="line">        System.out.println(s2);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            Class&lt;SingletonDemo01&gt; singletonDemo01Class = (Class&lt;SingletonDemo01&gt;)Class.forName(&quot;singleton.SingletonDemo01&quot;);</span><br><span class="line">            Constructor&lt;SingletonDemo01&gt; constructor = singletonDemo01Class.getDeclaredConstructor(null);</span><br><span class="line">            constructor.setAccessible(true);</span><br><span class="line">            SingletonDemo01 s3 =  constructor.newInstance();</span><br><span class="line">            System.out.println(s3);</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (NoSuchMethodException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (InstantiationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (InvocationTargetException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要防止用暴力反射的方式来创建对象，可以在构造函数中抛出异常来防止。示例代码如下。这时候如果通过反射获取实例时会直接抛出异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line">/**</span><br><span class="line"> 4. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo01 &#123;</span><br><span class="line">    private static SingletonDemo01 instance = new SingletonDemo01();</span><br><span class="line"></span><br><span class="line">    private SingletonDemo01() &#123;</span><br><span class="line">        if(instance != null) &#123;</span><br><span class="line">            throw new RuntimeException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static SingletonDemo01 getInstance() &#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要具体比较每种方式的效率，可以通过下面的demo代码来测试（下面是测试饿汉式的效率）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package reflection;</span><br><span class="line"></span><br><span class="line">import singleton.SingletonDemo01;</span><br><span class="line"></span><br><span class="line">import java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 测试效率</span><br><span class="line"> * @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class Demo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        long start = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        int threadCnt = 10;</span><br><span class="line">        CountDownLatch countDownLatch = new CountDownLatch(threadCnt);</span><br><span class="line"></span><br><span class="line">        for(int i = 0; i &lt; threadCnt; i++) &#123;</span><br><span class="line">            new Thread(() -&gt; &#123;</span><br><span class="line">                for(int j = 0; j &lt; 1000000; j++) &#123;</span><br><span class="line">                    Object o = SingletonDemo01.getInstance();</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            //main线程阻塞，直到计数器清0</span><br><span class="line">            countDownLatch.await();</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        long end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;总耗时：&quot; + (end-start) + &quot;ms&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/22/Java单例设计模式/" data-id="ck1n66ww70024mslahblkson6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaSE/">JavaSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaWeb/">javaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于我/">关于我</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小知识/">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/javaWeb/" style="font-size: 10px;">javaWeb</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/18/JavaWeb项目jsp导入包时报错/">JavaWeb项目jsp导入包时报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/">NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/">NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/">RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 星海<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

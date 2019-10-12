@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>眼里有星星</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="邮箱201705500216@smail.xtu.edu.cn">
+<meta property="og:type" content="website">
+<meta property="og:title" content="眼里有星星">
+<meta property="og:url" content="https://xinghailiao.github.io/page/12/index.html">
+<meta property="og:site_name" content="眼里有星星">
+<meta property="og:description" content="邮箱201705500216@smail.xtu.edu.cn">
+<meta property="og:locale" content="zh-cn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="眼里有星星">
+<meta name="twitter:description" content="邮箱201705500216@smail.xtu.edu.cn">
+  
+    <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">眼里有星星</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xinghailiao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Android基础控件RadioGroup的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/Android基础控件RadioGroup的使用/" class="article-date">
+  <time datetime="2019-08-08T06:16:34.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/Android基础控件RadioGroup的使用/">Android基础控件RadioGroup的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>RadioGroup可以提供几个选项供用户选择，但只能选择其中的一个。其下面可以横着或者竖着挂几个RadioButton，也可以挂载其他控件（如TextView）。RadioGroup的相应事件一般不由下面的RadioButton响应，而是直接由RadioGroup响应。实现RadioGroup.OnCheckedChangeListener接口即可监听RadioGroup。RadioButton也是派生自CompoundButton，也可以通过修改button属性来修改图标，但是通过button属性修改往往会使文字和图标挨得很近。这时候我们可以设置RadioButton的drawableLeft属性和drawablePadding属性来使图标和文字挨得远一点（同时把button属性设置成@null）。下图是RadioGroup的使用效果。<img src="https://img-blog.csdnimg.cn/20190808143928702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="RadioGroup"></p>
+<h2 id="2-简单使用"><a href="#2-简单使用" class="headerlink" title="2.简单使用"></a>2.简单使用</h2><p>下面是RadioGroup的简单实现代码。</p>
+<ol>
+<li><p>radio_group_selector.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--选中--&gt;</span><br><span class="line">    &lt;item android:state_checked=&quot;true&quot; android:drawable=&quot;@drawable/radio_choose&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--普通状态--&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/radio_unchoose&quot;/&gt;</span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>activity_radio_group.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.RadioGroupActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:text=&quot;这是横着放的RadioGroup&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RadioGroup</span><br><span class="line">        android:id=&quot;@+id/rg_horizontal_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;RadioButton</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:checked=&quot;false&quot;</span><br><span class="line">            android:text=&quot;好&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:id=&quot;@+id/rb_horizontal_good&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;RadioButton</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:checked=&quot;false&quot;</span><br><span class="line">            android:text=&quot;很好&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:id=&quot;@+id/rb_horizontal_very_good&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line">    &lt;/RadioGroup&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:text=&quot;这是竖着放的RadioGroup&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RadioGroup</span><br><span class="line">        android:id=&quot;@+id/rg_vertical_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;RadioButton</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:checked=&quot;false&quot;</span><br><span class="line">            android:text=&quot;好&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:id=&quot;@+id/rb_vertical_good&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;RadioButton</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:checked=&quot;false&quot;</span><br><span class="line">            android:text=&quot;很好&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:id=&quot;@+id/rb_vertical_very_good&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line">    &lt;/RadioGroup&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:text=&quot;这是改了图标竖着放的RadioGroup&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RadioGroup</span><br><span class="line">        android:id=&quot;@+id/rg_vertical_custom_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;RadioButton</span><br><span class="line">            android:button=&quot;@drawable/radio_button_selector&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:checked=&quot;false&quot;</span><br><span class="line">            android:text=&quot;这个是直接设置button的RadioButton&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:id=&quot;@+id/rb_vertical_custom_good&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;RadioButton</span><br><span class="line">            android:button=&quot;@null&quot;</span><br><span class="line">            android:drawableLeft=&quot;@drawable/radio_button_selector&quot;</span><br><span class="line">            android:drawablePadding=&quot;10dp&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:checked=&quot;false&quot;</span><br><span class="line">            android:text=&quot;这个是设置drawableLeft属性的RadioButton&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:id=&quot;@+id/rb_vertical_custom_very_good&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line">    &lt;/RadioGroup&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RadioGroupActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.RadioButton;</span><br><span class="line">import android.widget.RadioGroup;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class RadioGroupActivity extends AppCompatActivity &#123;</span><br><span class="line">    RadioGroup rg_horizontal_demo;</span><br><span class="line">    RadioGroup rg_vertical_demo;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_radio_group);</span><br><span class="line">        rg_horizontal_demo = findViewById(R.id.rg_horizontal_demo);</span><br><span class="line">        rg_vertical_demo = findViewById(R.id.rg_vertical_demo);</span><br><span class="line">        rg_horizontal_demo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(RadioGroup radioGroup, int i) &#123;</span><br><span class="line">                RadioButton rb_temp  = findViewById(radioGroup.getCheckedRadioButtonId());</span><br><span class="line">                Toast.makeText(RadioGroupActivity.this, String.format(&quot;你选择了%s&quot;, rb_temp.getText().toString()), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        rg_vertical_demo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(RadioGroup radioGroup, int i) &#123;</span><br><span class="line">                RadioButton rb_temp  = findViewById(radioGroup.getCheckedRadioButtonId());</span><br><span class="line">                Toast.makeText(RadioGroupActivity.this, String.format(&quot;你选择了%s&quot;, rb_temp.getText().toString()), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件RadioGroup的使用/" data-id="ck1n5nodo001kmsla3dufcs4s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android基础控件Switch的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/Android基础控件Switch的使用/" class="article-date">
+  <time datetime="2019-08-08T05:11:15.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/Android基础控件Switch的使用/">Android基础控件Switch的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>Switch是一个很简单的控件，只有两种状态，感觉只是升级版的CheckBox(<del>但是原生的依旧很丑</del> )。通过实现CompoundButton.OnCheckedChangeListener接口就可以监听Switch，但是改变Switch的button属性只会在左边加一个显示按钮（如效果图一），所以就用CheckBox做了一个自定义的Switch（效果如图二，如果感觉按钮的图片太小，可以直接设置CheckBox的background属性，并且把button属性改为@null）。改变showText属性可以调节是否显示开关提示文字，textOn属性设置打开时的提示文字，TextOff属性设置关闭时的提示属性（<del>但是好丑啊QaQ</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190808130307498.png" alt="图一">)<img src="https://img-blog.csdnimg.cn/20190808142459213.png" alt="图二"></p>
+<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用Switch的示例代码。</p>
+<ol>
+<li><p>switch_selector.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--开状态--&gt;</span><br><span class="line">    &lt;item android:state_checked=&quot;true&quot; android:drawable=&quot;@drawable/switch_on&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--关状态--&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/switch_off&quot;/&gt;</span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>activity_switch.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.SwitchActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--原生Switch--&gt;</span><br><span class="line">    &lt;Switch</span><br><span class="line">   		android:showText=&quot;true&quot;</span><br><span class="line">        android:textOn=&quot;打开&quot;</span><br><span class="line">        android:textOff=&quot;关闭&quot;</span><br><span class="line">        android:id=&quot;@+id/sw_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;这是系统图标的Switch&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--用CheckBox自定义的Switch--&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:textColor=&quot;#000000&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:text=&quot;这是用CheckBox自定义的仿Switch&quot;</span><br><span class="line">            android:gravity=&quot;left|center_vertical&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;CheckBox</span><br><span class="line">            android:id=&quot;@+id/ck_switch_demo&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:gravity=&quot;right|center_vertical&quot;</span><br><span class="line">            android:button=&quot;@drawable/switch_selector&quot;/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SwitchActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.CheckBox;</span><br><span class="line">import android.widget.CompoundButton;</span><br><span class="line">import android.widget.Switch;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class SwitchActivity extends AppCompatActivity &#123;</span><br><span class="line">    Switch aSwitchDemo;</span><br><span class="line">    CheckBox checkBoxSwitchDemo;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_switch);</span><br><span class="line">        aSwitchDemo = findViewById(R.id.sw_demo);</span><br><span class="line">        checkBoxSwitchDemo = findViewById(R.id.ck_switch_demo);</span><br><span class="line">        aSwitchDemo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(SwitchActivity.this,  String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        checkBoxSwitchDemo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(SwitchActivity.this,  String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件Switch的使用/" data-id="ck1n5nodm001imsla8ou2pb7f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android基础控件CheckBox的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/Android基础控件CheckBox的使用/" class="article-date">
+  <time datetime="2019-08-08T04:18:26.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/Android基础控件CheckBox的使用/">Android基础控件CheckBox的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p> CheckBox有两种状态，勾选和未勾选，是一个很简单的控件。可以通过实现OnCheckedChangeListener接口来监听CheckBox；如果想更改它的图标的话只需更改它的button属性即可实现。<br><img src="https://img-blog.csdnimg.cn/20190808121700754.png" alt="CheckBox"></p>
+<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用CheckBox的示例代码。</p>
+<ol>
+<li><p>check_box_selector.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--勾选状态--&gt;</span><br><span class="line">    &lt;item android:state_checked=&quot;true&quot; android:drawable=&quot;@drawable/check_choose&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--普通状态--&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/check_unchoose&quot;/&gt;</span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>activity_check_box.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.CheckBoxActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--系统自带图标的CheckBox--&gt;</span><br><span class="line">    &lt;CheckBox</span><br><span class="line">        android:id=&quot;@+id/ck_check_box_demo1&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:checked=&quot;true&quot;</span><br><span class="line">        android:text=&quot;这是一个系统自带图标的CheckBox&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--自定义图标的CheckBox--&gt;</span><br><span class="line">    &lt;CheckBox</span><br><span class="line">        android:id=&quot;@+id/ck_check_box_demo2&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:checked=&quot;true&quot;</span><br><span class="line">        android:text=&quot;这是一个改了图标的CheckBox&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:button=&quot;@drawable/check_box_selector&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CheckBoxActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.CheckBox;</span><br><span class="line">import android.widget.CompoundButton;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class CheckBoxActivity extends AppCompatActivity &#123;</span><br><span class="line">    CheckBox checkBoxDemo1;</span><br><span class="line">    CheckBox checkBoxDemo2;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_check_box);</span><br><span class="line">        checkBoxDemo1 = findViewById(R.id.ck_check_box_demo1);</span><br><span class="line">        checkBoxDemo1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(CheckBoxActivity.this, String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        checkBoxDemo2 = findViewById(R.id.ck_check_box_demo2);</span><br><span class="line">        checkBoxDemo2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(CheckBoxActivity.this, String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件CheckBox的使用/" data-id="ck1n5p8t5001mmslaykih8ngp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaSE/">JavaSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaWeb/">javaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于我/">关于我</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小知识/">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/javaWeb/" style="font-size: 10px;">javaWeb</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/18/JavaWeb项目jsp导入包时报错/">JavaWeb项目jsp导入包时报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/">NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/">NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/">RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 星海<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

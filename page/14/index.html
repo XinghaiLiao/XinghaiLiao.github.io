@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>眼里有星星</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="邮箱201705500216@smail.xtu.edu.cn">
+<meta property="og:type" content="website">
+<meta property="og:title" content="眼里有星星">
+<meta property="og:url" content="https://xinghailiao.github.io/page/14/index.html">
+<meta property="og:site_name" content="眼里有星星">
+<meta property="og:description" content="邮箱201705500216@smail.xtu.edu.cn">
+<meta property="og:locale" content="zh-cn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="眼里有星星">
+<meta name="twitter:description" content="邮箱201705500216@smail.xtu.edu.cn">
+  
+    <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">眼里有星星</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xinghailiao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-wireshark入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/30/wireshark入门/" class="article-date">
+  <time datetime="2019-07-30T07:28:34.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/30/wireshark入门/">wireshark入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><blockquote>
+<p>Wireshark（前称Ethereal）是一个免费开源的网络数据包分析软件。网络数据包分析软件的功能是截取网络数据包，并尽可能显示出最为详细的网络数据包数据。</p>
+</blockquote>
+<h2 id="2-入门"><a href="#2-入门" class="headerlink" title="2.入门"></a>2.入门</h2><ol>
+<li>下载wireshark。<a href="https://www.wireshark.org/" target="_blank" rel="noopener">戳这里</a>，下载可能会有点慢（<del>原因大家应该知道</del> ）。</li>
+<li>界面简介。wireshark界面主要分为过滤器、包列表（不同的颜色代表不同的协议包）、包详细信息、16进制数据和地址栏等，他们的位置如图所示。<br><img src="https://img-blog.csdnimg.cn/20190731144124238.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="界面"></li>
+<li>在使用wireshark抓包时，我们会一下子得到一堆的包，从而很难找到我们想要的包。这时候过滤器就派上了用场。过滤器会帮助我们在大量的数据中迅速找到我们需要的信息。过滤器有两种。一种是显示过滤器，就是主界面上那个，用来在捕获的记录中找到所需要的记录；一种是捕获过滤器，用来过滤捕获的封包，以免捕获太多的记录。</li>
+<li>一些过滤表达式的规则（<del>只列出了我知道的</del> ）。<ol>
+<li>协议过滤。比如TCP，则只显示TCP的包。如图只显示了TCP协议的包（HTTP使用的是TCP协议）。<br><img src="https://img-blog.csdnimg.cn/20190731144906883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="TCP"></li>
+<li>IP过滤。比如 ip.src == 192.168.111.1 显示源地址为 192.168.111.1的包；ip.dst ==192.168.1.112, 目标地址为192.168.1.112。例子如图。<br><img src="https://img-blog.csdnimg.cn/201907311453270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="列子"></li>
+<li>端口过滤。tcp.port ==80（源端口或者目的端口是80）,  端口为80的包；tcp.srcport  ==80,  只显示TCP协议的原端口为80的。例子如图。<br><img src="https://img-blog.csdnimg.cn/20190731145700396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="列子"></li>
+<li>Http模式过滤。http.request.method==”GET”,   只显示HTTP GET方法的。（有关post和get这里就不讲了，大家百度一下吧）。列子图片如下。<br><img src="https://img-blog.csdnimg.cn/20190731150322247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="列子"></li>
+<li>组合过滤条件（我也不知道该叫什么）。可以用and（&amp;&amp;）、or（||）组合过滤条件。就和C中的差不多。如http.request.method==”GET” &amp;&amp; ip.src==192.168.1.112，筛选get和原IP为192.168.1.112的包。例子如图。<br><img src="https://img-blog.csdnimg.cn/20190731150602915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="组合过滤"><h2 id="3-简单应用"><a href="#3-简单应用" class="headerlink" title="3.简单应用"></a>3.简单应用</h2>下面通过抓取简单登陆页面的账号和密码来实战一下（以抓取4399小游戏的登陆账号和密码为例）。一下只是个人见解，可能还有更好的方法。</li>
+</ol>
+</li>
+<li>开启wireshark抓包。</li>
+<li>进入登陆界面随便输入账号和密码（我输入的账号和密码都是123456789）。<br><img src="https://img-blog.csdnimg.cn/2019073115093858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="登陆页面"></li>
+<li>一般账号和密码提交都是POST方法（Get方法会把信息暴露在地址栏中）。然后tcp连接时会有三次握手。<img src="https://img-blog.csdnimg.cn/20190731151420777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="抓包"></li>
+<li>找到一个可疑的包，这里源地址和目的地址差不多的意思是源地址就是本机，目的地址在三次握手和发送HTTP报文时没变。<br><img src="https://img-blog.csdnimg.cn/20190731151854107.png" alt="可疑"></li>
+<li>查看包内容，正是我们要找的包。<br><img src="https://img-blog.csdnimg.cn/20190731152354817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="包格式"><br><img src="https://img-blog.csdnimg.cn/20190731152452809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="包内容"><h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2></li>
+<li><strong>如有错误恳请指出。</strong></li>
+<li>抓包得靠自己实战，多摸索。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/30/wireshark入门/" data-id="ck1mzzcpb000d9gla3sjc7n72" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-作为新手开发安卓App所遇到的问题及解决" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/30/作为新手开发安卓App所遇到的问题及解决/" class="article-date">
+  <time datetime="2019-07-30T05:48:43.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/30/作为新手开发安卓App所遇到的问题及解决/">作为新手开发Android应用时遇到的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。</p>
+<h2 id="2-正文"><a href="#2-正文" class="headerlink" title="2.正文"></a>2.正文</h2><ol>
+<li><p>App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。<br><img src="https://img-blog.csdnimg.cn/20190730130821586.png" alt="App"></p>
+</li>
+<li><p>做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓开发的常识性错误：不能在主线程中访问网络；不能在其他线程中获取和修改UI组件。</p>
+</li>
+<li><p>具体错误及解决方法</p>
+<ul>
+<li>不能在主线程中访问网络：新开一个线程来访问网络。</li>
+<li>Only the original thread that created a view hierarchy can touch its views（只有原来创建UI组件的线程才能访问这个UI组件）：参考这篇文章<a href="https://blog.csdn.net/breeze666/article/details/7570914" target="_blank" rel="noopener">戳这里</a>。下面是我参考这篇文章后的主要代码片段。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//新建一个Hander</span><br><span class="line">private final Handler mHandler = new Handler();</span><br><span class="line">//更新UI组件的runnable接口</span><br><span class="line">final Runnable mUpdateResults = new Runnable() &#123;</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            updateUI();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">//更新UI组件的具体操作</span><br><span class="line">private void updateUI() &#123;</span><br><span class="line">        tv_light_value.setText(light_value);</span><br><span class="line">        tv_nutrition_value.setText(nutrition_value);</span><br><span class="line">        tv_water_value.setText(water_value);</span><br><span class="line">&#125;</span><br><span class="line">//这个类中把要做的事情做完了之后 调用hander的post方法来更新UI</span><br><span class="line">class jsonThread implements Runnable &#123;</span><br><span class="line">        private String url;</span><br><span class="line"></span><br><span class="line">        public jsonThread(String url) &#123;</span><br><span class="line">            this.url = url + &quot;/guang.json&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while(true) &#123;</span><br><span class="line">                String result = HttpUtil.getHttpResult(url);</span><br><span class="line">                if(result  == null) &#123;</span><br><span class="line">                    Looper.prepare();</span><br><span class="line">                    ToastUtil.showToast(MainActivity.this, &quot;网络连接错误&quot;);</span><br><span class="line">                    Looper.loop();</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        JSONArray array = new JSONArray(result);</span><br><span class="line">                        light_value = array.getJSONObject(0).getString(&quot;guang&quot;);</span><br><span class="line">                        water_value = array.getJSONObject(0).getString(&quot;shidu&quot;);</span><br><span class="line">                        nutrition_value = array.getJSONObject(0).getString(&quot;wendu&quot;);</span><br><span class="line">                        jiaoshui = array.getJSONObject(0).getString(&quot;jiaoshui&quot;);</span><br><span class="line">                        yingyang = array.getJSONObject(0).getString(&quot;shifei&quot;);</span><br><span class="line">                        buguang = array.getJSONObject(0).getString(&quot;buguang&quot;);</span><br><span class="line">                        //上面已经把要处理的东西处理完了，接下来调用post方法来更新UI</span><br><span class="line">                        mHandler.post(mUpdateResults);</span><br><span class="line">                    &#125; catch (JSONException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>还有一些其他错误如用wamp一键搭建web服务器时发现同一局域网下手机访问网站403了。解决方法如下：把箭头所指的文件的里面的<strong>Require local</strong>改成<strong>Require all granted</strong>，然后重启服务器手机就可以访问了。<br><img src="https://img-blog.csdnimg.cn/20190730133855116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图片"><br><img src="https://img-blog.csdnimg.cn/20190730134202786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="重启"></p>
+</li>
+</ol>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><ol>
+<li>务必学好Java再碰安卓（当然现在开发安卓也可以用Kotlin）。</li>
+<li>比赛一定要找适合的队友组队（<del>别随缘找队友了</del> ），不然真心觉得憨上加憨。<br><img src="https://img-blog.csdnimg.cn/20190730134648701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="憨上加憨"></li>
+<li><del>好好学习，天天向上。</del> </li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/30/作为新手开发安卓App所遇到的问题及解决/" data-id="ck1mzzcpc000e9glankublbqd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-XTUOJ-1104-素数个数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/29/XTUOJ-1104-素数个数/" class="article-date">
+  <time datetime="2019-07-29T04:45:15.000Z" itemprop="datePublished">2019-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/29/XTUOJ-1104-素数个数/">XTUOJ-1104-素数个数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<ol>
+<li>题目<br>Description<br>素数是指只能被1和它自己整除的数，特别的，1不是素数。比如，2,3,5,7都是素数。现给出正整数a和b(1&lt;=a,b&lt;=1,000,000)，请计算a与b之间有多少个素数。 输入 第一行是一个整数N，表示样例的个数。以后每行两个整数a和b。 输出 每行输出一个整数，即a和b之间的素数个数。<br>Sample Input<br>3<br>1 10<br>2 2<br>3 7<br>Sample Output<br>4<br>1<br>3</li>
+<li>解法<br>先打表，然后算个数。求[a, b]内素数的个数就等于求[1, b]内的素数个数减去[1, a-1]内的素数个数（<del>我第一次交WA了，因为a可以小于b，注意swap一下</del> ）。我的代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt; </span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 1000005</span><br><span class="line">bool isPrime[N];</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	//freopen(&quot;D:\\myCCode\\XTUOJ\\test.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">	for(int i = 1; i &lt; N; i++) </span><br><span class="line">		isPrime[i] = true;</span><br><span class="line">	isPrime[1] = false;</span><br><span class="line">	isPrime[2] = true;</span><br><span class="line">	for(int i = 2; i &lt; N; i++) </span><br><span class="line">		if(isPrime[i] == true) </span><br><span class="line">			for(int j = i+i; j &lt; N; j+=i) </span><br><span class="line">				isPrime[j] = false;</span><br><span class="line">	int K, a, b;</span><br><span class="line">	cin &gt;&gt; K;</span><br><span class="line">	while(K--) &#123;</span><br><span class="line">		int cnta = 0, cntb = 0;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		if(a &gt; b)</span><br><span class="line">			swap(a, b);</span><br><span class="line">		for(int i = 1; i &lt;= a-1; i++) </span><br><span class="line">			if(isPrime[i]) </span><br><span class="line">				cnta++;</span><br><span class="line">		for(int i = 1; i &lt;= b; i++) </span><br><span class="line">			if(isPrime[i])</span><br><span class="line">				cntb++;</span><br><span class="line">		cout &lt;&lt; cntb-cnta &lt;&lt; endl;</span><br><span class="line">	&#125;	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/29/XTUOJ-1104-素数个数/" data-id="ck1n5vja8001umslahuosqtht" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaSE/">JavaSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaWeb/">javaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于我/">关于我</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小知识/">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/javaWeb/" style="font-size: 10px;">javaWeb</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/18/JavaWeb项目jsp导入包时报错/">JavaWeb项目jsp导入包时报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/">NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/">NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/">RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 星海<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
