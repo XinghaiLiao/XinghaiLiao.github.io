@@ -7,22 +7,22 @@
   
   <title>作为新手开发Android应用时遇到的问题 | 眼里有星星</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.前言最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。 2.正文 App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。  做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓开">
+  <meta name="description" content="1.前言最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。 2.正文 App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。  做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="作为新手开发Android应用时遇到的问题">
 <meta property="og:url" content="http://yoursite.com/2019/07/30/作为新手开发安卓App所遇到的问题及解决/index.html">
 <meta property="og:site_name" content="眼里有星星">
-<meta property="og:description" content="1.前言最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。 2.正文 App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。  做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓开">
-<meta property="og:locale" content="en">
+<meta property="og:description" content="1.前言最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。 2.正文 App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。  做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190730130821586.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190730133855116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190730134202786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190730134648701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-10-12T04:01:45.663Z">
+<meta property="og:updated_time" content="2019-10-12T04:29:08.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="作为新手开发Android应用时遇到的问题">
-<meta name="twitter:description" content="1.前言最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。 2.正文 App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。  做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓开">
+<meta name="twitter:description" content="1.前言最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。 2.正文 App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。  做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190730130821586.png">
   
     <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
@@ -46,6 +46,10 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">眼里有星星</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -92,7 +96,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。</p>
+        <hr>
+<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。</p>
 <h2 id="2-正文"><a href="#2-正文" class="headerlink" title="2.正文"></a>2.正文</h2><ol>
 <li><p>App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。<br><img src="https://img-blog.csdnimg.cn/20190730130821586.png" alt="App"></p>
 </li>
@@ -179,7 +184,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
@@ -250,5 +255,5 @@
 
 
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

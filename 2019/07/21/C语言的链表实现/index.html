@@ -7,20 +7,20 @@
   
   <title>C语言的链表实现 | 眼里有星星</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.链表基础知识 链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。 链表结构分类：单向链表、双向链表、循环链表等等。有些链表头结点不存储信息，有些链表头节点存储信息。下面介">
+  <meta name="description" content="1.链表基础知识 链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。 链表结构分类：单向链表、双向链表、循环链表等等。有些链表头结点不存储信息，有些链表头节点存储信息。下面">
 <meta name="keywords" content="C语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言的链表实现">
 <meta property="og:url" content="http://yoursite.com/2019/07/21/C语言的链表实现/index.html">
 <meta property="og:site_name" content="眼里有星星">
-<meta property="og:description" content="1.链表基础知识 链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。 链表结构分类：单向链表、双向链表、循环链表等等。有些链表头结点不存储信息，有些链表头节点存储信息。下面介">
-<meta property="og:locale" content="en">
+<meta property="og:description" content="1.链表基础知识 链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。 链表结构分类：单向链表、双向链表、循环链表等等。有些链表头结点不存储信息，有些链表头节点存储信息。下面">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190720221222555.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190720222510117.png">
-<meta property="og:updated_time" content="2019-10-12T03:27:18.306Z">
+<meta property="og:updated_time" content="2019-10-12T04:29:40.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言的链表实现">
-<meta name="twitter:description" content="1.链表基础知识 链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。 链表结构分类：单向链表、双向链表、循环链表等等。有些链表头结点不存储信息，有些链表头节点存储信息。下面介">
+<meta name="twitter:description" content="1.链表基础知识 链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。 链表结构分类：单向链表、双向链表、循环链表等等。有些链表头结点不存储信息，有些链表头节点存储信息。下面">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190720221222555.png">
   
     <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
@@ -44,6 +44,10 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">眼里有星星</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -90,7 +94,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-链表基础知识"><a href="#1-链表基础知识" class="headerlink" title="1.链表基础知识"></a>1.链表基础知识</h2><ol>
+        <hr>
+<h2 id="1-链表基础知识"><a href="#1-链表基础知识" class="headerlink" title="1.链表基础知识"></a>1.链表基础知识</h2><ol>
 <li>链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。</li>
 <li>链表结构分类：<strong>单向链表、双向链表、循环链表</strong>等等。有些链表头结点不存储信息，有些链表头节点存储信息。下面介绍最常用的单向链表和双向链表。</li>
 <li><strong>单向链表：</strong> 链表中最简单的一种是单向链表，它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值（可以按照下图理解）。一般这么定义一个单向链表，next指针指向下一个节点。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*数据*/</span><br><span class="line">typedef struct &#123;</span><br><span class="line">	//填入你需要的数据</span><br><span class="line">	int id;</span><br><span class="line">&#125; Data, *pData;</span><br><span class="line"></span><br><span class="line">typedef struct Node &#123;</span><br><span class="line">	Data data;</span><br><span class="line">	struct Node* next;</span><br><span class="line">&#125; LinkedList, *pLinkedList, Node, *pNode;</span><br></pre></td></tr></table></figure>
@@ -205,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
@@ -276,5 +281,5 @@
 
 
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

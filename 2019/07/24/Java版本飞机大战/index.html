@@ -7,19 +7,19 @@
   
   <title>Java版本飞机大战 | 眼里有星星</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.关于这个飞机大战学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（抄袭 ）了许多，毕竟天下码农一家亲。游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。 2.代码实现 首先写几个bean。GameStateBean里面存放了一些游戏状态的常量，ImgBean">
+  <meta name="description" content="1.关于这个飞机大战学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（抄袭 ）了许多，毕竟天下码农一家亲。游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。 2.代码实现 首先写几个bean。GameStateBean里面存放了一些游戏状态的常量，ImgBea">
 <meta name="keywords" content="JavaSE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java版本飞机大战">
 <meta property="og:url" content="http://yoursite.com/2019/07/24/Java版本飞机大战/index.html">
 <meta property="og:site_name" content="眼里有星星">
-<meta property="og:description" content="1.关于这个飞机大战学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（抄袭 ）了许多，毕竟天下码农一家亲。游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。 2.代码实现 首先写几个bean。GameStateBean里面存放了一些游戏状态的常量，ImgBean">
-<meta property="og:locale" content="en">
+<meta property="og:description" content="1.关于这个飞机大战学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（抄袭 ）了许多，毕竟天下码农一家亲。游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。 2.代码实现 首先写几个bean。GameStateBean里面存放了一些游戏状态的常量，ImgBea">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190724164720690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:updated_time" content="2019-10-12T03:21:30.916Z">
+<meta property="og:updated_time" content="2019-10-12T04:29:28.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java版本飞机大战">
-<meta name="twitter:description" content="1.关于这个飞机大战学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（抄袭 ）了许多，毕竟天下码农一家亲。游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。 2.代码实现 首先写几个bean。GameStateBean里面存放了一些游戏状态的常量，ImgBean">
+<meta name="twitter:description" content="1.关于这个飞机大战学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（抄袭 ）了许多，毕竟天下码农一家亲。游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。 2.代码实现 首先写几个bean。GameStateBean里面存放了一些游戏状态的常量，ImgBea">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190724164720690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
@@ -43,6 +43,10 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">眼里有星星</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -89,7 +93,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-关于这个飞机大战"><a href="#1-关于这个飞机大战" class="headerlink" title="1.关于这个飞机大战"></a>1.关于这个飞机大战</h2><p>学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（<del>抄袭</del> ）了许多，毕竟天下码农一家亲。<br>游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。<br><img src="https://img-blog.csdnimg.cn/20190724164720690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="游戏界面"></p>
+        <hr>
+<h2 id="1-关于这个飞机大战"><a href="#1-关于这个飞机大战" class="headerlink" title="1.关于这个飞机大战"></a>1.关于这个飞机大战</h2><p>学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（<del>抄袭</del> ）了许多，毕竟天下码农一家亲。<br>游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。<br><img src="https://img-blog.csdnimg.cn/20190724164720690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="游戏界面"></p>
 <h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h2><ol>
 <li>首先写几个bean。GameStateBean里面存放了一些游戏状态的常量，ImgBean里面存放了游戏所用到的图片资源，这些图片和代码放在同一个包下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package xyz.xinghai.game.bean;</span><br><span class="line"></span><br><span class="line">public class GameStateBean &#123;</span><br><span class="line">	//游戏启动</span><br><span class="line">	public static final int START = 0;</span><br><span class="line">	//游戏运行</span><br><span class="line">	public static final int RUNNING = 1;</span><br><span class="line">	//游戏暂停</span><br><span class="line">	public static final int PAUSE = 2;</span><br><span class="line">	//游戏结束</span><br><span class="line">	public static final int GAMEOVER = 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -199,7 +204,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
@@ -270,5 +275,5 @@
 
 
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
