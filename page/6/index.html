@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>眼里有星星</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="眼里有星星">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:site_name" content="眼里有星星">
+<meta property="og:description" content="只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。">
+<meta property="og:locale" content="zh-cn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="眼里有星星">
+<meta name="twitter:description" content="只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。">
+  
+    <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">眼里有星星</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邮箱201705500216@smail.xtu.edu.cn</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-基于拉格朗日差值算法的BMP图像缩放" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/" class="article-date">
+  <time datetime="2019-07-02T06:44:39.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/">基于拉格朗日差值算法的BMP图像缩放</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-BMP图片文件格式"><a href="#1-BMP图片文件格式" class="headerlink" title="1.BMP图片文件格式"></a>1.BMP图片文件格式</h2><blockquote>
+<p>参见博客<a href="https://www.cnblogs.com/wainiwann/p/7086844.html" target="_blank" rel="noopener">BMP文件格式详解</a>，这篇博客写的非常详细，不想看的话可以看下面的简单介绍，简介大多引用自这里。</p>
+</blockquote>
+<p>BMP文件的数据按照从文件头开始的先后顺序分为四个部分：bmp文件头(bmp file header)；位图信息头(bitmap information)；调色板(color palette)；位图数据(bitmap data)。下面是8位BMP图像和24位BMP图像的简介，如果觉得不详细的话就去看上面的博客。</p>
+<p>BMP文件头：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190702132532490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="BMP文件头"><br>BMP信息头：<br><img src="https://img-blog.csdnimg.cn/20190702132619493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>8位BMP文件格式：</strong> BMP文件头（14Byte），位图信息头（40字节），调色板（256*4字节。是这么来的：8位一共可以表示256种颜色，每种颜色4字节（R，G，B，Alpha）），位图数据（每行（图片的宽×每个像素的Byte）必须是4的倍数，不足会用0填充）。下面以一张图片的数据简单说明一下。</p>
+<p>下面这张图片是256×256的，大小是65.05KB：<br><img src="https://img-blog.csdnimg.cn/20190702133308272.png" alt="8位BMP图片示例"><br>下面是这张图的部分数据及对应的信息，其中数据部分的数据值对应的就是调色板的数据，如47，在调色板（B，G，R，Alpha）中就是（47， 47， 47， 0)，大于一字节的数据是用小端形式存储的（不懂小端模式的话可以参见<a href="https://blog.csdn.net/jelly_9/article/details/79330051" target="_blank" rel="noopener">这篇博客</a>）：<img src="https://img-blog.csdnimg.cn/20190702133418314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="8位BMP图片数据"><br><strong>24位BMP图片格式：</strong> BMP文件头（14Byte），位图信息头（40字节），位图数据（每行（图片的宽×每个像素的Byte）必须是4的倍数，不足会用0填充）。下面以一张图片的数据简单说明一下。</p>
+<p>下面这张图片是256×256的，文件大小是192.05KB<br><img src="https://img-blog.csdnimg.cn/2019070213425764.png" alt="24位BMP图片列子"><br>下面是这张图的部分数据及对应的信息，其中文件头和信息头和8位BMP是一样的，不过没有调色板，直接用24位表示一种颜色（如图中的39，16，52表示R（52）G（16）B（39））。大于一字节的数据也是用小端形式存储的。<br><img src="https://img-blog.csdnimg.cn/20190702135218613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="24位BMP数据示例"></p>
+<h2 id="2-拉格朗日差值简介"><a href="#2-拉格朗日差值简介" class="headerlink" title="2.拉格朗日差值简介"></a>2.拉格朗日差值简介</h2><p> <strong>问题提法(来自XTU数值分析课程的PPT)：</strong><img src="https://img-blog.csdnimg.cn/20190702135718873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="拉格朗日差值问题提法"><br> 通俗一点说也就是通过几个已知的样本点来求估计一个位置的点的函数值。</p>
+<p> <strong>一般求法（来自百度）：</strong><br> <img src="https://img-blog.csdnimg.cn/20190702140106918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="拉格朗日差值一般求法"></p>
+<h2 id="3-运用拉格朗日差值对BMP图片进行处理"><a href="#3-运用拉格朗日差值对BMP图片进行处理" class="headerlink" title="3.运用拉格朗日差值对BMP图片进行处理"></a>3.运用拉格朗日差值对BMP图片进行处理</h2><p><strong>原理（来自XTU数值分析课程的PPT）:</strong><br><img src="https://img-blog.csdnimg.cn/20190702140454162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图像缩放算法"><br><strong>以上图中的6×6缩小到3×3为列子，解释一下此算法的过程：</strong></p>
+<ol>
+<li>求出缩小图片列对应原图列中的位置（g(i)），想象一下缩放的过程就能明白为什么这样算。</li>
+<li>求出每个g(i)附近的n个点（n越大，精度越高）。</li>
+<li>把每个g(i)附近的n个点（对应原图中的点，如2.5附近的三个点是2，3，4这三个点的函数值就是原图中的颜色值（RGB），这n个点也可能有小于0或者大于原图宽度的点，如果有的话就做对称处理，具体参见第6步）当成样本点，利用拉格朗日差值算法算出g(i)的函数值，注意算出来的值要转换成整数。</li>
+<li>以8位图中2.5附近的三个点2，3，4为列子计算（假设2 ，3，4点的数据值分别是22,100,33）：<br><img src="https://img-blog.csdnimg.cn/20190702142545510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="2.5附近的3个点的拉格朗日差值的计算"></li>
+<li>如果是8位图片的话，算出来的值代表的就是该点RGB（8位图中的RGB和数据值是一样的，Alpha为0，有兴趣可以调下Alpha看看有什么效果）。如果是24位图片的话就当成3个8位图片处理，依次对R、G、B进行处理。</li>
+<li>如果算出来的n个值中有小于0或者大于原图宽度的值，就对其进行对称处理，具体方法如下：<strong>假如插值需要3个样本，它们是(-1，f(-1))，(0，f(0))，(1，f(1))，那么其中的(-1，f(-1))要做对称处理。处理后三个样本为(-1，f(1))，(0，f(0))，(1，f(1))，即f(-1)变成f(1)，不过算的时候还是用-1算，只是函数值变了。</strong></li>
+<li>对图片中的每一行都进行行处理。</li>
+<li>经过7步的处理后，我们把6×6缩成了6×3，还要进行行处理来缩成3×3。</li>
+<li>注意每行数据必须是4的倍数，不足的要进行0填充。</li>
+<li>处理后图的第k行，从离它最近的原图行取样进行插值。对于处理后图的第k行，原图中离它最近的行是round(k<em>(H0-1)/(H-1))，H0是原图高度，H是处理后图像的高度。原图共8行，第0行～第7行，即H0=8(即原图高度为8)。缩放后图像的行数为4行，第0行～第3行，即H=4。计算缩放图像的第1行，应从原图的第round(1</em>(8-1)/(4-1))=round(2.333…)=2行取样。计算缩放图像的第2行，应从原图的第round(2<em>(8-1)/(4-1))=round(4.666…)=5行取样。计算缩放图像的第3行，应从原图的round(3</em>(8-1)/(4-1))=round(7)=7行取样。</li>
+<li>放大缩小原理一样。<h2 id="代码实现（Java版本）"><a href="#代码实现（Java版本）" class="headerlink" title="代码实现（Java版本）"></a>代码实现（Java版本）</h2>可以下载我写的（在我的github，你能看的我在github上的个人博客，应该也能找到我的github），不过写的一般。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/" data-id="ck1n65d5e0021msla8awv958j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaSE/">JavaSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaWeb/">javaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于我/">关于我</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小知识/">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/javaWeb/" style="font-size: 10px;">javaWeb</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/18/JavaWeb项目jsp导入包时报错/">JavaWeb项目jsp导入包时报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/">NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/">NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/">RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 星海<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

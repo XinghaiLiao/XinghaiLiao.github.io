@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>眼里有星星</title>
   <icon>http://yoursite.com/icon.png</icon>
-  <subtitle>只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</subtitle>
+  <subtitle>邮箱201705500216@smail.xtu.edu.cn</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-10-12T04:29:34.646Z</updated>
+  <updated>2019-10-12T05:17:52.512Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,8 +20,8 @@
     <title>JavaWeb项目jsp导入包时报错</title>
     <link href="http://yoursite.com/2019/10/18/JavaWeb%E9%A1%B9%E7%9B%AEjsp%E5%AF%BC%E5%85%A5%E5%8C%85%E6%97%B6%E6%8A%A5%E9%94%99/"/>
     <id>http://yoursite.com/2019/10/18/JavaWeb项目jsp导入包时报错/</id>
-    <published>2019-10-17T16:00:00.000Z</published>
-    <updated>2019-10-12T04:29:34.646Z</updated>
+    <published>2019-10-18T07:54:06.000Z</published>
+    <updated>2019-10-12T05:17:52.512Z</updated>
     
     <summary type="html">
     
@@ -43,11 +43,118 @@
   </entry>
   
   <entry>
-    <title>关于我</title>
-    <link href="http://yoursite.com/2019/08/09/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D/"/>
-    <id>http://yoursite.com/2019/08/09/写在前面的话/</id>
-    <published>2019-08-08T16:00:00.000Z</published>
-    <updated>2019-10-12T04:27:29.741Z</updated>
+    <title>NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</title>
+    <link href="http://yoursite.com/2019/10/04/NOI_1.7%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2_02_%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/"/>
+    <id>http://yoursite.com/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/</id>
+    <published>2019-10-04T11:47:09.000Z</published>
+    <updated>2019-10-12T05:23:14.194Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-题目&quot;&gt;&lt;a href=&quot;#1-题目&quot; class=&quot;headerlink&quot; title=&quot;1.题目&quot;&gt;&lt;/a&gt;1.题目&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://noi.openjudge.cn/ch0107/02/&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="NOI" scheme="http://yoursite.com/tags/NOI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</title>
+    <link href="http://yoursite.com/2019/09/24/NOI_1.6%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84_14_%E6%B1%8210000%E4%BB%A5%E5%86%85n%E7%9A%84%E9%98%B6%E4%B9%98/"/>
+    <id>http://yoursite.com/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/</id>
+    <published>2019-09-24T14:14:35.000Z</published>
+    <updated>2019-10-12T05:22:54.345Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-题目&quot;&gt;&lt;a href=&quot;#1-题目&quot; class=&quot;headerlink&quot; title=&quot;1.题目&quot;&gt;&lt;/a&gt;1.题目&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://noi.openjudge.cn/ch0106/14/&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="NOI" scheme="http://yoursite.com/tags/NOI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>win10通过cmd查看连接的WiFi密码</title>
+    <link href="http://yoursite.com/2019/09/17/win10%E9%80%9A%E8%BF%87cmd%E6%9F%A5%E7%9C%8B%E8%BF%9E%E6%8E%A5%E7%9A%84WiFi%E5%AF%86%E7%A0%81/"/>
+    <id>http://yoursite.com/2019/09/17/win10通过cmd查看连接的WiFi密码/</id>
+    <published>2019-09-17T06:00:25.000Z</published>
+    <updated>2019-10-12T05:09:58.262Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt; 进入cmd：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;命令netsh wlan show profiles查看已经连接过的WiFi名称。&lt;/li&gt;
+&lt;li&gt;命令netsh wlan show profiles name=”xxx”
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="小知识" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</title>
+    <link href="http://yoursite.com/2019/09/07/RecyclerView%E9%85%8D%E5%90%88StaggeredGridLayoutManager%E5%AE%9E%E7%8E%B0%E7%80%91%E5%B8%83%E6%B5%81%E6%95%88%E6%9E%9C/"/>
+    <id>http://yoursite.com/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/</id>
+    <published>2019-09-07T02:55:05.000Z</published>
+    <updated>2019-10-12T05:09:40.548Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h2&gt;&lt;p&gt;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Android溢出菜单栏不显示图标及设置了android:showAsAction=&quot;ifRoom&quot;但不在导航栏显示问题</title>
+    <link href="http://yoursite.com/2019/08/30/%E8%A7%A3%E5%86%B3Android%E6%BA%A2%E5%87%BA%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%9B%BE%E6%A0%87%E5%8F%8A%E8%AE%BE%E7%BD%AE%E4%BA%86android_showAsAction=_ifRoom_%E4%BD%86%E4%B8%8D%E5%9C%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/</id>
+    <published>2019-08-30T08:43:31.000Z</published>
+    <updated>2019-10-12T05:06:55.314Z</updated>
     
     <summary type="html">
     
@@ -57,7 +164,7 @@
         
           &lt;hr&gt;
 &lt;ol&gt;
-&lt;li&gt;大一学的工业设计，大二上学期转到计算机科学与技术（&lt;del&gt;说多了都是泪&lt;/del&gt;
+&lt;li&gt;设置了android:showAsAction=”ifRoom”属性但是不在导航栏显示问题。&lt;br&gt;增加命名空间&lt;code&gt;xmlns:app=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;&lt;/c
         
       
     
@@ -65,16 +172,94 @@
     
     
     
-      <category term="关于我" scheme="http://yoursite.com/tags/%E5%85%B3%E4%BA%8E%E6%88%91/"/>
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   
   <entry>
-    <title>wireshark入门</title>
-    <link href="http://yoursite.com/2019/07/30/wireshark%E5%85%A5%E9%97%A8/"/>
-    <id>http://yoursite.com/2019/07/30/wireshark入门/</id>
-    <published>2019-07-29T16:00:00.000Z</published>
-    <updated>2019-10-12T04:29:14.080Z</updated>
+    <title>Android中ToolBar的使用</title>
+    <link href="http://yoursite.com/2019/08/29/Android%E4%B8%ADToolBar%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/29/Android中ToolBar的使用/</id>
+    <published>2019-08-29T13:23:15.000Z</published>
+    <updated>2019-10-12T05:12:32.464Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;Toolbar即顶部的导航栏，使用也非常简单。下面是使用步骤。&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20190829211207549.png&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用TabActivity创建底部导航栏模板</title>
+    <link href="http://yoursite.com/2019/08/29/%E4%BD%BF%E7%94%A8TabActivity%E5%88%9B%E5%BB%BA%E5%BA%95%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%A8%A1%E6%9D%BF/"/>
+    <id>http://yoursite.com/2019/08/29/使用TabActivity创建底部导航栏模板/</id>
+    <published>2019-08-29T10:24:13.000Z</published>
+    <updated>2019-10-12T05:13:56.971Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20190829181911149.png&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;</title>
+    <link href="http://yoursite.com/2019/08/29/Android%E4%BD%BF%E7%94%A8TabHost%E6%97%B6%E6%8A%A5%E9%94%99Your%20content%20must%20have%20a%20TabHost%20whose%20id%20attribute%20is%20&#39;android.R.id.tabhost&#39;/"/>
+    <id>http://yoursite.com/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;/</id>
+    <published>2019-08-29T03:39:34.000Z</published>
+    <updated>2019-10-12T05:15:57.138Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;使用TabHost提示 &lt;strong&gt;Your content must have a TabHost whose id attribute is ‘android.R.id.tabhost’&lt;/strong&gt; 或者  &lt;strong&gt;Your TabHost
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android通过remoteViews自定义通知</title>
+    <link href="http://yoursite.com/2019/08/23/Android%E9%80%9A%E8%BF%87remoteViews%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%9A%E7%9F%A5/"/>
+    <id>http://yoursite.com/2019/08/23/Android通过remoteViews自定义通知/</id>
+    <published>2019-08-23T13:27:48.000Z</published>
+    <updated>2019-10-12T05:24:33.230Z</updated>
     
     <summary type="html">
     
@@ -91,16 +276,16 @@
     
     
     
-      <category term="计算机网络" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   
   <entry>
-    <title>作为新手开发Android应用时遇到的问题</title>
-    <link href="http://yoursite.com/2019/07/30/%E4%BD%9C%E4%B8%BA%E6%96%B0%E6%89%8B%E5%BC%80%E5%8F%91%E5%AE%89%E5%8D%93App%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/"/>
-    <id>http://yoursite.com/2019/07/30/作为新手开发安卓App所遇到的问题及解决/</id>
-    <published>2019-07-29T16:00:00.000Z</published>
-    <updated>2019-10-12T04:29:08.126Z</updated>
+    <title>Android控件ProgressBar的使用</title>
+    <link href="http://yoursite.com/2019/08/23/Android%E6%8E%A7%E4%BB%B6ProgressBar%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/23/Android控件ProgressBar的使用/</id>
+    <published>2019-08-23T10:54:31.000Z</published>
+    <updated>2019-10-12T05:25:54.526Z</updated>
     
     <summary type="html">
     
@@ -109,7 +294,7 @@
         
         
           &lt;hr&gt;
-&lt;h2 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot;
+&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
         
       
     
@@ -122,11 +307,11 @@
   </entry>
   
   <entry>
-    <title>Java版本飞机大战</title>
-    <link href="http://yoursite.com/2019/07/24/Java%E7%89%88%E6%9C%AC%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/"/>
-    <id>http://yoursite.com/2019/07/24/Java版本飞机大战/</id>
-    <published>2019-07-23T16:00:00.000Z</published>
-    <updated>2019-10-12T04:29:28.328Z</updated>
+    <title>为Dev-C++配置C99</title>
+    <link href="http://yoursite.com/2019/08/21/%E4%B8%BADev-C++%E9%85%8D%E7%BD%AEC99/"/>
+    <id>http://yoursite.com/2019/08/21/为Dev-C++配置C99/</id>
+    <published>2019-08-21T04:46:11.000Z</published>
+    <updated>2019-10-12T05:27:43.588Z</updated>
     
     <summary type="html">
     
@@ -135,7 +320,7 @@
         
         
           &lt;hr&gt;
-&lt;h2 id=&quot;1-关于这个飞机大战&quot;&gt;&lt;a href=&quot;#1-关于这个飞机大战&quot; class=&quot;headerlink&quot;
+&lt;p&gt;Dev-C++默认是没有支持C99的，所以很多习惯的写法都会报错（当文件后缀是.c时）。&lt;br&gt;&lt;img
         
       
     
@@ -143,16 +328,16 @@
     
     
     
-      <category term="JavaSE" scheme="http://yoursite.com/tags/JavaSE/"/>
+      <category term="小知识" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/"/>
     
   </entry>
   
   <entry>
-    <title>C语言的链表实现</title>
-    <link href="http://yoursite.com/2019/07/21/C%E8%AF%AD%E8%A8%80%E7%9A%84%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://yoursite.com/2019/07/21/C语言的链表实现/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-10-12T04:29:40.304Z</updated>
+    <title>Android通知推送</title>
+    <link href="http://yoursite.com/2019/08/19/Android%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%EF%BC%88%E8%A7%A3%E5%86%B3NotificationService_%20No%20Channel%20found%20for___%E9%97%AE%E9%A2%98%EF%BC%89/"/>
+    <id>http://yoursite.com/2019/08/19/Android通知推送（解决NotificationService_ No Channel found for___问题）/</id>
+    <published>2019-08-19T13:39:21.000Z</published>
+    <updated>2019-10-12T05:34:25.877Z</updated>
     
     <summary type="html">
     
@@ -161,8 +346,7 @@
         
         
           &lt;hr&gt;
-&lt;h2 id=&quot;1-链表基础知识&quot;&gt;&lt;a href=&quot;#1-链表基础知识&quot; class=&quot;headerlink&quot; title=&quot;1.链表基础知识&quot;&gt;&lt;/a&gt;1.链表基础知识&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;链表（Linked
+&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
         
       
     
@@ -170,16 +354,16 @@
     
     
     
-      <category term="C语言" scheme="http://yoursite.com/tags/C%E8%AF%AD%E8%A8%80/"/>
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   
   <entry>
-    <title>Java连接MySQL实现简易学生信息管理系统</title>
-    <link href="http://yoursite.com/2019/07/21/Java%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://yoursite.com/2019/07/21/Java连接MySQL实现简易学生信息管理系统/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-10-12T04:29:22.003Z</updated>
+    <title>利用Broadcast实现Fragment向Activity传递消息</title>
+    <link href="http://yoursite.com/2019/08/16/%E5%88%A9%E7%94%A8Broadcast%E5%AE%9E%E7%8E%B0Fragment%E5%90%91Activity%E4%BC%A0%E9%80%92%E6%B6%88%E6%81%AF/"/>
+    <id>http://yoursite.com/2019/08/16/利用Broadcast实现Fragment向Activity传递消息/</id>
+    <published>2019-08-16T04:25:44.000Z</published>
+    <updated>2019-10-12T05:35:44.967Z</updated>
     
     <summary type="html">
     
@@ -188,8 +372,7 @@
         
         
           &lt;hr&gt;
-&lt;h2 id=&quot;1-导入jar包&quot;&gt;&lt;a href=&quot;#1-导入jar包&quot; class=&quot;headerlink&quot; title=&quot;1.导入jar包&quot;&gt;&lt;/a&gt;1.导入jar包&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;鼠标右键点击项目，选择Properties。&lt;img
+&lt;p&gt;利用广播可以轻易实现Fragment向Activity传递消息。在Fragment通过广播发送消息，接收页面注册广播接收消息即可。下面是一个例子（当Fragment中的Spinner触发响应事件时，发送广播消息，整个页面的背景颜色改变）。&lt;br&gt;&lt;img
         
       
     
@@ -197,7 +380,163 @@
     
     
     
-      <category term="JavaSE" scheme="http://yoursite.com/tags/JavaSE/"/>
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android静态和动态注册Fragment</title>
+    <link href="http://yoursite.com/2019/08/16/Android%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8CFragment/"/>
+    <id>http://yoursite.com/2019/08/16/Android静态和动态注册Fragment/</id>
+    <published>2019-08-16T03:23:05.000Z</published>
+    <updated>2019-10-12T05:36:51.159Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt; Fragment一般只占据一小块地方（比如下面的广告），但是它有自己的生命周期（可以试试重写那些方法来观察一下），下面是静态注册和动态注册使用Fragment的例子。&lt;br&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中ViewPager的使用</title>
+    <link href="http://yoursite.com/2019/08/15/Android%E4%B8%ADViewPager%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/15/Android中ViewPager的使用/</id>
+    <published>2019-08-15T08:09:56.000Z</published>
+    <updated>2019-10-12T05:38:08.313Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;ViewPager允许用户左右翻页数据，与之对应的适配器是PagerAdapter。实现ViewPager.OnPageChangeListener接口即可监听ViewPager，想要显示翻页标题栏可以在ViewPager下挂PagerTabStrip或者Page
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中GridView的使用</title>
+    <link href="http://yoursite.com/2019/08/14/Android%E4%B8%ADGridView%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/14/Android中GridView的使用/</id>
+    <published>2019-08-14T12:16:56.000Z</published>
+    <updated>2019-10-12T05:39:39.249Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中BaseAdapter配合ListView的使用（解决分割线显示问题）</title>
+    <link href="http://yoursite.com/2019/08/14/Android%E4%B8%ADBaseAdapter%E9%85%8D%E5%90%88ListView%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E8%A7%A3%E5%86%B3%E5%88%86%E5%89%B2%E7%BA%BF%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%EF%BC%89/"/>
+    <id>http://yoursite.com/2019/08/14/Android中BaseAdapter配合ListView的使用（解决分割线显示问题）/</id>
+    <published>2019-08-14T10:34:47.000Z</published>
+    <updated>2019-10-12T05:40:35.013Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中BaseAdapter配合Spinner的使用</title>
+    <link href="http://yoursite.com/2019/08/14/Android%E4%B8%ADBaseAdapter%E9%85%8D%E5%90%88Spinner%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/14/Android中BaseAdapter配合Spinner的使用/</id>
+    <published>2019-08-14T03:15:14.000Z</published>
+    <updated>2019-10-12T05:42:59.659Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android控件TimePickerDialog的使用</title>
+    <link href="http://yoursite.com/2019/08/13/Android%E6%8E%A7%E4%BB%B6TimePickerDialog%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/08/13/Android控件TimePickerDialog的使用/</id>
+    <published>2019-08-13T12:18:15.000Z</published>
+    <updated>2019-10-12T05:44:21.478Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1.简介&quot;&gt;&lt;/a&gt;1.简介&lt;/h2&gt;&lt;p&gt;TimePickerDialog是用于显示日期的对话框，使用也很简单。下面是使用的例子。&lt;/p&gt;
+&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
   </entry>
   

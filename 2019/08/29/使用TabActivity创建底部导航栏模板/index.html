@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>使用TabActivity创建底部导航栏模板 | 眼里有星星</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。  xml文件。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用TabActivity创建底部导航栏模板">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/使用TabActivity创建底部导航栏模板/index.html">
+<meta property="og:site_name" content="眼里有星星">
+<meta property="og:description" content="使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。  xml文件。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190829181911149.png">
+<meta property="og:updated_time" content="2019-10-12T05:13:56.971Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用TabActivity创建底部导航栏模板">
+<meta name="twitter:description" content="使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。  xml文件。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190829181911149.png">
+  
+    <link rel="alternate" href="/atom.xml" title="眼里有星星" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">眼里有星星</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">邮箱201705500216@smail.xtu.edu.cn</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用TabActivity创建底部导航栏模板" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/29/使用TabActivity创建底部导航栏模板/" class="article-date">
+  <time datetime="2019-08-29T10:24:13.000Z" itemprop="datePublished">2019-08-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用TabActivity创建底部导航栏模板
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。<br><img src="https://img-blog.csdnimg.cn/20190829181911149.png" alt="底部导航栏图片"></p>
+<ol>
+<li><p>xml文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!--根布局必须是TabHost id必须为@android:id/tabhost--&gt;</span><br><span class="line">&lt;TabHost xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:id=&quot;@android:id/tabhost&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RelativeLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--页面布局都挂在这个框架下--&gt;</span><br><span class="line">        &lt;FrameLayout</span><br><span class="line">            android:id=&quot;@android:id/tabcontent&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:layout_marginBottom=&quot;@dimen/tab_bar_height&quot;/&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!--id必须为@android:id/tabs--&gt;</span><br><span class="line">        &lt;TabWidget</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:visibility=&quot;gone&quot;</span><br><span class="line">            android:id=&quot;@android:id/tabs&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--实际的底部标签--&gt;</span><br><span class="line">        &lt;LinearLayout</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;@dimen/tab_bar_height&quot;</span><br><span class="line">            android:layout_alignParentBottom=&quot;true&quot;</span><br><span class="line">            android:gravity=&quot;bottom&quot;</span><br><span class="line">            android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第一个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_first&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">                </span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_first_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_first&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第二个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_second&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_second_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_second&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第三个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_third&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_third_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_third&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line">        &lt;/LinearLayout&gt;</span><br><span class="line">    &lt;/RelativeLayout&gt;</span><br><span class="line">&lt;/TabHost&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.group;</span><br><span class="line"></span><br><span class="line">import android.app.TabActivity;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line">import android.widget.TabHost;</span><br><span class="line"></span><br><span class="line">@SuppressWarnings(&quot;all&quot;)</span><br><span class="line">public class TabActivityDemo extends TabActivity implements View.OnClickListener &#123;</span><br><span class="line">    private String TAG = &quot;TabActivityDemo&quot;;</span><br><span class="line">    private TabHost tabHost;</span><br><span class="line">    private Bundle bundle = new Bundle();</span><br><span class="line">    private LinearLayout ll_first, ll_second, ll_third;</span><br><span class="line">    private String FIRST_TAG = &quot;first&quot;;//第一个标签的标识串</span><br><span class="line">    private String SECOND_TAG = &quot;second&quot;;//第二个标签的标识串</span><br><span class="line">    private String THIRD_TAG = &quot;third&quot;;//第三个标签的标识串</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        bundle.putString(&quot;tag&quot;, TAG);</span><br><span class="line">        setContentView(R.layout.activity_tab_demo);</span><br><span class="line">        ll_first = findViewById(R.id.ll_first);</span><br><span class="line">        ll_second = findViewById(R.id.ll_second);</span><br><span class="line">        ll_third = findViewById(R.id.ll_third);</span><br><span class="line">        ll_first.setOnClickListener(this);</span><br><span class="line">        ll_second.setOnClickListener(this);</span><br><span class="line">        ll_third.setOnClickListener(this);</span><br><span class="line">        //获取tabhost</span><br><span class="line">        tabHost  = this.getTabHost();</span><br><span class="line">        //添加第一个标签</span><br><span class="line">        tabHost.addTab(getNewTab(FIRST_TAG, R.string.tab_first, R.drawable.tab_first_selector, TabFirstActivity.class));</span><br><span class="line">        tabHost.addTab(getNewTab(SECOND_TAG, R.string.tab_second, R.drawable.tab_first_selector, TabSecondActivity.class));</span><br><span class="line">        tabHost.addTab(getNewTab(THIRD_TAG, R.string.tab_third, R.drawable.tab_first_selector, TabThirdActivity.class));</span><br><span class="line">        changeContainerView(ll_first);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View view) &#123;</span><br><span class="line">        changeContainerView(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private TabHost.TabSpec getNewTab(String spec, int label, int icon, Class&lt;?&gt; cls) &#123;</span><br><span class="line">        Intent intent = new Intent(this, cls).putExtras(bundle);</span><br><span class="line">        return tabHost.newTabSpec(spec).setContent(intent).setIndicator(this.getString(label), this.getResources().getDrawable(icon));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void changeContainerView(View view) &#123;</span><br><span class="line">        ll_first.setSelected(false);</span><br><span class="line">        ll_second.setSelected(false);</span><br><span class="line">        ll_third.setSelected(false);</span><br><span class="line">        view.setSelected(true);</span><br><span class="line">        if (view.getId() == R.id.ll_first) &#123;</span><br><span class="line">            //根据标签设置</span><br><span class="line">            tabHost.setCurrentTabByTag(FIRST_TAG);</span><br><span class="line">        &#125; else if(view.getId() == R.id.ll_second) &#123;</span><br><span class="line">            tabHost.setCurrentTabByTag(SECOND_TAG);</span><br><span class="line">        &#125; else if(view.getId() == R.id.ll_third) &#123;</span><br><span class="line">            tabHost.setCurrentTabByTag(THIRD_TAG);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/29/使用TabActivity创建底部导航栏模板/" data-id="ck1n3xaq30008nwla5a4ey9we" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/29/Android中ToolBar的使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android中ToolBar的使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is 'android.R.id.tabhost'/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaSE/">JavaSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javaWeb/">javaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于我/">关于我</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小知识/">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/javaWeb/" style="font-size: 10px;">javaWeb</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/18/JavaWeb项目jsp导入包时报错/">JavaWeb项目jsp导入包时报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/">NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/">NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/">RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 星海<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
