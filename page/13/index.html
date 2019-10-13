@@ -69,6 +69,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android基础控件Switch的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/Android基础控件Switch的使用/" class="article-date">
+  <time datetime="2019-08-08T05:11:15.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/Android基础控件Switch的使用/">Android基础控件Switch的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>Switch是一个很简单的控件，只有两种状态，感觉只是升级版的CheckBox(<del>但是原生的依旧很丑</del> )。通过实现CompoundButton.OnCheckedChangeListener接口就可以监听Switch，但是改变Switch的button属性只会在左边加一个显示按钮（如效果图一），所以就用CheckBox做了一个自定义的Switch（效果如图二，如果感觉按钮的图片太小，可以直接设置CheckBox的background属性，并且把button属性改为@null）。改变showText属性可以调节是否显示开关提示文字，textOn属性设置打开时的提示文字，TextOff属性设置关闭时的提示属性（<del>但是好丑啊QaQ</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190808130307498.png" alt="图一">)<img src="https://img-blog.csdnimg.cn/20190808142459213.png" alt="图二"></p>
+<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用Switch的示例代码。</p>
+<ol>
+<li><p>switch_selector.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--开状态--&gt;</span><br><span class="line">    &lt;item android:state_checked=&quot;true&quot; android:drawable=&quot;@drawable/switch_on&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--关状态--&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/switch_off&quot;/&gt;</span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>activity_switch.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.SwitchActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--原生Switch--&gt;</span><br><span class="line">    &lt;Switch</span><br><span class="line">   		android:showText=&quot;true&quot;</span><br><span class="line">        android:textOn=&quot;打开&quot;</span><br><span class="line">        android:textOff=&quot;关闭&quot;</span><br><span class="line">        android:id=&quot;@+id/sw_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;这是系统图标的Switch&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--用CheckBox自定义的Switch--&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:textColor=&quot;#000000&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:text=&quot;这是用CheckBox自定义的仿Switch&quot;</span><br><span class="line">            android:gravity=&quot;left|center_vertical&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;CheckBox</span><br><span class="line">            android:id=&quot;@+id/ck_switch_demo&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:gravity=&quot;right|center_vertical&quot;</span><br><span class="line">            android:button=&quot;@drawable/switch_selector&quot;/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SwitchActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.CheckBox;</span><br><span class="line">import android.widget.CompoundButton;</span><br><span class="line">import android.widget.Switch;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class SwitchActivity extends AppCompatActivity &#123;</span><br><span class="line">    Switch aSwitchDemo;</span><br><span class="line">    CheckBox checkBoxSwitchDemo;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_switch);</span><br><span class="line">        aSwitchDemo = findViewById(R.id.sw_demo);</span><br><span class="line">        checkBoxSwitchDemo = findViewById(R.id.ck_switch_demo);</span><br><span class="line">        aSwitchDemo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(SwitchActivity.this,  String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        checkBoxSwitchDemo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(SwitchActivity.this,  String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件Switch的使用/" data-id="ck1orfvf6000tu4ladkz2e6xk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Android基础控件CheckBox的使用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/08/08/Android基础控件CheckBox的使用/" class="article-date">
@@ -166,50 +220,6 @@
 
 
   
-    <article id="post-Android代码和xml文件中设置颜色的问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/07/Android代码和xml文件中设置颜色的问题/" class="article-date">
-  <time datetime="2019-08-07T03:27:54.000Z" itemprop="datePublished">2019-08-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/07/Android代码和xml文件中设置颜色的问题/">Android代码和xml文件中设置颜色的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<ol>
-<li>安卓中颜色有八位十六进制编码和六位十六进制编码。使用八位十六进制编码时，xml文件和代码中都一样。</li>
-<li>使用六位十六进制编码时。xml文件中默认不透明，代码中默认透明。所以在代码中使用六位十六进制的颜色差不多和没有设置一样（<del>透明的</del> ）。</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/07/Android代码和xml文件中设置颜色的问题/" data-id="ck1orfve20005u4laf4tri2lt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -228,7 +238,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaSE/">JavaSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于我/">关于我</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小知识/">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C语言/">C语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaSE/">JavaSE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NOI/">NOI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于我/">关于我</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小知识/">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
     </div>
   </div>
 
@@ -238,7 +248,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/JavaWeb/" style="font-size: 13.33px;">JavaWeb</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/JavaWeb/" style="font-size: 13.33px;">JavaWeb</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
     </div>
   </div>
 
@@ -260,6 +270,10 @@
       <ul>
         
           <li>
+            <a href="/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/">利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/13/Incorrect string value_ '_xE9_x95_xBF_xE6_xB2_x99' for column 'saddress' at row 1/">Incorrect string value:&#39;\xE9\x95\xBF\xE6\xB2\x99\&#39;</a>
           </li>
         
@@ -273,10 +287,6 @@
         
           <li>
             <a href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/">NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
           </li>
         
       </ul>
