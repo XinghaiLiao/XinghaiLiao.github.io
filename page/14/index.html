@@ -69,6 +69,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android Studio中的Project和Module" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/05/Android Studio中的Project和Module/" class="article-date">
+  <time datetime="2019-08-05T08:39:51.000Z" itemprop="datePublished">2019-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/05/Android Studio中的Project和Module/">Android Studio中的Project和Module</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<ol>
+<li>File-&gt;New-&gt;New Project 创建项目。相当于eclipse中的workspace</li>
+<li>File-&gt;New-&gt;New Module创建模块。这里的新模块是指一个单独的App工程，对应于eclipse中的new project。</li>
+<li><del>想想我们一般使用eclipse都是先选择workspace然后再在workspace上创建工程就可以理解了。</del> </li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/05/Android Studio中的Project和Module/" data-id="ck1orfvdc0000u4la3pycqifs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-wireshark入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/30/wireshark入门/" class="article-date">
@@ -193,57 +238,11 @@
 
 
   
-    <article id="post-XTUOJ-1104-素数个数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/29/XTUOJ-1104-素数个数/" class="article-date">
-  <time datetime="2019-07-29T04:45:15.000Z" itemprop="datePublished">2019-07-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/29/XTUOJ-1104-素数个数/">XTUOJ-1104-素数个数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<ol>
-<li>题目<br>Description<br>素数是指只能被1和它自己整除的数，特别的，1不是素数。比如，2,3,5,7都是素数。现给出正整数a和b(1&lt;=a,b&lt;=1,000,000)，请计算a与b之间有多少个素数。 输入 第一行是一个整数N，表示样例的个数。以后每行两个整数a和b。 输出 每行输出一个整数，即a和b之间的素数个数。<br>Sample Input<br>3<br>1 10<br>2 2<br>3 7<br>Sample Output<br>4<br>1<br>3</li>
-<li>解法<br>先打表，然后算个数。求[a, b]内素数的个数就等于求[1, b]内的素数个数减去[1, a-1]内的素数个数（<del>我第一次交WA了，因为a可以小于b，注意swap一下</del> ）。我的代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt; </span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 1000005</span><br><span class="line">bool isPrime[N];</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	//freopen(&quot;D:\\myCCode\\XTUOJ\\test.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">	for(int i = 1; i &lt; N; i++) </span><br><span class="line">		isPrime[i] = true;</span><br><span class="line">	isPrime[1] = false;</span><br><span class="line">	isPrime[2] = true;</span><br><span class="line">	for(int i = 2; i &lt; N; i++) </span><br><span class="line">		if(isPrime[i] == true) </span><br><span class="line">			for(int j = i+i; j &lt; N; j+=i) </span><br><span class="line">				isPrime[j] = false;</span><br><span class="line">	int K, a, b;</span><br><span class="line">	cin &gt;&gt; K;</span><br><span class="line">	while(K--) &#123;</span><br><span class="line">		int cnta = 0, cntb = 0;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		if(a &gt; b)</span><br><span class="line">			swap(a, b);</span><br><span class="line">		for(int i = 1; i &lt;= a-1; i++) </span><br><span class="line">			if(isPrime[i]) </span><br><span class="line">				cnta++;</span><br><span class="line">		for(int i = 1; i &lt;= b; i++) </span><br><span class="line">			if(isPrime[i])</span><br><span class="line">				cntb++;</span><br><span class="line">		cout &lt;&lt; cntb-cnta &lt;&lt; endl;</span><br><span class="line">	&#125;	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/29/XTUOJ-1104-素数个数/" data-id="ck1orfvho0035u4laejd0gdes" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -267,7 +266,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/JavaWeb/" style="font-size: 10px;">JavaWeb</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/JavaSE/" style="font-size: 13.33px;">JavaSE</a> <a href="/tags/JavaWeb/" style="font-size: 13.33px;">JavaWeb</a> <a href="/tags/NOI/" style="font-size: 13.33px;">NOI</a> <a href="/tags/XTUOJ/" style="font-size: 16.67px;">XTUOJ</a> <a href="/tags/关于我/" style="font-size: 10px;">关于我</a> <a href="/tags/小知识/" style="font-size: 13.33px;">小知识</a> <a href="/tags/计算机网络/" style="font-size: 10px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a> <a href="/tags/课程设计/" style="font-size: 10px;">课程设计</a>
     </div>
   </div>
 
@@ -293,6 +292,10 @@
           </li>
         
           <li>
+            <a href="/2019/10/13/Incorrect string value_ '_xE9_x95_xBF_xE6_xB2_x99' for column 'saddress' at row 1/">Incorrect string value:&#39;\xE9\x95\xBF\xE6\xB2\x99\&#39;</a>
+          </li>
+        
+          <li>
             <a href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/">NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</a>
           </li>
         
@@ -302,10 +305,6 @@
         
           <li>
             <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/">RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</a>
           </li>
         
       </ul>

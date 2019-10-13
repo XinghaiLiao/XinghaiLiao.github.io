@@ -43,6 +43,32 @@
   </entry>
   
   <entry>
+    <title>Incorrect string value:&#39;\xE9\x95\xBF\xE6\xB2\x99\&#39;</title>
+    <link href="https://xinghailiao.github.io/2019/10/13/Incorrect%20string%20value_%20&#39;_xE9_x95_xBF_xE6_xB2_x99&#39;%20for%20column%20&#39;saddress&#39;%20at%20row%201/"/>
+    <id>https://xinghailiao.github.io/2019/10/13/Incorrect string value_ &#39;_xE9_x95_xBF_xE6_xB2_x99&#39; for column &#39;saddress&#39; at row 1/</id>
+    <published>2019-10-13T08:49:24.000Z</published>
+    <updated>2019-10-13T09:10:50.348Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;今天在学JavaWeb时遇到了一个问题，具体报错如下。找了半天最后发现还是编码问题。&lt;br&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="JavaWeb" scheme="https://xinghailiao.github.io/tags/JavaWeb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</title>
     <link href="https://xinghailiao.github.io/2019/10/04/NOI_1.7%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2_02_%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/"/>
     <id>https://xinghailiao.github.io/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/</id>
@@ -502,33 +528,6 @@
         
           &lt;hr&gt;
 &lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Android" scheme="https://xinghailiao.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android控件TimePickerDialog的使用</title>
-    <link href="https://xinghailiao.github.io/2019/08/13/Android%E6%8E%A7%E4%BB%B6TimePickerDialog%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://xinghailiao.github.io/2019/08/13/Android控件TimePickerDialog的使用/</id>
-    <published>2019-08-13T12:18:15.000Z</published>
-    <updated>2019-10-12T05:44:21.478Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1.简介&quot;&gt;&lt;/a&gt;1.简介&lt;/h2&gt;&lt;p&gt;TimePickerDialog是用于显示日期的对话框，使用也很简单。下面是使用的例子。&lt;/p&gt;
-&lt;figure
         
       
     
