@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="邮箱201705500216@smail.xtu.edu.cn">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    C语言 |
+    
+    不想吃泡面</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  
+
+<article id="post-《C Primer Plus》（第六版）答案（3.11）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言
+    </h1>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" class="article-date">
+  <time datetime="2019-08-20T11:58:41.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+        
+      </div>
+    
+
+    
+      
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
+<ol>
+<li><p>通过测试（编写有问题的程序）观察系统如何处理整数上溢、浮点数上溢和浮点数下溢的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*32位的有符号整型的上界是2^32-1(4294967295) 再加一就溢出了（想要深入了解可以看看计算机组成原理）*/</span><br><span class="line">	int a = 4294967295;</span><br><span class="line">	a = a + 1;</span><br><span class="line">	printf(&quot;%d\n&quot;, a);</span><br><span class="line">	</span><br><span class="line">	/*10e100次方上溢 0.00000000012下溢*/</span><br><span class="line">	float b = 10e100;</span><br><span class="line">	printf(&quot;%f&quot;, b);</span><br><span class="line">	b = 0.00000000012; </span><br><span class="line">	printf(&quot; %f&quot;, b); </span><br><span class="line">	 </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，要求提示输入ASCII码，然后打印输入的字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	char c;</span><br><span class="line">	printf(&quot;Input a number:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;c);</span><br><span class="line">	//%c表示字符格式输出 </span><br><span class="line">	printf(&quot;%d in ASCII is %c.&quot;, c, c);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，发出一声警报。然后打印下面的文本。<br><img src="https://img-blog.csdnimg.cn/20190820191957869.png#pic_center" alt="文本图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*转义字符\a代表警报*/</span><br><span class="line">	printf(&quot;\a&quot;);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Started by the sudden sound, Sally shouted,\n&quot;);</span><br><span class="line">	/*想要输出&quot;得使用转义字符*/ </span><br><span class="line">	printf(&quot;\&quot;By the Great Pumpkin, what was that!\&quot;&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，读取一个浮点数，先打印成小数点形式，再打印成指数形式。然后，如果系统支持，再打印成p计数法（十六进制计数法）。按以下格式输出（实际显示指数位数可能因系统而异）。<br><img src="https://img-blog.csdnimg.cn/20190820192219101.png#pic_center" alt="输出格式"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter a float-point value:&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;fixed-point notation:%f\n&quot;, f);</span><br><span class="line">	printf(&quot;exponential notation:%e\n&quot;, f);</span><br><span class="line">	printf(&quot;p notation:%a\n&quot;, f);</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一年大约有3.156*10^7^秒。编写一个程序，提示用户输出年龄，然后输出对应的秒数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*用float可能会溢出（我没多想，你可以试试）*/ </span><br><span class="line">	double d = 3.165e7;</span><br><span class="line">	int age;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Input your age:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;age);</span><br><span class="line">	</span><br><span class="line">	/*整型和浮点型进行运算会自动转成浮点型*/</span><br><span class="line">	printf(&quot;The result is %.0lfs.&quot;, age*d);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1个水分子的质量约为3.0*10^-23^克。1夸脱水大约是950克。编写一个程序，提示用户输入水的夸脱数，并显示水分子的数量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	double d = 3.0e-23;</span><br><span class="line">	double a;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入水的夸脱数：&quot;);</span><br><span class="line">	scanf(&quot;%lf&quot;, &amp;a);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;%lf夸脱水中水分子的数量是：%.0lf&quot;, a, (a*950)/d);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1英寸相当于2.54厘米。编写一个程序，提示用户输入身高（英寸），然后以厘米为单位显示身高。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入身高（英寸）：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;你的身高是%.2f(cm)&quot;, f*2.54);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在美国的体积测量系统中，1品脱等于2杯，一杯等于8盎司，1盎司等于2大汤勺，1大汤勺等于3茶勺。编写一个程序，提示用户输入杯数，并以品脱、盎司、汤勺、茶勺显示等价容量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入杯数：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	float pint = f / 2;//品脱 </span><br><span class="line">	float ounce = f * 8;//盎司 </span><br><span class="line">	float spoon = ounce * 2;//汤勺 </span><br><span class="line">	float s = spoon * 3;//药勺 不知道英文是什么 就这样命名吧</span><br><span class="line">	printf(&quot;品脱：%.1f	盎司：%.1f	汤勺：%.1f	药勺：%.1f&quot;, pint, ounce, spoon, s);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" data-id="ck1qgljgp0026e4la53dez37s"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《C-Primer-Plus》（第六版）答案（3-11）/">《C Primer Plus》（第六版）答案（3.11）</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            C语言
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">《C Primer Plus》（第六版）答案（2.12）</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '4fd282f9adf66b177270# GitHub Application Client ID',
+      clientSecret: 'bca3f8509570fb388d1226ffbff4502df7271c51# Client Secret',
+      repo: 'gitalk',
+      owner: 'XinghaiLiao# GitHub ID',
+      admin: ['XinghaiLiao# GitHub ID'],
+      // id: location.pathname,      // Ensure uniqueness and length less than 50
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      pagerDirection: 'last'
+    })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2019 不想吃泡面</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+
+<aside class="sidebar sidebar-specter">
+  
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.jpg" alt="不想吃泡面"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">标签</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/tocbot.min.js"></script>
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script src="/js/ocean.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.5,"jsonPath":"/live2dw/assets/assets/nico.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"left","hOffset":30,"vOffset":20},"mobile":{"show":true,"scale":0.05},"react":{"opacityDefault":0.6,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

@@ -61,7 +61,7 @@
       
         
 
-<article id="post-作为新手开发安卓App所遇到的问题及解决" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+<article id="post-Android基础控件CheckBox的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
     
@@ -69,7 +69,7 @@
         
   
     <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/30/作为新手开发安卓App所遇到的问题及解决/">作为新手开发Android应用时遇到的问题</a>
+      <a class="article-title" href="/2019/08/08/Android基础控件CheckBox的使用/">Android基础控件CheckBox的使用</a>
     </h2>
   
   
@@ -82,8 +82,8 @@
 
     
       <div class="article-meta">
-        <a href="/2019/07/30/作为新手开发安卓App所遇到的问题及解决/" class="article-date">
-  <time datetime="2019-07-30T05:48:43.000Z" itemprop="datePublished">2019-07-30</time>
+        <a href="/2019/08/08/Android基础控件CheckBox的使用/" class="article-date">
+  <time datetime="2019-08-08T04:18:26.000Z" itemprop="datePublished">2019-08-08</time>
 </a>
         
       </div>
@@ -99,33 +99,26 @@
 
       
         <hr>
-<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。</p>
-<h2 id="2-正文"><a href="#2-正文" class="headerlink" title="2.正文"></a>2.正文</h2><ol>
-<li><p>App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。<br><img src="https://img-blog.csdnimg.cn/20190730130821586.png" alt="App"></p>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p> CheckBox有两种状态，勾选和未勾选，是一个很简单的控件。可以通过实现OnCheckedChangeListener接口来监听CheckBox；如果想更改它的图标的话只需更改它的button属性即可实现。<br><img src="https://img-blog.csdnimg.cn/20190808121700754.png" alt="CheckBox"></p>
+<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用CheckBox的示例代码。</p>
+<ol>
+<li><p>check_box_selector.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--勾选状态--&gt;</span><br><span class="line">    &lt;item android:state_checked=&quot;true&quot; android:drawable=&quot;@drawable/check_choose&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--普通状态--&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/check_unchoose&quot;/&gt;</span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓开发的常识性错误：不能在主线程中访问网络；不能在其他线程中获取和修改UI组件。</p>
+<li><p>activity_check_box.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.CheckBoxActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--系统自带图标的CheckBox--&gt;</span><br><span class="line">    &lt;CheckBox</span><br><span class="line">        android:id=&quot;@+id/ck_check_box_demo1&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:checked=&quot;true&quot;</span><br><span class="line">        android:text=&quot;这是一个系统自带图标的CheckBox&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--自定义图标的CheckBox--&gt;</span><br><span class="line">    &lt;CheckBox</span><br><span class="line">        android:id=&quot;@+id/ck_check_box_demo2&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:checked=&quot;true&quot;</span><br><span class="line">        android:text=&quot;这是一个改了图标的CheckBox&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:button=&quot;@drawable/check_box_selector&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>具体错误及解决方法</p>
-<ul>
-<li>不能在主线程中访问网络：新开一个线程来访问网络。</li>
-<li>Only the original thread that created a view hierarchy can touch its views（只有原来创建UI组件的线程才能访问这个UI组件）：参考这篇文章<a href="https://blog.csdn.net/breeze666/article/details/7570914" target="_blank" rel="noopener">戳这里</a>。下面是我参考这篇文章后的主要代码片段。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//新建一个Hander</span><br><span class="line">private final Handler mHandler = new Handler();</span><br><span class="line">//更新UI组件的runnable接口</span><br><span class="line">final Runnable mUpdateResults = new Runnable() &#123;</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            updateUI();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">//更新UI组件的具体操作</span><br><span class="line">private void updateUI() &#123;</span><br><span class="line">        tv_light_value.setText(light_value);</span><br><span class="line">        tv_nutrition_value.setText(nutrition_value);</span><br><span class="line">        tv_water_value.setText(water_value);</span><br><span class="line">&#125;</span><br><span class="line">//这个类中把要做的事情做完了之后 调用hander的post方法来更新UI</span><br><span class="line">class jsonThread implements Runnable &#123;</span><br><span class="line">        private String url;</span><br><span class="line"></span><br><span class="line">        public jsonThread(String url) &#123;</span><br><span class="line">            this.url = url + &quot;/guang.json&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while(true) &#123;</span><br><span class="line">                String result = HttpUtil.getHttpResult(url);</span><br><span class="line">                if(result  == null) &#123;</span><br><span class="line">                    Looper.prepare();</span><br><span class="line">                    ToastUtil.showToast(MainActivity.this, &quot;网络连接错误&quot;);</span><br><span class="line">                    Looper.loop();</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        JSONArray array = new JSONArray(result);</span><br><span class="line">                        light_value = array.getJSONObject(0).getString(&quot;guang&quot;);</span><br><span class="line">                        water_value = array.getJSONObject(0).getString(&quot;shidu&quot;);</span><br><span class="line">                        nutrition_value = array.getJSONObject(0).getString(&quot;wendu&quot;);</span><br><span class="line">                        jiaoshui = array.getJSONObject(0).getString(&quot;jiaoshui&quot;);</span><br><span class="line">                        yingyang = array.getJSONObject(0).getString(&quot;shifei&quot;);</span><br><span class="line">                        buguang = array.getJSONObject(0).getString(&quot;buguang&quot;);</span><br><span class="line">                        //上面已经把要处理的东西处理完了，接下来调用post方法来更新UI</span><br><span class="line">                        mHandler.post(mUpdateResults);</span><br><span class="line">                    &#125; catch (JSONException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<li><p>CheckBoxActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.CheckBox;</span><br><span class="line">import android.widget.CompoundButton;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class CheckBoxActivity extends AppCompatActivity &#123;</span><br><span class="line">    CheckBox checkBoxDemo1;</span><br><span class="line">    CheckBox checkBoxDemo2;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_check_box);</span><br><span class="line">        checkBoxDemo1 = findViewById(R.id.ck_check_box_demo1);</span><br><span class="line">        checkBoxDemo1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(CheckBoxActivity.this, String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        checkBoxDemo2 = findViewById(R.id.ck_check_box_demo2);</span><br><span class="line">        checkBoxDemo2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(CheckBoxActivity.this, String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
-</ul>
-</li>
-<li><p>还有一些其他错误如用wamp一键搭建web服务器时发现同一局域网下手机访问网站403了。解决方法如下：把箭头所指的文件的里面的<strong>Require local</strong>改成<strong>Require all granted</strong>，然后重启服务器手机就可以访问了。<br><img src="https://img-blog.csdnimg.cn/20190730133855116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图片"><br><img src="https://img-blog.csdnimg.cn/20190730134202786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="重启"></p>
-</li>
-</ol>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><ol>
-<li>务必学好Java再碰安卓（当然现在开发安卓也可以用Kotlin）。</li>
-<li>比赛一定要找适合的队友组队（<del>别随缘找队友了</del> ），不然真心觉得憨上加憨。<br><img src="https://img-blog.csdnimg.cn/20190730134648701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="憨上加憨"></li>
-<li><del>好好学习，天天向上。</del> </li>
 </ol>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/30/作为新手开发安卓App所遇到的问题及解决/" data-id="ck1qdz7kr0022d0la3nyumk46"
+      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件CheckBox的使用/" data-id="ck1qgljff000ve4lazzz468h1"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -144,7 +137,7 @@
       
         
 
-<article id="post-XTUOJ-1104-素数个数" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+<article id="post-Android在线程中使用Toast运行时报错" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
     
@@ -152,7 +145,7 @@
         
   
     <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/29/XTUOJ-1104-素数个数/">XTUOJ-1104-素数个数</a>
+      <a class="article-title" href="/2019/08/07/Android在线程中使用Toast运行时报错/">Android在线程中使用Toast运行时报错</a>
     </h2>
   
   
@@ -165,8 +158,8 @@
 
     
       <div class="article-meta">
-        <a href="/2019/07/29/XTUOJ-1104-素数个数/" class="article-date">
-  <time datetime="2019-07-29T04:45:15.000Z" itemprop="datePublished">2019-07-29</time>
+        <a href="/2019/08/07/Android在线程中使用Toast运行时报错/" class="article-date">
+  <time datetime="2019-08-07T03:56:32.000Z" itemprop="datePublished">2019-08-07</time>
 </a>
         
       </div>
@@ -182,21 +175,18 @@
 
       
         <hr>
-<ol>
-<li>题目<br>Description<br>素数是指只能被1和它自己整除的数，特别的，1不是素数。比如，2,3,5,7都是素数。现给出正整数a和b(1&lt;=a,b&lt;=1,000,000)，请计算a与b之间有多少个素数。 输入 第一行是一个整数N，表示样例的个数。以后每行两个整数a和b。 输出 每行输出一个整数，即a和b之间的素数个数。<br>Sample Input<br>3<br>1 10<br>2 2<br>3 7<br>Sample Output<br>4<br>1<br>3</li>
-<li>解法<br>先打表，然后算个数。求[a, b]内素数的个数就等于求[1, b]内的素数个数减去[1, a-1]内的素数个数（<del>我第一次交WA了，因为a可以小于b，注意swap一下</del> ）。我的代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt; </span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 1000005</span><br><span class="line">bool isPrime[N];</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	//freopen(&quot;D:\\myCCode\\XTUOJ\\test.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">	for(int i = 1; i &lt; N; i++) </span><br><span class="line">		isPrime[i] = true;</span><br><span class="line">	isPrime[1] = false;</span><br><span class="line">	isPrime[2] = true;</span><br><span class="line">	for(int i = 2; i &lt; N; i++) </span><br><span class="line">		if(isPrime[i] == true) </span><br><span class="line">			for(int j = i+i; j &lt; N; j+=i) </span><br><span class="line">				isPrime[j] = false;</span><br><span class="line">	int K, a, b;</span><br><span class="line">	cin &gt;&gt; K;</span><br><span class="line">	while(K--) &#123;</span><br><span class="line">		int cnta = 0, cntb = 0;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		if(a &gt; b)</span><br><span class="line">			swap(a, b);</span><br><span class="line">		for(int i = 1; i &lt;= a-1; i++) </span><br><span class="line">			if(isPrime[i]) </span><br><span class="line">				cnta++;</span><br><span class="line">		for(int i = 1; i &lt;= b; i++) </span><br><span class="line">			if(isPrime[i])</span><br><span class="line">				cntb++;</span><br><span class="line">		cout &lt;&lt; cntb-cnta &lt;&lt; endl;</span><br><span class="line">	&#125;	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接在线程中使用Toast运行时会报错<strong>Can’t toast on a thread that has not called Looper.prepare()</strong>。先调用Looper.prepare()，然后再使用Toast，然后再调用Looper.loop()即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Looper.prepare();</span><br><span class="line">ToastUtil.showToast(MainActivity.this, &quot;网络连接错误&quot;);</span><br><span class="line">Looper.loop();</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/29/XTUOJ-1104-素数个数/" data-id="ck1qdz7k5001qd0lauzjwwgcc"
+      <a data-url="https://xinghailiao.github.io/2019/08/07/Android在线程中使用Toast运行时报错/" data-id="ck1qgljfb000re4la3n644br1"
          class="article-share-link">分享</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 
@@ -212,7 +202,7 @@
       
         
 
-<article id="post-XTUOJ-1035-列车长的烦恼" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+<article id="post-Android代码和xml文件中设置颜色的问题" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
     
@@ -220,7 +210,7 @@
         
   
     <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/28/XTUOJ-1035-列车长的烦恼/">XTUOJ-1035-列车长的烦恼</a>
+      <a class="article-title" href="/2019/08/07/Android代码和xml文件中设置颜色的问题/">Android代码和xml文件中设置颜色的问题</a>
     </h2>
   
   
@@ -233,8 +223,8 @@
 
     
       <div class="article-meta">
-        <a href="/2019/07/28/XTUOJ-1035-列车长的烦恼/" class="article-date">
-  <time datetime="2019-07-28T04:47:48.000Z" itemprop="datePublished">2019-07-28</time>
+        <a href="/2019/08/07/Android代码和xml文件中设置颜色的问题/" class="article-date">
+  <time datetime="2019-08-07T03:27:54.000Z" itemprop="datePublished">2019-08-07</time>
 </a>
         
       </div>
@@ -251,20 +241,18 @@
       
         <hr>
 <ol>
-<li>题目<br>Description<br>John是个小列车站的站长，每次列车在这里重新编组时他就很烦恼。因为站上只有一个人字形的编组轨道(如图)，所有的列车车厢都是从人字轨的右边依次进去，从左边出来。但有一些编组顺序John总编不出来，John怀疑有些编组顺序是不可能完成的，可John又找不出那些是顺序是可以编组出，那些不可以。请你写一个程序帮助John辨别哪些编组可以完成，哪些不能完成。<br><img src="https://img-blog.csdnimg.cn/2019072812380856.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图片"><br>输入：<br>第一行是一个整数K，表示有多少个测试用例，以后每行一个测试用例，每行为n+1个整数，第一个整数为n 表示有多少节车厢，后面n个整数表示需要编组成的顺序。比如说3节车厢，按照1，2，3依次入轨编组，可以在左边形成1 2 3，1 3 2，2 1 3，2 3 1，321。<br>输出：<br>每行输出一个测试用例的结果。如果可以编组输出Yes，否则输出No。<br>Sample Input<br>2<br>3 3 1 2<br>4 1 2 3 4<br>Sample Output<br>No<br>Yes</li>
-<li>解法<br>可以发现这道题的本质就是给定入栈序列，求不可能的出栈序列。我们可以通过维护一个栈来解决这个问题。用一个数组存储给定的出栈序列，先按照给定的入栈序列压栈，直到入栈元素和数组中首个元素相等，然后依次出栈，直到和数组存储的元素不相等。循环这个过程…………最后如果栈空，那么出栈序列是可能的，否则可能。我的代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stack&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int a[10001];</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int K;</span><br><span class="line">	//freopen(&quot;D:\\myCCode\\XTUOJ\\test.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">	cin &gt;&gt; K;</span><br><span class="line">	while(K--) &#123;</span><br><span class="line">		stack&lt;int&gt; stack;</span><br><span class="line">		int n;</span><br><span class="line">		cin &gt;&gt; n;</span><br><span class="line">		for(int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">			cin &gt;&gt; a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i = 0, j = 0; i &lt; n; i++) &#123;</span><br><span class="line">			stack.push(i+1);</span><br><span class="line">			while(!stack.empty() &amp;&amp; stack.top() == a[j]) &#123;</span><br><span class="line">				stack.pop();</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(stack.empty()) &#123;</span><br><span class="line">			cout &lt;&lt; &quot;Yes&quot; &lt;&lt; endl;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			cout &lt;&lt; &quot;No&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>安卓中颜色有八位十六进制编码和六位十六进制编码。使用八位十六进制编码时，xml文件和代码中都一样。</li>
+<li>使用六位十六进制编码时。xml文件中默认不透明，代码中默认透明。所以在代码中使用六位十六进制的颜色差不多和没有设置一样（<del>透明的</del> ）。</li>
 </ol>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/28/XTUOJ-1035-列车长的烦恼/" data-id="ck1qdz7k7001td0lazserw94n"
+      <a data-url="https://xinghailiao.github.io/2019/08/07/Android代码和xml文件中设置颜色的问题/" data-id="ck1qgljeu000he4lalq2dzv73"
          class="article-share-link">分享</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 
@@ -284,7 +272,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/14/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/16/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/14/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/16/">下一页</a>
     </nav>
   
 </section>

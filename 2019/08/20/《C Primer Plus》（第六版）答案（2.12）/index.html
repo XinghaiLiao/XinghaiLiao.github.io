@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="邮箱201705500216@smail.xtu.edu.cn">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    《C Primer Plus》（第六版）答案（2.12） |
+    
+    不想吃泡面</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  
+
+<article id="post-《C Primer Plus》（第六版）答案（2.12）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《C Primer Plus》（第六版）答案（2.12）
+    </h1>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" class="article-date">
+  <time datetime="2019-08-20T10:58:56.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+        
+      </div>
+    
+
+    
+      
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
+<ol>
+<li><p>编写一个程序，调用一次printf()函数，把你的姓名打印在一行。再调用一次printf()函数，把你的姓名分别打印在两行。然后，再调用两次printf()函数，把你的姓名打印在一行。输出应该如下图所示。<br><img src="https://img-blog.csdnimg.cn/20190820180321831.png#pic_center" alt="输出"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*调用一次printf函数，把名字打印在一行 \n是换行，也就是从另一行输出*/</span><br><span class="line">	printf(&quot;Gustav Mahler\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*调用一次printf函数，把你的名字打印在两行*/</span><br><span class="line">	printf(&quot;Gustav\nMahler\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*调用两次printf函数 把名字打印在一行 第二个printf输出的内容紧挨着第一行输出*/</span><br><span class="line">	printf(&quot;Gustav &quot;);</span><br><span class="line">	printf(&quot;Mahler&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，打印你的姓名和地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*打印地址和姓名*/</span><br><span class="line">	printf(&quot;My name is Xinghai Liao, from Changsha, China.&quot;); </span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序把你的年龄转换为天数，并显示这两个值。这里不用考虑闰年的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">//函数声明</span><br><span class="line">int ageConvertDay(int age);</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int age;</span><br><span class="line">	//输入年龄 </span><br><span class="line">	printf(&quot;Please enter your age:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;age);</span><br><span class="line">	</span><br><span class="line">	//ageConvertDay函数计算结果 </span><br><span class="line">	int result = ageConvertDay(age);</span><br><span class="line">	//输出结果 </span><br><span class="line">	printf(&quot;Your age is %d, the result is %d.&quot;, age, result);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125; </span><br><span class="line">/*不考虑闰年计算年龄的函数定义*/</span><br><span class="line">int ageConvertDay(int age) &#123;</span><br><span class="line">	return age*365;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，生成一下输出。除了main函数以外，该程序还要调用两个自定义函数：一个名为jolly()，用于打印前3条消息，调用一次打印一条；另外一个函数名为deny()，打印最后一条消息。<br><img src="https://img-blog.csdnimg.cn/20190820182332221.png#pic_center" alt="图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*函数声明*/</span><br><span class="line">void jolly();</span><br><span class="line">void deny(); </span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*调用三次jolly*/</span><br><span class="line">	jolly();</span><br><span class="line">	jolly();</span><br><span class="line">	jolly();</span><br><span class="line">	</span><br><span class="line">	/*调用deny*/ </span><br><span class="line">	deny();</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*函数定义*/</span><br><span class="line">void jolly() &#123;</span><br><span class="line">	printf(&quot;For he&apos;s a jolly good fellow!\n&quot;);	</span><br><span class="line">&#125; </span><br><span class="line">void deny() &#123;</span><br><span class="line">	printf(&quot;Which nobody can deny!\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，生成以下输出。<br><img src="https://img-blog.csdnimg.cn/20190820183140223.png#pic_center" alt="题目图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*函数声明*/</span><br><span class="line">void br(void);</span><br><span class="line">void ic(void);</span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*打印第一句话*/</span><br><span class="line">	br();</span><br><span class="line">	printf(&quot;, &quot;);//输出逗号 </span><br><span class="line">	ic();</span><br><span class="line">	printf(&quot;\n&quot;);//输出换行</span><br><span class="line">	</span><br><span class="line">	/*打印第二句话*/</span><br><span class="line">	ic();</span><br><span class="line">	printf(&quot;, \n&quot;);//输出逗号和换行 </span><br><span class="line">	</span><br><span class="line">	/*打印第三句话*/</span><br><span class="line">	br();</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*函数定义*/</span><br><span class="line">void br(void) &#123;</span><br><span class="line">	printf(&quot;Brazil, Russia&quot;);	</span><br><span class="line">&#125; </span><br><span class="line">void ic(void) &#123;</span><br><span class="line">	printf(&quot;India, China&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，创建一个整型变量toes，并将toes设置为10。程序中还要计算toes的两倍和toes的平方。该程序应打印三个值，并分别描述以示区分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*声明整型变量toes*/ </span><br><span class="line">	int toes;</span><br><span class="line">	/*给toes变量赋值10*/</span><br><span class="line">	toes = 10;</span><br><span class="line">	</span><br><span class="line">	/*计算toes的两倍 并赋值给doubleToes*/</span><br><span class="line">	int doubleToes = toes * 2;</span><br><span class="line">	/*计算toes的平方 并赋值给squareToes*/ </span><br><span class="line">	int squareToes = toes * toes;</span><br><span class="line">	</span><br><span class="line">	/*输出*/</span><br><span class="line">	printf(&quot;toes:%d    doubleToes:%d    squareToes:%d&quot;, toes, doubleToes, squareToes);</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，生成以下格式的输出：<br><img src="https://img-blog.csdnimg.cn/20190820184624631.png#pic_center" alt="题目图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	printf(&quot;Smile!Smile!Smile!\n&quot;);</span><br><span class="line">	printf(&quot;Smile!Smile!\n&quot;);</span><br><span class="line">	printf(&quot;Smile!&quot;);</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，调用一个名为one_three()的函数。该函数在第一行打印单词”one”，再调用第二个函数two()，然后在另一行打印单词”Three”。two()函数在一行显示单词”two”。main()函数在调用one_three()函数前要打印”starting now:”，并在调用完毕后打印”done!”。输出应该如下。<br><img src="https://img-blog.csdnimg.cn/20190820185136465.png#pic_center" alt="输出"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*声明函数*/</span><br><span class="line">void two();</span><br><span class="line">void one_three();</span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	printf(&quot;starting now:\n&quot;);</span><br><span class="line">	one_three();</span><br><span class="line">	printf(&quot;done!&quot;);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*定义函数*/ </span><br><span class="line">void two() &#123;</span><br><span class="line">	printf(&quot;two\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">void one_three() &#123;</span><br><span class="line">	printf(&quot;one\n&quot;);</span><br><span class="line">	two();//在这个函数调用two()函数 有些老的编译器声明时不把two()函数放在前面声明可能会报错 </span><br><span class="line">	printf(&quot;three\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" data-id="ck1qgljgn0024e4laqg2v4wm4"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" class="article-nav-link">
+        <strong class="article-nav-caption">前一篇</strong>
+        <div class="article-nav-title">
+          
+            C语言
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/08/19/Android通知推送（解决NotificationService_ No Channel found for___问题）/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Android通知推送</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '4fd282f9adf66b177270# GitHub Application Client ID',
+      clientSecret: 'bca3f8509570fb388d1226ffbff4502df7271c51# Client Secret',
+      repo: 'gitalk',
+      owner: 'XinghaiLiao# GitHub ID',
+      admin: ['XinghaiLiao# GitHub ID'],
+      // id: location.pathname,      // Ensure uniqueness and length less than 50
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      pagerDirection: 'last'
+    })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2019 不想吃泡面</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+
+<aside class="sidebar sidebar-specter">
+  
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.jpg" alt="不想吃泡面"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">标签</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/tocbot.min.js"></script>
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script src="/js/ocean.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.5,"jsonPath":"/live2dw/assets/assets/nico.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"left","hOffset":30,"vOffset":20},"mobile":{"show":true,"scale":0.05},"react":{"opacityDefault":0.6,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
