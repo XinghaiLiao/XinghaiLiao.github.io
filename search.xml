@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法</title>
-    <url>/xinghailiao.github.io/2019/10/13/%E5%88%A9%E7%94%A8hexo%E5%9C%A8GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%94%B9%E5%8F%98tag%E5%9B%A0%E4%B8%BA%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98%E8%80%8C404%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <url>/2019/10/13/%E5%88%A9%E7%94%A8hexo%E5%9C%A8GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%94%B9%E5%8F%98tag%E5%9B%A0%E4%B8%BA%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98%E8%80%8C404%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>问题描述<br>tags下本来有个javaweb，但是强迫症的我想改成JavaWeb（图片中的是后来改好的）。直接把markdown文件中的标签改了并没有用。访问的时候tags/JavaWeb报404。<br><img src="https://img-blog.csdnimg.cn/20191013192740517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="描述图片"></li>
@@ -16,7 +16,7 @@
   </entry>
   <entry>
     <title>Incorrect string value:'\xE9\x95\xBF\xE6\xB2\x99\'</title>
-    <url>/xinghailiao.github.io/2019/10/13/Incorrect%20string%20value_%20&#39;_xE9_x95_xBF_xE6_xB2_x99&#39;%20for%20column%20&#39;saddress&#39;%20at%20row%201/</url>
+    <url>/2019/10/13/Incorrect%20string%20value_%20&#39;_xE9_x95_xBF_xE6_xB2_x99&#39;%20for%20column%20&#39;saddress&#39;%20at%20row%201/</url>
     <content><![CDATA[<hr>
 <p>今天在学JavaWeb时遇到了一个问题，具体报错如下。找了半天最后发现还是编码问题。<br><img src="https://img-blog.csdnimg.cn/20191013164919662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解决方案：<br>数据库url中加入characterEncoding=utf8并且更改表的编码为utf-8。</p>
 <hr>
@@ -27,7 +27,7 @@
   </entry>
   <entry>
     <title>JavaWeb项目jsp导入包时报错</title>
-    <url>/xinghailiao.github.io/2019/10/08/JavaWeb%E9%A1%B9%E7%9B%AEjsp%E5%AF%BC%E5%85%A5%E5%8C%85%E6%97%B6%E6%8A%A5%E9%94%99/</url>
+    <url>/2019/10/08/JavaWeb%E9%A1%B9%E7%9B%AEjsp%E5%AF%BC%E5%85%A5%E5%8C%85%E6%97%B6%E6%8A%A5%E9%94%99/</url>
     <content><![CDATA[<hr>
 <p>java文件放在默认包下jsp导入时会报错，新建一个包放下面就好了。<br><img src="https://img-blog.csdnimg.cn/20191008155340851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="提示"><br><img src="https://img-blog.csdnimg.cn/20191008155711571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="好了"><br>还有一点就是web项目导入jar包时直接拷贝放WebContent/WEB-INF/lib目录下就好，按照通常的方法导入反而会报ClassNotFoundException。</p>
 <hr>
@@ -38,7 +38,7 @@
   </entry>
   <entry>
     <title>NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</title>
-    <url>/xinghailiao.github.io/2019/10/04/NOI_1.7%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2_02_%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/</url>
+    <url>/2019/10/04/NOI_1.7%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2_02_%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6/</url>
     <content><![CDATA[<hr>
 <h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p><a href="http://noi.openjudge.cn/ch0107/02/" target="_blank" rel="noopener">传送门</a><br>总时间限制: 1000ms 内存限制: 65536kB<br>描述：给定一个只包含小写字母的字符串，请你找到第一个仅出现一次的字符。如果没有，输出no。<br>输入：一个字符串，长度小于100000。<br>输出：输出第一个仅出现一次的字符，若没有则输出no。<br>样例输入：abcabd<br>样例输出：c</p>
 <h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p>开个数组存储每个字母出现的次数（小写字母最多26个），然后找出第一个出现次数为1的字母即可（没有的话就输出no）。</p>
@@ -52,7 +52,7 @@
   </entry>
   <entry>
     <title>NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</title>
-    <url>/xinghailiao.github.io/2019/09/24/NOI_1.6%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84_14_%E6%B1%8210000%E4%BB%A5%E5%86%85n%E7%9A%84%E9%98%B6%E4%B9%98/</url>
+    <url>/2019/09/24/NOI_1.6%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B9%8B%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84_14_%E6%B1%8210000%E4%BB%A5%E5%86%85n%E7%9A%84%E9%98%B6%E4%B9%98/</url>
     <content><![CDATA[<hr>
 <h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p><a href="http://noi.openjudge.cn/ch0106/14/" target="_blank" rel="noopener">传送门</a><br> 14:求10000以内n的阶乘<br>总时间限制: 5000ms 内存限制: 655360kB<br>描述：求10000以内n的阶乘。<br>输入：只有一行输入，整数n（0&lt;=n&lt;=10000）。<br>输出：一行，即n!的值。<br>样例输入：100<br>样例输出：933262154439441526816992388562667004907159682643816214685929638952175999932299156089414639761565182862536979208272<br>23758251185210916864000000000000000000000000</p>
 <h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p>模拟乘法，用数存放答案（置于数组至少开多大，可以先用最暴力的方法把位数求出来或者直接开大一点，结果10000的阶乘是35660）。其他的就写在注释里面了。</p>
@@ -66,7 +66,7 @@
   </entry>
   <entry>
     <title>win10通过cmd查看连接的WiFi密码</title>
-    <url>/xinghailiao.github.io/2019/09/17/win10%E9%80%9A%E8%BF%87cmd%E6%9F%A5%E7%9C%8B%E8%BF%9E%E6%8E%A5%E7%9A%84WiFi%E5%AF%86%E7%A0%81/</url>
+    <url>/2019/09/17/win10%E9%80%9A%E8%BF%87cmd%E6%9F%A5%E7%9C%8B%E8%BF%9E%E6%8E%A5%E7%9A%84WiFi%E5%AF%86%E7%A0%81/</url>
     <content><![CDATA[<hr>
 <p> 进入cmd：</p>
 <ol>
@@ -81,7 +81,7 @@
   </entry>
   <entry>
     <title>RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</title>
-    <url>/xinghailiao.github.io/2019/09/07/RecyclerView%E9%85%8D%E5%90%88StaggeredGridLayoutManager%E5%AE%9E%E7%8E%B0%E7%80%91%E5%B8%83%E6%B5%81%E6%95%88%E6%9E%9C/</url>
+    <url>/2019/09/07/RecyclerView%E9%85%8D%E5%90%88StaggeredGridLayoutManager%E5%AE%9E%E7%8E%B0%E7%80%91%E5%B8%83%E6%B5%81%E6%95%88%E6%9E%9C/</url>
     <content><![CDATA[<hr>
 <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p> 利用RecyclerView配合StaggeredGridLayoutManager可以实现类似于淘宝和京东的商品瀑布流效果，下面是一个简单的使用例子。<br><img src="https://img-blog.csdnimg.cn/20190907110359310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="示例图片"></p>
 <h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><p> 就不多讲了，直接上示例代码。</p>
@@ -127,7 +127,7 @@
   </entry>
   <entry>
     <title>解决Android溢出菜单栏不显示图标及设置了android:showAsAction="ifRoom"但不在导航栏显示问题</title>
-    <url>/xinghailiao.github.io/2019/08/30/%E8%A7%A3%E5%86%B3Android%E6%BA%A2%E5%87%BA%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%9B%BE%E6%A0%87%E5%8F%8A%E8%AE%BE%E7%BD%AE%E4%BA%86android_showAsAction=_ifRoom_%E4%BD%86%E4%B8%8D%E5%9C%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
+    <url>/2019/08/30/%E8%A7%A3%E5%86%B3Android%E6%BA%A2%E5%87%BA%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%9B%BE%E6%A0%87%E5%8F%8A%E8%AE%BE%E7%BD%AE%E4%BA%86android_showAsAction=_ifRoom_%E4%BD%86%E4%B8%8D%E5%9C%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>设置了android:showAsAction=”ifRoom”属性但是不在导航栏显示问题。<br>增加命名空间<code>xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</code>，同时使用<code>app:showAsAction=&quot;ifRoom&quot;</code>。</li>
@@ -143,7 +143,7 @@
   </entry>
   <entry>
     <title>Android中ToolBar的使用</title>
-    <url>/xinghailiao.github.io/2019/08/29/Android%E4%B8%ADToolBar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/29/Android%E4%B8%ADToolBar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <p>Toolbar即顶部的导航栏，使用也非常简单。下面是使用步骤。<br><img src="https://img-blog.csdnimg.cn/20190829211207549.png" alt="Toolbar图片"></p>
 <ol>
@@ -169,7 +169,7 @@
   </entry>
   <entry>
     <title>使用TabActivity创建底部导航栏模板</title>
-    <url>/xinghailiao.github.io/2019/08/29/%E4%BD%BF%E7%94%A8TabActivity%E5%88%9B%E5%BB%BA%E5%BA%95%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%A8%A1%E6%9D%BF/</url>
+    <url>/2019/08/29/%E4%BD%BF%E7%94%A8TabActivity%E5%88%9B%E5%BB%BA%E5%BA%95%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%A8%A1%E6%9D%BF/</url>
     <content><![CDATA[<hr>
 <p>使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。<br><img src="https://img-blog.csdnimg.cn/20190829181911149.png" alt="底部导航栏图片"></p>
 <ol>
@@ -189,7 +189,7 @@
   </entry>
   <entry>
     <title>Android使用TabHost时报错Your content must have a TabHost whose id attribute is 'android.R.id.tabhost'</title>
-    <url>/xinghailiao.github.io/2019/08/29/Android%E4%BD%BF%E7%94%A8TabHost%E6%97%B6%E6%8A%A5%E9%94%99Your%20content%20must%20have%20a%20TabHost%20whose%20id%20attribute%20is%20&#39;android.R.id.tabhost&#39;/</url>
+    <url>/2019/08/29/Android%E4%BD%BF%E7%94%A8TabHost%E6%97%B6%E6%8A%A5%E9%94%99Your%20content%20must%20have%20a%20TabHost%20whose%20id%20attribute%20is%20&#39;android.R.id.tabhost&#39;/</url>
     <content><![CDATA[<hr>
 <p>使用TabHost提示 <strong>Your content must have a TabHost whose id attribute is ‘android.R.id.tabhost’</strong> 或者  <strong>Your TabHost must have a TabWidget whose id attribute is ‘android.R.id.tabs’</strong> 等错误信息时。</p>
 <ol>
@@ -205,7 +205,7 @@
   </entry>
   <entry>
     <title>Android通过remoteViews自定义通知</title>
-    <url>/xinghailiao.github.io/2019/08/23/Android%E9%80%9A%E8%BF%87remoteViews%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%9A%E7%9F%A5/</url>
+    <url>/2019/08/23/Android%E9%80%9A%E8%BF%87remoteViews%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%9A%E7%9F%A5/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>通过remoteViews我们可以自定义通知推送，但是remoteViews也有许多限制。remoteViews仅支持以下小部件：AnalogClock、Button、Chronometer、ImageButton、ImageView、ProgressBar、TextClock、TextView；仅支持以下布局：AdapterViewFlipper、FrameLayout、GridLayout、GridView<br>、LinearLayout、ListView、RelativeLayout、StackView<br>、ViewFlipper。<br><img src="https://img-blog.csdnimg.cn/20190823211557744.png#pic_center" alt="图片"><br><img src="https://img-blog.csdnimg.cn/201908232116291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="图片"><br>主要方法：<br>setViewVisibility：设置指定控件是否可见。<br>setViewPadding：设置指定控件的间距。<br>setTextViewText：设置指定TextView或Button控件的文字内容。<br>setTextViewTextSize：设置指定TextView或Button控件的文字大小。<br>setTextColor：设置指定TextView或Button控件的文字颜色。<br>setTextViewCompoundDrawables：设置指定TextView或Button控件的文字周围图标。<br>setImageViewResource：设置ImageView或ImgaeButton控件的资源编号。<br>setImageViewBitmap：设置ImageView或ImgaeButton控件的位图对象。<br>setChronometer：设置计时器信息。<br>setProgressBar：设置进度条信息，包括最大值与当前进度。<br>setOnClickPendingIntent：设置指定控件的点击响应动作。<br>完成RemoteViews对象的构建与设置后调用Notification对象的setContent方法，即可完成自定义通知的定义。</p>
 <h2 id="2-示例"><a href="#2-示例" class="headerlink" title="2.示例"></a>2.示例</h2><ol>
@@ -225,7 +225,7 @@
   </entry>
   <entry>
     <title>Android控件ProgressBar的使用</title>
-    <url>/xinghailiao.github.io/2019/08/23/Android%E6%8E%A7%E4%BB%B6ProgressBar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/23/Android%E6%8E%A7%E4%BB%B6ProgressBar%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>ProgressBar可以显示进度。图一中的黑色部分就是一个ProgressBar，图二中的是进度40%的ProgressBar（<del>示例可能有点丑</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190823183038870.png" alt="图一"><br><img src="https://img-blog.csdnimg.cn/20190823183617263.png" alt="图二"><br>ProgressBar的xml常用属性：<br>max：指定进度条最大值。<br>progress：指定进度条默认值，代码中可以通过setProgress()方法来设置进度。<br>progressDrawable：指定进度的图片，不能用一般图片，要用层次图形，参见后面的例子。<br>style：指定进度条的形状样式。progressBarStyleHorizontal表示水平形状，progressBarStyle表示圆圈形状。如果样式为progressBarStyle圆圈形状，最大值与进度值的设置就会失效。</p>
 <h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><ol>
@@ -245,7 +245,7 @@
   </entry>
   <entry>
     <title>为Dev-C++配置C99</title>
-    <url>/xinghailiao.github.io/2019/08/21/%E4%B8%BADev-C++%E9%85%8D%E7%BD%AEC99/</url>
+    <url>/2019/08/21/%E4%B8%BADev-C++%E9%85%8D%E7%BD%AEC99/</url>
     <content><![CDATA[<hr>
 <p>Dev-C++默认是没有支持C99的，所以很多习惯的写法都会报错（当文件后缀是.c时）。<br><img src="https://img-blog.csdnimg.cn/20190821124143477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>配置C99：</p>
 <ol>
@@ -260,7 +260,7 @@
   </entry>
   <entry>
     <title>Android通知推送</title>
-    <url>/xinghailiao.github.io/2019/08/19/Android%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%EF%BC%88%E8%A7%A3%E5%86%B3NotificationService_%20No%20Channel%20found%20for___%E9%97%AE%E9%A2%98%EF%BC%89/</url>
+    <url>/2019/08/19/Android%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%EF%BC%88%E8%A7%A3%E5%86%B3NotificationService_%20No%20Channel%20found%20for___%E9%97%AE%E9%A2%98%EF%BC%89/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>通知推送的使用方式和AlertDialog的使用方式差不多，都是先用build构造并设置参数，最后由通知服务推送。<br><img src="https://img-blog.csdnimg.cn/20190819213244376.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="通知图片"></p>
 <h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><p>当目标sdk版本大于等于26时，按照原来的方法直接弹出消息会报错 <strong>NotificationService: No Channel found for…</strong>。下面是解决方法。</p>
@@ -281,7 +281,7 @@
   </entry>
   <entry>
     <title>利用Broadcast实现Fragment向Activity传递消息</title>
-    <url>/xinghailiao.github.io/2019/08/16/%E5%88%A9%E7%94%A8Broadcast%E5%AE%9E%E7%8E%B0Fragment%E5%90%91Activity%E4%BC%A0%E9%80%92%E6%B6%88%E6%81%AF/</url>
+    <url>/2019/08/16/%E5%88%A9%E7%94%A8Broadcast%E5%AE%9E%E7%8E%B0Fragment%E5%90%91Activity%E4%BC%A0%E9%80%92%E6%B6%88%E6%81%AF/</url>
     <content><![CDATA[<hr>
 <p>利用广播可以轻易实现Fragment向Activity传递消息。在Fragment通过广播发送消息，接收页面注册广播接收消息即可。下面是一个例子（当Fragment中的Spinner触发响应事件时，发送广播消息，整个页面的背景颜色改变）。<br><img src="https://img-blog.csdnimg.cn/20190816121506458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ol>
@@ -306,7 +306,7 @@
   </entry>
   <entry>
     <title>Android静态和动态注册Fragment</title>
-    <url>/xinghailiao.github.io/2019/08/16/Android%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8CFragment/</url>
+    <url>/2019/08/16/Android%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8CFragment/</url>
     <content><![CDATA[<hr>
 <p> Fragment一般只占据一小块地方（比如下面的广告），但是它有自己的生命周期（可以试试重写那些方法来观察一下），下面是静态注册和动态注册使用Fragment的例子。<br><img src="https://img-blog.csdnimg.cn/20190816112105107.png" alt="Fragment"></p>
 <ol>
@@ -338,7 +338,7 @@
   </entry>
   <entry>
     <title>Android中ViewPager的使用</title>
-    <url>/xinghailiao.github.io/2019/08/15/Android%E4%B8%ADViewPager%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/15/Android%E4%B8%ADViewPager%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <p>ViewPager允许用户左右翻页数据，与之对应的适配器是PagerAdapter。实现ViewPager.OnPageChangeListener接口即可监听ViewPager，想要显示翻页标题栏可以在ViewPager下挂PagerTabStrip或者PagerTitleStrip子节点并在适配器中重写getPageTitle方法。<br><img src="https://img-blog.csdnimg.cn/20190815163625683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="图片"><br><img src="https://img-blog.csdnimg.cn/20190815163926428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="图片"><br>使用步骤如下：</p>
 <ol>
@@ -367,7 +367,7 @@
   </entry>
   <entry>
     <title>Android中GridView的使用</title>
-    <url>/xinghailiao.github.io/2019/08/14/Android%E4%B8%ADGridView%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/14/Android%E4%B8%ADGridView%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>GridView可以在二维滚动网格中显示项目的视图。可以通过实现AdapterView.OnItemClickListener和 AdapterView.OnItemLongClickListener接口来监听，常用xml属性如图一。<br><img src="https://img-blog.csdnimg.cn/2019081419482997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="xml属性"><br>其中各种拉伸常量以及显示效果如下。</p>
 <ol>
@@ -416,7 +416,7 @@
   </entry>
   <entry>
     <title>Android中BaseAdapter配合ListView的使用（解决分割线显示问题）</title>
-    <url>/xinghailiao.github.io/2019/08/14/Android%E4%B8%ADBaseAdapter%E9%85%8D%E5%90%88ListView%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E8%A7%A3%E5%86%B3%E5%88%86%E5%89%B2%E7%BA%BF%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%EF%BC%89/</url>
+    <url>/2019/08/14/Android%E4%B8%ADBaseAdapter%E9%85%8D%E5%90%88ListView%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E8%A7%A3%E5%86%B3%E5%88%86%E5%89%B2%E7%BA%BF%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%EF%BC%89/</url>
     <content><![CDATA[<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>ListView可显示垂直滚动的视图集合，其中每个视图紧邻列表中的上一个视图。xml的主要属性如下图，其中headerDividersEnabled和footerDividersEnabled属性在使用的时候有很多需要注意的地方（<del>特别是headerDividersEnabled属性，不管你怎么搞，顶部的分割线都不会显示，我是真的搞了一下午，最后发现书的代码有点问题</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190814175608570.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="xml属性"><br>设置分割线需要注意的地方。</p>
 <ol>
 <li><p>代码中的setDivider方法只能设置具体的图片，不能设置颜色，即使把颜色值转为ColorDrawable也不行。在布局文件中可对divider属性直接指定颜色值。</p>
@@ -462,7 +462,7 @@
   </entry>
   <entry>
     <title>Android中BaseAdapter配合Spinner的使用</title>
-    <url>/xinghailiao.github.io/2019/08/14/Android%E4%B8%ADBaseAdapter%E9%85%8D%E5%90%88Spinner%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/14/Android%E4%B8%ADBaseAdapter%E9%85%8D%E5%90%88Spinner%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>BaseAdapter是一个抽象类，实现了ListAdapter和SpinnerAdapter。通过使用BaseAdapter，我们可以在Spinner的列表项中展示更多内容。如果还不懂得使用Spinner，可以参考<a href="https://blog.csdn.net/weixin_43219615/article/details/98878291" target="_blank" rel="noopener">这里</a>。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public abstract class BaseAdapter extends Object implements ListAdapter, SpinnerAdapter</span><br></pre></td></tr></table></figure>
@@ -503,7 +503,7 @@
   </entry>
   <entry>
     <title>Android控件TimePickerDialog的使用</title>
-    <url>/xinghailiao.github.io/2019/08/13/Android%E6%8E%A7%E4%BB%B6TimePickerDialog%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/13/Android%E6%8E%A7%E4%BB%B6TimePickerDialog%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>TimePickerDialog是用于显示日期的对话框，使用也很简单。下面是使用的例子。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Calendar calendar = Calendar.getInstance();</span><br><span class="line">//第一个参数表示设备上下文 第二个参数表示监听器（实现TimePickerDialog.OnTimeSetListener接口） 最后一个参数表示是否24小时制</span><br><span class="line">TimePickerDialog timePickerDialog = new TimePickerDialog(TimePickerDialogActivity.this, TimePickerDialogActivity.this,</span><br><span class="line">calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);</span><br><span class="line">imePickerDialog.show();</span><br></pre></td></tr></table></figure>
@@ -527,7 +527,7 @@
   </entry>
   <entry>
     <title>Android菜单栏的使用（弹出菜单）</title>
-    <url>/xinghailiao.github.io/2019/08/13/Android%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E5%BC%B9%E5%87%BA%E8%8F%9C%E5%8D%95%EF%BC%89/</url>
+    <url>/2019/08/13/Android%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E5%BC%B9%E5%87%BA%E8%8F%9C%E5%8D%95%EF%BC%89/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>PopupMenu如果空间足够，它将显示在定位视图下方，否则显示在其上方。<br><img src="https://img-blog.csdnimg.cn/20190813104749878.png" alt="弹出菜单"><br>使用步骤：</p>
 <ol>
@@ -561,7 +561,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android中菜单栏的使用（上下文菜单）</title>
-    <url>/xinghailiao.github.io/2019/08/13/Android%E4%B8%AD%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%8A%E4%B8%8B%E6%96%87%E8%8F%9C%E5%8D%95%EF%BC%89/</url>
+    <url>/2019/08/13/Android%E4%B8%AD%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%8A%E4%B8%8B%E6%96%87%E8%8F%9C%E5%8D%95%EF%BC%89/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>上下文菜单提供了许多操作，这些操作影响 UI 中的特定项目或上下文框架。使用步骤如下：</p>
 <ol>
@@ -600,7 +600,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android中菜单栏的使用（选项菜单）</title>
-    <url>/xinghailiao.github.io/2019/08/13/Android%E4%B8%AD%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E9%80%89%E9%A1%B9%E8%8F%9C%E5%8D%95%EF%BC%89/</url>
+    <url>/2019/08/13/Android%E4%B8%AD%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%88%E9%80%89%E9%A1%B9%E8%8F%9C%E5%8D%95%EF%BC%89/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>菜单是许多应用类型中常见的用户界面组件。要定义菜单，要在项目 res/menu/ 目录内创建一个 XML 文件（如果没有则创建），下面是一个例子，显示效果如图（“更多”也是菜单选项，只是设置了showAsAction属性放到了外面）。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;menu xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--item也可以嵌套 &lt;menu&gt; 元素，以便创建子菜单。--&gt;</span><br><span class="line">    &lt;item android:id=&quot;@+id/menu_about_us&quot;</span><br><span class="line">        android:orderInCategory=&quot;1&quot;</span><br><span class="line">        android:title=&quot;关于我们&quot; &gt;</span><br><span class="line">        &lt;menu&gt;</span><br><span class="line">            &lt;item android:title=&quot;不知道&quot;</span><br><span class="line">                android:orderInCategory=&quot;1&quot;</span><br><span class="line">                /&gt;</span><br><span class="line">        &lt;/menu&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">    &lt;item android:title=&quot;联系我们&quot;</span><br><span class="line">        android:orderInCategory=&quot;2&quot;</span><br><span class="line">        android:id=&quot;@+id/menu_contact_us&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">    &lt;item android:id=&quot;@+id/menu_more&quot;</span><br><span class="line">        android:orderInCategory=&quot;3&quot;</span><br><span class="line">        android:title=&quot;更多&quot;</span><br><span class="line">        app:showAsAction=&quot;ifRoom&quot; /&gt;</span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
@@ -629,7 +629,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android利用Application设置和操作全局变量</title>
-    <url>/xinghailiao.github.io/2019/08/12/Android%E5%88%A9%E7%94%A8Application%E8%AE%BE%E7%BD%AE%E5%92%8C%E6%93%8D%E4%BD%9C%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/</url>
+    <url>/2019/08/12/Android%E5%88%A9%E7%94%A8Application%E8%AE%BE%E7%BD%AE%E5%92%8C%E6%93%8D%E4%BD%9C%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>Application用于维护全局应用程序状态的基类，在App的运行过程中有且仅有一个Application贯穿整个生命周期。一般通过创建它的子类并设置AndroidManifest.xml中的Application节点的name属性为子类名称来提供自己的实现。子类一般采用单例设计模式，一般在Application中存放频繁读取的信息、网络上下载的临时数据（为了节约流量、减少等待时间）、容易因为频繁分配而导致内存泄漏的对象。<br><img src="https://img-blog.csdnimg.cn/20190812131618129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="例子图片"></p>
 <h2 id="2-使用步骤及例子"><a href="#2-使用步骤及例子" class="headerlink" title="2.使用步骤及例子"></a>2.使用步骤及例子</h2><p>创建ApplicationActivity。</p>
@@ -661,7 +661,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android数据库SQLite的使用</title>
-    <url>/xinghailiao.github.io/2019/08/12/Android%E6%95%B0%E6%8D%AE%E5%BA%93SQLite%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/12/Android%E6%95%B0%E6%8D%AE%E5%BA%93SQLite%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>SQLite是一个小巧的嵌入式数据库，它的多数语法和Oracle一样（还好这个学期学了数据库）。SQLiteDataBase是SQLite的数据库管理类，具有创建，删除，执行SQL命令以及执行其他常见数据库管理任务的方法。SQLiteOpenHelper是用于管理数据库创建和版本管理的帮助程序类，是个抽象类，一般我们会创建创建一个子类继承自SQLiteOpenHelper实现onCreate(SQLiteDatabase)，onUpgrade(SQLiteDatabase, int, int))。onCreate方法只在第一次打开数据库的时候执行，所以重写这个方法时可以创建表。<br><img src="https://img-blog.csdnimg.cn/20190812095002697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="例子图片"></p>
 <h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><p>创建SQLiteActivity，写好辅助类UserDbHelper继承自SQLiteOpenHelper。</p>
@@ -690,7 +690,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android轻量级存储工具SharedPreferences的使用</title>
-    <url>/xinghailiao.github.io/2019/08/11/Android%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%AD%98%E5%82%A8%E5%B7%A5%E5%85%B7SharedPreferences%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/11/Android%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%AD%98%E5%82%A8%E5%B7%A5%E5%85%B7SharedPreferences%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>SharedPreferences是轻量级存储工具，采用的是Key-Value存储方式。一般用于存放App的个性化配置信息、临时保存的片段信息等。SharedPreferences存储键值信息是采用xml文件的形式，保存在/data/data/App包名/shared_prefs/文件名.xml（在安卓的Divice File Explorer栏可以轻易找到，如果创建时采用没有文件名的方法，那么这个xml文件会自动命名为当前activity的名称）。<br><img src="https://img-blog.csdnimg.cn/20190811195324966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="例子图片"></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--例子中的存储键-值的xml文件--&gt;</span><br><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos; standalone=&apos;yes&apos; ?&gt;</span><br><span class="line">&lt;map&gt;</span><br><span class="line">    &lt;string name=&quot;name&quot;&gt;小明&lt;/string&gt;</span><br><span class="line">    &lt;string name=&quot;hobby&quot;&gt;唱 跳&lt;/string&gt;</span><br><span class="line">&lt;/map&gt;</span><br></pre></td></tr></table></figure>
@@ -719,7 +719,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android中AlertDialog的使用</title>
-    <url>/xinghailiao.github.io/2019/08/11/Android%E4%B8%ADAlertDialog%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/11/Android%E4%B8%ADAlertDialog%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>AlertDialog是安卓中很常用的对话框，只能通过AlertDialog.Builder完成参数设置后才能创建。使用AlertDialog的核心代码及注释如下。<br><img src="https://img-blog.csdnimg.cn/20190811151021431.png" alt="AlertDialog"></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AlertDialog.Builder builder = new AlertDialog.Builder(AlertDialogActivity.this);</span><br><span class="line">//设置标题</span><br><span class="line">builder.setTitle(&quot;Demo&quot;);</span><br><span class="line">//设置显示的消息</span><br><span class="line">builder.setMessage(&quot;我也不知道发生了什么&quot;);</span><br><span class="line">//设置肯定的按钮和监听器</span><br><span class="line">builder.setPositiveButton(&quot;好的&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">//设置中立的按钮和监听器（感觉基本上很少用）</span><br><span class="line">builder.setNeutralButton(&quot;中立&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something        </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">//设置否定的按钮和监听器</span><br><span class="line">builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">//构造AlertDialog</span><br><span class="line">AlertDialog alertDialog = builder.create();</span><br><span class="line">//显示AlertDialog</span><br><span class="line">alertDialog.show();</span><br></pre></td></tr></table></figure>
@@ -742,7 +742,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android向上一个Activity返回参数</title>
-    <url>/xinghailiao.github.io/2019/08/11/Android%E5%90%91%E4%B8%8A%E4%B8%80%E4%B8%AAActivity%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0/</url>
+    <url>/2019/08/11/Android%E5%90%91%E4%B8%8A%E4%B8%80%E4%B8%AAActivity%E8%BF%94%E5%9B%9E%E5%8F%82%E6%95%B0/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单说明"><a href="#1-简单说明" class="headerlink" title="1.简单说明"></a>1.简单说明</h2><p>当下一个Activity收到上一个Activity传来的参数时，我们可能还需要需要向上一个Activity返回一些信息。方法是：</p>
 <ol>
@@ -780,7 +780,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android向下一个Activity传递参数</title>
-    <url>/xinghailiao.github.io/2019/08/10/Android%E5%90%91%E4%B8%8B%E4%B8%80%E4%B8%AAActivity%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/</url>
+    <url>/2019/08/10/Android%E5%90%91%E4%B8%8B%E4%B8%80%E4%B8%AAActivity%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>利用Intent我们可以从一个页面到另外一个页面（Activity）。这个过程中，我们可以利用Bundle包裹传递消息。Bundle存放数据的结构实际上是Map的映射，我们只需要用put方法把参数放进Bundle，然后再用Intent的putExtras方法把Bundle丢进Intent即可。接收页面接收参数时，先调用getIntent方法获取Intent，然后调用getExtras方法获取Bundle，最后就像使用Map一样取出参数即可。<br><img src="https://img-blog.csdnimg.cn/20190810090605872.png#pic_center" alt="上一个页面传递参数"><br><img src="https://img-blog.csdnimg.cn/20190810090643544.png#pic_center" alt="下一个页面接收参数"></p>
 <h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><ol>
@@ -815,7 +815,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>关于我</title>
-    <url>/xinghailiao.github.io/2019/08/09/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D/</url>
+    <url>/2019/08/09/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>大一学的工业设计，大二上学期转到计算机科学与技术（<del>说多了都是泪</del> ）。</li>
@@ -833,7 +833,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android基础控件AutoCompleteTextView的使用</title>
-    <url>/xinghailiao.github.io/2019/08/09/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6AutoCompleteTextView%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/09/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6AutoCompleteTextView%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>AutoCompleteTextView有点像EditText和Spinner的组合。所以使用AutoCompleteTextView和使用Spinner差不多，用ArrayAdapter即可。如果对ArrayAdapter还不了解，可以参考<a href="https://blog.csdn.net/weixin_43219615/article/details/98878291" target="_blank" rel="noopener">Spinner的使用</a>。<br><img src="https://img-blog.csdnimg.cn/20190809164509840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="显示效果"><br><img src="https://img-blog.csdnimg.cn/20190809164716742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="xml属性"></p>
 <h2 id="2-简单使用"><a href="#2-简单使用" class="headerlink" title="2.简单使用"></a>2.简单使用</h2><ol>
@@ -856,7 +856,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>EditText输入完成后自动关闭输入法</title>
-    <url>/xinghailiao.github.io/2019/08/09/EditText%E8%BE%93%E5%85%A5%E5%AE%8C%E6%88%90%E5%90%8E%E8%87%AA%E5%8A%A8%E5%85%B3%E9%97%AD%E8%BE%93%E5%85%A5%E6%B3%95/</url>
+    <url>/2019/08/09/EditText%E8%BE%93%E5%85%A5%E5%AE%8C%E6%88%90%E5%90%8E%E8%87%AA%E5%8A%A8%E5%85%B3%E9%97%AD%E8%BE%93%E5%85%A5%E6%B3%95/</url>
     <content><![CDATA[<hr>
 <p> 有时候我们想输入达到一定长度之后自动关闭输入法（如输入11位手机号之后自动关闭键盘）。下面是实现步骤。<br><img src="https://img-blog.csdnimg.cn/20190809114757495.png" alt="简介"></p>
 <ol>
@@ -889,7 +889,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android中SimpleAdapter的使用</title>
-    <url>/xinghailiao.github.io/2019/08/09/Android%E4%B8%ADSimpleAdapter%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/09/Android%E4%B8%ADSimpleAdapter%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>SimpleAdapter配上Spinner，可以在Spinner的列表项中展示多个控件（如文本和图片的组合），显示效果如下图。<br><img src="https://img-blog.csdnimg.cn/2019080909335632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="显示效果"><br>下面是初始化SimpleAdapter的一个例子。在SimpleAdapter的构造函数中：第一个参数是设备上下文；第二个参数是存放Map的容器，Map里面存放的是原材料；第三个参数是选中时的显示；第四个参数是Map中的key；第五个参数是原材料对应存放的位置（比如例子中的icon放到iv_icon）。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//文字</span><br><span class="line">private String[] mWeekArray =  &#123;&quot;周一&quot;, &quot;周二&quot;, &quot;周三&quot;, &quot;周四&quot;, &quot;周五&quot;, &quot;周六&quot;, &quot;周日&quot;&#125;;</span><br><span class="line">//图片</span><br><span class="line">int[] mIconArray = &#123;R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,</span><br><span class="line">              R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher&#125;;</span><br><span class="line">      //存放Map的容器</span><br><span class="line">      List&lt;Map&lt;String, Object&gt;&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">      //每个Map里面放的是原材料</span><br><span class="line">      for(int i = 0; i &lt; mIconArray.length; i++) &#123;</span><br><span class="line">          Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">          map.put(&quot;icon&quot;, mIconArray[i]);</span><br><span class="line">          map.put(&quot;week&quot;, mWeekArray[i]);</span><br><span class="line">          list.add(map);</span><br><span class="line">      &#125;</span><br><span class="line">      /*第一个参数是设备上下文 第二个参数是存放Map的容器，Map里面存放的是原材料 第三个参数是选中时的显示 第四个参数是Map中的key 第五个参数是原材料对应存放的位置（icon放iv_icon）*/</span><br><span class="line">      SimpleAdapter adapter = new SimpleAdapter(this, list, R.layout.item_selected, new String[]&#123;&quot;icon&quot;, &quot;week&quot;&#125;, new int[]&#123;R.id.iv_icon, R.id.tv_week&#125;);</span><br><span class="line">      adapter.setDropDownViewResource(R.layout.item_simple);</span><br></pre></td></tr></table></figure>
@@ -917,7 +917,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android基础控件RadioGroup的使用</title>
-    <url>/xinghailiao.github.io/2019/08/08/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6RadioGroup%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/08/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6RadioGroup%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>RadioGroup可以提供几个选项供用户选择，但只能选择其中的一个。其下面可以横着或者竖着挂几个RadioButton，也可以挂载其他控件（如TextView）。RadioGroup的相应事件一般不由下面的RadioButton响应，而是直接由RadioGroup响应。实现RadioGroup.OnCheckedChangeListener接口即可监听RadioGroup。RadioButton也是派生自CompoundButton，也可以通过修改button属性来修改图标，但是通过button属性修改往往会使文字和图标挨得很近。这时候我们可以设置RadioButton的drawableLeft属性和drawablePadding属性来使图标和文字挨得远一点（同时把button属性设置成@null）。下图是RadioGroup的使用效果。<img src="https://img-blog.csdnimg.cn/20190808143928702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="RadioGroup"></p>
 <h2 id="2-简单使用"><a href="#2-简单使用" class="headerlink" title="2.简单使用"></a>2.简单使用</h2><p>下面是RadioGroup的简单实现代码。</p>
@@ -941,7 +941,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android基础控件Switch的使用</title>
-    <url>/xinghailiao.github.io/2019/08/08/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6Switch%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/08/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6Switch%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>Switch是一个很简单的控件，只有两种状态，感觉只是升级版的CheckBox(<del>但是原生的依旧很丑</del> )。通过实现CompoundButton.OnCheckedChangeListener接口就可以监听Switch，但是改变Switch的button属性只会在左边加一个显示按钮（如效果图一），所以就用CheckBox做了一个自定义的Switch（效果如图二，如果感觉按钮的图片太小，可以直接设置CheckBox的background属性，并且把button属性改为@null）。改变showText属性可以调节是否显示开关提示文字，textOn属性设置打开时的提示文字，TextOff属性设置关闭时的提示属性（<del>但是好丑啊QaQ</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190808130307498.png" alt="图一">)<img src="https://img-blog.csdnimg.cn/20190808142459213.png" alt="图二"></p>
 <h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用Switch的示例代码。</p>
@@ -965,7 +965,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android基础控件CheckBox的使用</title>
-    <url>/xinghailiao.github.io/2019/08/08/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6CheckBox%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2019/08/08/Android%E5%9F%BA%E7%A1%80%E6%8E%A7%E4%BB%B6CheckBox%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p> CheckBox有两种状态，勾选和未勾选，是一个很简单的控件。可以通过实现OnCheckedChangeListener接口来监听CheckBox；如果想更改它的图标的话只需更改它的button属性即可实现。<br><img src="https://img-blog.csdnimg.cn/20190808121700754.png" alt="CheckBox"></p>
 <h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用CheckBox的示例代码。</p>
@@ -989,7 +989,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android在线程中使用Toast运行时报错</title>
-    <url>/xinghailiao.github.io/2019/08/07/Android%E5%9C%A8%E7%BA%BF%E7%A8%8B%E4%B8%AD%E4%BD%BF%E7%94%A8Toast%E8%BF%90%E8%A1%8C%E6%97%B6%E6%8A%A5%E9%94%99/</url>
+    <url>/2019/08/07/Android%E5%9C%A8%E7%BA%BF%E7%A8%8B%E4%B8%AD%E4%BD%BF%E7%94%A8Toast%E8%BF%90%E8%A1%8C%E6%97%B6%E6%8A%A5%E9%94%99/</url>
     <content><![CDATA[<hr>
 <p>直接在线程中使用Toast运行时会报错<strong>Can’t toast on a thread that has not called Looper.prepare()</strong>。先调用Looper.prepare()，然后再使用Toast，然后再调用Looper.loop()即可。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Looper.prepare();</span><br><span class="line">ToastUtil.showToast(MainActivity.this, &quot;网络连接错误&quot;);</span><br><span class="line">Looper.loop();</span><br></pre></td></tr></table></figure>
@@ -1002,7 +1002,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android代码和xml文件中设置颜色的问题</title>
-    <url>/xinghailiao.github.io/2019/08/07/Android%E4%BB%A3%E7%A0%81%E5%92%8Cxml%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%A2%9C%E8%89%B2%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <url>/2019/08/07/Android%E4%BB%A3%E7%A0%81%E5%92%8Cxml%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%A2%9C%E8%89%B2%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>安卓中颜色有八位十六进制编码和六位十六进制编码。使用八位十六进制编码时，xml文件和代码中都一样。</li>
@@ -1016,7 +1016,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Android Studio中的Project和Module</title>
-    <url>/xinghailiao.github.io/2019/08/05/Android%20Studio%E4%B8%AD%E7%9A%84Project%E5%92%8CModule/</url>
+    <url>/2019/08/05/Android%20Studio%E4%B8%AD%E7%9A%84Project%E5%92%8CModule/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>File-&gt;New-&gt;New Project 创建项目。相当于eclipse中的workspace</li>
@@ -1031,7 +1031,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>wireshark入门</title>
-    <url>/xinghailiao.github.io/2019/07/30/wireshark%E5%85%A5%E9%97%A8/</url>
+    <url>/2019/07/30/wireshark%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<hr>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><blockquote>
 <p>Wireshark（前称Ethereal）是一个免费开源的网络数据包分析软件。网络数据包分析软件的功能是截取网络数据包，并尽可能显示出最为详细的网络数据包数据。</p>
@@ -1064,7 +1064,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>作为新手开发Android应用时遇到的问题</title>
-    <url>/xinghailiao.github.io/2019/07/30/%E4%BD%9C%E4%B8%BA%E6%96%B0%E6%89%8B%E5%BC%80%E5%8F%91%E5%AE%89%E5%8D%93App%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</url>
+    <url>/2019/07/30/%E4%BD%9C%E4%B8%BA%E6%96%B0%E6%89%8B%E5%BC%80%E5%8F%91%E5%AE%89%E5%8D%93App%E6%89%80%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3/</url>
     <content><![CDATA[<hr>
 <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。</p>
 <h2 id="2-正文"><a href="#2-正文" class="headerlink" title="2.正文"></a>2.正文</h2><ol>
@@ -1095,7 +1095,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>XTUOJ-1104-素数个数</title>
-    <url>/xinghailiao.github.io/2019/07/29/XTUOJ-1104-%E7%B4%A0%E6%95%B0%E4%B8%AA%E6%95%B0/</url>
+    <url>/2019/07/29/XTUOJ-1104-%E7%B4%A0%E6%95%B0%E4%B8%AA%E6%95%B0/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>题目<br>Description<br>素数是指只能被1和它自己整除的数，特别的，1不是素数。比如，2,3,5,7都是素数。现给出正整数a和b(1&lt;=a,b&lt;=1,000,000)，请计算a与b之间有多少个素数。 输入 第一行是一个整数N，表示样例的个数。以后每行两个整数a和b。 输出 每行输出一个整数，即a和b之间的素数个数。<br>Sample Input<br>3<br>1 10<br>2 2<br>3 7<br>Sample Output<br>4<br>1<br>3</li>
@@ -1111,7 +1111,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>XTUOJ-1035-列车长的烦恼</title>
-    <url>/xinghailiao.github.io/2019/07/28/XTUOJ-1035-%E5%88%97%E8%BD%A6%E9%95%BF%E7%9A%84%E7%83%A6%E6%81%BC/</url>
+    <url>/2019/07/28/XTUOJ-1035-%E5%88%97%E8%BD%A6%E9%95%BF%E7%9A%84%E7%83%A6%E6%81%BC/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>题目<br>Description<br>John是个小列车站的站长，每次列车在这里重新编组时他就很烦恼。因为站上只有一个人字形的编组轨道(如图)，所有的列车车厢都是从人字轨的右边依次进去，从左边出来。但有一些编组顺序John总编不出来，John怀疑有些编组顺序是不可能完成的，可John又找不出那些是顺序是可以编组出，那些不可以。请你写一个程序帮助John辨别哪些编组可以完成，哪些不能完成。<br><img src="https://img-blog.csdnimg.cn/2019072812380856.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图片"><br>输入：<br>第一行是一个整数K，表示有多少个测试用例，以后每行一个测试用例，每行为n+1个整数，第一个整数为n 表示有多少节车厢，后面n个整数表示需要编组成的顺序。比如说3节车厢，按照1，2，3依次入轨编组，可以在左边形成1 2 3，1 3 2，2 1 3，2 3 1，321。<br>输出：<br>每行输出一个测试用例的结果。如果可以编组输出Yes，否则输出No。<br>Sample Input<br>2<br>3 3 1 2<br>4 1 2 3 4<br>Sample Output<br>No<br>Yes</li>
@@ -1127,7 +1127,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>XTUOJ-1296-GCD</title>
-    <url>/xinghailiao.github.io/2019/07/27/XTUOJ-1296-GCD/</url>
+    <url>/2019/07/27/XTUOJ-1296-GCD/</url>
     <content><![CDATA[<hr>
 <ol>
 <li>题目<br>题目描述<br>a和b的最大公约数(Greatest Common Divisor)是最大的d，d能整除a和b。<br>如果gcd(a,b)=1，我们就称a和b是互素的。<br>给一个区间[a,b]，求与6互素的数的个数。<br>比如区间[1,10],与6互素的数为1,5,7,所以一共是3个。<br>输入<br>第一行是一个整数K(K≤10,000)，表示样例的个数。<br>每个样例占一行,为区间[a,b],(1≤a≤b≤1,000,000,000)<br>输出<br>每行输出一个样例的结果<br>样例输入<br>2<br>1 10<br>1 1000000000<br>样例输出<br>3<br>333333333</li>
@@ -1143,7 +1143,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Java版本飞机大战</title>
-    <url>/xinghailiao.github.io/2019/07/24/Java%E7%89%88%E6%9C%AC%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</url>
+    <url>/2019/07/24/Java%E7%89%88%E6%9C%AC%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/</url>
     <content><![CDATA[<hr>
 <h2 id="1-关于这个飞机大战"><a href="#1-关于这个飞机大战" class="headerlink" title="1.关于这个飞机大战"></a>1.关于这个飞机大战</h2><p>学Java有一段时间了，然后通过Java开发了一些简易安卓APP。最近很想实现以前自己很想写的飞机大战，也练练手。代码和界面参考（<del>抄袭</del> ）了许多，毕竟天下码农一家亲。<br>游戏大概长下面这样，鼠标点击即开始游戏，然后用鼠标操作飞机移动（鼠标到哪飞机移动到哪，超出游戏界面就暂停）。<br><img src="https://img-blog.csdnimg.cn/20190724164720690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="游戏界面"></p>
 <h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2.代码实现"></a>2.代码实现</h2><ol>
@@ -1197,7 +1197,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Java适配器模式</title>
-    <url>/xinghailiao.github.io/2019/07/23/Java%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</url>
+    <url>/2019/07/23/Java%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<hr>
 <h2 id="1-适配器模式介绍"><a href="#1-适配器模式介绍" class="headerlink" title="1.适配器模式介绍"></a>1.适配器模式介绍</h2><blockquote>
 <p>在设计模式中，适配器模式（英语：adapter pattern）有时候也称包装样式或者包装(wrapper)。将一个类的接口转接成用户所期待的。一个适配使得因接口不兼容而不能在一起工作的类能在一起工作，做法是将类自己的接口包裹在一个已存在的类中。</p>
@@ -1230,7 +1230,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Java原型模式</title>
-    <url>/xinghailiao.github.io/2019/07/23/Java%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</url>
+    <url>/2019/07/23/Java%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<hr>
 <h2 id="1-原型模式介绍"><a href="#1-原型模式介绍" class="headerlink" title="1.原型模式介绍"></a>1.原型模式介绍</h2><blockquote>
 <p>原型模式是创建型模式的一种，其特点在于通过“复制”一个已经存在的实例来返回新的实例,而不是新建实例。被复制的实例就是我们所称的“原型”，这个原型是可定制的。</p>
@@ -1267,7 +1267,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Java单例设计模式</title>
-    <url>/xinghailiao.github.io/2019/07/22/Java%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <url>/2019/07/22/Java%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<hr>
 <h2 id="1-单例模式的介绍"><a href="#1-单例模式的介绍" class="headerlink" title="1.单例模式的介绍"></a>1.单例模式的介绍</h2><blockquote>
 <p>单例模式，也叫单子模式，是一种常用的软件设计模式。在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个的全局对象，这样有利于我们协调系统整体的行为。比如在某个服务器程序中，该服务器的配置信息存放在一个文件中，这些配置数据由一个单例对象统一读取，然后服务进程中的其他对象再通过这个单例对象获取这些配置信息。这种方式简化了在复杂环境下的配置管理。</p>
@@ -1318,7 +1318,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>Java连接MySQL实现简易学生信息管理系统</title>
-    <url>/xinghailiao.github.io/2019/07/21/Java%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
+    <url>/2019/07/21/Java%E8%BF%9E%E6%8E%A5MySQL%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<hr>
 <h2 id="1-导入jar包"><a href="#1-导入jar包" class="headerlink" title="1.导入jar包"></a>1.导入jar包</h2><ol>
 <li><p>鼠标右键点击项目，选择Properties。<img src="https://img-blog.csdnimg.cn/20190721161809222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="Properties"></p>
@@ -1374,7 +1374,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>C语言的链表实现</title>
-    <url>/xinghailiao.github.io/2019/07/21/C%E8%AF%AD%E8%A8%80%E7%9A%84%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/</url>
+    <url>/2019/07/21/C%E8%AF%AD%E8%A8%80%E7%9A%84%E9%93%BE%E8%A1%A8%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<hr>
 <h2 id="1-链表基础知识"><a href="#1-链表基础知识" class="headerlink" title="1.链表基础知识"></a>1.链表基础知识</h2><ol>
 <li>链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据（想想数组，元素是按照顺序存储的，即存储区域连续）。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间。</li>
@@ -1433,7 +1433,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
   </entry>
   <entry>
     <title>基于拉格朗日差值算法的BMP图像缩放</title>
-    <url>/xinghailiao.github.io/2019/07/02/%E5%9F%BA%E4%BA%8E%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%B7%AE%E5%80%BC%E7%AE%97%E6%B3%95%E7%9A%84BMP%E5%9B%BE%E5%83%8F%E7%BC%A9%E6%94%BE/</url>
+    <url>/2019/07/02/%E5%9F%BA%E4%BA%8E%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%B7%AE%E5%80%BC%E7%AE%97%E6%B3%95%E7%9A%84BMP%E5%9B%BE%E5%83%8F%E7%BC%A9%E6%94%BE/</url>
     <content><![CDATA[<hr>
 <h2 id="1-BMP图片文件格式"><a href="#1-BMP图片文件格式" class="headerlink" title="1.BMP图片文件格式"></a>1.BMP图片文件格式</h2><blockquote>
 <p>参见博客<a href="https://www.cnblogs.com/wainiwann/p/7086844.html" target="_blank" rel="noopener">BMP文件格式详解</a>，这篇博客写的非常详细，不想看的话可以看下面的简单介绍，简介大多引用自这里。</p>
