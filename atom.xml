@@ -360,6 +360,35 @@
   </entry>
   
   <entry>
+    <title>《C Primer Plus》（第六版）答案（7.12）</title>
+    <link href="https://xinghailiao.github.io/2019/08/21/%E3%80%8AC%20Primer%20Plus%E3%80%8B%EF%BC%88%E7%AC%AC%E5%85%AD%E7%89%88%EF%BC%89%E7%AD%94%E6%A1%88%EF%BC%887.12%EF%BC%89/"/>
+    <id>https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（7.12）/</id>
+    <published>2019-08-21T11:08:52.000Z</published>
+    <updated>2019-10-15T13:48:59.983Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;为使用《C Primer Plus》学习C的初学者准备的。&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;编写一个程序。该程序读取输入直到遇到#字符，然后报告读取的空格数目、读取的换行符数目以及读取的所有其他字符数目。&lt;/p&gt;
+&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="C语言" scheme="https://xinghailiao.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>为Dev-C++配置C99</title>
     <link href="https://xinghailiao.github.io/2019/08/21/%E4%B8%BADev-C++%E9%85%8D%E7%BD%AEC99/"/>
     <id>https://xinghailiao.github.io/2019/08/21/为Dev-C++配置C99/</id>
@@ -517,32 +546,6 @@
     
     
       <category term="C语言" scheme="https://xinghailiao.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android通知推送</title>
-    <link href="https://xinghailiao.github.io/2019/08/19/Android%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%EF%BC%88%E8%A7%A3%E5%86%B3NotificationService_%20No%20Channel%20found%20for___%E9%97%AE%E9%A2%98%EF%BC%89/"/>
-    <id>https://xinghailiao.github.io/2019/08/19/Android通知推送（解决NotificationService_ No Channel found for___问题）/</id>
-    <published>2019-08-19T13:39:21.000Z</published>
-    <updated>2019-10-12T05:34:25.877Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Android" scheme="https://xinghailiao.github.io/tags/Android/"/>
     
   </entry>
   

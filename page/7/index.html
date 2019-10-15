@@ -61,6 +61,100 @@
       
         
 
+<article id="post-《C Primer Plus》（第六版）答案（4.8）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/">《C Primer Plus》（第六版）答案（4.8）</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/" class="article-date">
+  <time datetime="2019-08-20T13:13:31.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
+<ol>
+<li><p>编写一个程序，提示用户输入名和姓，然后以“名，姓”的格式打印出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	char name[20];</span><br><span class="line">	char surname[20];</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入名：&quot;);</span><br><span class="line">	scanf(&quot;%s&quot;, name);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入姓：&quot;);</span><br><span class="line">	scanf(&quot;%s&quot;, surname);</span><br><span class="line">	 </span><br><span class="line">	printf(&quot;Hello, %s %s&quot;, name, surname);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入名和姓，并执行以下操作：<br>a.打印名和姓，包括双引号；<br>b.在宽度为20的字段右端打印名和姓，包括双引号；<br>c.在宽度为20的字段左边打印名和姓，包括双引号；<br>d.在比姓名宽度宽3的字段打印名和姓。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	char name[20];</span><br><span class="line">	char surname[20];</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入名：&quot;);</span><br><span class="line">	scanf(&quot;%s&quot;, name);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入姓：&quot;);</span><br><span class="line">	scanf(&quot;%s&quot;, surname);</span><br><span class="line">	 </span><br><span class="line">	char fullName[50];</span><br><span class="line">	//strcpy字符串拷贝函数 </span><br><span class="line">	strcpy(fullName, name);</span><br><span class="line">	//strcat字符串连接函数 （在原字符串后面接上指定字符串） </span><br><span class="line">	strcat(fullName, &quot; &quot;);</span><br><span class="line">	strcat(fullName, surname);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;\&quot;%20s\&quot;\n&quot;, fullName);</span><br><span class="line">	//负号表示左对齐 </span><br><span class="line">	printf(&quot;\&quot;%-20s\&quot;\n&quot;, fullName);</span><br><span class="line">	</span><br><span class="line">	//strlen获取字符串长度 </span><br><span class="line">	int length = strlen(fullName);</span><br><span class="line">	//*用于通过变量指定宽度 </span><br><span class="line">	printf(&quot;%*s&quot;, length+3, fullName);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，读取一个浮点数，首先以小数计数法打印，然后以指数计数法打印。用下面的格式进行输出（系统不同，输出可能不同）：<br>a.输出21.3或2.1e+001；<br>b.输出+21.290或2.129E+001；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	//%g输出自适应格式  e输出时指数计数那里的E是小写 </span><br><span class="line">	printf(&quot;%g %e\n&quot;, f, f);</span><br><span class="line">	</span><br><span class="line">	//正号表示输出时带正号 E输出时指数计数那里的E是大写 </span><br><span class="line">	printf(&quot;%+g, %E&quot;, f, f); </span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入身高（英寸）和姓名，然后以下面的格式显示用户输入的信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	char name[20];</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入身高（英寸）：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f); </span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入姓名：&quot;);</span><br><span class="line">	scanf(&quot;%s&quot;, name);//字符数组的名字即字符数组的地址 </span><br><span class="line">	</span><br><span class="line">	printf(&quot;%s, you are %g feet tall.&quot;, name, f); </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入以兆位每秒(Mb/s)为单位的下载速度和兆字节(MB)为单位的文件大小。程序中应计算文件下载的时间。注意，这里1字节等于8位。使用float类型，并用/作为除号。该程序要以下面的格式打印3个变量的值，显示小数点后面两位数字。</p>
+</li>
+</ol>
+<p> <em>At 18.12 megebits per second, a file of 2.20 megabytes<br> downloads in 0.97 seconds.</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float speed;</span><br><span class="line">	float fileSize;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入下载速度(Mb/s)和文件大小(MB)：&quot;) ;</span><br><span class="line">	scanf(&quot;%f %f&quot;, &amp;speed, &amp;fileSize);</span><br><span class="line">	</span><br><span class="line">	/*一字节等于八位*/</span><br><span class="line">	printf(&quot;At %.2f megebits per second, a file of %.2f megabytes\ndownloads in %.2f seconds.&quot;, speed, fileSize, (fileSize*8)/speed);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p>编写一个程序，先提示用户输入名，然后提示用户输入姓。在一行打印名和姓，下一行分别打印名和姓的字母数。字母数要和相应名和姓的结尾对齐，如下所示。<br><img src="https://img-blog.csdnimg.cn/20190820205103195.png#pic_center" alt="格式图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	char name[20];</span><br><span class="line">	char surname[20];</span><br><span class="line">	</span><br><span class="line">	scanf(&quot;%s&quot;, name);</span><br><span class="line">	scanf(&quot;%s&quot;, surname);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;%s %s\n&quot;, name, surname);</span><br><span class="line">	</span><br><span class="line">	/*strlen函数获取字符串长度*/</span><br><span class="line">	int length_name = strlen(name);</span><br><span class="line">	int length_surname = strlen(surname);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;%*d %*d&quot;, length_name, length_name, length_surname, length_surname);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，将一个double类型的变量设置为1.0/3.0，一个float类型的变量设置为1.0/3.0.分别显示两次的计算结果各三次：一次显示小数点后6位数字；一次显示小数点后12位数字；一次显示小数点后16位数字。程序中要包含float.h头文件，并显示FLT_DIG和DBL_DIG的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;float.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	double d = 1.0 / 3.0;</span><br><span class="line">	float f = 1.0 / 3.0; </span><br><span class="line">	</span><br><span class="line">	printf(&quot;%.6lf %.6f\n&quot;, d, f);</span><br><span class="line">	printf(&quot;%.12lf %.12f\n&quot;, d, f);</span><br><span class="line">	printf(&quot;%.16lf %.16f\n&quot;, d, f);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;FLT_DIG:%d DBL_DIG:%d\n&quot;, FLT_DIG, DBL_DIG);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入旅行的里程和消耗的汽油量。然后计算并显示消耗每加仑汽油行驶的英里数，显示小数点后面一位数字。接下来，使用一加仑大约3.785升，1英里大约1.609千米，把单位为英里/加仑的值转换为升/100公里，并显示结果，显示小数点后面一位小数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define GALLON_PER_L 3.785</span><br><span class="line">#define MILE_PER_KILOMETER 1.609</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float mile;</span><br><span class="line">	float gasoline;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入旅行的里程（英里）和汽油量（加仑）：&quot;);</span><br><span class="line">	scanf(&quot;%f %f&quot;, mile, gasoline);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;每加仑汽油行驶的公里数：%.1f.\n&quot;, mile / gasoline);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;每100千米燃烧的汽油量（升）：%.1.f.&quot;, (mile * MILE_PER_KILOMETER * 100) / (gasoline * GALLON_PER_L));</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/" data-id="ck1rwll09002b9glaykr9ynmo"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-《C Primer Plus》（第六版）答案（3.11）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -132,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" data-id="ck1rgz5u20028i8lac00a0aao"
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" data-id="ck1rwlkzv00259gla0ao8auok"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
@@ -222,83 +316,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" data-id="ck1rgz5tv0024i8la8n22s113"
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" data-id="ck1rwll0000279glatxr8m775"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android通知推送（解决NotificationService_ No Channel found for___问题）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/19/Android通知推送（解决NotificationService_ No Channel found for___问题）/">Android通知推送</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/19/Android通知推送（解决NotificationService_ No Channel found for___问题）/" class="article-date">
-  <time datetime="2019-08-19T13:39:21.000Z" itemprop="datePublished">2019-08-19</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>通知推送的使用方式和AlertDialog的使用方式差不多，都是先用build构造并设置参数，最后由通知服务推送。<br><img src="https://img-blog.csdnimg.cn/20190819213244376.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="通知图片"></p>
-<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><p>当目标sdk版本大于等于26时，按照原来的方法直接弹出消息会报错 <strong>NotificationService: No Channel found for…</strong>。下面是解决方法。</p>
-<ol>
-<li><p>首先要建立通道（也就是设置中的通知类别，如图中的“消息”），示例代码如下。<br><img src="https://img-blog.csdnimg.cn/20190819212835868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="通知类别"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void createNotificationChannel(String channelId, String channelName, int importance) &#123;</span><br><span class="line">	NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, importance);</span><br><span class="line">	NotificationManager notificationManager  = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line">	notificationManager.createNotificationChannel(notificationChannel);</span><br><span class="line">&#125;</span><br><span class="line">//创建一个message通道，名字为消息</span><br><span class="line">createNotificationChannel(&quot;message&quot;, &quot;消息&quot;, NotificationManager.IMPORTANCE_HIGH);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发送消息，注意要在build里加上通道id，不然会报错。示例代码如下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void sendNotification(String title, String content) &#123;</span><br><span class="line">	Intent intent = new Intent(this, MainActivity.class);</span><br><span class="line">	PendingIntent pendingIntent = PendingIntent.getActivity(this, R.string.app_name, intent, PendingIntent.FLAG_UPDATE_CURRENT);</span><br><span class="line">	NotificationCompat.Builder builder = new NotificationCompat.Builder(this, &quot;message&quot;);   </span><br><span class="line">  	builder.setContentIntent(pendingIntent).setAutoCancel(true).setSmallIcon(R.drawable.ic_demo).setTicker(&quot;提示消息&quot;).setWhen(System.currentTimeMillis())</span><br><span class="line">.setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_demo)).setContentTitle(title).setContentText(content);</span><br><span class="line">	Notification notification = builder.build();</span><br><span class="line">	NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line">    notificationManager.notify(1, notification);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/19/Android通知推送（解决NotificationService_ No Channel found for___问题）/" data-id="ck1rgz5sg0019i8laxzvbszbx"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 

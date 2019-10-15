@@ -61,6 +61,99 @@
       
         
 
+<article id="post-Android中BaseAdapter配合Spinner的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/14/Android中BaseAdapter配合Spinner的使用/">Android中BaseAdapter配合Spinner的使用</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/14/Android中BaseAdapter配合Spinner的使用/" class="article-date">
+  <time datetime="2019-08-14T03:15:14.000Z" itemprop="datePublished">2019-08-14</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>BaseAdapter是一个抽象类，实现了ListAdapter和SpinnerAdapter。通过使用BaseAdapter，我们可以在Spinner的列表项中展示更多内容。如果还不懂得使用Spinner，可以参考<a href="https://blog.csdn.net/weixin_43219615/article/details/98878291" target="_blank" rel="noopener">这里</a>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public abstract class BaseAdapter extends Object implements ListAdapter, SpinnerAdapter</span><br></pre></td></tr></table></figure>
+
+<p>使用步骤：</p>
+<ol>
+<li><p>编写列表项的布局文件。</p>
+</li>
+<li><p>编写自己的适配器继承自BaseAdapter。主要实现三个方法。</p>
+<ul>
+<li>构造函数。指定适配器需要处理的数据集合</li>
+<li>getCount：获取数据项的个数。</li>
+<li>getView：获取每项的视图。</li>
+</ul>
+</li>
+<li><p>代码中构造适配器，应用于Spinner对象。</p>
+<h2 id="2-使用例子"><a href="#2-使用例子" class="headerlink" title="2.使用例子"></a>2.使用例子</h2><p>新建BaseAdapterActivity，代码如下。最后效果如图。<br><img src="https://img-blog.csdnimg.cn/20190814110254349.png" alt="例子图片"><br><img src="https://img-blog.csdnimg.cn/20190814110218775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="例子图片"></p>
+</li>
+<li><p>item_dropdown.xml。即第一步的列表项布局文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout</span><br><span class="line">    android:id=&quot;@+id/ll_item&quot;</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:orientation=&quot;horizontal&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ImageView</span><br><span class="line">        android:id=&quot;@+id/iv_icon&quot;</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;80dp&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;</span><br><span class="line">        android:scaleType=&quot;fitCenter&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;3&quot;</span><br><span class="line">        android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_name&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:gravity=&quot;left|center&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;</span><br><span class="line">            android:textSize=&quot;20sp&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_description&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;2&quot;</span><br><span class="line">            android:gravity=&quot;left|center&quot;</span><br><span class="line">            android:textSize=&quot;13sp&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot; /&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MyBaseAdapter.java。即第二步的继承自BaseAdapter的适配器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.senior.adapter;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.BaseAdapter;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line"></span><br><span class="line">import xyz.strasae.androidlearn.senior.R;</span><br><span class="line">import xyz.strasae.androidlearn.senior.bean.DemoItem;</span><br><span class="line"></span><br><span class="line">public class MyBaseAdapter extends BaseAdapter &#123;</span><br><span class="line">    private LayoutInflater layoutInflater;</span><br><span class="line">    private Context context;</span><br><span class="line">    private int layoutId;</span><br><span class="line">    private int background;</span><br><span class="line">    private ArrayList&lt;DemoItem&gt; demoItemArrayList;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * </span><br><span class="line">     * @param context 设备上下文</span><br><span class="line">     * @param layoutId 列表项的视图id</span><br><span class="line">     * @param demoItemArrayList 数据</span><br><span class="line">     * @param background 列表项的背景颜色</span><br><span class="line">     */</span><br><span class="line">    public MyBaseAdapter(Context context, int layoutId, ArrayList&lt;DemoItem&gt; demoItemArrayList, int background) &#123;</span><br><span class="line">        this.context = context;</span><br><span class="line">        layoutInflater = LayoutInflater.from(this.context);</span><br><span class="line">        this.demoItemArrayList = demoItemArrayList;</span><br><span class="line">        this.background = background;</span><br><span class="line">        this.layoutId = layoutId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getCount() &#123;</span><br><span class="line">        return demoItemArrayList.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Object getItem(int i) &#123;</span><br><span class="line">        return demoItemArrayList.get(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public long getItemId(int i) &#123;</span><br><span class="line">        return i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">        ViewHolder viewHolder;</span><br><span class="line">        if(convertView == null) &#123;</span><br><span class="line">            viewHolder = new ViewHolder();</span><br><span class="line">            convertView = layoutInflater.inflate(layoutId, null);</span><br><span class="line">            viewHolder.ll_item = convertView.findViewById(R.id.ll_item);</span><br><span class="line">            viewHolder.iv_icon = convertView.findViewById(R.id.iv_icon);</span><br><span class="line">            viewHolder.tv_name = convertView.findViewById(R.id.tv_name);</span><br><span class="line">            viewHolder.tv_description = convertView.findViewById(R.id.tv_description);</span><br><span class="line">            convertView.setTag(viewHolder);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            viewHolder = (ViewHolder) convertView.getTag();</span><br><span class="line">        &#125;</span><br><span class="line">        DemoItem demoItem = demoItemArrayList.get(position);</span><br><span class="line">        viewHolder.ll_item.setBackgroundColor(background);</span><br><span class="line">        viewHolder.iv_icon.setImageResource(demoItem.image);</span><br><span class="line">        viewHolder.tv_name.setText(demoItem.name);</span><br><span class="line">        viewHolder.tv_description.setText(demoItem.description);</span><br><span class="line">        return convertView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final class ViewHolder &#123;</span><br><span class="line">        private LinearLayout ll_item;</span><br><span class="line">        private ImageView iv_icon;</span><br><span class="line">        private TextView tv_name;</span><br><span class="line">        private TextView tv_description;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>activity_base_adapter_demo.xml。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.BaseAdapterDemoActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:padding=&quot;10dp&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Spinner</span><br><span class="line">        android:id=&quot;@+id/sp_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:spinnerMode=&quot;dropdown&quot;</span><br><span class="line">        &gt;</span><br><span class="line">    &lt;/Spinner&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>BaseAdapterActivity.java。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.senior;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.graphics.Color;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.AdapterView;</span><br><span class="line">import android.widget.Spinner;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line"></span><br><span class="line">import xyz.strasae.androidlearn.senior.adapter.MyBaseAdapter;</span><br><span class="line">import xyz.strasae.androidlearn.senior.bean.DemoItem;</span><br><span class="line"></span><br><span class="line">public class BaseAdapterDemoActivity extends AppCompatActivity &#123;</span><br><span class="line">    private Spinner sp_demo;</span><br><span class="line">    private ArrayList&lt;DemoItem&gt; demoItemArrayList;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_base_adapter_demo);</span><br><span class="line">        sp_demo = findViewById(R.id.sp_demo);</span><br><span class="line">        demoItemArrayList = DemoItem.getDefaultList();</span><br><span class="line">        MyBaseAdapter myBaseAdapter = new MyBaseAdapter(BaseAdapterDemoActivity.this, R.layout.item_dropdown, demoItemArrayList, Color.WHITE);</span><br><span class="line">        sp_demo.setPrompt(&quot;Demo&quot;);</span><br><span class="line">        sp_demo.setAdapter(myBaseAdapter);</span><br><span class="line">        sp_demo.setSelection(0);</span><br><span class="line">        sp_demo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onItemSelected(AdapterView&lt;?&gt; adapterView, View view, int i, long l) &#123;</span><br><span class="line">                Toast.makeText(BaseAdapterDemoActivity.this, &quot;你选择的是&quot; + demoItemArrayList.get(i).name, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onNothingSelected(AdapterView&lt;?&gt; adapterView) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/14/Android中BaseAdapter配合Spinner的使用/" data-id="ck1rwlkri00029glabw15vr4f"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android控件TimePickerDialog的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -118,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/13/Android控件TimePickerDialog的使用/" data-id="ck1rgz5ry0011i8latrk8bx0d"
+      <a data-url="https://xinghailiao.github.io/2019/08/13/Android控件TimePickerDialog的使用/" data-id="ck1rwlkux000w9glacs3lg8yy"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -204,98 +297,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/13/Android菜单栏的使用（弹出菜单）/" data-id="ck1rgz5s20015i8lakmst5qep"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android中菜单栏的使用（上下文菜单）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/13/Android中菜单栏的使用（上下文菜单）/">Android中菜单栏的使用（上下文菜单）</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/13/Android中菜单栏的使用（上下文菜单）/" class="article-date">
-  <time datetime="2019-08-13T02:29:21.000Z" itemprop="datePublished">2019-08-13</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>上下文菜单提供了许多操作，这些操作影响 UI 中的特定项目或上下文框架。使用步骤如下：</p>
-<ol>
-<li><p>通过调用 registerForContextMenu()，注册应与上下文菜单关联的 View 。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">registerForContextMenu(tv_test);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实现 onCreateContextMenu() 方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) &#123;</span><br><span class="line">	super.onCreateContextMenu(menu, v, menuInfo);</span><br><span class="line">	getMenuInflater().inflate(R.menu.menu_demo, menu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实现 onContextItemSelected()方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public boolean onContextItemSelected(@NonNull MenuItem item) &#123;</span><br><span class="line">	int id = item.getItemId();</span><br><span class="line">	if(id==R.id.menu_change_size) &#123;</span><br><span class="line">		tv_test.setTextSize(30);</span><br><span class="line">	&#125;</span><br><span class="line">	if(id==R.id.menu_change_background) &#123;</span><br><span class="line">		tv_test.setBackgroundColor(0xFFFF0000);</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不需要使用的时候调用unregisterForContextMenu()方法注销对应的UI组件注册。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unregisterForContextMenu(tv_test);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><p>下面是为一个TextView注册了上下文菜单的Activity。<br><img src="https://img-blog.csdnimg.cn/20190813102445112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="例子图片"></p>
-<ol>
-<li><p>menu_demo.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;menu xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:id=&quot;@+id/menu_change_size&quot;</span><br><span class="line">        android:orderInCategory=&quot;1&quot;</span><br><span class="line">        android:title=&quot;更换字体大小&quot;/&gt;</span><br><span class="line">    &lt;item android:title=&quot;更换背景&quot;</span><br><span class="line">        android:orderInCategory=&quot;2&quot;</span><br><span class="line">        android:id=&quot;@+id/menu_change_background&quot;/&gt;</span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>activity_menu_demo.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.MenuDemoActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:padding=&quot;10dp&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:id=&quot;@+id/tv_test&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;今天也是要学习的一天&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>MenuDemoActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.annotation.NonNull;</span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.graphics.Color;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.ContextMenu;</span><br><span class="line">import android.view.MenuItem;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">public class MenuDemoActivity extends AppCompatActivity &#123;</span><br><span class="line">    private TextView tv_test;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_menu_demo);</span><br><span class="line">        tv_test = findViewById(R.id.tv_test);</span><br><span class="line">        tv_test.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                openContextMenu(tv_test);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onResume() &#123;</span><br><span class="line">        super.onResume();</span><br><span class="line">        registerForContextMenu(tv_test);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onPause() &#123;</span><br><span class="line">        super.onPause();</span><br><span class="line">        unregisterForContextMenu(tv_test);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) &#123;</span><br><span class="line">        super.onCreateContextMenu(menu, v, menuInfo);</span><br><span class="line">        getMenuInflater().inflate(R.menu.menu_demo, menu);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean onContextItemSelected(@NonNull MenuItem item) &#123;</span><br><span class="line">        int id = item.getItemId();</span><br><span class="line">        if(id==R.id.menu_change_size) &#123;</span><br><span class="line">            tv_test.setTextSize(30);</span><br><span class="line">        &#125;</span><br><span class="line">        if(id==R.id.menu_change_background) &#123;</span><br><span class="line">            tv_test.setBackgroundColor(0xFFFF0000);</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/13/Android中菜单栏的使用（上下文菜单）/" data-id="ck1rgz5qi000ci8layht96pb8"
+      <a data-url="https://xinghailiao.github.io/2019/08/13/Android菜单栏的使用（弹出菜单）/" data-id="ck1rwlkva00109gla19o1mb83"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
