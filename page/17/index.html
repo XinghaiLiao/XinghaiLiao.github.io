@@ -61,6 +61,158 @@
       
         
 
+<article id="post-Android Studio中的Project和Module" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/05/Android Studio中的Project和Module/">Android Studio中的Project和Module</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/05/Android Studio中的Project和Module/" class="article-date">
+  <time datetime="2019-08-05T08:39:51.000Z" itemprop="datePublished">2019-08-05</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<ol>
+<li>File-&gt;New-&gt;New Project 创建项目。相当于eclipse中的workspace</li>
+<li>File-&gt;New-&gt;New Module创建模块。这里的新模块是指一个单独的App工程，对应于eclipse中的new project。</li>
+<li><del>想想我们一般使用eclipse都是先选择workspace然后再在workspace上创建工程就可以理解了。</del> </li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/05/Android Studio中的Project和Module/" data-id="ck1rwlkra00009gla3hcqfgf1"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
+<article id="post-wireshark入门" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/30/wireshark入门/">wireshark入门</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/30/wireshark入门/" class="article-date">
+  <time datetime="2019-07-30T07:28:34.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><blockquote>
+<p>Wireshark（前称Ethereal）是一个免费开源的网络数据包分析软件。网络数据包分析软件的功能是截取网络数据包，并尽可能显示出最为详细的网络数据包数据。</p>
+</blockquote>
+<h2 id="2-入门"><a href="#2-入门" class="headerlink" title="2.入门"></a>2.入门</h2><ol>
+<li>下载wireshark。<a href="https://www.wireshark.org/" target="_blank" rel="noopener">戳这里</a>，下载可能会有点慢（<del>原因大家应该知道</del> ）。</li>
+<li>界面简介。wireshark界面主要分为过滤器、包列表（不同的颜色代表不同的协议包）、包详细信息、16进制数据和地址栏等，他们的位置如图所示。<br><img src="https://img-blog.csdnimg.cn/20190731144124238.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="界面"></li>
+<li>在使用wireshark抓包时，我们会一下子得到一堆的包，从而很难找到我们想要的包。这时候过滤器就派上了用场。过滤器会帮助我们在大量的数据中迅速找到我们需要的信息。过滤器有两种。一种是显示过滤器，就是主界面上那个，用来在捕获的记录中找到所需要的记录；一种是捕获过滤器，用来过滤捕获的封包，以免捕获太多的记录。</li>
+<li>一些过滤表达式的规则（<del>只列出了我知道的</del> ）。<ol>
+<li>协议过滤。比如TCP，则只显示TCP的包。如图只显示了TCP协议的包（HTTP使用的是TCP协议）。<br><img src="https://img-blog.csdnimg.cn/20190731144906883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="TCP"></li>
+<li>IP过滤。比如 ip.src == 192.168.111.1 显示源地址为 192.168.111.1的包；ip.dst ==192.168.1.112, 目标地址为192.168.1.112。例子如图。<br><img src="https://img-blog.csdnimg.cn/201907311453270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="列子"></li>
+<li>端口过滤。tcp.port ==80（源端口或者目的端口是80）,  端口为80的包；tcp.srcport  ==80,  只显示TCP协议的原端口为80的。例子如图。<br><img src="https://img-blog.csdnimg.cn/20190731145700396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="列子"></li>
+<li>Http模式过滤。http.request.method==”GET”,   只显示HTTP GET方法的。（有关post和get这里就不讲了，大家百度一下吧）。列子图片如下。<br><img src="https://img-blog.csdnimg.cn/20190731150322247.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="列子"></li>
+<li>组合过滤条件（我也不知道该叫什么）。可以用and（&amp;&amp;）、or（||）组合过滤条件。就和C中的差不多。如http.request.method==”GET” &amp;&amp; ip.src==192.168.1.112，筛选get和原IP为192.168.1.112的包。例子如图。<br><img src="https://img-blog.csdnimg.cn/20190731150602915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="组合过滤"><h2 id="3-简单应用"><a href="#3-简单应用" class="headerlink" title="3.简单应用"></a>3.简单应用</h2>下面通过抓取简单登陆页面的账号和密码来实战一下（以抓取4399小游戏的登陆账号和密码为例）。一下只是个人见解，可能还有更好的方法。</li>
+</ol>
+</li>
+<li>开启wireshark抓包。</li>
+<li>进入登陆界面随便输入账号和密码（我输入的账号和密码都是123456789）。<br><img src="https://img-blog.csdnimg.cn/2019073115093858.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="登陆页面"></li>
+<li>一般账号和密码提交都是POST方法（Get方法会把信息暴露在地址栏中）。然后tcp连接时会有三次握手。<img src="https://img-blog.csdnimg.cn/20190731151420777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="抓包"></li>
+<li>找到一个可疑的包，这里源地址和目的地址差不多的意思是源地址就是本机，目的地址在三次握手和发送HTTP报文时没变。<br><img src="https://img-blog.csdnimg.cn/20190731151854107.png" alt="可疑"></li>
+<li>查看包内容，正是我们要找的包。<br><img src="https://img-blog.csdnimg.cn/20190731152354817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="包格式"><br><img src="https://img-blog.csdnimg.cn/20190731152452809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="包内容"><h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2></li>
+<li><strong>如有错误恳请指出。</strong></li>
+<li>抓包得靠自己实战，多摸索。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/30/wireshark入门/" data-id="ck1rwlkzj00239gla756hakcs"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-作为新手开发安卓App所遇到的问题及解决" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -142,149 +294,13 @@
 
 
       
-        
-
-<article id="post-XTUOJ-1104-素数个数" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/29/XTUOJ-1104-素数个数/">XTUOJ-1104-素数个数</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/07/29/XTUOJ-1104-素数个数/" class="article-date">
-  <time datetime="2019-07-29T04:45:15.000Z" itemprop="datePublished">2019-07-29</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<ol>
-<li>题目<br>Description<br>素数是指只能被1和它自己整除的数，特别的，1不是素数。比如，2,3,5,7都是素数。现给出正整数a和b(1&lt;=a,b&lt;=1,000,000)，请计算a与b之间有多少个素数。 输入 第一行是一个整数N，表示样例的个数。以后每行两个整数a和b。 输出 每行输出一个整数，即a和b之间的素数个数。<br>Sample Input<br>3<br>1 10<br>2 2<br>3 7<br>Sample Output<br>4<br>1<br>3</li>
-<li>解法<br>先打表，然后算个数。求[a, b]内素数的个数就等于求[1, b]内的素数个数减去[1, a-1]内的素数个数（<del>我第一次交WA了，因为a可以小于b，注意swap一下</del> ）。我的代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt; </span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 1000005</span><br><span class="line">bool isPrime[N];</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	//freopen(&quot;D:\\myCCode\\XTUOJ\\test.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">	for(int i = 1; i &lt; N; i++) </span><br><span class="line">		isPrime[i] = true;</span><br><span class="line">	isPrime[1] = false;</span><br><span class="line">	isPrime[2] = true;</span><br><span class="line">	for(int i = 2; i &lt; N; i++) </span><br><span class="line">		if(isPrime[i] == true) </span><br><span class="line">			for(int j = i+i; j &lt; N; j+=i) </span><br><span class="line">				isPrime[j] = false;</span><br><span class="line">	int K, a, b;</span><br><span class="line">	cin &gt;&gt; K;</span><br><span class="line">	while(K--) &#123;</span><br><span class="line">		int cnta = 0, cntb = 0;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		if(a &gt; b)</span><br><span class="line">			swap(a, b);</span><br><span class="line">		for(int i = 1; i &lt;= a-1; i++) </span><br><span class="line">			if(isPrime[i]) </span><br><span class="line">				cnta++;</span><br><span class="line">		for(int i = 1; i &lt;= b; i++) </span><br><span class="line">			if(isPrime[i])</span><br><span class="line">				cntb++;</span><br><span class="line">		cout &lt;&lt; cntb-cnta &lt;&lt; endl;</span><br><span class="line">	&#125;	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/29/XTUOJ-1104-素数个数/" data-id="ck1rwll0u002m9glad8sen7cm"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-XTUOJ-1035-列车长的烦恼" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/28/XTUOJ-1035-列车长的烦恼/">XTUOJ-1035-列车长的烦恼</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/07/28/XTUOJ-1035-列车长的烦恼/" class="article-date">
-  <time datetime="2019-07-28T04:47:48.000Z" itemprop="datePublished">2019-07-28</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<ol>
-<li>题目<br>Description<br>John是个小列车站的站长，每次列车在这里重新编组时他就很烦恼。因为站上只有一个人字形的编组轨道(如图)，所有的列车车厢都是从人字轨的右边依次进去，从左边出来。但有一些编组顺序John总编不出来，John怀疑有些编组顺序是不可能完成的，可John又找不出那些是顺序是可以编组出，那些不可以。请你写一个程序帮助John辨别哪些编组可以完成，哪些不能完成。<br><img src="https://img-blog.csdnimg.cn/2019072812380856.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图片"><br>输入：<br>第一行是一个整数K，表示有多少个测试用例，以后每行一个测试用例，每行为n+1个整数，第一个整数为n 表示有多少节车厢，后面n个整数表示需要编组成的顺序。比如说3节车厢，按照1，2，3依次入轨编组，可以在左边形成1 2 3，1 3 2，2 1 3，2 3 1，321。<br>输出：<br>每行输出一个测试用例的结果。如果可以编组输出Yes，否则输出No。<br>Sample Input<br>2<br>3 3 1 2<br>4 1 2 3 4<br>Sample Output<br>No<br>Yes</li>
-<li>解法<br>可以发现这道题的本质就是给定入栈序列，求不可能的出栈序列。我们可以通过维护一个栈来解决这个问题。用一个数组存储给定的出栈序列，先按照给定的入栈序列压栈，直到入栈元素和数组中首个元素相等，然后依次出栈，直到和数组存储的元素不相等。循环这个过程…………最后如果栈空，那么出栈序列是可能的，否则可能。我的代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stack&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int a[10001];</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int K;</span><br><span class="line">	//freopen(&quot;D:\\myCCode\\XTUOJ\\test.txt&quot;, &quot;r&quot;, stdin);</span><br><span class="line">	cin &gt;&gt; K;</span><br><span class="line">	while(K--) &#123;</span><br><span class="line">		stack&lt;int&gt; stack;</span><br><span class="line">		int n;</span><br><span class="line">		cin &gt;&gt; n;</span><br><span class="line">		for(int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">			cin &gt;&gt; a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i = 0, j = 0; i &lt; n; i++) &#123;</span><br><span class="line">			stack.push(i+1);</span><br><span class="line">			while(!stack.empty() &amp;&amp; stack.top() == a[j]) &#123;</span><br><span class="line">				stack.pop();</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(stack.empty()) &#123;</span><br><span class="line">			cout &lt;&lt; &quot;Yes&quot; &lt;&lt; endl;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			cout &lt;&lt; &quot;No&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/28/XTUOJ-1035-列车长的烦恼/" data-id="ck1rwlkyu001v9glalvv5d211"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XTUOJ/">XTUOJ</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
   </article>
   
 
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/16/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/16/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/18/">下一页</a>
     </nav>
   
 </section>

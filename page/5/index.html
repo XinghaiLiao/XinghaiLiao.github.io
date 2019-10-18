@@ -61,6 +61,146 @@
       
         
 
+<article id="post-使用TabActivity创建底部导航栏模板" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/29/使用TabActivity创建底部导航栏模板/">使用TabActivity创建底部导航栏模板</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/29/使用TabActivity创建底部导航栏模板/" class="article-date">
+  <time datetime="2019-08-29T10:24:13.000Z" itemprop="datePublished">2019-08-29</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p>使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。<br><img src="https://img-blog.csdnimg.cn/20190829181911149.png" alt="底部导航栏图片"></p>
+<ol>
+<li><p>xml文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!--根布局必须是TabHost id必须为@android:id/tabhost--&gt;</span><br><span class="line">&lt;TabHost xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:id=&quot;@android:id/tabhost&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RelativeLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--页面布局都挂在这个框架下--&gt;</span><br><span class="line">        &lt;FrameLayout</span><br><span class="line">            android:id=&quot;@android:id/tabcontent&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:layout_marginBottom=&quot;@dimen/tab_bar_height&quot;/&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!--id必须为@android:id/tabs--&gt;</span><br><span class="line">        &lt;TabWidget</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:visibility=&quot;gone&quot;</span><br><span class="line">            android:id=&quot;@android:id/tabs&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--实际的底部标签--&gt;</span><br><span class="line">        &lt;LinearLayout</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;@dimen/tab_bar_height&quot;</span><br><span class="line">            android:layout_alignParentBottom=&quot;true&quot;</span><br><span class="line">            android:gravity=&quot;bottom&quot;</span><br><span class="line">            android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第一个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_first&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">                </span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_first_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_first&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第二个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_second&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_second_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_second&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第三个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_third&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_third_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_third&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line">        &lt;/LinearLayout&gt;</span><br><span class="line">    &lt;/RelativeLayout&gt;</span><br><span class="line">&lt;/TabHost&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.group;</span><br><span class="line"></span><br><span class="line">import android.app.TabActivity;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line">import android.widget.TabHost;</span><br><span class="line"></span><br><span class="line">@SuppressWarnings(&quot;all&quot;)</span><br><span class="line">public class TabActivityDemo extends TabActivity implements View.OnClickListener &#123;</span><br><span class="line">    private String TAG = &quot;TabActivityDemo&quot;;</span><br><span class="line">    private TabHost tabHost;</span><br><span class="line">    private Bundle bundle = new Bundle();</span><br><span class="line">    private LinearLayout ll_first, ll_second, ll_third;</span><br><span class="line">    private String FIRST_TAG = &quot;first&quot;;//第一个标签的标识串</span><br><span class="line">    private String SECOND_TAG = &quot;second&quot;;//第二个标签的标识串</span><br><span class="line">    private String THIRD_TAG = &quot;third&quot;;//第三个标签的标识串</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        bundle.putString(&quot;tag&quot;, TAG);</span><br><span class="line">        setContentView(R.layout.activity_tab_demo);</span><br><span class="line">        ll_first = findViewById(R.id.ll_first);</span><br><span class="line">        ll_second = findViewById(R.id.ll_second);</span><br><span class="line">        ll_third = findViewById(R.id.ll_third);</span><br><span class="line">        ll_first.setOnClickListener(this);</span><br><span class="line">        ll_second.setOnClickListener(this);</span><br><span class="line">        ll_third.setOnClickListener(this);</span><br><span class="line">        //获取tabhost</span><br><span class="line">        tabHost  = this.getTabHost();</span><br><span class="line">        //添加第一个标签</span><br><span class="line">        tabHost.addTab(getNewTab(FIRST_TAG, R.string.tab_first, R.drawable.tab_first_selector, TabFirstActivity.class));</span><br><span class="line">        tabHost.addTab(getNewTab(SECOND_TAG, R.string.tab_second, R.drawable.tab_first_selector, TabSecondActivity.class));</span><br><span class="line">        tabHost.addTab(getNewTab(THIRD_TAG, R.string.tab_third, R.drawable.tab_first_selector, TabThirdActivity.class));</span><br><span class="line">        changeContainerView(ll_first);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View view) &#123;</span><br><span class="line">        changeContainerView(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private TabHost.TabSpec getNewTab(String spec, int label, int icon, Class&lt;?&gt; cls) &#123;</span><br><span class="line">        Intent intent = new Intent(this, cls).putExtras(bundle);</span><br><span class="line">        return tabHost.newTabSpec(spec).setContent(intent).setIndicator(this.getString(label), this.getResources().getDrawable(icon));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void changeContainerView(View view) &#123;</span><br><span class="line">        ll_first.setSelected(false);</span><br><span class="line">        ll_second.setSelected(false);</span><br><span class="line">        ll_third.setSelected(false);</span><br><span class="line">        view.setSelected(true);</span><br><span class="line">        if (view.getId() == R.id.ll_first) &#123;</span><br><span class="line">            //根据标签设置</span><br><span class="line">            tabHost.setCurrentTabByTag(FIRST_TAG);</span><br><span class="line">        &#125; else if(view.getId() == R.id.ll_second) &#123;</span><br><span class="line">            tabHost.setCurrentTabByTag(SECOND_TAG);</span><br><span class="line">        &#125; else if(view.getId() == R.id.ll_third) &#123;</span><br><span class="line">            tabHost.setCurrentTabByTag(THIRD_TAG);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/29/使用TabActivity创建底部导航栏模板/" data-id="ck1rwll2c003p9glaemixbmg3"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
+<article id="post-Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is 'android.R.id.tabhost'/">Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is 'android.R.id.tabhost'/" class="article-date">
+  <time datetime="2019-08-29T03:39:34.000Z" itemprop="datePublished">2019-08-29</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p>使用TabHost提示 <strong>Your content must have a TabHost whose id attribute is ‘android.R.id.tabhost’</strong> 或者  <strong>Your TabHost must have a TabWidget whose id attribute is ‘android.R.id.tabs’</strong> 等错误信息时。</p>
+<ol>
+<li>改下TabHost的id。使用<code>android:id=&quot;@android:id/tabhost&quot;</code>，不要使用<code>android:id=&quot;@+id/tabhost&quot;</code>。</li>
+<li>给TabWidget加id。<code>android:id=&quot;@android:id/tabs&quot;</code>。</li>
+<li>给FrameLayout加上id。<code>android:id=&quot;@android:id/tabcontent&quot;</code>。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is 'android.R.id.tabhost'/" data-id="ck1rwlktj000g9glauvcg0yo2"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android通过remoteViews自定义通知" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -131,184 +271,13 @@
 
 
       
-        
-
-<article id="post-Android控件ProgressBar的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/23/Android控件ProgressBar的使用/">Android控件ProgressBar的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/23/Android控件ProgressBar的使用/" class="article-date">
-  <time datetime="2019-08-23T10:54:31.000Z" itemprop="datePublished">2019-08-23</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>ProgressBar可以显示进度。图一中的黑色部分就是一个ProgressBar，图二中的是进度40%的ProgressBar（<del>示例可能有点丑</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190823183038870.png" alt="图一"><br><img src="https://img-blog.csdnimg.cn/20190823183617263.png" alt="图二"><br>ProgressBar的xml常用属性：<br>max：指定进度条最大值。<br>progress：指定进度条默认值，代码中可以通过setProgress()方法来设置进度。<br>progressDrawable：指定进度的图片，不能用一般图片，要用层次图形，参见后面的例子。<br>style：指定进度条的形状样式。progressBarStyleHorizontal表示水平形状，progressBarStyle表示圆圈形状。如果样式为progressBarStyle圆圈形状，最大值与进度值的设置就会失效。</p>
-<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><ol>
-<li><p>下面是层次图形的一个例子。第一个item指定背景，这里指定了一个圆角的shape，差不多是黑色（如上图一）。第二个item指定显示进度的颜色或者图片。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;layer-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:id=&quot;@android:id/background&quot;&gt;</span><br><span class="line">        &lt;shape&gt;</span><br><span class="line">            &lt;solid android:color=&quot;#282929&quot;/&gt;</span><br><span class="line">            &lt;corners android:radius=&quot;5dp&quot;/&gt;</span><br><span class="line">        &lt;/shape&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">    &lt;item android:id=&quot;@android:id/progress&quot;&gt;</span><br><span class="line">        &lt;clip&gt;</span><br><span class="line">            &lt;color android:color=&quot;#FA9601&quot;/&gt;</span><br><span class="line">        &lt;/clip&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">&lt;/layer-list&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下面是使用ProgressBar的xml代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ProgressBar</span><br><span class="line">        android:id=&quot;@+id/pb_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;20dp&quot;</span><br><span class="line">        android:max=&quot;100&quot;</span><br><span class="line">        android:progress=&quot;0&quot;</span><br><span class="line">        android:progressDrawable=&quot;@drawable/custom_process_bar_yellow&quot;</span><br><span class="line">        style=&quot;?android:progressBarStyleHorizontal&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/23/Android控件ProgressBar的使用/" data-id="ck1rwlkvn00129glaacv5gwu5"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-《C Primer Plus》（第六版）答案（7.12）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/21/《C Primer Plus》（第六版）答案（7.12）/">《C Primer Plus》（第六版）答案（7.12）</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/21/《C Primer Plus》（第六版）答案（7.12）/" class="article-date">
-  <time datetime="2019-08-21T11:08:52.000Z" itemprop="datePublished">2019-08-21</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
-<ol>
-<li><p>编写一个程序。该程序读取输入直到遇到#字符，然后报告读取的空格数目、读取的换行符数目以及读取的所有其他字符数目。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char c;</span><br><span class="line">	int spaceCnt = 0;</span><br><span class="line">	int lineCnt = 0;</span><br><span class="line">	int otherCnt = 0;</span><br><span class="line">	</span><br><span class="line">	while((c = getchar()) != &apos;#&apos;) &#123;</span><br><span class="line">		if(c == &apos; &apos;) &#123;</span><br><span class="line">			spaceCnt++;</span><br><span class="line">		&#125; else if(c == &apos;\n&apos;) &#123;</span><br><span class="line">			lineCnt++;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			otherCnt++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;空格数：%d	换行数：%d	其他字符数：%d.&quot;, spaceCnt, lineCnt, otherCnt);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序。该程序读取输入直到遇到#字符。使程序打印每个输入的字符以及它的十进制ASCII码。每行打印8个字符/编码对。建议：利用字符计数和模运算符(%)在每8个循环周期时打印一个换行符。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char c;</span><br><span class="line">	int cnt = 0;</span><br><span class="line">	</span><br><span class="line">	while((c = getchar()) != &apos;#&apos;) &#123;</span><br><span class="line">		printf(&quot;%c %d\t&quot;, c, c);</span><br><span class="line">		if(++cnt % 8 == 0) &#123;</span><br><span class="line">			printf(&quot;\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序。该程序读取整数，直到输入0。输入终止后，程序应该报告输入的偶数(不包括0)总个数、偶数的平均值，输入的奇数总个数以及奇数的平均值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int a;</span><br><span class="line">	double oddSum = 0;</span><br><span class="line">	int oddCnt = 0;</span><br><span class="line">	double evenSum = 0;</span><br><span class="line">	int evenCnt = 0;</span><br><span class="line">	</span><br><span class="line">	while(scanf(&quot;%d&quot;, &amp;a) &amp;&amp; a != 0) &#123;</span><br><span class="line">		if(a % 2 == 0) &#123;</span><br><span class="line">			evenCnt++;</span><br><span class="line">			evenSum += a; </span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			oddCnt++;</span><br><span class="line">			oddSum += a;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	printf(&quot;偶数个数：%d 平均值：%.2lf\t奇数个数：%d 平均值：%.2lf.&quot;, evenCnt, evenSum / evenCnt, oddCnt, oddSum / oddCnt);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用if else语句编写程序读取输入，直到#。用一个感叹号代替每个句号，将原有的每个感叹号用两个感叹号代替，最后报告进行了多少次替代。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/*如果只用 if else 我也只能想到goto了*/</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char temp;</span><br><span class="line">	int cnt = 0;</span><br><span class="line">	</span><br><span class="line">	A:if((temp = getchar()) != &apos;#&apos;) &#123;</span><br><span class="line">		if(temp == &apos;.&apos;) &#123;</span><br><span class="line">			cnt += 1;</span><br><span class="line">		&#125; else if(temp == &apos;!&apos;) &#123;</span><br><span class="line">			cnt += 2;</span><br><span class="line">		&#125;</span><br><span class="line">		goto A;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;一共替换了%d次.&quot;, cnt);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用switch重做练习3。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int a;</span><br><span class="line">	double oddSum = 0;</span><br><span class="line">	int oddCnt = 0;</span><br><span class="line">	double evenSum = 0;</span><br><span class="line">	int evenCnt = 0;</span><br><span class="line">	</span><br><span class="line">	while(scanf(&quot;%d&quot;, &amp;a) &amp;&amp; a != 0) &#123;</span><br><span class="line">		switch(a % 2) &#123;</span><br><span class="line">			case 0:</span><br><span class="line">				evenCnt++;</span><br><span class="line">				evenSum += a;</span><br><span class="line">				break;</span><br><span class="line">			default:</span><br><span class="line">				oddCnt++;</span><br><span class="line">				oddSum += a;</span><br><span class="line">				break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	printf(&quot;偶数个数：%d 平均值：%.2lf\t奇数个数：%d 平均值：%.2lf.&quot;, evenCnt, evenSum / evenCnt, oddCnt, oddSum / oddCnt);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序读取输入，直到#，并报告序列ei出现的次数。<br>说明<br>　　此程序必须要记住前一个字符和当前的字符。用诸如“Receive your eieio award.”的输入测试它。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv)</span><br><span class="line">&#123;</span><br><span class="line">	char c = 0, temp;</span><br><span class="line">	int cnt = 0;</span><br><span class="line">	</span><br><span class="line">	while((temp = getchar()) != &apos;#&apos;) &#123;</span><br><span class="line">		if(temp == &apos;i&apos;) &#123;//如果当前字符是i 且上一个字符是e则条件满足 </span><br><span class="line">			if(c == &apos;e&apos;) &#123;</span><br><span class="line">				cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		c = temp;//保存上一个字符 </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;ei出现的次数为%d.&quot;, cnt);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写程序，要求输入一周中的工作小时数，然后打印工资总额、税金以及净工资。作如下假设：<br>　　a．基本工资等级=10.00美元/小时<br>　　b．加班(超过40小时)=1.5倍的时间<br>　　c．税率前300美元为15% 下一个150美元为20% 余下的为25%<br>　　用#define定义常量，不必关心本例是否符合当前的税法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define BASE_SALARY 10</span><br><span class="line">#define OVER_TIME 1.5</span><br><span class="line">#define ONE_TAX 0.15</span><br><span class="line">#define TWO_TAX 0.2</span><br><span class="line">#define THREE_TAX 0.25</span><br><span class="line">int main(int argc, char const **argv)</span><br><span class="line">&#123;</span><br><span class="line">	float hour, allSalary, tax, salary;//工作小时 工资总额 税金 净工资 </span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入工作总小时：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;hour);</span><br><span class="line">	</span><br><span class="line">	if(hour &lt;= 40) &#123;</span><br><span class="line">		allSalary = hour * BASE_SALARY;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		allSalary = hour * 10 * OVER_TIME;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	if(allSalary &lt;= 300) &#123;</span><br><span class="line">		tax = allSalary * ONE_TAX;</span><br><span class="line">	&#125; else if(allSalary &lt;= 450) &#123;</span><br><span class="line">		tax = 300 * ONE_TAX + (allSalary - 300) * TWO_TAX;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		tax = 300 * ONE_TAX + 150 * TWO_TAX + (allSalary - 450) * THREE_TAX;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	salary = allSalary - tax;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;工资总额：%.2f$  税金：%.2f$  净工资：%.2f$.&quot;, allSalary, tax, salary);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改练习7中的假设a，使程序提供一个选择工资等级的菜单。用switch选择工资等级。程序运行的开头应该像这样：<br><img src="https://img-blog.csdnimg.cn/20190821172252418.png#pic_center" alt="程序开头"><br>如果选择1到4，那么程序应该请求输入工作小时数。程序应该一直循环运行，直到输入5。如果输入1到5以外的选项，那么程序应该提醒用户合适的选项是哪些，然后再循环。用#define为各种工资等级和税率定义常量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define OVER_TIME 1.5</span><br><span class="line">#define ONE_TAX 0.15</span><br><span class="line">#define TWO_TAX 0.2</span><br><span class="line">#define THREE_TAX 0.25</span><br><span class="line">int main(int argc, char const **argv)</span><br><span class="line">&#123;</span><br><span class="line">	float hour, allSalary, tax, salary, BASE_SALARY = 10;//工作小时 工资总额 税金 净工资 </span><br><span class="line">	char c;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;*****************************************************************\n&quot;);</span><br><span class="line">	printf(&quot;Enter the number corresponding to the desired pay rate or action：\n&quot;);</span><br><span class="line">	printf(&quot;1)$8.75/hr   2)$9.33/hr\n&quot;);</span><br><span class="line">	printf(&quot;3)$10.00/hr  4)$11.20/hr\n&quot;);</span><br><span class="line">	printf(&quot;5)quit\n&quot;);</span><br><span class="line">	printf(&quot;*****************************************************************\n&quot;);</span><br><span class="line">	</span><br><span class="line">	while(c = getchar()) &#123;</span><br><span class="line">		switch(c) &#123;</span><br><span class="line">			case &apos;1&apos;:</span><br><span class="line">				BASE_SALARY = 8.75;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;2&apos;:</span><br><span class="line">				BASE_SALARY = 9.33;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;3&apos;:</span><br><span class="line">				BASE_SALARY = 10.00;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;4&apos;:</span><br><span class="line">				BASE_SALARY = 11.20;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;5&apos;:</span><br><span class="line">				exit(0);//退出函数 </span><br><span class="line">				break;</span><br><span class="line">			default:</span><br><span class="line">				printf(&quot;输入有误！\n&quot;); </span><br><span class="line">				continue;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		printf(&quot;请输入工作总小时：&quot;);</span><br><span class="line">		scanf(&quot;%f&quot;, &amp;hour); </span><br><span class="line">		getchar();//getchar防止换行捣乱</span><br><span class="line">		</span><br><span class="line">		if(hour &lt;= 40) &#123;</span><br><span class="line">			allSalary = hour * BASE_SALARY;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			allSalary = hour * 10 * OVER_TIME;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		if(allSalary &lt;= 300) &#123;</span><br><span class="line">			tax = allSalary * ONE_TAX;</span><br><span class="line">		&#125; else if(allSalary &lt;= 450) &#123;</span><br><span class="line">			tax = 300 * ONE_TAX + (allSalary - 300) * TWO_TAX;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			tax = 300 * ONE_TAX + 150 * TWO_TAX + (allSalary - 450) * THREE_TAX;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		salary = allSalary - tax;</span><br><span class="line">		</span><br><span class="line">		printf(&quot;工资总额：%.2f$  税金：%.2f$  净工资：%.2f$.\n&quot;, allSalary, tax, salary);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，接受一个整数输入，然后显示所有小于或等于该数的素数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define N 1000005</span><br><span class="line">/*这道题也可以用枚举法求一个数是否是素数 但是效率较低 以下采用筛选法*/</span><br><span class="line">bool isPrime[N]; //为true代表该数是素数 较大的数组最好声明在全局 否则可能申请不了 </span><br><span class="line">int main(int argc, char const **argv)</span><br><span class="line">&#123;</span><br><span class="line">	int a;</span><br><span class="line">	</span><br><span class="line">	//假定所有的数都是素数 </span><br><span class="line">	for(int i = 1; i &lt; N; i++) </span><br><span class="line">		isPrime[i] = true;</span><br><span class="line">	isPrime[1] = false; //1不是素数 </span><br><span class="line">	isPrime[2] = true; //2是素数 </span><br><span class="line">	//筛选法求1000005以内的素数 具体算法就是：如果该数是素数 那么在指定的范围内划去该数的所有倍数（改成false） </span><br><span class="line">	for(int i = 2; i &lt; N; i++) </span><br><span class="line">		if(isPrime[i] == true) </span><br><span class="line">			for(int j = i+i; j &lt; N; j+=i) </span><br><span class="line">				isPrime[j] = false;</span><br><span class="line">				</span><br><span class="line">	printf(&quot;请输入一个整数：&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;a);</span><br><span class="line">	</span><br><span class="line">	/*若想求更大范围内的 就改N*/ </span><br><span class="line">	for(int i = 1; i &lt;= a; i++) &#123;</span><br><span class="line">		if(isPrime[i]) &#123;</span><br><span class="line">			printf(&quot;%d &quot;, i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>1988年United States Federal Tax Schedule是近期最基本的。它分为4类，每类有两个等级。下面是其摘要；美元数为应征税的收入。<br><img src="https://img-blog.csdnimg.cn/20190821172409671.png" alt="摘要图片"><br>例如，有20 000美元应征税收入的单身雇佣劳动者应缴税金0.15×17 850美元+0.28×(20 000美元–17 850美元)。编写一个程序，让用户指定税金种类和应征税收入，然后计算税金。使用循环以便用户可以多次输入。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	float income, tax;</span><br><span class="line">	char choice;</span><br><span class="line">	int limit;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;选择:\n&quot;);</span><br><span class="line">	printf(&quot;1)单身\t2)户主\n&quot;);</span><br><span class="line">	printf(&quot;3)已婚，共有\t4)已婚，离异\n&quot;);</span><br><span class="line">	printf(&quot;5)退出\n&quot;);</span><br><span class="line">	</span><br><span class="line">	while(choice = getchar()) &#123;</span><br><span class="line">		switch(choice) &#123;</span><br><span class="line">			case &apos;1&apos;:</span><br><span class="line">				limit = 17850; </span><br><span class="line">				break;</span><br><span class="line">			case &apos;2&apos;:</span><br><span class="line">				limit = 23900;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;3&apos;:</span><br><span class="line">				limit = 29750;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;4&apos;:</span><br><span class="line">				limit = 14875;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;5&apos;:</span><br><span class="line">				exit(0);</span><br><span class="line">			default:</span><br><span class="line">				printf(&quot;输入有误！&quot;);</span><br><span class="line">				continue; </span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;请输入收入：&quot;);</span><br><span class="line">		scanf(&quot;%f&quot;, &amp;income);</span><br><span class="line">		getchar();</span><br><span class="line">		if(income &lt;= limit) &#123;</span><br><span class="line">			tax = income * 0.15;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			tax = limit * 0.15 + (income - limit) * 0.28;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;Tax is %.2f$.\n&quot;, tax);</span><br><span class="line">		printf(&quot;选择？&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ABC Mail Order Grocery朝鲜蓟的售价是1.25美元/磅，甜菜的售价是0.65美元/磅，胡萝卜的售价是0.89美元/磅。在添加运输费用之前，他们为100美元的订单提供5%的打折优惠。对5磅或以下的定单收取3.50美元的运输和装卸费用；超过5磅而不足20磅的定单收取10.00美元的运输和装卸费用；20磅或以上的运输，在8美元基础上每磅加收0.1美元。编写程序，在循环中使用switch语句，以便对输入a的响应是让用户输入所需的朝鲜蓟磅数，b为甜菜的磅数，c为胡萝卜的磅数，而q允许用户退出订购过程。然后程序计算总费用、折扣和运输费用(如果有运输费的话)，以及总数。随后程序应该显示所有的购买信息：每磅的费用、订购的磅数、该订单每种蔬菜的费用、订单的总费用、折扣，如果有的话加上运输费用，以及所有费用的总数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line">/*这题是直接贴的答案 也很简单*/</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	const double price_artichokes = 2.05;</span><br><span class="line">	const double price_beets = 1.15;</span><br><span class="line">	const double price_carrots = 1.09;</span><br><span class="line">	const double DISCOUNT_RATE = 0.05;</span><br><span class="line">	const double under5 = 6.50;</span><br><span class="line">	const double under20 = 14.00;</span><br><span class="line">	const double base20 = 14.00;</span><br><span class="line">	const double extralb = 0.50;</span><br><span class="line">	char ch;</span><br><span class="line">	double lb_artichokes = 0;</span><br><span class="line">	double lb_beets = 0;</span><br><span class="line">	double lb_carrots = 0;</span><br><span class="line">	double lb_temp;</span><br><span class="line">	double lb_total;</span><br><span class="line">	double cost_artichokes;</span><br><span class="line">	double cost_beets;</span><br><span class="line">	double cost_carrots;</span><br><span class="line">	double cost_total;</span><br><span class="line">	double final_total;</span><br><span class="line">	double discount;</span><br><span class="line">	double shipping;</span><br><span class="line">	printf(&quot;Enter a to buy artichokes, b for beets, &quot;);</span><br><span class="line">	printf(&quot;c for carrots, q to quit: &quot;);</span><br><span class="line">	while ((ch = getchar()) != &apos;q&apos; &amp;&amp; ch != &apos;Q&apos;) &#123;</span><br><span class="line">		if (ch == &apos;\n&apos;)</span><br><span class="line">			continue;</span><br><span class="line">		while (getchar() != &apos;\n&apos;)	</span><br><span class="line">			continue;</span><br><span class="line">		ch = tolower(ch);</span><br><span class="line">		switch (ch) &#123; </span><br><span class="line">			case &apos;a&apos;: </span><br><span class="line">				printf(&quot;Enter pounds of artichokes: &quot;);</span><br><span class="line">				scanf(&quot;%lf&quot;, &amp;lb_temp);</span><br><span class="line">				lb_artichokes += lb_temp;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;b&apos;: </span><br><span class="line">				printf(&quot;Enter pounds of beets: &quot;);</span><br><span class="line">				scanf(&quot;%lf&quot;, &amp;lb_temp);</span><br><span class="line">				lb_beets += lb_temp;</span><br><span class="line">				break;</span><br><span class="line">			case &apos;c&apos;: </span><br><span class="line">				printf(&quot;Enter pounds of carrots: &quot;);</span><br><span class="line">				scanf(&quot;%lf&quot;, &amp;lb_temp);</span><br><span class="line">				lb_carrots += lb_temp;</span><br><span class="line">				break;</span><br><span class="line">			default : printf(&quot;%c is not a valid choice.\n&quot;, ch);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;Enter a to buy artichokes, b for beets, &quot;);</span><br><span class="line">		printf(&quot;c for carrots, q to quit: &quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	cost_artichokes = price_artichokes * lb_artichokes;</span><br><span class="line">	cost_beets = price_beets * lb_beets;</span><br><span class="line">	cost_carrots = price_carrots * lb_carrots;</span><br><span class="line">	cost_total = cost_artichokes + cost_beets + cost_carrots;</span><br><span class="line">	lb_total = lb_artichokes + lb_beets + lb_carrots;</span><br><span class="line">	if (lb_total &lt;= 0)</span><br><span class="line">		shipping = 0.0;</span><br><span class="line">	else if (lb_total &lt; 5.0)</span><br><span class="line">		shipping = under5;</span><br><span class="line">	else if (lb_total &lt; 20)</span><br><span class="line">		shipping = under20;</span><br><span class="line">	else</span><br><span class="line">		shipping = base20 + extralb * lb_total;</span><br><span class="line">	if (cost_total &gt; 100.0)</span><br><span class="line">		discount = DISCOUNT_RATE * cost_total;</span><br><span class="line">	else</span><br><span class="line">		discount = 0.0;</span><br><span class="line">	final_total = cost_total + shipping - discount;</span><br><span class="line">	printf(&quot;Your order:\n&quot;);</span><br><span class="line">	printf(&quot;%.2f lbs of artichokes at $%.2f per pound:$ %.2f\n&quot;,</span><br><span class="line">	lb_artichokes, price_artichokes, cost_artichokes); </span><br><span class="line">	printf(&quot;%.2f lbs of beets at $%.2f per pound: $%.2f\n&quot;,</span><br><span class="line">	lb_beets, price_beets, cost_beets); </span><br><span class="line">	printf(&quot;%.2f lbs of carrots at $%.2f per pound: $%.2f\n&quot;,</span><br><span class="line">	lb_carrots, price_carrots, cost_carrots);</span><br><span class="line">	printf(&quot;Total cost of vegetables: $%.2f\n&quot;, cost_total);</span><br><span class="line">	if (cost_total &gt; 100)</span><br><span class="line">		printf(&quot;Volume discount: $%.2f\n&quot;, discount);</span><br><span class="line">	printf(&quot;Shipping: $%.2f\n&quot;, shipping);</span><br><span class="line">	printf(&quot;Total charges: $%.2f\n&quot;, final_total); </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（7.12）/" data-id="ck1rwll28003l9gla6poauwqk"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
   </article>
   
 
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
     </nav>
   
 </section>

@@ -110,6 +110,7 @@
 <li>有些博文是写给自己看的。</li>
 <li>希望我的博文能够帮到你。</li>
 <li>与君共勉。</li>
+<li>我的<a href="https://blog.csdn.net/weixin_43219615" target="_blank" rel="noopener">csdn博客</a>.</li>
 </ol>
 <hr>
 
@@ -135,7 +136,7 @@
       
         
 
-<article id="post-利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+<article id="post-快速学会Android Studio中的Logcat的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
     
@@ -143,7 +144,7 @@
         
   
     <h2 itemprop="name">
-      <a class="article-title" href="/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/">利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法</a>
+      <a class="article-title" href="/2019/10/18/快速学会Android Studio中的Logcat的使用/">快速学会Android Studio中的Logcat的使用</a>
     </h2>
   
   
@@ -156,8 +157,8 @@
 
     
       <div class="article-meta">
-        <a href="/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/" class="article-date">
-  <time datetime="2019-10-13T11:27:47.000Z" itemprop="datePublished">2019-10-13</time>
+        <a href="/2019/10/18/快速学会Android Studio中的Logcat的使用/" class="article-date">
+  <time datetime="2019-10-18T11:59:16.000Z" itemprop="datePublished">2019-10-18</time>
 </a>
         
       </div>
@@ -173,19 +174,22 @@
 
       
         <hr>
+<p>学会使用Logcat可以让我们快速调试或测试Android程序，下面是一个快速入门教程。</p>
 <ol>
-<li>问题描述<br>tags下本来有个javaweb，但是强迫症的我想改成JavaWeb（图片中的是后来改好的）。直接把markdown文件中的标签改了并没有用。访问的时候tags/JavaWeb报404。<br><img src="https://img-blog.csdnimg.cn/20191013192740517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="描述图片"></li>
-<li>解决方法。<br>将博客根目录下的.deploy_git.git\config文件改一下（<del>.git是隐藏文件夹，记得调一下显示隐藏文件夹</del> ），默认的忽略大小写改成false。<br><img src="https://img-blog.csdnimg.cn/20191013193224859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="解决方法图片"></li>
+<li>快速一览<br><img src="https://img-blog.csdnimg.cn/20191018194841423.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="一览图"></li>
+<li>使用<br>如果我们想要打印一条Log，直接调用Log.d(String TAG, String message)函数即可（其中d代表debug模式，还有e、i等同理）。其中TAG代表输出Log的标签，message即输出的消息。过滤框中输入对应的TAG并选择合理的模式即可快速查看我们想要看的Log（如我们想看下面的Log，即可选择Debug模式并且在过滤框中输入MyTag来过滤掉杂乱信息来快速找到）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private static final String TAG = &quot;MyTag&quot;;</span><br><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">	super.onCreate(savedInstanceState);</span><br><span class="line">	setContentView(R.layout.activity_main);</span><br><span class="line">	Log.d(TAG, &quot;onCreate函数被调用&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/" data-id="ck1rwll0r002j9glahpj5cdne"
+      <a data-url="https://xinghailiao.github.io/2019/10/18/快速学会Android Studio中的Logcat的使用/" data-id="ck1w3b1ur0002colamkglaet2"
          class="article-share-link">分享</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 
@@ -201,7 +205,7 @@
       
         
 
-<article id="post-Incorrect string value_ &#39;_xE9_x95_xBF_xE6_xB2_x99&#39; for column &#39;saddress&#39; at row 1" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+<article id="post-Android中SnackBar的的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
     
@@ -209,7 +213,7 @@
         
   
     <h2 itemprop="name">
-      <a class="article-title" href="/2019/10/13/Incorrect string value_ '_xE9_x95_xBF_xE6_xB2_x99' for column 'saddress' at row 1/">Incorrect string value:&#39;\xE9\x95\xBF\xE6\xB2\x99\&#39;</a>
+      <a class="article-title" href="/2019/10/18/Android中SnackBar的的使用/">Android中SnackBar的的使用</a>
     </h2>
   
   
@@ -222,8 +226,8 @@
 
     
       <div class="article-meta">
-        <a href="/2019/10/13/Incorrect string value_ '_xE9_x95_xBF_xE6_xB2_x99' for column 'saddress' at row 1/" class="article-date">
-  <time datetime="2019-10-13T08:49:24.000Z" itemprop="datePublished">2019-10-13</time>
+        <a href="/2019/10/18/Android中SnackBar的的使用/" class="article-date">
+  <time datetime="2019-10-18T11:08:49.000Z" itemprop="datePublished">2019-10-18</time>
 </a>
         
       </div>
@@ -239,16 +243,18 @@
 
       
         <hr>
-<p>今天在学JavaWeb时遇到了一个问题，具体报错如下。找了半天最后发现还是编码问题。<br><img src="https://img-blog.csdnimg.cn/20191013164919662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>解决方案：<br>数据库url中加入characterEncoding=utf8并且更改表的编码为utf-8。</p>
+<p>SnackBar提供一些操作的轻量级反馈，如下面的删除操作在屏幕底部显示一条简短消息。<br><img src="https://img-blog.csdnimg.cn/2019101819280555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="示例"><br>下面示例代码可以显示一个SnackBar。其中静态函数make的第一个参数代表显示在哪个视图，第二个参数代表提示信息，第三个参数代表显示长短（可以是LENGTH_INDEFINITE（一直显示）、LENGTH_LONG、LENGTH_SHORT）。setAction函数是给SnackBar设置事件监听，第一个参数是显示的文字（也可以是xml文件中的），第二个参数是回调接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Snackbar snackbar = Snackbar.make(requireActivity().findViewById(R.id.wordsFragmentView), &quot;删除了一个词汇&quot;, Snackbar.LENGTH_SHORT);</span><br><span class="line">snackbar.setAction(&quot;撤销&quot;, new View.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(View v) &#123;	</span><br><span class="line">		//do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">snackbar.show();</span><br></pre></td></tr></table></figure>
+
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/13/Incorrect string value_ '_xE9_x95_xBF_xE6_xB2_x99' for column 'saddress' at row 1/" data-id="ck1rwlkwq001a9glasx4wcfcn"
+      <a data-url="https://xinghailiao.github.io/2019/10/18/Android中SnackBar的的使用/" data-id="ck1w3b1se0000colap2151o44"
          class="article-share-link">分享</a>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 
@@ -268,7 +274,7 @@
   
     <nav class="page-nav">
       
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </nav>
   
 </section>
