@@ -61,6 +61,73 @@
       
         
 
+<article id="post-win10通过cmd查看连接的WiFi密码" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/09/17/win10通过cmd查看连接的WiFi密码/">win10通过cmd查看连接的WiFi密码</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/09/17/win10通过cmd查看连接的WiFi密码/" class="article-date">
+  <time datetime="2019-09-17T06:00:25.000Z" itemprop="datePublished">2019-09-17</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p> 进入cmd：</p>
+<ol>
+<li>命令netsh wlan show profiles查看已经连接过的WiFi名称。</li>
+<li>命令netsh wlan show profiles name=”xxx” key=clear查看已经连接的某个WiFi的详细信息，包括密码。<br><img src="https://img-blog.csdnimg.cn/20190917140342654.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="密码"></li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/09/17/win10通过cmd查看连接的WiFi密码/" data-id="ck21ho6qe0026gglaq6c8ud38"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小知识/">小知识</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -140,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/" data-id="ck205v0qc003qdclarcpr2yjs"
+      <a data-url="https://xinghailiao.github.io/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/" data-id="ck21ho6s7003sgglaqfeq1ivm"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -208,85 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/" data-id="ck205v0p3002rdcla3kq8y49m"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android中ToolBar的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/29/Android中ToolBar的使用/">Android中ToolBar的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/29/Android中ToolBar的使用/" class="article-date">
-  <time datetime="2019-08-29T13:23:15.000Z" itemprop="datePublished">2019-08-29</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p>Toolbar即顶部的导航栏，使用也非常简单。下面是使用步骤。<br><img src="https://img-blog.csdnimg.cn/20190829211207549.png" alt="Toolbar图片"></p>
-<ol>
-<li><p>在style.xml中定义一个去掉ActionBar的样式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--关掉ActionBar--&gt;</span><br><span class="line">&lt;style name=&quot;AppCompatTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改AndroidManifest.xml中activity节点的android:theme属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=&quot;.ToolbarDemoActivity&quot; android:theme=&quot;@style/AppCompatTheme&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在布局文件中使用ToolBar。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;androidx.appcompat.widget.Toolbar</span><br><span class="line">	android:id=&quot;@+id/tb_head&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>代码中设置ToolBar常用属性及注释如下，xml文件中设置类似。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">toolbar_head = findViewById(R.id.tb_head);</span><br><span class="line"></span><br><span class="line">//设置标题文字</span><br><span class="line">toolbar_head.setTitle(&quot;测试页面&quot;);</span><br><span class="line">//社招左侧导航图标</span><br><span class="line">toolbar_head.setNavigationIcon(R.drawable.ic_back);</span><br><span class="line">//设置标题文字颜色</span><br><span class="line">toolbar_head.setTitleTextColor(Color.YELLOW);</span><br><span class="line">//设置工具栏图标</span><br><span class="line">toolbar_head.setLogo(R.drawable.head_demo);</span><br><span class="line">//设置副标题文字</span><br><span class="line">toolbar_head.setSubtitle(&quot;测试用的Toolbar&quot;);</span><br><span class="line">//设置副标题文字颜色</span><br><span class="line">toolbar_head.setSubtitleTextColor(Color.GRAY);</span><br><span class="line">//设置背景颜色</span><br><span class="line">oolbar_head.setBackgroundResource(R.color.blue_light);</span><br><span class="line"></span><br><span class="line">//给当前页面设置ToolBar</span><br><span class="line">this.setSupportActionBar(toolbar_head);</span><br><span class="line"></span><br><span class="line">//设置监听 必须放在setActionBar之后</span><br><span class="line">toolbar_head.setNavigationOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(View view) &#123;</span><br><span class="line">        //do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/29/Android中ToolBar的使用/" data-id="ck205v0mv000odclafbfro9wg"
+      <a data-url="https://xinghailiao.github.io/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/" data-id="ck21ho6sj003zgglazz2w99to"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>

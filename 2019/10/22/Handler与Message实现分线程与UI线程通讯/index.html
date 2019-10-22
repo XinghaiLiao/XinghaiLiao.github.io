@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
-    Android中ToolBar的使用 |
+    Handler与Message实现分线程与UI线程通讯 |
     
     不想吃泡面</title>
   
@@ -27,7 +27,7 @@
   <section class="outer">
   
 
-<article id="post-Android中ToolBar的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+<article id="post-Handler与Message实现分线程与UI线程通讯" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
     
@@ -35,7 +35,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android中ToolBar的使用
+      Handler与Message实现分线程与UI线程通讯
     </h1>
   
   
@@ -48,8 +48,8 @@
 
     
       <div class="article-meta">
-        <a href="/2019/08/29/Android中ToolBar的使用/" class="article-date">
-  <time datetime="2019-08-29T13:23:15.000Z" itemprop="datePublished">2019-08-29</time>
+        <a href="/2019/10/22/Handler与Message实现分线程与UI线程通讯/" class="article-date">
+  <time datetime="2019-10-22T05:20:17.000Z" itemprop="datePublished">2019-10-22</time>
 </a>
         
       </div>
@@ -57,6 +57,8 @@
 
     
       
+    <div class="tocbot"></div>
+
 
 
 
@@ -71,19 +73,13 @@
 
       
         <hr>
-<p>Toolbar即顶部的导航栏，使用也非常简单。下面是使用步骤。<br><img src="https://img-blog.csdnimg.cn/20190829211207549.png" alt="Toolbar图片"></p>
-<ol>
-<li><p>在style.xml中定义一个去掉ActionBar的样式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--关掉ActionBar--&gt;</span><br><span class="line">&lt;style name=&quot;AppCompatTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>在Android系统中，只有主线程才能直接操作UI。分线程想更新UI或者向主线程传递消息可以利用Handler配合Message来实现。<br><img src="https://img-blog.csdnimg.cn/20191022132001291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="例子图片"><br>Message的主要参数如下图：<br><img src="https://img-blog.csdnimg.cn/20191022132234643.png#pic_center" alt="Message主要参数"><br>其中arg1和arg0可以用来返回处理的结果，obj可以用于存放消息的数据结构，what用于表示消息的作用。</p>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><ol>
+<li><p>主线程中初始化一个Handler对象，重写handleMessage方法（用于处理消息的回调）。利用收到的Message的what属性来确定要做的响应。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private Handler mHandler = new Handler() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void handleMessage(@NonNull Message msg) &#123;</span><br><span class="line">		if(msg.what == SIGNAL) &#123;</span><br><span class="line">			tv_num.setText(num + &quot;&quot;);</span><br><span class="line">			Toast.makeText(MainActivity.this, &quot;收到分线程消息：&quot;+msg.obj, Toast.LENGTH_SHORT).show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>修改AndroidManifest.xml中activity节点的android:theme属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=&quot;.ToolbarDemoActivity&quot; android:theme=&quot;@style/AppCompatTheme&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在布局文件中使用ToolBar。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;androidx.appcompat.widget.Toolbar</span><br><span class="line">	android:id=&quot;@+id/tb_head&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>代码中设置ToolBar常用属性及注释如下，xml文件中设置类似。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">toolbar_head = findViewById(R.id.tb_head);</span><br><span class="line"></span><br><span class="line">//设置标题文字</span><br><span class="line">toolbar_head.setTitle(&quot;测试页面&quot;);</span><br><span class="line">//社招左侧导航图标</span><br><span class="line">toolbar_head.setNavigationIcon(R.drawable.ic_back);</span><br><span class="line">//设置标题文字颜色</span><br><span class="line">toolbar_head.setTitleTextColor(Color.YELLOW);</span><br><span class="line">//设置工具栏图标</span><br><span class="line">toolbar_head.setLogo(R.drawable.head_demo);</span><br><span class="line">//设置副标题文字</span><br><span class="line">toolbar_head.setSubtitle(&quot;测试用的Toolbar&quot;);</span><br><span class="line">//设置副标题文字颜色</span><br><span class="line">toolbar_head.setSubtitleTextColor(Color.GRAY);</span><br><span class="line">//设置背景颜色</span><br><span class="line">oolbar_head.setBackgroundResource(R.color.blue_light);</span><br><span class="line"></span><br><span class="line">//给当前页面设置ToolBar</span><br><span class="line">this.setSupportActionBar(toolbar_head);</span><br><span class="line"></span><br><span class="line">//设置监听 必须放在setActionBar之后</span><br><span class="line">toolbar_head.setNavigationOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(View view) &#123;</span><br><span class="line">        //do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<li><p>在分线程中做完了任务想更新UI时，利用Message.obtain()来获取Message的实例对象，然后再设置Message对象的what和obj来向主线程发送消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		while(true) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(1000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			Message message = Message.obtain();//obtain方法获取消息对象实例</span><br><span class="line">			message.what = SIGNAL;</span><br><span class="line">			message.obj = &quot;这是分线程向UI线程发送的消息&quot;;</span><br><span class="line">			mHandler.sendMessage(message);</span><br><span class="line">			num++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -92,7 +88,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/29/Android中ToolBar的使用/" data-id="ck21ho6o8000ggglal4pqj1y0"
+      <a data-url="https://xinghailiao.github.io/2019/10/22/Handler与Message实现分线程与UI线程通讯/" data-id="ck21ho6p8001fgglat4mx80y1"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -105,19 +101,10 @@
     
   <nav class="article-nav">
     
-      <a href="/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/" class="article-nav-link">
-        <strong class="article-nav-caption">前一篇</strong>
-        <div class="article-nav-title">
-          
-            解决Android溢出菜单栏不显示图标及设置了android:showAsAction=&#34;ifRoom&#34;但不在导航栏显示问题
-          
-        </div>
-      </a>
     
-    
-      <a href="/2019/08/29/使用TabActivity创建底部导航栏模板/" class="article-nav-link">
+      <a href="/2019/10/18/快速学会Android Studio中的Logcat的使用/" class="article-nav-link">
         <strong class="article-nav-caption">后一篇</strong>
-        <div class="article-nav-title">使用TabActivity创建底部导航栏模板</div>
+        <div class="article-nav-title">快速学会Android Studio中的Logcat的使用</div>
       </a>
     
   </nav>
