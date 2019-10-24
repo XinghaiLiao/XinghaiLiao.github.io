@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xinghailiao.github.io/"/>
-  <updated>2019-10-22T06:48:51.981Z</updated>
+  <updated>2019-10-24T05:40:05.309Z</updated>
   <id>https://xinghailiao.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>20191024随笔</title>
+    <link href="https://xinghailiao.github.io/2019/10/24/20191024%E9%9A%8F%E7%AC%94/"/>
+    <id>https://xinghailiao.github.io/2019/10/24/20191024随笔/</id>
+    <published>2019-10-24T05:26:18.000Z</published>
+    <updated>2019-10-24T05:40:05.309Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1024随笔&quot;&gt;&lt;a href=&quot;#1024随笔&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="随笔" scheme="https://xinghailiao.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Handler与Message实现分线程与UI线程通讯</title>
@@ -508,32 +534,6 @@
         
         
           &lt;p&gt;&lt;strong&gt;为使用《C Primer
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="C语言" scheme="https://xinghailiao.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《C Primer Plus》（第六版）答案（5.11）</title>
-    <link href="https://xinghailiao.github.io/2019/08/21/%E3%80%8AC%20Primer%20Plus%E3%80%8B%EF%BC%88%E7%AC%AC%E5%85%AD%E7%89%88%EF%BC%89%E7%AD%94%E6%A1%88%EF%BC%885.11%EF%BC%89/"/>
-    <id>https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（5.11）/</id>
-    <published>2019-08-21T02:47:10.000Z</published>
-    <updated>2019-10-14T13:33:56.212Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;为使用《C Primer
         
       
     

@@ -61,6 +61,96 @@
       
         
 
+<article id="post-《C Primer Plus》（第六版）答案（2.12）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/">《C Primer Plus》（第六版）答案（2.12）</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" class="article-date">
+  <time datetime="2019-08-20T10:58:56.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
+<ol>
+<li><p>编写一个程序，调用一次printf()函数，把你的姓名打印在一行。再调用一次printf()函数，把你的姓名分别打印在两行。然后，再调用两次printf()函数，把你的姓名打印在一行。输出应该如下图所示。<br><img src="https://img-blog.csdnimg.cn/20190820180321831.png#pic_center" alt="输出"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*调用一次printf函数，把名字打印在一行 \n是换行，也就是从另一行输出*/</span><br><span class="line">	printf(&quot;Gustav Mahler\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*调用一次printf函数，把你的名字打印在两行*/</span><br><span class="line">	printf(&quot;Gustav\nMahler\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*调用两次printf函数 把名字打印在一行 第二个printf输出的内容紧挨着第一行输出*/</span><br><span class="line">	printf(&quot;Gustav &quot;);</span><br><span class="line">	printf(&quot;Mahler&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，打印你的姓名和地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*打印地址和姓名*/</span><br><span class="line">	printf(&quot;My name is Xinghai Liao, from Changsha, China.&quot;); </span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序把你的年龄转换为天数，并显示这两个值。这里不用考虑闰年的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">//函数声明</span><br><span class="line">int ageConvertDay(int age);</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int age;</span><br><span class="line">	//输入年龄 </span><br><span class="line">	printf(&quot;Please enter your age:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;age);</span><br><span class="line">	</span><br><span class="line">	//ageConvertDay函数计算结果 </span><br><span class="line">	int result = ageConvertDay(age);</span><br><span class="line">	//输出结果 </span><br><span class="line">	printf(&quot;Your age is %d, the result is %d.&quot;, age, result);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125; </span><br><span class="line">/*不考虑闰年计算年龄的函数定义*/</span><br><span class="line">int ageConvertDay(int age) &#123;</span><br><span class="line">	return age*365;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，生成一下输出。除了main函数以外，该程序还要调用两个自定义函数：一个名为jolly()，用于打印前3条消息，调用一次打印一条；另外一个函数名为deny()，打印最后一条消息。<br><img src="https://img-blog.csdnimg.cn/20190820182332221.png#pic_center" alt="图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*函数声明*/</span><br><span class="line">void jolly();</span><br><span class="line">void deny(); </span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*调用三次jolly*/</span><br><span class="line">	jolly();</span><br><span class="line">	jolly();</span><br><span class="line">	jolly();</span><br><span class="line">	</span><br><span class="line">	/*调用deny*/ </span><br><span class="line">	deny();</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*函数定义*/</span><br><span class="line">void jolly() &#123;</span><br><span class="line">	printf(&quot;For he&apos;s a jolly good fellow!\n&quot;);	</span><br><span class="line">&#125; </span><br><span class="line">void deny() &#123;</span><br><span class="line">	printf(&quot;Which nobody can deny!\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，生成以下输出。<br><img src="https://img-blog.csdnimg.cn/20190820183140223.png#pic_center" alt="题目图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*函数声明*/</span><br><span class="line">void br(void);</span><br><span class="line">void ic(void);</span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*打印第一句话*/</span><br><span class="line">	br();</span><br><span class="line">	printf(&quot;, &quot;);//输出逗号 </span><br><span class="line">	ic();</span><br><span class="line">	printf(&quot;\n&quot;);//输出换行</span><br><span class="line">	</span><br><span class="line">	/*打印第二句话*/</span><br><span class="line">	ic();</span><br><span class="line">	printf(&quot;, \n&quot;);//输出逗号和换行 </span><br><span class="line">	</span><br><span class="line">	/*打印第三句话*/</span><br><span class="line">	br();</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*函数定义*/</span><br><span class="line">void br(void) &#123;</span><br><span class="line">	printf(&quot;Brazil, Russia&quot;);	</span><br><span class="line">&#125; </span><br><span class="line">void ic(void) &#123;</span><br><span class="line">	printf(&quot;India, China&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，创建一个整型变量toes，并将toes设置为10。程序中还要计算toes的两倍和toes的平方。该程序应打印三个值，并分别描述以示区分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*声明整型变量toes*/ </span><br><span class="line">	int toes;</span><br><span class="line">	/*给toes变量赋值10*/</span><br><span class="line">	toes = 10;</span><br><span class="line">	</span><br><span class="line">	/*计算toes的两倍 并赋值给doubleToes*/</span><br><span class="line">	int doubleToes = toes * 2;</span><br><span class="line">	/*计算toes的平方 并赋值给squareToes*/ </span><br><span class="line">	int squareToes = toes * toes;</span><br><span class="line">	</span><br><span class="line">	/*输出*/</span><br><span class="line">	printf(&quot;toes:%d    doubleToes:%d    squareToes:%d&quot;, toes, doubleToes, squareToes);</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，生成以下格式的输出：<br><img src="https://img-blog.csdnimg.cn/20190820184624631.png#pic_center" alt="题目图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	printf(&quot;Smile!Smile!Smile!\n&quot;);</span><br><span class="line">	printf(&quot;Smile!Smile!\n&quot;);</span><br><span class="line">	printf(&quot;Smile!&quot;);</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，调用一个名为one_three()的函数。该函数在第一行打印单词”one”，再调用第二个函数two()，然后在另一行打印单词”Three”。two()函数在一行显示单词”two”。main()函数在调用one_three()函数前要打印”starting now:”，并在调用完毕后打印”done!”。输出应该如下。<br><img src="https://img-blog.csdnimg.cn/20190820185136465.png#pic_center" alt="输出"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*声明函数*/</span><br><span class="line">void two();</span><br><span class="line">void one_three();</span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	printf(&quot;starting now:\n&quot;);</span><br><span class="line">	one_three();</span><br><span class="line">	printf(&quot;done!&quot;);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*定义函数*/ </span><br><span class="line">void two() &#123;</span><br><span class="line">	printf(&quot;two\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">void one_three() &#123;</span><br><span class="line">	printf(&quot;one\n&quot;);</span><br><span class="line">	two();//在这个函数调用two()函数 有些老的编译器声明时不把two()函数放在前面声明可能会报错 </span><br><span class="line">	printf(&quot;three\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" data-id="ck21hqzy50026n8la6kswdkl2"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android通知推送（解决NotificationService_ No Channel found for___问题）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -209,97 +299,13 @@
 
 
       
-        
-
-<article id="post-Android静态和动态注册Fragment" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/16/Android静态和动态注册Fragment/">Android静态和动态注册Fragment</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/16/Android静态和动态注册Fragment/" class="article-date">
-  <time datetime="2019-08-16T03:23:05.000Z" itemprop="datePublished">2019-08-16</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p> Fragment一般只占据一小块地方（比如下面的广告），但是它有自己的生命周期（可以试试重写那些方法来观察一下），下面是静态注册和动态注册使用Fragment的例子。<br><img src="https://img-blog.csdnimg.cn/20190816112105107.png" alt="Fragment"></p>
-<ol>
-<li>创建自己的Fragment，如MyFragment。布局和代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:orientation=&quot;horizontal&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/tv_adv&quot;</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;</span><br><span class="line">        android:gravity=&quot;center&quot;</span><br><span class="line">        android:text=&quot;广告&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:textSize=&quot;17sp&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ImageView</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:id=&quot;@+id/iv_adv&quot;</span><br><span class="line">        android:layout_weight=&quot;5&quot;</span><br><span class="line">        android:src=&quot;@drawable/adv&quot;</span><br><span class="line">        android:scaleType=&quot;fitCenter&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myandroidapplication;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">import androidx.annotation.NonNull;</span><br><span class="line">import androidx.annotation.Nullable;</span><br><span class="line">import androidx.fragment.app.Fragment;</span><br><span class="line"></span><br><span class="line">public class MyFragment extends Fragment &#123;</span><br><span class="line">    protected View view;</span><br><span class="line">    protected Context context;</span><br><span class="line">    private TextView tv_adv;</span><br><span class="line">    private ImageView iv_adv;</span><br><span class="line"></span><br><span class="line">    @Nullable</span><br><span class="line">    @Override</span><br><span class="line">    //创建Fragment视图</span><br><span class="line">    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        context = this.getActivity();</span><br><span class="line">        //从xml文件获取对象 以便代码操作</span><br><span class="line">        view = inflater.inflate(R.layout.my_fragment, container, false);</span><br><span class="line">        tv_adv = view.findViewById(R.id.tv_adv);</span><br><span class="line">        tv_adv.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Toast.makeText(context, &quot;你点击了广告的文本&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        iv_adv = view.findViewById(R.id.iv_adv);</span><br><span class="line">        iv_adv.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Toast.makeText(context, &quot;你点击了广告的图片&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        return view;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>静态注册。直接在活动的布局文件中加fragment节点即可，注意name属性必须填写完整的路径，下面是一个例子的布局文件和代码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.StaticFragmentActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:padding=&quot;5dp&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--每个fragment必须指定id属性 name属性要填写完整的路径--&gt;</span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=&quot;@+id/fragment_static_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:name=&quot;xyz.strasae.androidlearn.myandroidapplication.MyFragment&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myandroidapplication;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">public class StaticFragmentActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_static_fragment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>动态注册。下面是代码和详细注释（==注意这只是一个例子，如果这样写的话每次onCreate时都会创建一个Fragment（如横屏向竖屏的转换）==）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:id=&quot;@+id/ll_dynamic_fragment_layout&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.DynamicFragmentActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myandroidapplication;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line">import androidx.fragment.app.FragmentManager;</span><br><span class="line">import androidx.fragment.app.FragmentTransaction;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">public class DynamicFragmentActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_dynamic_fragment);</span><br><span class="line">        //获取MyFragment实例</span><br><span class="line">        MyFragment myFragment  = new MyFragment();</span><br><span class="line">        //获取FragmentManager实例</span><br><span class="line">        FragmentManager fragmentManager = this.getSupportFragmentManager();</span><br><span class="line">        //开启事务</span><br><span class="line">        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();</span><br><span class="line">        //通过事务向布局文件中添加碎片</span><br><span class="line">        fragmentTransaction.add(R.id.ll_dynamic_fragment_layout, myFragment);</span><br><span class="line">        //提交事务</span><br><span class="line">        fragmentTransaction.commit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/16/Android静态和动态注册Fragment/" data-id="ck21hqzvd0019n8lapvtvo71k"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
   </article>
   
 
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/8/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/10/">下一页</a>
     </nav>
   
 </section>

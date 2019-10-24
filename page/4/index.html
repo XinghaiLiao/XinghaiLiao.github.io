@@ -61,6 +61,72 @@
       
         
 
+<article id="post-NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/">NOI/1.6编程基础之一维数组/14:求10000以内n的阶乘</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/" class="article-date">
+  <time datetime="2019-09-24T14:14:35.000Z" itemprop="datePublished">2019-09-24</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p><a href="http://noi.openjudge.cn/ch0106/14/" target="_blank" rel="noopener">传送门</a><br> 14:求10000以内n的阶乘<br>总时间限制: 5000ms 内存限制: 655360kB<br>描述：求10000以内n的阶乘。<br>输入：只有一行输入，整数n（0&lt;=n&lt;=10000）。<br>输出：一行，即n!的值。<br>样例输入：100<br>样例输出：933262154439441526816992388562667004907159682643816214685929638952175999932299156089414639761565182862536979208272<br>23758251185210916864000000000000000000000000</p>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p>模拟乘法，用数存放答案（置于数组至少开多大，可以先用最暴力的方法把位数求出来或者直接开大一点，结果10000的阶乘是35660）。其他的就写在注释里面了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define N 35660</span><br><span class="line">int a[N+10];//数组稍微开大点防止小错误</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	a[1] = 1;//第一位值1</span><br><span class="line">	int cnt = 1;//存储目前答案多少位</span><br><span class="line">	int n;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	int temp = 0, buff;//临时变量</span><br><span class="line">	if(n == 0 || n == 1) &#123;</span><br><span class="line">		printf(&quot;%d&quot;, 1);</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i = 2; i &lt;= n; i++) &#123;//从2乘到n</span><br><span class="line">		/*这里循环如果写死到N的话会超时，优化一下循环到当前位数*/</span><br><span class="line">		for(int j = 1; j &lt;= cnt; j++) &#123;</span><br><span class="line">			buff = a[j] * i + temp; //乘积加进位</span><br><span class="line">			a[j] = buff % 10;//a[j]的实际值是乘积加进位模10</span><br><span class="line">			temp = buff / 10; //temp存储进位</span><br><span class="line">		&#125;</span><br><span class="line">		//循环结束后temp是最高位的进位</span><br><span class="line">		while(temp) &#123;</span><br><span class="line">			a[++cnt] = temp % 10;//目前的最高位</span><br><span class="line">			temp /= 10;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(temp = cnt; temp &gt;= 1; temp--) </span><br><span class="line">		printf(&quot;%d&quot;, a[temp]);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/" data-id="ck21hqzxg001qn8la4nka5trj"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NOI/">NOI</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-win10通过cmd查看连接的WiFi密码" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -224,81 +290,13 @@
 
 
       
-        
-
-<article id="post-解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/">解决Android溢出菜单栏不显示图标及设置了android:showAsAction=&#34;ifRoom&#34;但不在导航栏显示问题</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/" class="article-date">
-  <time datetime="2019-08-30T08:43:31.000Z" itemprop="datePublished">2019-08-30</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<ol>
-<li>设置了android:showAsAction=”ifRoom”属性但是不在导航栏显示问题。<br>增加命名空间<code>xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</code>，同时使用<code>app:showAsAction=&quot;ifRoom&quot;</code>。</li>
-<li>设置了icon属性但是不显示图标问题。<br>利用反射调用私有方法setOptionalIconsVisible，让图标显示出来。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//setOptionalIconsVisible是私有的的，利用暴力反射可以调用</span><br><span class="line">private void setOverflowIconVisible(int featureId, Menu menu) &#123;</span><br><span class="line">	//actionbar的featureId是8 ToolBar的是108</span><br><span class="line">	if(featureId % 100 == Window.FEATURE_ACTION_BAR &amp;&amp; menu != null) &#123;</span><br><span class="line">		if(menu.getClass().getSimpleName().equals(&quot;MenuBuilder&quot;)) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Method method = menu.getClass().getDeclaredMethod(&quot;setOptionalIconsVisible&quot;, Boolean.TYPE);</span><br><span class="line">				method.setAccessible(true);</span><br><span class="line">				method.invoke(menu, true);</span><br><span class="line">			&#125; catch(Exception e) &#123;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/" data-id="ck21hqzzs003hn8laodapt2me"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
   </article>
   
 
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
     </nav>
   
 </section>
