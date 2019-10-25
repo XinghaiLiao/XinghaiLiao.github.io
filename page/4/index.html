@@ -61,6 +61,72 @@
       
         
 
+<article id="post-NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/">NOI/1.7编程基础之字符串/02:找第一个只出现一次的字符</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/" class="article-date">
+  <time datetime="2019-10-04T11:47:09.000Z" itemprop="datePublished">2019-10-04</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-题目"><a href="#1-题目" class="headerlink" title="1.题目"></a>1.题目</h2><p><a href="http://noi.openjudge.cn/ch0107/02/" target="_blank" rel="noopener">传送门</a><br>总时间限制: 1000ms 内存限制: 65536kB<br>描述：给定一个只包含小写字母的字符串，请你找到第一个仅出现一次的字符。如果没有，输出no。<br>输入：一个字符串，长度小于100000。<br>输出：输出第一个仅出现一次的字符，若没有则输出no。<br>样例输入：abcabd<br>样例输出：c</p>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p>开个数组存储每个字母出现的次数（小写字母最多26个），然后找出第一个出现次数为1的字母即可（没有的话就输出no）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">char c[1000005];</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	gets(c);</span><br><span class="line">	int a[30];//用于存储没跟字符出现的次数（小写字母最多26个） </span><br><span class="line">	for(int i = 0; i &lt; 30; i++) &#123;</span><br><span class="line">		a[i] = 0;</span><br><span class="line">	&#125;</span><br><span class="line">	int len = strlen(c);</span><br><span class="line">	/**</span><br><span class="line">	*不要写这样的循环代码 </span><br><span class="line">	*这样的代码每次循环都要求字符串长度  </span><br><span class="line">	*而strlen函数的复杂度是O(n) </span><br><span class="line">	*会超时 </span><br><span class="line">	*for(int i = 0; i &lt; strlen(c); i++) </span><br><span class="line">	*	a[c[i]-97]++;</span><br><span class="line">	*/ </span><br><span class="line">	for(int i = 0; i &lt; len; i++) </span><br><span class="line">		a[c[i]-97]++;</span><br><span class="line">	bool flag = true;;</span><br><span class="line">	for(int i = 0; i &lt; len; i++) </span><br><span class="line">		if(a[c[i]-97] == 1) &#123;</span><br><span class="line">			printf(&quot;%c&quot;, c[i]);</span><br><span class="line">			flag = false;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	if(flag) &#123;</span><br><span class="line">		printf(&quot;no&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/10/04/NOI_1.7编程基础之字符串_02_找第一个只出现一次的字符/" data-id="ck264suzp0026jsla7k67ect0"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NOI/">NOI</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -108,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/" data-id="ck21hqzxg001qn8la4nka5trj"
+      <a data-url="https://xinghailiao.github.io/2019/09/24/NOI_1.6编程基础之一维数组_14_求10000以内n的阶乘/" data-id="ck264suzj001zjsla61ne4v62"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NOI/">NOI</a></li></ul>
@@ -175,108 +241,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/09/17/win10通过cmd查看连接的WiFi密码/" data-id="ck21hqzxz0022n8lagwdq2akt"
+      <a data-url="https://xinghailiao.github.io/2019/09/17/win10通过cmd查看连接的WiFi密码/" data-id="ck264suzn0024jslaw413bvi9"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小知识/">小知识</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/">RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/" class="article-date">
-  <time datetime="2019-09-07T02:55:05.000Z" itemprop="datePublished">2019-09-07</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p> 利用RecyclerView配合StaggeredGridLayoutManager可以实现类似于淘宝和京东的商品瀑布流效果，下面是一个简单的使用例子。<br><img src="https://img-blog.csdnimg.cn/20190907110359310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="示例图片"></p>
-<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><p> 就不多讲了，直接上示例代码。</p>
-<ol>
-<li><p>在页面的布局文件使用RecyclerView。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:padding=&quot;5dp&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot; &gt;</span><br><span class="line">    &lt;androidx.recyclerview.widget.RecyclerView</span><br><span class="line">        android:id=&quot;@+id/rv_staggered&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:background=&quot;#ffffaa&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义RecyclerView中每个item的布局文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:id=&quot;@+id/ll_item&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:background=&quot;@color/colorWhite&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot; &gt;</span><br><span class="line">    &lt;ImageView</span><br><span class="line">        android:id=&quot;@+id/iv_pic&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;250dp&quot;</span><br><span class="line">        android:scaleType=&quot;centerCrop&quot; /&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/tv_title&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:gravity=&quot;center&quot;</span><br><span class="line">        android:textColor=&quot;@color/colorBlack&quot;</span><br><span class="line">        android:textSize=&quot;17sp&quot; /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写item的bean（图片素材自找）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myapplication.bean;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line"></span><br><span class="line">import xyz.strasae.androidlearn.myapplication.R;</span><br><span class="line"></span><br><span class="line">public class ItemInfo &#123;</span><br><span class="line">    public int pic_id;</span><br><span class="line">    public String title;</span><br><span class="line">    public String desc;</span><br><span class="line"></span><br><span class="line">    public ItemInfo(int pic_id, String title, String desc) &#123;</span><br><span class="line">        this.pic_id = pic_id;</span><br><span class="line">        this.title = title;</span><br><span class="line">        this.desc = desc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int[] defaultItemImageArray = &#123;R.drawable.pic1, R.drawable.pic2, R.drawable.pic3, R.drawable.pic4,</span><br><span class="line">            R.drawable.pic5, R.drawable.pic6, R.drawable.pic7, R.drawable.pic8, R.drawable.pic9,</span><br><span class="line">            R.drawable.pic10, R.drawable.pic11&#125;;</span><br><span class="line"></span><br><span class="line">    public static String[] defaultItemTitleArray = &#123;&quot;图片1&quot;, &quot;图片2&quot;, &quot;图片3&quot;, &quot;图片4&quot;, &quot;图片5&quot;, &quot;图片6&quot;, &quot;图片7&quot;, &quot;图片8&quot;</span><br><span class="line">    , &quot;图片9&quot;, &quot;图片10&quot;, &quot;图片11&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    public static ArrayList&lt;ItemInfo&gt; getDefaultStag() &#123;</span><br><span class="line">        ArrayList&lt;ItemInfo&gt; itemInfos = new ArrayList&lt;ItemInfo&gt;();</span><br><span class="line">        for(int i = 0; i &lt; defaultItemImageArray.length; i++) &#123;</span><br><span class="line">            itemInfos.add(new ItemInfo(defaultItemImageArray[i], defaultItemTitleArray[i], null));</span><br><span class="line">        &#125;</span><br><span class="line">        return itemInfos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写适配器。根据item的布局文件编写ItemHolder；继承自RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt;，重写onCreateViewHolder方法和绑定持有者方法。</p>
-<ul>
-<li>回调接口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myapplication.widget;</span><br><span class="line"></span><br><span class="line">import android.view.View;</span><br><span class="line"></span><br><span class="line">public class RecyclerExtras &#123;</span><br><span class="line">    public interface OnItemClickListener &#123;</span><br><span class="line">        void onItemClick(View view, int position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public interface OnItemLongClickListener &#123;</span><br><span class="line">        void onItemLongClick(View view, int position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public interface OnItemDeleteClickListener &#123;</span><br><span class="line">        void onItemDeleteClick(View view, int position);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>适配器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myapplication.adapter;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">import androidx.annotation.NonNull;</span><br><span class="line">import androidx.recyclerview.widget.RecyclerView;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line"></span><br><span class="line">import xyz.strasae.androidlearn.myapplication.R;</span><br><span class="line">import xyz.strasae.androidlearn.myapplication.bean.ItemInfo;</span><br><span class="line">import xyz.strasae.androidlearn.myapplication.widget.RecyclerExtras;</span><br><span class="line"></span><br><span class="line">public class StaggeredAdapter extends RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt; implements RecyclerExtras.OnItemClickListener, RecyclerExtras.OnItemLongClickListener &#123;</span><br><span class="line">    private Context context;//设备上下文</span><br><span class="line">    private LayoutInflater inflater;//代码中获取控件</span><br><span class="line">    private ArrayList&lt;ItemInfo&gt; itemInfos;//item容器</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public StaggeredAdapter(Context context, ArrayList&lt;ItemInfo&gt; itemInfos) &#123;</span><br><span class="line">        this.context = context;</span><br><span class="line">        this.itemInfos = itemInfos;</span><br><span class="line">        inflater = LayoutInflater.from(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @NonNull</span><br><span class="line">    @Override</span><br><span class="line">    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) &#123;</span><br><span class="line">        View view;</span><br><span class="line">        RecyclerView.ViewHolder holder;</span><br><span class="line">        //获取布局文件</span><br><span class="line">        view = inflater.inflate(R.layout.item_staggered, parent, false);</span><br><span class="line">        holder = new ItemHolder(view);</span><br><span class="line">        return holder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    /**</span><br><span class="line">     * 绑定持有者</span><br><span class="line">     */</span><br><span class="line">    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) &#123;</span><br><span class="line">        ItemHolder itemHolder = (ItemHolder)holder;</span><br><span class="line">        itemHolder.iv_pic.setImageResource(itemInfos.get(position).pic_id);</span><br><span class="line">        itemHolder.tv_title.setText(itemInfos.get(position).title);</span><br><span class="line">        itemHolder.ll_item.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                if (onItemClickListener != null) &#123;</span><br><span class="line">                    onItemClickListener.onItemClick(v, position);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        itemHolder.ll_item.setOnLongClickListener(new View.OnLongClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public boolean onLongClick(View v) &#123;</span><br><span class="line">                onItemLongClickListener.onItemLongClick(v, position);</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private RecyclerExtras.OnItemLongClickListener onItemLongClickListener;</span><br><span class="line">    private RecyclerExtras.OnItemClickListener onItemClickListener;</span><br><span class="line"></span><br><span class="line">    public void setOnItemLongClickListener(RecyclerExtras.OnItemLongClickListener onItemLongClickListener) &#123;</span><br><span class="line">        this.onItemLongClickListener = onItemLongClickListener;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setOnItemClickListener(RecyclerExtras.OnItemClickListener onItemClickListener) &#123;</span><br><span class="line">        this.onItemClickListener = onItemClickListener;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    //获取列表项类型</span><br><span class="line">    public int getItemViewType(int position) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    //获取列表项编号</span><br><span class="line">    public long getItemId(int position) &#123;</span><br><span class="line">        return position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    //获取列表项个数</span><br><span class="line">    public int getItemCount() &#123;</span><br><span class="line">        return itemInfos.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onItemClick(View view, int position) &#123;</span><br><span class="line">        Toast.makeText(context, &quot;你点击了&quot; + (position + 1) + &quot; &quot; + itemInfos.get(position).title, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onItemLongClick(View view, int position) &#123;</span><br><span class="line">        Toast.makeText(context, &quot;你长按了&quot; + (position + 1) + &quot; &quot; + itemInfos.get(position).title, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 持有者 按照item的布局文件写</span><br><span class="line">     */</span><br><span class="line">    private class ItemHolder extends RecyclerView.ViewHolder &#123;</span><br><span class="line">        public LinearLayout ll_item;</span><br><span class="line">        public ImageView iv_pic;</span><br><span class="line">        public TextView tv_title;</span><br><span class="line"></span><br><span class="line">        public ItemHolder(View v) &#123;</span><br><span class="line">            super(v);</span><br><span class="line">            ll_item = v.findViewById(R.id.ll_item);</span><br><span class="line">            iv_pic = v.findViewById(R.id.iv_pic);</span><br><span class="line">            tv_title = v.findViewById(R.id.tv_title);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>页面中RecyclerView配合StaggeredGridLayoutManager使用。</li>
-</ol>
-</li>
-<li><p>装饰RecyclerView（item的空白间隔）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package com.example.group.widget;</span><br><span class="line"></span><br><span class="line">import android.graphics.Rect;</span><br><span class="line">import android.support.v7.widget.RecyclerView;</span><br><span class="line">import android.view.View;</span><br><span class="line"></span><br><span class="line">public class SpacesItemDecoration extends RecyclerView.ItemDecoration &#123;</span><br><span class="line">    private int space; // 空白间隔</span><br><span class="line"></span><br><span class="line">    public SpacesItemDecoration(int space) &#123;</span><br><span class="line">        this.space = space;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) &#123;</span><br><span class="line">        outRect.left = space; // 左边空白间隔</span><br><span class="line">        outRect.right = space; // 右边空白间隔</span><br><span class="line">        outRect.bottom = space; // 上方空白间隔</span><br><span class="line">        outRect.top = space; // 下方空白间隔</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>代码中RecyclerView配合StaggeredGridLayoutManager。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myapplication;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line">import androidx.recyclerview.widget.DefaultItemAnimator;</span><br><span class="line">import androidx.recyclerview.widget.RecyclerView;</span><br><span class="line">import androidx.recyclerview.widget.StaggeredGridLayoutManager;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line"></span><br><span class="line">import xyz.strasae.androidlearn.myapplication.adapter.StaggeredAdapter;</span><br><span class="line">import xyz.strasae.androidlearn.myapplication.bean.ItemInfo;</span><br><span class="line">import xyz.strasae.androidlearn.myapplication.widget.SpacesItemDecoration;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">    private RecyclerView  rv_staggered;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        rv_staggered = findViewById(R.id.rv_staggered);</span><br><span class="line"></span><br><span class="line">		//第一个参数是每行（列）item的个数 第二个参数是横向排列还是纵向排列</span><br><span class="line">        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(3, LinearLayout.VERTICAL);</span><br><span class="line">        rv_staggered.setLayoutManager(manager);</span><br><span class="line"></span><br><span class="line">        StaggeredAdapter adapter = new StaggeredAdapter(this, ItemInfo.getDefaultStag());</span><br><span class="line">        adapter.setOnItemClickListener(adapter);//adapter本身就实现了这两个接口</span><br><span class="line">        adapter.setOnItemLongClickListener(adapter);</span><br><span class="line"></span><br><span class="line">        rv_staggered.setAdapter(adapter);</span><br><span class="line">        //设置动画</span><br><span class="line">        rv_staggered.setItemAnimator(new DefaultItemAnimator());</span><br><span class="line">        //设置装饰（这里这设置了间隔）</span><br><span class="line">        rv_staggered.addItemDecoration(new SpacesItemDecoration(3));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/09/07/RecyclerView配合StaggeredGridLayoutManager实现瀑布流效果/" data-id="ck21hr00p0040n8lapa4d9o7r"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 

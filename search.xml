@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>TabLayout搭配ViewPager</title>
+    <url>/2019/10/24/TabLayout%E6%90%AD%E9%85%8DViewPager/</url>
+    <content><![CDATA[<hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>TabLayout搭配ViewPager是一个固定的套路，可以轻易实现下面这种效果。<br><img src="https://img-blog.csdnimg.cn/20191024140509620.png#pic_center" alt="demo图片"></p>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><ol>
+<li><p>xml中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;com.google.android.material.tabs.TabLayout</span><br><span class="line">	android:id=&quot;@+id/tab_choose&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;40dp&quot;/&gt;</span><br><span class="line">&lt;androidx.viewpager.widget.ViewPager</span><br><span class="line">	android:id=&quot;@+id/vp_content&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;100dp&quot;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主要代码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//初始化</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;年级&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;科目&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;时间&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;其他&quot;));</span><br><span class="line">/*加监听主要实现以下几个方法*/</span><br><span class="line">@Override//被选中</span><br><span class="line">public void onTabSelected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br><span class="line">@Override//取消选中</span><br><span class="line">public void onTabUnselected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br><span class="line">@Override//被重新选择</span><br><span class="line">public void onTabReselected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>20191024随笔</title>
     <url>/2019/10/24/20191024%E9%9A%8F%E7%AC%94/</url>
     <content><![CDATA[<hr>
