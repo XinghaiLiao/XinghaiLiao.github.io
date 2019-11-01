@@ -61,6 +61,91 @@
       
         
 
+<article id="post-EditText输入完成后自动关闭输入法" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/09/EditText输入完成后自动关闭输入法/">EditText输入完成后自动关闭输入法</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/09/EditText输入完成后自动关闭输入法/" class="article-date">
+  <time datetime="2019-08-09T03:56:57.000Z" itemprop="datePublished">2019-08-09</time>
+</a>
+        
+      </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p> 有时候我们想输入达到一定长度之后自动关闭输入法（如输入11位手机号之后自动关闭键盘）。下面是实现步骤。<br><img src="https://img-blog.csdnimg.cn/20190809114757495.png" alt="简介"></p>
+<ol>
+<li><p>EditText并没有直接获取输入法长度的方法。但是我们可以通过暴力反射获取，代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static int getMaxLength(EditText et) &#123;</span><br><span class="line">		int length = 0;</span><br><span class="line">		try &#123;</span><br><span class="line">			InputFilter[] inputFilters = et.getFilters();</span><br><span class="line">			for (InputFilter filter : inputFilters) &#123;</span><br><span class="line">				Class&lt;?&gt; c = filter.getClass();</span><br><span class="line">				if (c.getName().equals(&quot;android.text.InputFilter$LengthFilter&quot;)) &#123;</span><br><span class="line">					Field[] f = c.getDeclaredFields();</span><br><span class="line">					for (Field field : f) &#123;</span><br><span class="line">						if (field.getName().equals(&quot;mMax&quot;)) &#123;</span><br><span class="line">							field.setAccessible(true);</span><br><span class="line">							length = (Integer) field.get(filter);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return length;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>监听EditText的类。实现TextWatcher接口即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">private class HideTextWatcher implements TextWatcher &#123;</span><br><span class="line">        private EditText editText;</span><br><span class="line">        private int maxLength;</span><br><span class="line">        private CharSequence mStr;</span><br><span class="line"></span><br><span class="line">        public HideTextWatcher(EditText editText) &#123;</span><br><span class="line">            this.editText = editText;</span><br><span class="line">            maxLength = getMaxLength(this.editText);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        //变化前</span><br><span class="line">        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        //变化时</span><br><span class="line">        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) &#123;</span><br><span class="line">            mStr = charSequence;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        //变化后</span><br><span class="line">        public void afterTextChanged(Editable editable) &#123;</span><br><span class="line">            if(mStr == null) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            if(mStr.length() == maxLength) &#123;</span><br><span class="line">                hideOneInputMethod(EditTextAutoCloseDemo.this, editText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭输入法的实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void hideOneInputMethod(Activity act, View v) &#123;</span><br><span class="line">       InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);</span><br><span class="line">       imm.hideSoftInputFromWindow(v.getWindowToken(), 0);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>下面是示例代码。</p>
+<ol>
+<li><p>activity_edit_text_auto_close_demo.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!--根节点获取焦点 这样一打开应用时不会马上弹出输入法--&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.EditTextAutoCloseDemo&quot;</span><br><span class="line">    android:focusable=&quot;true&quot;</span><br><span class="line">    android:focusableInTouchMode=&quot;true&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=&quot;@+id/et_demo&quot;</span><br><span class="line">        android:layout_marginTop=&quot;20dp&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:inputType=&quot;number&quot;</span><br><span class="line">        android:hint=&quot;请输入手机号&quot;</span><br><span class="line">        android:maxLength=&quot;11&quot;/&gt;</span><br><span class="line">    &lt;Button</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;确定&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EditTextAutoCloseDemo.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.app.Activity;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.text.Editable;</span><br><span class="line">import android.text.InputFilter;</span><br><span class="line">import android.text.TextWatcher;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.inputmethod.InputMethodManager;</span><br><span class="line">import android.widget.EditText;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Field;</span><br><span class="line"></span><br><span class="line">public class EditTextAutoCloseDemo extends AppCompatActivity &#123;</span><br><span class="line">    EditText et_demo;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_edit_text_auto_close_demo);</span><br><span class="line">        et_demo = findViewById(R.id.et_demo);</span><br><span class="line">        et_demo.addTextChangedListener(new HideTextWatcher(et_demo));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private class HideTextWatcher implements TextWatcher &#123;</span><br><span class="line">        private EditText editText;</span><br><span class="line">        private int maxLength;</span><br><span class="line">        private CharSequence mStr;</span><br><span class="line"></span><br><span class="line">        public HideTextWatcher(EditText editText) &#123;</span><br><span class="line">            this.editText = editText;</span><br><span class="line">            maxLength = getMaxLength(this.editText);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        //变化前</span><br><span class="line">        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        //变化时</span><br><span class="line">        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) &#123;</span><br><span class="line">            mStr = charSequence;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        //变化后</span><br><span class="line">        public void afterTextChanged(Editable editable) &#123;</span><br><span class="line">            if(mStr == null) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            if(mStr.length() == maxLength) &#123;</span><br><span class="line">                hideOneInputMethod(EditTextAutoCloseDemo.this, editText);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //暴力反射获取输入框的最大长度</span><br><span class="line">    public static int getMaxLength(EditText et) &#123;</span><br><span class="line">        int length = 0;</span><br><span class="line">        try &#123;</span><br><span class="line">            InputFilter[] inputFilters = et.getFilters();</span><br><span class="line">            for (InputFilter filter : inputFilters) &#123;</span><br><span class="line">                Class&lt;?&gt; c = filter.getClass();</span><br><span class="line">                if (c.getName().equals(&quot;android.text.InputFilter$LengthFilter&quot;)) &#123;</span><br><span class="line">                    Field[] f = c.getDeclaredFields();</span><br><span class="line">                    for (Field field : f) &#123;</span><br><span class="line">                        if (field.getName().equals(&quot;mMax&quot;)) &#123;</span><br><span class="line">                            field.setAccessible(true);</span><br><span class="line">                            length = (Integer) field.get(filter);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //关闭软键盘</span><br><span class="line">    public static void hideOneInputMethod(Activity act, View v) &#123;</span><br><span class="line">        InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);</span><br><span class="line">        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/09/EditText输入完成后自动关闭输入法/" data-id="ck2fnsguu001z4olau94hbevj"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android中SimpleAdapter的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -122,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/09/Android中SimpleAdapter的使用/" data-id="ck2epvqv40009t0lat0gvuzod"
+      <a data-url="https://xinghailiao.github.io/2019/08/09/Android中SimpleAdapter的使用/" data-id="ck2fnsgsr00054olae4ono2up"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -198,83 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件RadioGroup的使用/" data-id="ck2epvqwu0012t0la4bgkkv82"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android基础控件Switch的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/08/Android基础控件Switch的使用/">Android基础控件Switch的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/08/Android基础控件Switch的使用/" class="article-date">
-  <time datetime="2019-08-08T05:11:15.000Z" itemprop="datePublished">2019-08-08</time>
-</a>
-        
-      </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>Switch是一个很简单的控件，只有两种状态，感觉只是升级版的CheckBox(<del>但是原生的依旧很丑</del> )。通过实现CompoundButton.OnCheckedChangeListener接口就可以监听Switch，但是改变Switch的button属性只会在左边加一个显示按钮（如效果图一），所以就用CheckBox做了一个自定义的Switch（效果如图二，如果感觉按钮的图片太小，可以直接设置CheckBox的background属性，并且把button属性改为@null）。改变showText属性可以调节是否显示开关提示文字，textOn属性设置打开时的提示文字，TextOff属性设置关闭时的提示属性（<del>但是好丑啊QaQ</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190808130307498.png" alt="图一">)<img src="https://img-blog.csdnimg.cn/20190808142459213.png" alt="图二"></p>
-<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用Switch的示例代码。</p>
-<ol>
-<li><p>switch_selector.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--开状态--&gt;</span><br><span class="line">    &lt;item android:state_checked=&quot;true&quot; android:drawable=&quot;@drawable/switch_on&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--关状态--&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/switch_off&quot;/&gt;</span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>activity_switch.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.SwitchActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--原生Switch--&gt;</span><br><span class="line">    &lt;Switch</span><br><span class="line">   		android:showText=&quot;true&quot;</span><br><span class="line">        android:textOn=&quot;打开&quot;</span><br><span class="line">        android:textOff=&quot;关闭&quot;</span><br><span class="line">        android:id=&quot;@+id/sw_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;这是系统图标的Switch&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--用CheckBox自定义的Switch--&gt;</span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:textColor=&quot;#000000&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:text=&quot;这是用CheckBox自定义的仿Switch&quot;</span><br><span class="line">            android:gravity=&quot;left|center_vertical&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;CheckBox</span><br><span class="line">            android:id=&quot;@+id/ck_switch_demo&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:gravity=&quot;right|center_vertical&quot;</span><br><span class="line">            android:button=&quot;@drawable/switch_selector&quot;/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>SwitchActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.CheckBox;</span><br><span class="line">import android.widget.CompoundButton;</span><br><span class="line">import android.widget.Switch;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class SwitchActivity extends AppCompatActivity &#123;</span><br><span class="line">    Switch aSwitchDemo;</span><br><span class="line">    CheckBox checkBoxSwitchDemo;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_switch);</span><br><span class="line">        aSwitchDemo = findViewById(R.id.sw_demo);</span><br><span class="line">        checkBoxSwitchDemo = findViewById(R.id.ck_switch_demo);</span><br><span class="line">        aSwitchDemo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(SwitchActivity.this,  String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        checkBoxSwitchDemo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(SwitchActivity.this,  String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件Switch的使用/" data-id="ck2epvqwx0014t0lavy5mmq1h"
+      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件RadioGroup的使用/" data-id="ck2fnsgti000p4ola3gzzl1cb"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
