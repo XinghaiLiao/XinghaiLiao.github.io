@@ -61,6 +61,71 @@
       
         
 
+<article id="post-Android在线程中使用Toast运行时报错" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/07/Android在线程中使用Toast运行时报错/">Android在线程中使用Toast运行时报错</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/07/Android在线程中使用Toast运行时报错/" class="article-date">
+  <time datetime="2019-08-07T03:56:32.000Z" itemprop="datePublished">2019-08-07</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p>直接在线程中使用Toast运行时会报错<strong>Can’t toast on a thread that has not called Looper.prepare()</strong>。先调用Looper.prepare()，然后再使用Toast，然后再调用Looper.loop()即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Looper.prepare();</span><br><span class="line">ToastUtil.showToast(MainActivity.this, &quot;网络连接错误&quot;);</span><br><span class="line">Looper.loop();</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/07/Android在线程中使用Toast运行时报错/" data-id="ck31au5ks000mwwlaijg0ssum"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android代码和xml文件中设置颜色的问题" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -108,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/07/Android代码和xml文件中设置颜色的问题/" data-id="ck2wnc66q000loslabrwrdbhw"
+      <a data-url="https://xinghailiao.github.io/2019/08/07/Android代码和xml文件中设置颜色的问题/" data-id="ck31au5ki000iwwlavrt8lsrw"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -175,96 +240,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/05/Android Studio中的Project和Module/" data-id="ck2wnc65k0002osla1atgvgob"
+      <a data-url="https://xinghailiao.github.io/2019/08/05/Android Studio中的Project和Module/" data-id="ck31au5iw0001wwla7ozdhhe2"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Java文件输入输出字节流" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/30/Java文件输入输出字节流/">Java文件输入输出字节流</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/07/30/Java文件输入输出字节流/" class="article-date">
-  <time datetime="2019-07-30T13:21:47.000Z" itemprop="datePublished">2019-07-30</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>学习Java也有一段时间了，在开发自己的安卓应用时总是觉得力不从心，主要是Java基础不好（<del>自学的时候不够用心</del> ），所以还要回来补习Java。下面是我学习Java输入输出字节流的一些笔记，希望能帮到初学Java的朋友。</p>
-<h2 id="2-正文"><a href="#2-正文" class="headerlink" title="2.正文"></a>2.正文</h2><ol>
-<li><p>确定使用输入字节流还是输出字节流。以程序为中心，往程序输入的就使用输入流，程序往外输出就使用输出流。</p>
-</li>
-<li><p>流分为字节流和字符流。字节流什么文件都可以处理，字符流主要处理纯文本文件。字节流的输入流抽象类是InputStream，实现类是FileInputStream；字节流的输出流抽象类是OutputStream，实现类是FileOutPutStream。字符流的输入流抽象类是Reader，实现类是FileReader；字节流的输出流抽象类是Writer，实现类是FileWriter。</p>
-</li>
-<li><p>使用流的一般过程。<br>1.与目标文件建立联系<br>2.选择对应的流<br>3.确定读取或者写入的块大小<br>4.读取或者写入<br>5.释放资源</p>
-</li>
-<li><p>下面是字节输入流读取文件的demo代码，注释很详细。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">package demo03;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *读取文件Demo</span><br><span class="line"> */</span><br><span class="line">public class Demo01 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//与目标文件建立联系</span><br><span class="line">		File file = new File(&quot;C:\\Users\\15321\\Desktop\\test.txt&quot;);</span><br><span class="line">		//选择流 InputStream是字节输入流的抽象类</span><br><span class="line">		InputStream is = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			 //FileInputStream是字节输入流的实现类</span><br><span class="line">			 is = new FileInputStream(file);</span><br><span class="line">			 //确定读取块的大小 相当于缓冲</span><br><span class="line">			 byte[] b = new byte[1024];</span><br><span class="line">			 //实际读取的大小</span><br><span class="line">			 int len;</span><br><span class="line">			 //读取</span><br><span class="line">			 while((len = is.read(b)) != -1) &#123;</span><br><span class="line">				 //输出 字节数组转成字符串</span><br><span class="line">				 System.out.println(new String(b, 0, len));</span><br><span class="line">			 &#125;</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; finally &#123;</span><br><span class="line">			//释放资源</span><br><span class="line">			if(is != null) &#123;</span><br><span class="line">				try &#123;</span><br><span class="line">					is.close();</span><br><span class="line">				&#125; catch (IOException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下面是字节输出流的demo代码，想说的都写在注释了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package demo03;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.OutputStream;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 写入文件的demo</span><br><span class="line"> */</span><br><span class="line">public class Demo02 &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//与目标文件建立联系</span><br><span class="line">		File file = new File(&quot;C:\\Users\\15321\\Desktop\\test.txt&quot;);</span><br><span class="line">		//选择流</span><br><span class="line">		OutputStream os = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			 String str = &quot;woyebuzhidaoa&quot;;</span><br><span class="line">			 //true表示追加文件 false表示覆盖文件</span><br><span class="line">			 os = new FileOutputStream(file, true);</span><br><span class="line">			 //写入的字节数据</span><br><span class="line">			 byte[] data = str.getBytes();</span><br><span class="line">			 //写入</span><br><span class="line">			 os.write(data, 0, data.length);</span><br><span class="line">			 //刷新</span><br><span class="line">			 os.flush();</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; finally &#123;</span><br><span class="line">			//释放资源</span><br><span class="line">			if(os != null) &#123;</span><br><span class="line">				try &#123;</span><br><span class="line">					os.close();</span><br><span class="line">				&#125; catch (IOException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字节流的读取、写入综合练习。一个小的GUI文本类型查看器。demo代码如下。<br><img src="https://img-blog.csdnimg.cn/20191021162249244.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="demo图片"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">package xyz.xinghai.demo03;</span><br><span class="line"></span><br><span class="line">import java.awt.Container;</span><br><span class="line">import java.awt.Dimension;</span><br><span class="line">import java.awt.Font;</span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">import javax.swing.JFileChooser;</span><br><span class="line">import javax.swing.JFrame;</span><br><span class="line">import javax.swing.JMenu;</span><br><span class="line">import javax.swing.JMenuBar;</span><br><span class="line">import javax.swing.JMenuItem;</span><br><span class="line">import javax.swing.JScrollPane;</span><br><span class="line">import javax.swing.JTextArea;</span><br><span class="line"></span><br><span class="line">public class Demo &#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//初始化窗口</span><br><span class="line">		JFrame frame = new JFrame(&quot;Demo&quot;);</span><br><span class="line">		frame.setSize(new Dimension(500, 500));</span><br><span class="line">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">		</span><br><span class="line">		//初始化菜单</span><br><span class="line">		JMenuBar menuBar = new JMenuBar();</span><br><span class="line">		JMenu menu = new JMenu(&quot;File&quot;);</span><br><span class="line">		JMenuItem menuItemOpen = new JMenuItem(&quot;Open&quot;);</span><br><span class="line">		JMenuItem menuItemSaveAs = new JMenuItem(&quot;Save as&quot;);</span><br><span class="line"></span><br><span class="line">		//初始化文本框</span><br><span class="line">		JTextArea textArea = new JTextArea();</span><br><span class="line">		textArea.setFont(new Font(&quot;宋体&quot;, 20, 20));</span><br><span class="line"></span><br><span class="line">		//点代表当前路径</span><br><span class="line">		JFileChooser fileChooser = new JFileChooser(&quot;.&quot;);</span><br><span class="line"></span><br><span class="line">		menuItemOpen.addActionListener(e -&gt; &#123;</span><br><span class="line">			int result = fileChooser.showOpenDialog(frame);</span><br><span class="line">			if (result == JFileChooser.APPROVE_OPTION) &#123;</span><br><span class="line">				File file = fileChooser.getSelectedFile();</span><br><span class="line">				FileInputStream fis = null;</span><br><span class="line">				try &#123;</span><br><span class="line">					textArea.setText(&quot;&quot;);</span><br><span class="line">					fis = new FileInputStream(file);</span><br><span class="line">					int len = 0;</span><br><span class="line">					byte[] buffer = new byte[1024];</span><br><span class="line">					while ((len = fis.read(buffer)) &gt;= 0) &#123;</span><br><span class="line">						textArea.append(new String(buffer, 0, len, &quot;gbk&quot;));</span><br><span class="line">					&#125;</span><br><span class="line">				&#125; catch (IOException e1) &#123;</span><br><span class="line">					e1.printStackTrace();</span><br><span class="line">				&#125; finally &#123;</span><br><span class="line">					if (fis != null) &#123;</span><br><span class="line">						try &#123;</span><br><span class="line">							fis.close();</span><br><span class="line">						&#125; catch (IOException e1) &#123;</span><br><span class="line">							e1.printStackTrace();</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		menuItemSaveAs.addActionListener(e -&gt; &#123;</span><br><span class="line">			int result = fileChooser.showSaveDialog(frame);</span><br><span class="line">			if(result == JFileChooser.APPROVE_OPTION) &#123;</span><br><span class="line">				File file = fileChooser.getSelectedFile();</span><br><span class="line">				FileOutputStream fos = null;</span><br><span class="line">				String s = textArea.getText();</span><br><span class="line">				try &#123;</span><br><span class="line">					fos = new FileOutputStream(file);</span><br><span class="line">					byte[] data = s.getBytes();</span><br><span class="line">					fos.write(data, 0, data.length);</span><br><span class="line">					fos.flush();</span><br><span class="line">				&#125; catch (IOException e1) &#123;</span><br><span class="line">					e1.printStackTrace();</span><br><span class="line">				&#125; finally &#123;</span><br><span class="line">					if(fos != null) &#123;</span><br><span class="line">						try &#123;</span><br><span class="line">							fos.close();</span><br><span class="line">						&#125; catch (IOException e1) &#123;</span><br><span class="line">							e1.printStackTrace();</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		//将菜单添加到窗口</span><br><span class="line">		menuBar.add(menu);</span><br><span class="line">		menu.add(menuItemOpen);</span><br><span class="line">		menu.addSeparator();</span><br><span class="line">		menu.add(menuItemSaveAs);</span><br><span class="line">		frame.setJMenuBar(menuBar);</span><br><span class="line"></span><br><span class="line">		//给文本框添加滚动条</span><br><span class="line">		JScrollPane scrollPane = new JScrollPane(textArea);</span><br><span class="line">		Container c = frame.getContentPane();</span><br><span class="line">		c.add(scrollPane);</span><br><span class="line"></span><br><span class="line">		frame.setLocationRelativeTo(null);</span><br><span class="line">		frame.setVisible(true);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><ol>
-<li>初学者一定要学好文件输入流和输出流，这样用起来才会轻松。</li>
-<li>字符流的使用方法和字节流类似。</li>
-<li>学好节点流之后再学缓冲流会很简单。</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/30/Java文件输入输出字节流/" data-id="ck2wnc67w001vosladpbq7iuw"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaSE/">JavaSE</a></li></ul>
 
     </footer>
 
@@ -284,7 +263,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/17/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/19/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/17/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/19/">下一页</a>
     </nav>
   
 </section>

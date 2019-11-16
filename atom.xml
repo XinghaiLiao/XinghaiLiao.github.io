@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xinghailiao.github.io/"/>
-  <updated>2019-11-01T05:10:14.482Z</updated>
+  <updated>2019-11-16T08:17:05.709Z</updated>
   <id>https://xinghailiao.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java+coolq实现QQ机器人</title>
+    <link href="https://xinghailiao.github.io/2019/11/16/Java+coolq%E5%AE%9E%E7%8E%B0QQ%E6%9C%BA%E5%99%A8%E4%BA%BA/"/>
+    <id>https://xinghailiao.github.io/2019/11/16/Java+coolq实现QQ机器人/</id>
+    <published>2019-11-16T07:25:00.000Z</published>
+    <updated>2019-11-16T08:17:05.709Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="QQ Robot" scheme="https://xinghailiao.github.io/tags/QQ-Robot/"/>
+    
+  </entry>
   
   <entry>
     <title>以太网链路层帧格式分析实验</title>
@@ -514,35 +540,6 @@
     
     
       <category term="Android" scheme="https://xinghailiao.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《C Primer Plus》（第六版）答案（7.12）</title>
-    <link href="https://xinghailiao.github.io/2019/08/21/%E3%80%8AC%20Primer%20Plus%E3%80%8B%EF%BC%88%E7%AC%AC%E5%85%AD%E7%89%88%EF%BC%89%E7%AD%94%E6%A1%88%EF%BC%887.12%EF%BC%89/"/>
-    <id>https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（7.12）/</id>
-    <published>2019-08-21T11:08:52.000Z</published>
-    <updated>2019-10-15T13:48:59.983Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;为使用《C Primer Plus》学习C的初学者准备的。&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;编写一个程序。该程序读取输入直到遇到#字符，然后报告读取的空格数目、读取的换行符数目以及读取的所有其他字符数目。&lt;/p&gt;
-&lt;figure
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="C语言" scheme="https://xinghailiao.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
     
   </entry>
   

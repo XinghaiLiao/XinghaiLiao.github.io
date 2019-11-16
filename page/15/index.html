@@ -61,6 +61,81 @@
       
         
 
+<article id="post-Android中AlertDialog的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/11/Android中AlertDialog的使用/">Android中AlertDialog的使用</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/11/Android中AlertDialog的使用/" class="article-date">
+  <time datetime="2019-08-11T07:19:17.000Z" itemprop="datePublished">2019-08-11</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>AlertDialog是安卓中很常用的对话框，只能通过AlertDialog.Builder完成参数设置后才能创建。使用AlertDialog的核心代码及注释如下。<br><img src="https://img-blog.csdnimg.cn/20190811151021431.png" alt="AlertDialog"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">AlertDialog.Builder builder = new AlertDialog.Builder(AlertDialogActivity.this);</span><br><span class="line">//设置标题</span><br><span class="line">builder.setTitle(&quot;Demo&quot;);</span><br><span class="line">//设置显示的消息</span><br><span class="line">builder.setMessage(&quot;我也不知道发生了什么&quot;);</span><br><span class="line">//设置肯定的按钮和监听器</span><br><span class="line">builder.setPositiveButton(&quot;好的&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">//设置中立的按钮和监听器（感觉基本上很少用）</span><br><span class="line">builder.setNeutralButton(&quot;中立&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something        </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">//设置否定的按钮和监听器</span><br><span class="line">builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">//构造AlertDialog</span><br><span class="line">AlertDialog alertDialog = builder.create();</span><br><span class="line">//显示AlertDialog</span><br><span class="line">alertDialog.show();</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><p>创建AlertDialogActivity，代码如下。</p>
+<ol>
+<li><p>activity_alter_dialog.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.AlertDialogActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=&quot;@+id/btn_pop_alert_dialog&quot;</span><br><span class="line">        android:layout_marginTop=&quot;30dp&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;弹出AlertDialog&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>AlertDialogActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AlertDialog;</span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.DialogInterface;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class AlertDialogActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_alter_dialog);</span><br><span class="line">        findViewById(R.id.btn_pop_alert_dialog).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                AlertDialog.Builder builder = new AlertDialog.Builder(AlertDialogActivity.this);</span><br><span class="line">                //设置标题</span><br><span class="line">                builder.setTitle(&quot;Demo&quot;);</span><br><span class="line">                //设置显示的消息</span><br><span class="line">                builder.setMessage(&quot;我也不知道发生了什么&quot;);</span><br><span class="line">                //设置肯定的按钮和监听器</span><br><span class="line">                builder.setPositiveButton(&quot;好的&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                        Toast.makeText(AlertDialogActivity.this, &quot;你点击了好的&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                //设置中立的按钮和监听器</span><br><span class="line">                builder.setNeutralButton(&quot;中立&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                        Toast.makeText(AlertDialogActivity.this, &quot;你点击了中立&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                //设置否定的按钮和监听器</span><br><span class="line">                builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                        Toast.makeText(AlertDialogActivity.this, &quot;你点击了取消&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                //构造AlertDialog</span><br><span class="line">                AlertDialog alertDialog = builder.create();</span><br><span class="line">                //显示AlertDialog</span><br><span class="line">                alertDialog.show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/11/Android中AlertDialog的使用/" data-id="ck31au5k50009wwlaqjvwn2xm"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android向上一个Activity返回参数" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -132,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/11/Android向上一个Activity返回参数/" data-id="ck2wnc66y000soslady3c2lyz"
+      <a data-url="https://xinghailiao.github.io/2019/08/11/Android向上一个Activity返回参数/" data-id="ck31au5ky000qwwlai49crdc8"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -219,82 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/10/Android向下一个Activity传递参数/" data-id="ck2wnc66z000uosla7a47vqhv"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android基础控件AutoCompleteTextView的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/09/Android基础控件AutoCompleteTextView的使用/">Android基础控件AutoCompleteTextView的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/09/Android基础控件AutoCompleteTextView的使用/" class="article-date">
-  <time datetime="2019-08-09T08:52:03.000Z" itemprop="datePublished">2019-08-09</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>AutoCompleteTextView有点像EditText和Spinner的组合。所以使用AutoCompleteTextView和使用Spinner差不多，用ArrayAdapter即可。如果对ArrayAdapter还不了解，可以参考<a href="https://blog.csdn.net/weixin_43219615/article/details/98878291" target="_blank" rel="noopener">Spinner的使用</a>。<br><img src="https://img-blog.csdnimg.cn/20190809164509840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="显示效果"><br><img src="https://img-blog.csdnimg.cn/20190809164716742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="xml属性"></p>
-<h2 id="2-简单使用"><a href="#2-简单使用" class="headerlink" title="2.简单使用"></a>2.简单使用</h2><ol>
-<li><p>item_dropdown.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;TextView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;40dp&quot;</span><br><span class="line">    android:id=&quot;@+id/tv_week&quot;</span><br><span class="line">    android:singleLine=&quot;true&quot;</span><br><span class="line">    android:gravity=&quot;center&quot;</span><br><span class="line">    android:textSize=&quot;18sp&quot;</span><br><span class="line">    android:textColor=&quot;#000000&quot;&gt;</span><br><span class="line">&lt;/TextView&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>activity_auto_complete_text_view.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.AutoCompleteTextViewActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;AutoCompleteTextView</span><br><span class="line">        android:id=&quot;@+id/auto_tv_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:completionThreshold=&quot;1&quot;</span><br><span class="line">        android:completionHint=&quot;相关词语&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>AutoCompleteTextViewActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.ArrayAdapter;</span><br><span class="line">import android.widget.AutoCompleteTextView;</span><br><span class="line"></span><br><span class="line">public class AutoCompleteTextViewActivity extends AppCompatActivity &#123;</span><br><span class="line">    AutoCompleteTextView autoCompleteTextViewDemo;</span><br><span class="line">    private String[] mStrs = &#123;&quot;好&quot;, &quot;不好&quot;, &quot;好多了&quot;, &quot;你好&quot;, &quot;不知道&quot;, &quot;不管我的事啊&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_auto_complete_text_view);</span><br><span class="line">        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;&gt;(AutoCompleteTextViewActivity.this, R.layout.item_dropdown, mStrs);</span><br><span class="line">        autoCompleteTextViewDemo = findViewById(R.id.auto_tv_demo);</span><br><span class="line">        autoCompleteTextViewDemo.setAdapter(adapter);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/09/Android基础控件AutoCompleteTextView的使用/" data-id="ck2wnc674000yoslao9add96p"
+      <a data-url="https://xinghailiao.github.io/2019/08/10/Android向下一个Activity传递参数/" data-id="ck31au5kz000swwla95vg87jx"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -317,7 +317,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/14/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/16/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/14/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/16/">下一页</a>
     </nav>
   
 </section>

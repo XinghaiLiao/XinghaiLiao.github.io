@@ -61,6 +61,78 @@
       
         
 
+<article id="post-TabLayout搭配ViewPager" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/10/24/TabLayout搭配ViewPager/">TabLayout搭配ViewPager</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/10/24/TabLayout搭配ViewPager/" class="article-date">
+  <time datetime="2019-10-24T06:05:54.000Z" itemprop="datePublished">2019-10-24</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>TabLayout搭配ViewPager是一个固定的套路，可以轻易实现下面这种效果。<br><img src="https://img-blog.csdnimg.cn/20191024140509620.png#pic_center" alt="demo图片"></p>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><ol>
+<li><p>xml中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.google.android.material.tabs.TabLayout</span><br><span class="line">	android:id=&quot;@+id/tab_choose&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;40dp&quot;/&gt;</span><br><span class="line">&lt;androidx.viewpager.widget.ViewPager</span><br><span class="line">	android:id=&quot;@+id/vp_content&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;100dp&quot;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主要代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//初始化</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;年级&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;科目&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;时间&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;其他&quot;));</span><br><span class="line">/*加监听主要实现以下几个方法*/</span><br><span class="line">@Override//被选中</span><br><span class="line">public void onTabSelected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br><span class="line">@Override//取消选中</span><br><span class="line">public void onTabUnselected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br><span class="line">@Override//被重新选择</span><br><span class="line">public void onTabReselected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/10/24/TabLayout搭配ViewPager/" data-id="ck31au5m4001ywwla79ittxds"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-20191024随笔" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -105,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/24/20191024随笔/" data-id="ck2wnc6570000oslae06qrdgs"
+      <a data-url="https://xinghailiao.github.io/2019/10/24/20191024随笔/" data-id="ck31au5jt0004wwlai3hs1sx0"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
@@ -177,76 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/22/Handler与Message实现分线程与UI线程通讯/" data-id="ck2wnc67q001moslaejfxtk3s"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-快速学会Android Studio中的Logcat的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/10/18/快速学会Android Studio中的Logcat的使用/">快速学会Android Studio中的Logcat的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/10/18/快速学会Android Studio中的Logcat的使用/" class="article-date">
-  <time datetime="2019-10-18T11:59:16.000Z" itemprop="datePublished">2019-10-18</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p>学会使用Logcat可以让我们快速调试或测试Android程序，下面是一个快速入门教程。</p>
-<ol>
-<li>快速一览<br><img src="https://img-blog.csdnimg.cn/20191018194841423.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="一览图"></li>
-<li>使用<br>如果我们想要打印一条Log，直接调用Log.d(String TAG, String message)函数即可（其中d代表debug模式，还有e、i等同理）。其中TAG代表输出Log的标签，message即输出的消息。过滤框中输入对应的TAG并选择合理的模式即可快速查看我们想要看的Log（如我们想看下面的Log，即可选择Debug模式并且在过滤框中输入MyTag来过滤掉杂乱信息来快速找到）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private static final String TAG = &quot;MyTag&quot;;</span><br><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">	super.onCreate(savedInstanceState);</span><br><span class="line">	setContentView(R.layout.activity_main);</span><br><span class="line">	Log.d(TAG, &quot;onCreate函数被调用&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/18/快速学会Android Studio中的Logcat的使用/" data-id="ck2wnc69h0037oslabe1ljvdq"
+      <a data-url="https://xinghailiao.github.io/2019/10/22/Handler与Message实现分线程与UI线程通讯/" data-id="ck31au5lt001kwwla3r4nzk3s"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -269,7 +272,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
     </nav>
   
 </section>
