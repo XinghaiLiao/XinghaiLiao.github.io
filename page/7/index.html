@@ -61,6 +61,78 @@
       
         
 
+<article id="post-使用TabActivity创建底部导航栏模板" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/29/使用TabActivity创建底部导航栏模板/">使用TabActivity创建底部导航栏模板</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/29/使用TabActivity创建底部导航栏模板/" class="article-date">
+  <time datetime="2019-08-29T10:24:13.000Z" itemprop="datePublished">2019-08-29</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p>使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。<br><img src="https://img-blog.csdnimg.cn/20190829181911149.png" alt="底部导航栏图片"></p>
+<ol>
+<li><p>xml文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;!--根布局必须是TabHost id必须为@android:id/tabhost--&gt;</span><br><span class="line">&lt;TabHost xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:id=&quot;@android:id/tabhost&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RelativeLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--页面布局都挂在这个框架下--&gt;</span><br><span class="line">        &lt;FrameLayout</span><br><span class="line">            android:id=&quot;@android:id/tabcontent&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:layout_marginBottom=&quot;@dimen/tab_bar_height&quot;/&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!--id必须为@android:id/tabs--&gt;</span><br><span class="line">        &lt;TabWidget</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:visibility=&quot;gone&quot;</span><br><span class="line">            android:id=&quot;@android:id/tabs&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--实际的底部标签--&gt;</span><br><span class="line">        &lt;LinearLayout</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;@dimen/tab_bar_height&quot;</span><br><span class="line">            android:layout_alignParentBottom=&quot;true&quot;</span><br><span class="line">            android:gravity=&quot;bottom&quot;</span><br><span class="line">            android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第一个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_first&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">                </span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_first_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_first&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第二个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_second&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_second_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_second&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!--第三个标签--&gt;</span><br><span class="line">            &lt;LinearLayout</span><br><span class="line">                android:id=&quot;@+id/ll_third&quot;</span><br><span class="line">                android:layout_width=&quot;0dp&quot;</span><br><span class="line">                android:layout_height=&quot;match_parent&quot;</span><br><span class="line">                android:layout_weight=&quot;1&quot;</span><br><span class="line">                android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">                &lt;TextView</span><br><span class="line">                    style=&quot;@style/TabButton&quot;</span><br><span class="line">                    android:drawableTop=&quot;@drawable/tab_third_selector&quot;</span><br><span class="line">                    android:text=&quot;@string/tab_third&quot;/&gt;</span><br><span class="line">            &lt;/LinearLayout&gt;</span><br><span class="line">        &lt;/LinearLayout&gt;</span><br><span class="line">    &lt;/RelativeLayout&gt;</span><br><span class="line">&lt;/TabHost&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.group;</span><br><span class="line"></span><br><span class="line">import android.app.TabActivity;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line">import android.widget.TabHost;</span><br><span class="line"></span><br><span class="line">@SuppressWarnings(&quot;all&quot;)</span><br><span class="line">public class TabActivityDemo extends TabActivity implements View.OnClickListener &#123;</span><br><span class="line">    private String TAG = &quot;TabActivityDemo&quot;;</span><br><span class="line">    private TabHost tabHost;</span><br><span class="line">    private Bundle bundle = new Bundle();</span><br><span class="line">    private LinearLayout ll_first, ll_second, ll_third;</span><br><span class="line">    private String FIRST_TAG = &quot;first&quot;;//第一个标签的标识串</span><br><span class="line">    private String SECOND_TAG = &quot;second&quot;;//第二个标签的标识串</span><br><span class="line">    private String THIRD_TAG = &quot;third&quot;;//第三个标签的标识串</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        bundle.putString(&quot;tag&quot;, TAG);</span><br><span class="line">        setContentView(R.layout.activity_tab_demo);</span><br><span class="line">        ll_first = findViewById(R.id.ll_first);</span><br><span class="line">        ll_second = findViewById(R.id.ll_second);</span><br><span class="line">        ll_third = findViewById(R.id.ll_third);</span><br><span class="line">        ll_first.setOnClickListener(this);</span><br><span class="line">        ll_second.setOnClickListener(this);</span><br><span class="line">        ll_third.setOnClickListener(this);</span><br><span class="line">        //获取tabhost</span><br><span class="line">        tabHost  = this.getTabHost();</span><br><span class="line">        //添加第一个标签</span><br><span class="line">        tabHost.addTab(getNewTab(FIRST_TAG, R.string.tab_first, R.drawable.tab_first_selector, TabFirstActivity.class));</span><br><span class="line">        tabHost.addTab(getNewTab(SECOND_TAG, R.string.tab_second, R.drawable.tab_first_selector, TabSecondActivity.class));</span><br><span class="line">        tabHost.addTab(getNewTab(THIRD_TAG, R.string.tab_third, R.drawable.tab_first_selector, TabThirdActivity.class));</span><br><span class="line">        changeContainerView(ll_first);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View view) &#123;</span><br><span class="line">        changeContainerView(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private TabHost.TabSpec getNewTab(String spec, int label, int icon, Class&lt;?&gt; cls) &#123;</span><br><span class="line">        Intent intent = new Intent(this, cls).putExtras(bundle);</span><br><span class="line">        return tabHost.newTabSpec(spec).setContent(intent).setIndicator(this.getString(label), this.getResources().getDrawable(icon));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void changeContainerView(View view) &#123;</span><br><span class="line">        ll_first.setSelected(false);</span><br><span class="line">        ll_second.setSelected(false);</span><br><span class="line">        ll_third.setSelected(false);</span><br><span class="line">        view.setSelected(true);</span><br><span class="line">        if (view.getId() == R.id.ll_first) &#123;</span><br><span class="line">            //根据标签设置</span><br><span class="line">            tabHost.setCurrentTabByTag(FIRST_TAG);</span><br><span class="line">        &#125; else if(view.getId() == R.id.ll_second) &#123;</span><br><span class="line">            tabHost.setCurrentTabByTag(SECOND_TAG);</span><br><span class="line">        &#125; else if(view.getId() == R.id.ll_third) &#123;</span><br><span class="line">            tabHost.setCurrentTabByTag(THIRD_TAG);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/29/使用TabActivity创建底部导航栏模板/" data-id="ck333e9zm002r40laeeiaoton"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -110,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is 'android.R.id.tabhost'/" data-id="ck31b846x000l48ladvzixes4"
+      <a data-url="https://xinghailiao.github.io/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is 'android.R.id.tabhost'/" data-id="ck333e9x0000f40lalqc3h3zg"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -182,79 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/23/Android通过remoteViews自定义通知/" data-id="ck31b847m001e48labhkgas4q"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android控件ProgressBar的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/23/Android控件ProgressBar的使用/">Android控件ProgressBar的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/23/Android控件ProgressBar的使用/" class="article-date">
-  <time datetime="2019-08-23T10:54:31.000Z" itemprop="datePublished">2019-08-23</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>ProgressBar可以显示进度。图一中的黑色部分就是一个ProgressBar，图二中的是进度40%的ProgressBar（<del>示例可能有点丑</del> ）。<br><img src="https://img-blog.csdnimg.cn/20190823183038870.png" alt="图一"><br><img src="https://img-blog.csdnimg.cn/20190823183617263.png" alt="图二"><br>ProgressBar的xml常用属性：<br>max：指定进度条最大值。<br>progress：指定进度条默认值，代码中可以通过setProgress()方法来设置进度。<br>progressDrawable：指定进度的图片，不能用一般图片，要用层次图形，参见后面的例子。<br>style：指定进度条的形状样式。progressBarStyleHorizontal表示水平形状，progressBarStyle表示圆圈形状。如果样式为progressBarStyle圆圈形状，最大值与进度值的设置就会失效。</p>
-<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><ol>
-<li><p>下面是层次图形的一个例子。第一个item指定背景，这里指定了一个圆角的shape，差不多是黑色（如上图一）。第二个item指定显示进度的颜色或者图片。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;layer-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;item android:id=&quot;@android:id/background&quot;&gt;</span><br><span class="line">        &lt;shape&gt;</span><br><span class="line">            &lt;solid android:color=&quot;#282929&quot;/&gt;</span><br><span class="line">            &lt;corners android:radius=&quot;5dp&quot;/&gt;</span><br><span class="line">        &lt;/shape&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">    &lt;item android:id=&quot;@android:id/progress&quot;&gt;</span><br><span class="line">        &lt;clip&gt;</span><br><span class="line">            &lt;color android:color=&quot;#FA9601&quot;/&gt;</span><br><span class="line">        &lt;/clip&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">&lt;/layer-list&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下面是使用ProgressBar的xml代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;ProgressBar</span><br><span class="line">        android:id=&quot;@+id/pb_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;20dp&quot;</span><br><span class="line">        android:max=&quot;100&quot;</span><br><span class="line">        android:progress=&quot;0&quot;</span><br><span class="line">        android:progressDrawable=&quot;@drawable/custom_process_bar_yellow&quot;</span><br><span class="line">        style=&quot;?android:progressBarStyleHorizontal&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/23/Android控件ProgressBar的使用/" data-id="ck31b847f001448lanlt2n4y5"
+      <a data-url="https://xinghailiao.github.io/2019/08/23/Android通过remoteViews自定义通知/" data-id="ck333e9y3001b40la9lhr9bc8"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>

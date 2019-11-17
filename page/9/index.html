@@ -61,6 +61,122 @@
       
         
 
+<article id="post-《C Primer Plus》（第六版）答案（6.16）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/21/《C Primer Plus》（第六版）答案（6.16）/">《C Primer Plus》（第六版）答案（6.16）</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/21/《C Primer Plus》（第六版）答案（6.16）/" class="article-date">
+  <time datetime="2019-08-21T04:27:31.000Z" itemprop="datePublished">2019-08-21</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <p><strong>为使用《C Primer Plus》学习C的初学者准备的。有些题目可能不一样，请自己核对。</strong></p>
+<ol>
+<li><p>编写一个程序，创建一个包含26个字母的数组，并在其中存储26个小写字母。然后打印数组的所有内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char c[26];</span><br><span class="line">	int cnt = 0;</span><br><span class="line">	</span><br><span class="line">	/*C99支持for循环内定义变量 如果报错就把变量声明提到外面*/</span><br><span class="line">	for(char i = &apos;a&apos;; i &lt;= &apos;z&apos;; i++) &#123;</span><br><span class="line">		c[cnt++] = i;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for(int i = 0; i &lt; cnt; i++) &#123;</span><br><span class="line">		printf(&quot;%c &quot;, c[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用嵌套循环，按下面的格式打印字符：<br><img src="https://img-blog.csdnimg.cn/20190821105501290.png#pic_center" alt="格式图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	/*第一个循环控制打印的行数 第二个循环控制每行的输出*/</span><br><span class="line">	for(int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">		for(int j = 0; j &lt; i + 1; j++) &#123;</span><br><span class="line">			printf(&quot;$&quot;); </span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用嵌套循环，按照下面的格式打印字母：<br><img src="https://img-blog.csdnimg.cn/20190821105802837.png#pic_center" alt="格式图片"><br>请注意：如果您的系统不使用ASCII或其他以数字顺序编码的码，您可以把一个字符数组初始化为字母表中的字母：<br>　　  char lets[26]=”ABCDEFGHIJKLMNOPQRSTUVWXYZ”;<br>　　然后就可以使用数组索引来选用单个的字母，例如lets[0]是’A’，等等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	/*第一个循环控制行数 第二个循环控制输出 可以观察每行的输出和行数的关系*/</span><br><span class="line">	for(int i = 1; i &lt;= 6; i++) &#123;</span><br><span class="line">		for(int j = &apos;F&apos;; j &gt; &apos;F&apos; - i; j--) &#123;</span><br><span class="line">			printf(&quot;%c&quot;, j);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用循环嵌套，按照下面的格式打印字母：<br><img src="https://img-blog.csdnimg.cn/20190821110155694.png#pic_center" alt="格式图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char ch=&apos;A&apos;;</span><br><span class="line">	</span><br><span class="line">	for(int i=0; i &lt; 6; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for(int j=0; j &lt;= i; j++)</span><br><span class="line">			printf(&quot;%c&quot;, ch++);</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>让程序要求用户输入一个大写字母，使用嵌套循环产生像下面这样的金字塔图案：<br><img src="https://img-blog.csdnimg.cn/20190821114228690.png#pic_center" alt="格式图片"><br>　　这种图案要扩展到用户输入的字符。例如，前面的图案是在输入E时需要产生的。提示：使用一个外部循环来处理行，在每一行中使用三个内部循环，一个处理空格，一个以升序打印字母，一个以降序打印字母。如果您的系统不使用ASCII或类似的以严格数字顺序表示字母的编码，请参见在编程练习3中给出的建议。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char c;</span><br><span class="line">	</span><br><span class="line">	scanf(&quot;%c&quot;, &amp;c);</span><br><span class="line">	for(int i = &apos;A&apos;; i &lt;= c; i++) &#123;</span><br><span class="line">		//打印空格 </span><br><span class="line">		for(int j = i; j &lt; c; j++) &#123;</span><br><span class="line">			printf(&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		//升序打印字母 </span><br><span class="line">		for(int j = &apos;A&apos;; j &lt;= i; j++) &#123;</span><br><span class="line">			printf(&quot;%c&quot;, j);</span><br><span class="line">		&#125;</span><br><span class="line">		//降序打印字母 </span><br><span class="line">		for(int j = i-1; j &gt;= &apos;A&apos;; j--) &#123;</span><br><span class="line">			printf(&quot;%c&quot;, j);</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序打印一个表，表的每一行都给出一个整数、它的平方以及它的立方。要求用户输入表的上限与下限。使用一个for循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int i_max;</span><br><span class="line">	int i_min;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入上下限：&quot;);</span><br><span class="line">	scanf(&quot;%d%d&quot;, &amp;i_max, &amp;i_min);</span><br><span class="line">	for(int i=i_min; i&lt;=i_max; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%d %d %d\n&quot;,i, i*i, i*i*i);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序把一个单词读入一个字符数组，然后反向打印出这个词。提示：使用strlen()(第4章)计算数组中最后一个字符的索引。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char word[40];</span><br><span class="line">	int limit;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter a word:&quot;);</span><br><span class="line">	scanf(&quot;%s&quot;,&amp;word);</span><br><span class="line">	limit = strlen(word);</span><br><span class="line">	for(int i = limit-1; i&gt;=0; i--)</span><br><span class="line">		printf(&quot;%c&quot;, word[i]);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，要求输入两个浮点数，然后打印出用二者的差值除以二者的乘积所得的结果。在用户键入非数字的输入之前程序循环处理每对输入值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	double one,two;</span><br><span class="line">	printf(&quot;Enter q to quit:&quot;); </span><br><span class="line">	</span><br><span class="line">	while(scanf(&quot;%lf%lf&quot;, &amp;one, &amp;two) == 2)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%-16f&quot;, (one-two) / (one*two));</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;Done!&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对练习8进行修改，让它使用一个函数来返回计算值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">double f(double one, double two) &#123;</span><br><span class="line">	return (one-two) / (one*two);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	double one,two;</span><br><span class="line">	printf(&quot;Enter q to quit:&quot;); </span><br><span class="line">	</span><br><span class="line">	while(scanf(&quot;%lf%lf&quot;, &amp;one, &amp;two) == 2)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%-16f&quot;, f(one, two));</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;Done!&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，要求用户输入下限整数和一个上限整数，然后，依次计算从下限到上限的每一个整数的平方的加和，最后显示结果。程序将不断提示用户输入下限整数和上限整数并显示出答案，直到用户输入的上限整数等于或小于下限整数为止。程序运行的结果示例应该如下所示：<br><em>Enter lower and upper integer limits:5 9<br>The sums of the squares from 25 to 81 is 255<br>Enter next set of limits:3 25<br>The sums of the squares from 9 to 625 is 5520<br>Enter next set of limits:5 5<br>Done</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int lower, upper;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter lower and upper integer limits:&quot;);</span><br><span class="line">	scanf(&quot;%d %d&quot;, &amp;lower, &amp;upper);</span><br><span class="line">	</span><br><span class="line">	while(upper &gt; lower) &#123;</span><br><span class="line">		int sum = 0;</span><br><span class="line">		for(int i = lower; i &lt;= upper; i++) &#123;</span><br><span class="line">			sum += i * i;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;The sums of the squares from %d to %d is %d\n&quot;, lower*lower, upper*upper, sum);</span><br><span class="line">		printf(&quot;Enter next set of limits:&quot;);</span><br><span class="line">		scanf(&quot;%d %d&quot;, &amp;lower, &amp;upper);</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	printf(&quot;Done&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序把8个整数读入一个数组中，然后反向输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int arr[8];</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入八个整数：\n&quot;);</span><br><span class="line">	for(int i = 0; i &lt;= 7; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i = 7; i &gt;= 0; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%d &quot;, arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>考虑这两个无限序列：<br>　　1.0+1.0/2.0+1.0/3.0+1.0/4.0+…<br>　　1.0-1.0/2.0+1.0/3.0-1.0/4.0+…<br>　　编写一个程序来计算这两个序列不断变化的总和，直到达到某个次数。让用户交互地输入这个次数。看看在20次、100次和500次之后的总和。是否每个序列都看上去要收敛于某个值？提示：奇数个-1相乘的值为-1，而偶数个-1相乘的值为1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">double series1(int);</span><br><span class="line">double series2(int);</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int count;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入要计算的次数：\n&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;count);</span><br><span class="line">	printf(&quot;Result:\n%lf\t%lf\t%lf+%lf=%lf&quot;, series1(count), series2(count), series1(count), series2(count), series1(count)+series2(count));</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">double series1(int count)</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	double sum = 0;</span><br><span class="line">	double temp;</span><br><span class="line">	</span><br><span class="line">	for(i = 1; i &lt;= count; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		temp = 1.0 / i;</span><br><span class="line">		sum += temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br><span class="line">double series2(int count)</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	double sum = 1;</span><br><span class="line">	double temp = -1;</span><br><span class="line">	</span><br><span class="line">	for(i = 2; i &lt;= count; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		temp = temp / i;</span><br><span class="line">		sum += temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，创建一个8个元素的int数组，并且把元素分别设置为2的前8次幂，然后打印出它们的值。使用for循环来设置值；为了变化，使用do while循环来显示这些值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int a[8];</span><br><span class="line">	</span><br><span class="line">	for(int i = 0; i &lt; 8; i++) &#123;</span><br><span class="line">		a[i] = pow(2, i+1);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	int i = 0;</span><br><span class="line">	do &#123;</span><br><span class="line">		printf(&quot;%d &quot;, a[i]);</span><br><span class="line">		i++;</span><br><span class="line">	&#125; while(i &lt; 8);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，创建两个8元素的double数组，使用一个循环来让用户键入第一个数组的8个元素的值。程序把第二个数组的元素设置为第一个数组元素的累积和。例如，第二个数组的第4个元素应该等于第一个数组的前4个元素的和，第二个数组的第5个元素应该等于第一个数组的前5个元素的和(使用嵌套循环可以做到这一点。不过利用第二个数组的第5个元素等于第二个数组的第4个元素加上第一个数组的第5个元素这一事实，可以避免嵌套而只使用单个循环来完成这个任务)。最后，使用一个循环来显示两个数组中的内容，第一个数组在一行中显示，而第二个数组中的每个元素在第一个数组的对应元素之下进行显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	double a[8];</span><br><span class="line">	double _a[8];</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入八个数字：\n&quot;);</span><br><span class="line">	for(int i = 0; i &lt;= 7; i++)</span><br><span class="line">		scanf(&quot;%lf&quot;,&amp;a[i]);</span><br><span class="line">		</span><br><span class="line">	for(int i = 0; i &lt;= 7; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for(int j = 0; j &lt;= i; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			_a[i] += a[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	for(int i = 0; i &lt;= 7; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%.2f &quot;,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;\n&quot;);</span><br><span class="line">	</span><br><span class="line">	for(int i = 0; i &lt;= 7; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%.2f &quot;,_a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序读入一行输入，然后反向打印该行。您可以把输入存储在一个char数组中；假定该行不超过255个字符。回忆一下，您可以使用具有%c说明符的scanf()从输入中一次读入一个字符，而且当您按下回车键时会产生换行字符(\n)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	char arr[256];</span><br><span class="line">	char temp;</span><br><span class="line">	int i = 0;</span><br><span class="line">	int maxLength;</span><br><span class="line">	</span><br><span class="line">	while((temp = getchar()) != &apos;\n&apos; &amp;&amp; i &lt; 256)</span><br><span class="line">	&#123;</span><br><span class="line">		arr[i] = temp;	</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	maxLength = strlen(arr);</span><br><span class="line">	</span><br><span class="line">	for(i = maxLength -1; i &gt;= 0; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%c&quot;,arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	putchar(temp);</span><br><span class="line">	</span><br><span class="line">	return 0;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Daphne以10%的单利息投资了100美元(也就是说，每年投资赢得的利息等于原始投资的10%)。Deirdre则以每年5%的复合利息投资了100美元(也就是说，利息是当前结余的5%，其中包括以前的利息)。编写一个程序，计算需要多少年Deirdre的投资额才会超过Daphne，并且显示出到那时两个人的投资额。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	double daphne = 100;</span><br><span class="line">	double deidre = 100;</span><br><span class="line">	int year = 0;</span><br><span class="line">	double RATE_SIMP = .1;</span><br><span class="line">	double RATE_COMP  = .05;</span><br><span class="line">	double INIT_AMT = 100;</span><br><span class="line">	</span><br><span class="line">	while(deidre &lt;= daphne)</span><br><span class="line">	&#123;</span><br><span class="line">		daphne += RATE_SIMP * INIT_AMT;</span><br><span class="line">		deidre += RATE_COMP * deidre;</span><br><span class="line">		year++;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;Investment values after %d years:\n&quot;, year);</span><br><span class="line">	printf(&quot;Daphne: %.2f\tDeidre: %.2f&quot;, daphne, deidre);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Chuckie Lucky赢了100万美元，他把它存入一个每年赢得8%的帐户。在每年的最后一天，Chuckie取出10万美元。编写一个程序，计算需要多少年Chuckie就会清空他的帐户。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	double d = 100;</span><br><span class="line">	int year = 0;</span><br><span class="line">	</span><br><span class="line">	while(d &gt; 0) &#123;</span><br><span class="line">		d += d * 0.08;</span><br><span class="line">		d -= 10;</span><br><span class="line">		year++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;%d years later, Chuckie Lucky whill do that.&quot;, year); </span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（6.16）/" data-id="ck333ea6p004140laylkl769a"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-《C Primer Plus》（第六版）答案（5.11）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -136,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（5.11）/" data-id="ck31b848w002l48labqgfj87z"
+      <a data-url="https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（5.11）/" data-id="ck333e9zp002t40lanz9h9fxj"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
@@ -230,97 +346,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/" data-id="ck31b848t002j48lalohedjbj"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-《C Primer Plus》（第六版）答案（3.11）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/">《C Primer Plus》（第六版）答案（3.11）</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" class="article-date">
-  <time datetime="2019-08-20T11:58:41.000Z" itemprop="datePublished">2019-08-20</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
-<ol>
-<li><p>通过测试（编写有问题的程序）观察系统如何处理整数上溢、浮点数上溢和浮点数下溢的情况。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*32位的有符号整型的上界是2^32-1(4294967295) 再加一就溢出了（想要深入了解可以看看计算机组成原理）*/</span><br><span class="line">	int a = 4294967295;</span><br><span class="line">	a = a + 1;</span><br><span class="line">	printf(&quot;%d\n&quot;, a);</span><br><span class="line">	</span><br><span class="line">	/*10e100次方上溢 0.00000000012下溢*/</span><br><span class="line">	float b = 10e100;</span><br><span class="line">	printf(&quot;%f&quot;, b);</span><br><span class="line">	b = 0.00000000012; </span><br><span class="line">	printf(&quot; %f&quot;, b); </span><br><span class="line">	 </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，要求提示输入ASCII码，然后打印输入的字符。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	char c;</span><br><span class="line">	printf(&quot;Input a number:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;c);</span><br><span class="line">	//%c表示字符格式输出 </span><br><span class="line">	printf(&quot;%d in ASCII is %c.&quot;, c, c);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，发出一声警报。然后打印下面的文本。<br><img src="https://img-blog.csdnimg.cn/20190820191957869.png#pic_center" alt="文本图片"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*转义字符\a代表警报*/</span><br><span class="line">	printf(&quot;\a&quot;);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Started by the sudden sound, Sally shouted,\n&quot;);</span><br><span class="line">	/*想要输出&quot;得使用转义字符*/ </span><br><span class="line">	printf(&quot;\&quot;By the Great Pumpkin, what was that!\&quot;&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，读取一个浮点数，先打印成小数点形式，再打印成指数形式。然后，如果系统支持，再打印成p计数法（十六进制计数法）。按以下格式输出（实际显示指数位数可能因系统而异）。<br><img src="https://img-blog.csdnimg.cn/20190820192219101.png#pic_center" alt="输出格式"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter a float-point value:&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;fixed-point notation:%f\n&quot;, f);</span><br><span class="line">	printf(&quot;exponential notation:%e\n&quot;, f);</span><br><span class="line">	printf(&quot;p notation:%a\n&quot;, f);</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一年大约有3.156*10^7^秒。编写一个程序，提示用户输出年龄，然后输出对应的秒数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*用float可能会溢出（我没多想，你可以试试）*/ </span><br><span class="line">	double d = 3.165e7;</span><br><span class="line">	int age;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Input your age:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;age);</span><br><span class="line">	</span><br><span class="line">	/*整型和浮点型进行运算会自动转成浮点型*/</span><br><span class="line">	printf(&quot;The result is %.0lfs.&quot;, age*d);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>1个水分子的质量约为3.0*10^-23^克。1夸脱水大约是950克。编写一个程序，提示用户输入水的夸脱数，并显示水分子的数量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	double d = 3.0e-23;</span><br><span class="line">	double a;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入水的夸脱数：&quot;);</span><br><span class="line">	scanf(&quot;%lf&quot;, &amp;a);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;%lf夸脱水中水分子的数量是：%.0lf&quot;, a, (a*950)/d);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>1英寸相当于2.54厘米。编写一个程序，提示用户输入身高（英寸），然后以厘米为单位显示身高。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入身高（英寸）：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;你的身高是%.2f(cm)&quot;, f*2.54);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在美国的体积测量系统中，1品脱等于2杯，一杯等于8盎司，1盎司等于2大汤勺，1大汤勺等于3茶勺。编写一个程序，提示用户输入杯数，并以品脱、盎司、汤勺、茶勺显示等价容量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入杯数：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	float pint = f / 2;//品脱 </span><br><span class="line">	float ounce = f * 8;//盎司 </span><br><span class="line">	float spoon = ounce * 2;//汤勺 </span><br><span class="line">	float s = spoon * 3;//药勺 不知道英文是什么 就这样命名吧</span><br><span class="line">	printf(&quot;品脱：%.1f	盎司：%.1f	汤勺：%.1f	药勺：%.1f&quot;, pint, ounce, spoon, s);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" data-id="ck31b848p002h48latd79p113"
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/" data-id="ck333e9zd002j40lahewpe69w"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>

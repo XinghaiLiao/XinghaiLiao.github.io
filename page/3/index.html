@@ -61,6 +61,78 @@
       
         
 
+<article id="post-Handler与Message实现分线程与UI线程通讯" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/10/22/Handler与Message实现分线程与UI线程通讯/">Handler与Message实现分线程与UI线程通讯</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/10/22/Handler与Message实现分线程与UI线程通讯/" class="article-date">
+  <time datetime="2019-10-22T05:20:17.000Z" itemprop="datePublished">2019-10-22</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>在Android系统中，只有主线程才能直接操作UI。分线程想更新UI或者向主线程传递消息可以利用Handler配合Message来实现。<br><img src="https://img-blog.csdnimg.cn/20191022132001291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="例子图片"><br>Message的主要参数如下图：<br><img src="https://img-blog.csdnimg.cn/20191022132234643.png#pic_center" alt="Message主要参数"><br>其中arg1和arg0可以用来返回处理的结果，obj可以用于存放消息的数据结构，what用于表示消息的作用。</p>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><ol>
+<li><p>主线程中初始化一个Handler对象，重写handleMessage方法（用于处理消息的回调）。利用收到的Message的what属性来确定要做的响应。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private Handler mHandler = new Handler() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void handleMessage(@NonNull Message msg) &#123;</span><br><span class="line">		if(msg.what == SIGNAL) &#123;</span><br><span class="line">			tv_num.setText(num + &quot;&quot;);</span><br><span class="line">			Toast.makeText(MainActivity.this, &quot;收到分线程消息：&quot;+msg.obj, Toast.LENGTH_SHORT).show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在分线程中做完了任务想更新UI时，利用Message.obtain()来获取Message的实例对象，然后再设置Message对象的what和obj来向主线程发送消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		while(true) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				Thread.sleep(1000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			Message message = Message.obtain();//obtain方法获取消息对象实例</span><br><span class="line">			message.what = SIGNAL;</span><br><span class="line">			message.obj = &quot;这是分线程向UI线程发送的消息&quot;;</span><br><span class="line">			mHandler.sendMessage(message);</span><br><span class="line">			num++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/10/22/Handler与Message实现分线程与UI线程通讯/" data-id="ck333e9yi001o40lac8eu7mlp"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-快速学会Android Studio中的Logcat的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -111,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/18/快速学会Android Studio中的Logcat的使用/" data-id="ck31b849l003548lalwj1feqj"
+      <a data-url="https://xinghailiao.github.io/2019/10/18/快速学会Android Studio中的Logcat的使用/" data-id="ck333ea73004b40lauv1wx9eq"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -176,76 +248,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/18/Android中SnackBar的的使用/" data-id="ck31b846i000a48larx1vmmop"
+      <a data-url="https://xinghailiao.github.io/2019/10/18/Android中SnackBar的的使用/" data-id="ck333e9wv000a40lauuoe9eun"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/">利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/" class="article-date">
-  <time datetime="2019-10-13T11:27:47.000Z" itemprop="datePublished">2019-10-13</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<ol>
-<li>问题描述<br>tags下本来有个javaweb，但是强迫症的我想改成JavaWeb（图片中的是后来改好的）。直接把markdown文件中的标签改了并没有用。访问的时候tags/JavaWeb报404。<br><img src="https://img-blog.csdnimg.cn/20191013192740517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="描述图片"></li>
-<li>解决方法。<br>将博客根目录下的.deploy_git.git\config文件改一下（<del>.git是隐藏文件夹，记得调一下显示隐藏文件夹</del> ），默认的忽略大小写改成false。<br><img src="https://img-blog.csdnimg.cn/20191013193224859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="解决方法图片"></li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/" data-id="ck31b849f003048lambb7fffc"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
     </footer>
 

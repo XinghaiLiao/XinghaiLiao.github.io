@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="邮箱201705500216@smail.xtu.edu.cn">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Android中ProgressDialog的使用 |
+    
+    不想吃泡面</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  
+
+<article id="post-Android中ProgressDialog的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android中ProgressDialog的使用
+    </h1>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/17/Android中ProgressDialog的使用/" class="article-date">
+  <time datetime="2019-11-17T14:22:59.063Z" itemprop="datePublished">2019-11-17</time>
+</a>
+        
+      </div>
+    
+	
+    
+      
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>&nbsp;&nbsp;ProgressDialog可以表示操作正在后台进行。如果使用的是转圈的ProgressDialog则可以配合Handler，如果是使用进度条形式的ProgressDialog则可以配合线程使用。<br><img src="https://img-blog.csdnimg.cn/20191117220902598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="转圈"><br><img src="https://img-blog.csdnimg.cn/20191117220933698.png#pic_center" alt="进度条"><br>主要方法：<br>setTitle：设置标题<br>setMessage：设置对话框消息内容<br>setIcon：设置图标<br>setProgress：设置当前进度值<br>setSecondProgress：设置当前第二进度的数值<br>setMax：数值最大进度数值<br>setProgressStyle：设置样式。有两种取值：ProgressDialog.STYLE_HORIZONTAL和ProgressDialog.STYLE_SPINNER<br>show：显示对话框<br>isShowing：判断对话框是否显示<br>dismiss：关闭对话框<br>setCanceledOnTouchOutside：设置点击对话框外是否取消对话框</p>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><ol>
+<li>转圈式配合Handler。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">progressDialog = new ProgressDialog(MainActivity.this);</span><br><span class="line">progressDialog.setTitle(&quot;请稍后&quot;);</span><br><span class="line">progressDialog.setMessage(&quot;正在努力加载中...&quot;);</span><br><span class="line">progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);</span><br><span class="line">progressDialog.setIcon(R.mipmap.ic_launcher);</span><br><span class="line">progressDialog.setCanceledOnTouchOutside(false);</span><br><span class="line">progressDialog.show();</span><br><span class="line">handler.postDelayed(closeDialog, 5000);</span><br><span class="line"></span><br><span class="line">private Runnable closeDialog = new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		f(progressDialog.isShowing()) &#123;</span><br><span class="line">			progressDialog.dismiss();</span><br><span class="line">			Toast.makeText(MainActivity.this, &quot;加载完成&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>进度条式配合多线程。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">progressDialog = new ProgressDialog(MainActivity.this);</span><br><span class="line">progressDialog.setTitle(&quot;请稍后&quot;);</span><br><span class="line">progressDialog.setMessage(&quot;正在努力加载中...&quot;); </span><br><span class="line">progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);</span><br><span class="line">progressDialog.setMax(100);</span><br><span class="line">progressDialog.setIcon(R.mipmap.ic_launcher);</span><br><span class="line">progressDialog.setCanceledOnTouchOutside(false);</span><br><span class="line">progressDialog.show();</span><br><span class="line">new freshDialog().start();</span><br><span class="line"></span><br><span class="line">private class freshDialog extends Thread &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void run() &#123;</span><br><span class="line">           for(int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">               Message message = Message.obtain();</span><br><span class="line">               message.what = 0;</span><br><span class="line">               message.arg1 = i*1;</span><br><span class="line">               handler.sendMessage(message);</span><br><span class="line">               try &#123;</span><br><span class="line">                   Thread.sleep(50);</span><br><span class="line">               &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                   e.printStackTrace();</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           handler.sendEmptyMessage(1);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">private Handler handler = new Handler() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void handleMessage(@NonNull Message msg) &#123;</span><br><span class="line">           if(msg.what == 0) &#123;</span><br><span class="line">               progressDialog.setProgress(msg.arg1);</span><br><span class="line">           &#125; else if(msg.what == 1) &#123;</span><br><span class="line">               this.post(closeDialog);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/11/17/Android中ProgressDialog的使用/" data-id="ck333e9wg000340la65dk8n6v"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/11/16/Java+coolq实现QQ机器人/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Java+coolq实现QQ机器人</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '4fd282f9adf66b177270',
+      clientSecret: 'bca3f8509570fb388d1226ffbff4502df7271c51',
+      repo: 'gitalk',
+      owner: 'XinghaiLiao',
+      admin: ['XinghaiLiao'],
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      pagerDirection: 'last'
+    })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+  
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2019 不想吃泡面</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+
+<aside class="sidebar sidebar-specter">
+  
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.jpg" alt="不想吃泡面"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">标签</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/tocbot.min.js"></script>
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script src="/js/ocean.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.5,"jsonPath":"/live2dw/assets/assets/nico.model.json"},"display":{"superSample":2,"width":100,"height":100,"position":"left","hOffset":30,"vOffset":20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.6,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
