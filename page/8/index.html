@@ -61,6 +61,78 @@
       
         
 
+<article id="post-Android通过remoteViews自定义通知" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/23/Android通过remoteViews自定义通知/">Android通过remoteViews自定义通知</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/23/Android通过remoteViews自定义通知/" class="article-date">
+  <time datetime="2019-08-23T13:27:48.000Z" itemprop="datePublished">2019-08-23</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>通过remoteViews我们可以自定义通知推送，但是remoteViews也有许多限制。remoteViews仅支持以下小部件：AnalogClock、Button、Chronometer、ImageButton、ImageView、ProgressBar、TextClock、TextView；仅支持以下布局：AdapterViewFlipper、FrameLayout、GridLayout、GridView<br>、LinearLayout、ListView、RelativeLayout、StackView<br>、ViewFlipper。<br><img src="https://img-blog.csdnimg.cn/20190823211557744.png#pic_center" alt="图片"><br><img src="https://img-blog.csdnimg.cn/201908232116291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="图片"><br>主要方法：<br>setViewVisibility：设置指定控件是否可见。<br>setViewPadding：设置指定控件的间距。<br>setTextViewText：设置指定TextView或Button控件的文字内容。<br>setTextViewTextSize：设置指定TextView或Button控件的文字大小。<br>setTextColor：设置指定TextView或Button控件的文字颜色。<br>setTextViewCompoundDrawables：设置指定TextView或Button控件的文字周围图标。<br>setImageViewResource：设置ImageView或ImgaeButton控件的资源编号。<br>setImageViewBitmap：设置ImageView或ImgaeButton控件的位图对象。<br>setChronometer：设置计时器信息。<br>setProgressBar：设置进度条信息，包括最大值与当前进度。<br>setOnClickPendingIntent：设置指定控件的点击响应动作。<br>完成RemoteViews对象的构建与设置后调用Notification对象的setContent方法，即可完成自定义通知的定义。</p>
+<h2 id="2-示例"><a href="#2-示例" class="headerlink" title="2.示例"></a>2.示例</h2><ol>
+<li><p>自定义通知的布局文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:orientation=&quot;horizontal&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:minHeight=&quot;60dp&quot;</span><br><span class="line">    &gt;</span><br><span class="line"></span><br><span class="line">    &lt;ImageView</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;</span><br><span class="line">        android:scaleType=&quot;fitCenter&quot;</span><br><span class="line">        android:src=&quot;@drawable/tt&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;5&quot;</span><br><span class="line">        android:layout_marginLeft=&quot;5dp&quot;</span><br><span class="line">        android:layout_marginRight=&quot;5dp&quot;</span><br><span class="line">        android:orientation=&quot;vertical&quot;</span><br><span class="line">        &gt;</span><br><span class="line"></span><br><span class="line">        &lt;ProgressBar</span><br><span class="line">            android:id=&quot;@+id/pb_play&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            style=&quot;?android:progressBarStyleHorizontal&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:max=&quot;100&quot;</span><br><span class="line">            android:progress=&quot;10&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_play&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:textColor=&quot;@color/black&quot;</span><br><span class="line">            android:textSize=&quot;17sp&quot;</span><br><span class="line">            /&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;</span><br><span class="line">        android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Chronometer</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;1&quot;</span><br><span class="line">            android:id=&quot;@+id/ch_play&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">            android:id=&quot;@+id/btn_play&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            android:layout_weight=&quot;2&quot;</span><br><span class="line">            android:text=&quot;暂停&quot;</span><br><span class="line">            android:textColor=&quot;@color/black&quot;</span><br><span class="line">            android:textSize=&quot;17sp&quot;/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用自定义通知的代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">private void sendCustomNotification(Context context, String song, boolean isPlay, int progress, long time) &#123;</span><br><span class="line">        Intent intent = new Intent(context, MainActivity.class);</span><br><span class="line">        PendingIntent pendingIntent = PendingIntent.getActivity(context, R.string.app_name, intent, PendingIntent.FLAG_UPDATE_CURRENT);</span><br><span class="line">        RemoteViews remoteViews = new RemoteViews(this.getPackageName(), R.layout.remote_view_demo);</span><br><span class="line"></span><br><span class="line">        if(isPlay) &#123;</span><br><span class="line">            remoteViews.setTextViewText(R.id.tv_play, &quot;正在播放&quot; + song);</span><br><span class="line">            remoteViews.setTextViewText(R.id.btn_play, &quot;暂停&quot;);</span><br><span class="line">            remoteViews.setChronometer(R.id.ch_play, time, &quot;%s&quot;, true);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            remoteViews.setTextViewText(R.id.tv_play, &quot;暂停播放&quot; + song);</span><br><span class="line">            remoteViews.setTextViewText(R.id.btn_play, &quot;播放&quot;);</span><br><span class="line">            remoteViews.setChronometer(R.id.ch_play, time, &quot;%s&quot;, false);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        remoteViews.setProgressBar(R.id.pb_play, 100, progress, false);</span><br><span class="line">        remoteViews.setOnClickPendingIntent(R.id.btn_play, pendingIntent);</span><br><span class="line">        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, &quot;message&quot;);</span><br><span class="line">        builder.setContentIntent(pendingIntent).setContent(remoteViews).setTicker(song).setSmallIcon(R.drawable.tt_s);</span><br><span class="line">        Notification notification = builder.build();</span><br><span class="line">        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line">        notificationManager.notify(1, notification);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/23/Android通过remoteViews自定义通知/" data-id="ck39j3swu001absla6998zrh3"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android控件ProgressBar的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -114,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/23/Android控件ProgressBar的使用/" data-id="ck333j38r0018v4lau3n0vabj"
+      <a data-url="https://xinghailiao.github.io/2019/08/23/Android控件ProgressBar的使用/" data-id="ck39j3sws0018bslanld756od"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -213,77 +285,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（7.12）/" data-id="ck333j3c6004fv4la7j5sd83m"
+      <a data-url="https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（7.12）/" data-id="ck39j3t0j004absla4pqa5sn0"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-为Dev-C++配置C99" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/21/为Dev-C++配置C99/">为Dev-C++配置C99</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/21/为Dev-C++配置C99/" class="article-date">
-  <time datetime="2019-08-21T04:46:11.000Z" itemprop="datePublished">2019-08-21</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p>Dev-C++默认是没有支持C99的，所以很多习惯的写法都会报错（当文件后缀是.c时）。<br><img src="https://img-blog.csdnimg.cn/20190821124143477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>配置C99：</p>
-<ol>
-<li>点击工具的编译选项。<br><img src="https://img-blog.csdnimg.cn/20190821124353528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>勾选编译时加入以下命令，填入-std=c99。<br><img src="https://img-blog.csdnimg.cn/20190821124420733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/21/为Dev-C++配置C99/" data-id="ck333j3ap002tv4las9thzes1"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小知识/">小知识</a></li></ul>
 
     </footer>
 

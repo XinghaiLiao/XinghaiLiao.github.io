@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xinghailiao.github.io/"/>
-  <updated>2019-11-17T14:26:31.126Z</updated>
+  <updated>2019-11-22T02:30:59.363Z</updated>
   <id>https://xinghailiao.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java模拟输入（Robot类模拟自动输入，最暴力的破解不准粘贴）</title>
+    <link href="https://xinghailiao.github.io/2019/11/21/Java%E6%A8%A1%E6%8B%9F%E8%BE%93%E5%85%A5%EF%BC%88Robot%E7%B1%BB%E6%A8%A1%E6%8B%9F%E8%87%AA%E5%8A%A8%E8%BE%93%E5%85%A5%EF%BC%8C%E6%9C%80%E6%9A%B4%E5%8A%9B%E7%9A%84%E7%A0%B4%E8%A7%A3%E4%B8%8D%E5%87%86%E7%B2%98%E8%B4%B4%EF%BC%89/"/>
+    <id>https://xinghailiao.github.io/2019/11/21/Java模拟输入（Robot类模拟自动输入，最暴力的破解不准粘贴）/</id>
+    <published>2019-11-21T09:53:13.000Z</published>
+    <updated>2019-11-22T02:30:59.363Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="JavaSE" scheme="https://xinghailiao.github.io/tags/JavaSE/"/>
+    
+  </entry>
   
   <entry>
     <title>Android中ProgressDialog的使用</title>
@@ -506,32 +532,6 @@
         
           &lt;hr&gt;
 &lt;p&gt;使用TabHost提示 &lt;strong&gt;Your content must have a TabHost whose id attribute is ‘android.R.id.tabhost’&lt;/strong&gt; 或者  &lt;strong&gt;Your TabHost
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Android" scheme="https://xinghailiao.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android通过remoteViews自定义通知</title>
-    <link href="https://xinghailiao.github.io/2019/08/23/Android%E9%80%9A%E8%BF%87remoteViews%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%9A%E7%9F%A5/"/>
-    <id>https://xinghailiao.github.io/2019/08/23/Android通过remoteViews自定义通知/</id>
-    <published>2019-08-23T13:27:48.000Z</published>
-    <updated>2019-10-12T05:24:33.230Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot;
         
       
     
