@@ -61,6 +61,79 @@
       
         
 
+<article id="post-Android中ProgressDialog的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/11/17/Android中ProgressDialog的使用/">Android中ProgressDialog的使用</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/17/Android中ProgressDialog的使用/" class="article-date">
+  <time datetime="2019-11-17T14:22:59.063Z" itemprop="datePublished">2019-11-17</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>&nbsp;&nbsp;ProgressDialog可以表示操作正在后台进行。如果使用的是转圈的ProgressDialog则可以配合Handler，如果是使用进度条形式的ProgressDialog则可以配合线程使用。<br><img src="https://img-blog.csdnimg.cn/20191117220902598.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="转圈"><br><img src="https://img-blog.csdnimg.cn/20191117220933698.png#pic_center" alt="进度条"><br>主要方法：<br>setTitle：设置标题<br>setMessage：设置对话框消息内容<br>setIcon：设置图标<br>setProgress：设置当前进度值<br>setSecondProgress：设置当前第二进度的数值<br>setMax：数值最大进度数值<br>setProgressStyle：设置样式。有两种取值：ProgressDialog.STYLE_HORIZONTAL和ProgressDialog.STYLE_SPINNER<br>show：显示对话框<br>isShowing：判断对话框是否显示<br>dismiss：关闭对话框<br>setCanceledOnTouchOutside：设置点击对话框外是否取消对话框</p>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><ol>
+<li>转圈式配合Handler。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">progressDialog = new ProgressDialog(MainActivity.this);</span><br><span class="line">progressDialog.setTitle(&quot;请稍后&quot;);</span><br><span class="line">progressDialog.setMessage(&quot;正在努力加载中...&quot;);</span><br><span class="line">progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);</span><br><span class="line">progressDialog.setIcon(R.mipmap.ic_launcher);</span><br><span class="line">progressDialog.setCanceledOnTouchOutside(false);</span><br><span class="line">progressDialog.show();</span><br><span class="line">handler.postDelayed(closeDialog, 5000);</span><br><span class="line"></span><br><span class="line">private Runnable closeDialog = new Runnable() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		f(progressDialog.isShowing()) &#123;</span><br><span class="line">			progressDialog.dismiss();</span><br><span class="line">			Toast.makeText(MainActivity.this, &quot;加载完成&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>进度条式配合多线程。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">progressDialog = new ProgressDialog(MainActivity.this);</span><br><span class="line">progressDialog.setTitle(&quot;请稍后&quot;);</span><br><span class="line">progressDialog.setMessage(&quot;正在努力加载中...&quot;); </span><br><span class="line">progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);</span><br><span class="line">progressDialog.setMax(100);</span><br><span class="line">progressDialog.setIcon(R.mipmap.ic_launcher);</span><br><span class="line">progressDialog.setCanceledOnTouchOutside(false);</span><br><span class="line">progressDialog.show();</span><br><span class="line">new freshDialog().start();</span><br><span class="line"></span><br><span class="line">private class freshDialog extends Thread &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void run() &#123;</span><br><span class="line">           for(int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">               Message message = Message.obtain();</span><br><span class="line">               message.what = 0;</span><br><span class="line">               message.arg1 = i*1;</span><br><span class="line">               handler.sendMessage(message);</span><br><span class="line">               try &#123;</span><br><span class="line">                   Thread.sleep(50);</span><br><span class="line">               &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                   e.printStackTrace();</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           handler.sendEmptyMessage(1);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">private Handler handler = new Handler() &#123;</span><br><span class="line">       @Override</span><br><span class="line">       public void handleMessage(@NonNull Message msg) &#123;</span><br><span class="line">           if(msg.what == 0) &#123;</span><br><span class="line">               progressDialog.setProgress(msg.arg1);</span><br><span class="line">           &#125; else if(msg.what == 1) &#123;</span><br><span class="line">               this.post(closeDialog);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/11/17/Android中ProgressDialog的使用/" data-id="ck3d31irt0016bkla2xuaa6od"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Java+coolq实现QQ机器人" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -155,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/11/16/Java+coolq实现QQ机器人/" data-id="ck39j3t030042bsla4sk3d241"
+      <a data-url="https://xinghailiao.github.io/2019/11/16/Java+coolq实现QQ机器人/" data-id="ck3d31ium0043bklarndrqxm6"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QQ-Robot/">QQ Robot</a></li></ul>
@@ -222,82 +295,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/11/01/以太网链路层帧格式分析实验/" data-id="ck39j3syd002ubslaqm56kn7e"
+      <a data-url="https://xinghailiao.github.io/2019/11/01/以太网链路层帧格式分析实验/" data-id="ck3d31itf0032bklanpqeoal2"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-TabLayout搭配ViewPager" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/10/24/TabLayout搭配ViewPager/">TabLayout搭配ViewPager</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/10/24/TabLayout搭配ViewPager/" class="article-date">
-  <time datetime="2019-10-24T06:05:54.000Z" itemprop="datePublished">2019-10-24</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>TabLayout搭配ViewPager是一个固定的套路，可以轻易实现下面这种效果。<br><img src="https://img-blog.csdnimg.cn/20191024140509620.png#pic_center" alt="demo图片"></p>
-<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h2><ol>
-<li><p>xml中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.google.android.material.tabs.TabLayout</span><br><span class="line">	android:id=&quot;@+id/tab_choose&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;40dp&quot;/&gt;</span><br><span class="line">&lt;androidx.viewpager.widget.ViewPager</span><br><span class="line">	android:id=&quot;@+id/vp_content&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;100dp&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>主要代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//初始化</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;年级&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;科目&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;时间&quot;));</span><br><span class="line">tab_choose.addTab(tab_choose.newTab().setText(&quot;其他&quot;));</span><br><span class="line">/*加监听主要实现以下几个方法*/</span><br><span class="line">@Override//被选中</span><br><span class="line">public void onTabSelected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br><span class="line">@Override//取消选中</span><br><span class="line">public void onTabUnselected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br><span class="line">@Override//被重新选择</span><br><span class="line">public void onTabReselected(TabLayout.Tab tab) &#123;</span><br><span class="line">//dosomething</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/24/TabLayout搭配ViewPager/" data-id="ck39j3sxg001xbslakbxr1gve"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 
@@ -317,7 +318,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+      <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
     </nav>
   
 </section>

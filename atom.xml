@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xinghailiao.github.io/"/>
-  <updated>2019-11-22T02:30:59.363Z</updated>
+  <updated>2019-11-24T14:12:20.595Z</updated>
   <id>https://xinghailiao.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>帮助</title>
+    <link href="https://xinghailiao.github.io/2019/11/24/%E5%B8%AE%E5%8A%A9/"/>
+    <id>https://xinghailiao.github.io/2019/11/24/帮助/</id>
+    <published>2019-11-24T14:05:47.000Z</published>
+    <updated>2019-11-24T14:12:20.595Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;手机（以桌面方式打开）或者电脑进入腾讯视频或者爱奇艺或者优酷在线视频页面。&lt;/li&gt;
+&lt;li&gt;找到你想播放的视频，打开得到URL。&lt;br&gt;&lt;a href=&quot;https://imgchr.com/i/MXeuTA&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="help" scheme="https://xinghailiao.github.io/tags/help/"/>
+    
+  </entry>
   
   <entry>
     <title>Java模拟输入（Robot类模拟自动输入，最暴力的破解不准粘贴）</title>
@@ -506,32 +534,6 @@
         
           &lt;hr&gt;
 &lt;p&gt;使用TabActivity创建底部导航栏时套用固定的框架即可，下面是一个例子的主要代码及注释。&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20190829181911149.png&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Android" scheme="https://xinghailiao.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;</title>
-    <link href="https://xinghailiao.github.io/2019/08/29/Android%E4%BD%BF%E7%94%A8TabHost%E6%97%B6%E6%8A%A5%E9%94%99Your%20content%20must%20have%20a%20TabHost%20whose%20id%20attribute%20is%20&#39;android.R.id.tabhost&#39;/"/>
-    <id>https://xinghailiao.github.io/2019/08/29/Android使用TabHost时报错Your content must have a TabHost whose id attribute is &#39;android.R.id.tabhost&#39;/</id>
-    <published>2019-08-29T03:39:34.000Z</published>
-    <updated>2019-10-12T05:15:57.138Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;p&gt;使用TabHost提示 &lt;strong&gt;Your content must have a TabHost whose id attribute is ‘android.R.id.tabhost’&lt;/strong&gt; 或者  &lt;strong&gt;Your TabHost
         
       
     

@@ -61,6 +61,100 @@
       
         
 
+<article id="post-《C Primer Plus》（第六版）答案（5.11）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/21/《C Primer Plus》（第六版）答案（5.11）/">《C Primer Plus》（第六版）答案（5.11）</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/21/《C Primer Plus》（第六版）答案（5.11）/" class="article-date">
+  <time datetime="2019-08-21T02:47:10.000Z" itemprop="datePublished">2019-08-21</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
+<ol>
+<li><p>编写一个程序，把用分钟表示的时间转换成用小时和分钟表示的时间。使用#define或const创建一个表示60的符号或const常量。通过while循环让用户重复输入值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define MIN_PER_H 60</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int min; </span><br><span class="line">	int hour;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入分钟：&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;min);</span><br><span class="line">	</span><br><span class="line">	while(min &gt;= 0) &#123;</span><br><span class="line">		//整数的除法取整 </span><br><span class="line">		hour = min / MIN_PER_H;</span><br><span class="line">		</span><br><span class="line">		printf(&quot;%d分钟是%d小时%d分钟.\n&quot;, min, hour, min - hour * MIN_PER_H);</span><br><span class="line">		</span><br><span class="line">		printf(&quot;请输入分钟：&quot;);</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;min);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入一个整数，然后打印从该数到比该数大10的所有整数（例如，用户输入5，则打印5~15的所有整数，包括5和15）。要求打印的各值之间用一个空格、制表符或者换行符分开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define MIN_PER_H 60</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int a;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入一个整数：&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;a);</span><br><span class="line">	</span><br><span class="line">	int i = 0;</span><br><span class="line">	while(i &lt;= 10) &#123;</span><br><span class="line">		printf(&quot;%d &quot;, a + i);</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入天数，然后将其转换成周数和天数。例如，用户输入18，则转换成2周4天。以下面的格式展示结果。<br><em>18 days are 2 weeks, 4 days.</em><br>通过while循环让用户重复输入天数，当用户输入一个非正数时，循环结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define DAYS_PER_WEEK 7</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int days;</span><br><span class="line">	int weeks;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入天数(小于等于0退出):&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;days);</span><br><span class="line">	</span><br><span class="line">	while(days &gt; 0) &#123;</span><br><span class="line">		weeks = days / DAYS_PER_WEEK;//周数 </span><br><span class="line">		int r = days - weeks * DAYS_PER_WEEK;//余数 </span><br><span class="line">		</span><br><span class="line">		/*使用三目运算符为了输出更人性化 比如天数大于1输出days 否则输出day*/ </span><br><span class="line">		printf(&quot;%d %s are %d %s, %d %s.\n&quot;, days, days &gt; 1? &quot;days&quot;:&quot;day&quot;, weeks, weeks &gt; 1? &quot;weeks&quot;:&quot;week&quot;, r, r &gt; 1? &quot;days&quot;:&quot;day&quot;);</span><br><span class="line">		</span><br><span class="line">		printf(&quot;请输入天数(小于等于0退出):&quot;);</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;days);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入身高（单位：厘米），并分别以厘米和英寸为单位显示该值，允许有小数部分。程序能让用户重复输入身高，知道用户输入一个非正值。<br>其示例输出如下：<br><em>Enter a height in centimeters: 182<br>182.0 cm = 5 feet, 11.7 inchs<br>Enter a height in centimeters(&lt;=0 to quit): 168.7<br>168.7 cm = 5 feet, 6.4 inchs<br>Enter a height in centimeters(&lt;=0 to quit): 0<br>bye</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#define INCH_PER_CEN 2.54</span><br><span class="line">#define FT_PER_IN 12</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	float inches;</span><br><span class="line">	int feets;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter a height in centimeters:&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	 </span><br><span class="line">	//至少循环了一次 可以使用do while</span><br><span class="line">	do &#123;</span><br><span class="line">		inches = f / INCH_PER_CEN;//英寸 </span><br><span class="line">		feets = (int)(inches / FT_PER_IN);//英尺 </span><br><span class="line">		float r = inches - feets * FT_PER_IN;//余数 </span><br><span class="line">		printf(&quot;%.1f cm = %d feet, %.1f inches\n&quot;, f, feets, r);</span><br><span class="line">		printf(&quot;Enter a height in centimeters(&lt;=0 to quit):&quot;);</span><br><span class="line">		scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	&#125; while(f &gt; 0);</span><br><span class="line"></span><br><span class="line">	printf(&quot;bye&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改程序addemup.c（程序清单5.13），你可以认为addemup.c是计算20天里赚多少钱的程序（假设第一天赚$1、第二天赚$2…….）。修改程序，使其可以与用户交互，根据用户的输入进行计算（即，用读入的一个变量来代替20）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int count=0, sum=0;</span><br><span class="line">	int n;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter the supper limit:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">	</span><br><span class="line">	//++下一次使用变量时才加一 </span><br><span class="line">	while(count++ &lt; n)</span><br><span class="line">	&#123;</span><br><span class="line">		sum = sum + count*count;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;The total is %d$&quot;, sum);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改5的程序，使其能计算平方和（可认为第一天赚$1、第二天赚$4……想想都不错）。C没有平方函数，但是可以用n * n代替平方。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int count = 0, sum = 0;</span><br><span class="line">	int n;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter the supper limit:\n&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">	</span><br><span class="line">	while(count++ &lt; n)</span><br><span class="line">	&#123;</span><br><span class="line">		sum = sum + count*count;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;The total is %d$&quot;, sum);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，提示用户输入一个double的数，并打印该数的立方。自己设计一个函数并打印立方值。main()函数要把用户输入的值传递给该函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*计算立方的函数*/</span><br><span class="line">double cube(double d) &#123;</span><br><span class="line">	return d * d * d;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	double d;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Input a num:&quot;);</span><br><span class="line">	scanf(&quot;%lf&quot;, &amp;d);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;The cube of %lf is %lf.\n&quot;, d, cube(d)); </span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，显示求模运算的结果。把用户输入的第一个整数作为求模运算符的第2个运算对象，该数在运算过程中保持不变。用户后面输入的是第1个运算对象。当用户输入一个非正值时，程序结束。其示例输出如下：<br><em>This program computes moduli.<br>Enter a integer to sever as the second operand:256<br>Now enter the first operand:438<br>438 % 256 is 182<br>Enter the next number for first operand.(&lt;=0 to quit):1234567<br>1234567 % 256 is 135<br>Enter the next number for first operand?(&lt;=0 to quit):0<br>Done</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	int s_operand, f_operand;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;This program computes moduli.\n&quot;);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter a integer to sever as the second operand:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;s_operand);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Now enter the first operand:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;f_operand);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;%d %% %d is %d\n&quot;,f_operand, s_operand, f_operand%s_operand);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter the next number for first operand.(&lt;=0 to quit):&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;f_operand);</span><br><span class="line">	</span><br><span class="line">	while(f_operand &gt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;%d %% %d is %d\n&quot;, f_operand, s_operand, f_operand%s_operand);</span><br><span class="line">		printf(&quot;Enter the next number for first operand?(&lt;=0 to quit):&quot;);</span><br><span class="line">		scanf(&quot;%d&quot;, &amp;f_operand);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;Done&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，要求用户输入一个华氏温度。程序应该读double类型的值作为温度，并把该值作为参数传递给一个用户自定义的函数Temperatures()。该函数计算摄氏温度和开氏温度，并以小数点后面两位小数的精度显示3中温度。下面是华氏温度转换成摄氏温度的公式：</p>
+</li>
+</ol>
+<p> <em>摄氏温度 = 5.0 / 9.0 * （华氏温度 - 32.0）<br> 开氏温度 = 摄氏温度 + 273.16</em><br> Temperature()函数中使用const创建温度转换中使用的变量。在main()函数中使用一个循环让用户重复输入温度，当用户输入其他非数字时，循环结束。scanf()函数返回读取数据的数量，所以如果读取数字则返回1，如果读取q则返回0.可以用==运算符将scanf()的返回值和1作比较，测试两者是否相等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">void Temperature(double);</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	double temperature;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;请输入华氏温度(q退出):&quot;);</span><br><span class="line">	while(scanf(&quot;%lf&quot;,&amp;temperature) == 1)</span><br><span class="line">	&#123;</span><br><span class="line">		Temperature(temperature);</span><br><span class="line">		printf(&quot;请输入华氏温度(q退出):\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">void Temperature(double temperature)</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;%0.2lf华氏温度 = %0.2lf摄氏温度 = %0.2lf开式温度\n&quot;, temperature, 5.0 / 9.0 * (temperature - 32.0), 5.0 / 9.0 * (temperature - 32) + 273.16);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/21/《C Primer Plus》（第六版）答案（5.11）/" data-id="ck3d31isx002hbkla4exf21ht"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-《C Primer Plus》（第六版）答案（4.8）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -136,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/" data-id="ck39j3sya002rbslaj1axfmhr"
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（4.8）/" data-id="ck3d31it3002nbkla1uggr66k"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
@@ -226,97 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" data-id="ck39j3syh002zbslatxxdbiyn"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-《C Primer Plus》（第六版）答案（2.12）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/">《C Primer Plus》（第六版）答案（2.12）</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" class="article-date">
-  <time datetime="2019-08-20T10:58:56.000Z" itemprop="datePublished">2019-08-20</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
-<ol>
-<li><p>编写一个程序，调用一次printf()函数，把你的姓名打印在一行。再调用一次printf()函数，把你的姓名分别打印在两行。然后，再调用两次printf()函数，把你的姓名打印在一行。输出应该如下图所示。<br><img src="https://img-blog.csdnimg.cn/20190820180321831.png#pic_center" alt="输出"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*调用一次printf函数，把名字打印在一行 \n是换行，也就是从另一行输出*/</span><br><span class="line">	printf(&quot;Gustav Mahler\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*调用一次printf函数，把你的名字打印在两行*/</span><br><span class="line">	printf(&quot;Gustav\nMahler\n&quot;);</span><br><span class="line">	</span><br><span class="line">	/*调用两次printf函数 把名字打印在一行 第二个printf输出的内容紧挨着第一行输出*/</span><br><span class="line">	printf(&quot;Gustav &quot;);</span><br><span class="line">	printf(&quot;Mahler&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，打印你的姓名和地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*打印地址和姓名*/</span><br><span class="line">	printf(&quot;My name is Xinghai Liao, from Changsha, China.&quot;); </span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序把你的年龄转换为天数，并显示这两个值。这里不用考虑闰年的问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">//函数声明</span><br><span class="line">int ageConvertDay(int age);</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	int age;</span><br><span class="line">	//输入年龄 </span><br><span class="line">	printf(&quot;Please enter your age:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;age);</span><br><span class="line">	</span><br><span class="line">	//ageConvertDay函数计算结果 </span><br><span class="line">	int result = ageConvertDay(age);</span><br><span class="line">	//输出结果 </span><br><span class="line">	printf(&quot;Your age is %d, the result is %d.&quot;, age, result);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125; </span><br><span class="line">/*不考虑闰年计算年龄的函数定义*/</span><br><span class="line">int ageConvertDay(int age) &#123;</span><br><span class="line">	return age*365;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，生成一下输出。除了main函数以外，该程序还要调用两个自定义函数：一个名为jolly()，用于打印前3条消息，调用一次打印一条；另外一个函数名为deny()，打印最后一条消息。<br><img src="https://img-blog.csdnimg.cn/20190820182332221.png#pic_center" alt="图片"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*函数声明*/</span><br><span class="line">void jolly();</span><br><span class="line">void deny(); </span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*调用三次jolly*/</span><br><span class="line">	jolly();</span><br><span class="line">	jolly();</span><br><span class="line">	jolly();</span><br><span class="line">	</span><br><span class="line">	/*调用deny*/ </span><br><span class="line">	deny();</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*函数定义*/</span><br><span class="line">void jolly() &#123;</span><br><span class="line">	printf(&quot;For he&apos;s a jolly good fellow!\n&quot;);	</span><br><span class="line">&#125; </span><br><span class="line">void deny() &#123;</span><br><span class="line">	printf(&quot;Which nobody can deny!\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，生成以下输出。<br><img src="https://img-blog.csdnimg.cn/20190820183140223.png#pic_center" alt="题目图片"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*函数声明*/</span><br><span class="line">void br(void);</span><br><span class="line">void ic(void);</span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*打印第一句话*/</span><br><span class="line">	br();</span><br><span class="line">	printf(&quot;, &quot;);//输出逗号 </span><br><span class="line">	ic();</span><br><span class="line">	printf(&quot;\n&quot;);//输出换行</span><br><span class="line">	</span><br><span class="line">	/*打印第二句话*/</span><br><span class="line">	ic();</span><br><span class="line">	printf(&quot;, \n&quot;);//输出逗号和换行 </span><br><span class="line">	</span><br><span class="line">	/*打印第三句话*/</span><br><span class="line">	br();</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*函数定义*/</span><br><span class="line">void br(void) &#123;</span><br><span class="line">	printf(&quot;Brazil, Russia&quot;);	</span><br><span class="line">&#125; </span><br><span class="line">void ic(void) &#123;</span><br><span class="line">	printf(&quot;India, China&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，创建一个整型变量toes，并将toes设置为10。程序中还要计算toes的两倍和toes的平方。该程序应打印三个值，并分别描述以示区分。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*声明整型变量toes*/ </span><br><span class="line">	int toes;</span><br><span class="line">	/*给toes变量赋值10*/</span><br><span class="line">	toes = 10;</span><br><span class="line">	</span><br><span class="line">	/*计算toes的两倍 并赋值给doubleToes*/</span><br><span class="line">	int doubleToes = toes * 2;</span><br><span class="line">	/*计算toes的平方 并赋值给squareToes*/ </span><br><span class="line">	int squareToes = toes * toes;</span><br><span class="line">	</span><br><span class="line">	/*输出*/</span><br><span class="line">	printf(&quot;toes:%d    doubleToes:%d    squareToes:%d&quot;, toes, doubleToes, squareToes);</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，生成以下格式的输出：<br><img src="https://img-blog.csdnimg.cn/20190820184624631.png#pic_center" alt="题目图片"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	printf(&quot;Smile!Smile!Smile!\n&quot;);</span><br><span class="line">	printf(&quot;Smile!Smile!\n&quot;);</span><br><span class="line">	printf(&quot;Smile!&quot;);</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个程序，调用一个名为one_three()的函数。该函数在第一行打印单词”one”，再调用第二个函数two()，然后在另一行打印单词”Three”。two()函数在一行显示单词”two”。main()函数在调用one_three()函数前要打印”starting now:”，并在调用完毕后打印”done!”。输出应该如下。<br><img src="https://img-blog.csdnimg.cn/20190820185136465.png#pic_center" alt="输出"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">/*声明函数*/</span><br><span class="line">void two();</span><br><span class="line">void one_three();</span><br><span class="line"></span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	printf(&quot;starting now:\n&quot;);</span><br><span class="line">	one_three();</span><br><span class="line">	printf(&quot;done!&quot;);</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/*定义函数*/ </span><br><span class="line">void two() &#123;</span><br><span class="line">	printf(&quot;two\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">void one_three() &#123;</span><br><span class="line">	printf(&quot;one\n&quot;);</span><br><span class="line">	two();//在这个函数调用two()函数 有些老的编译器声明时不把two()函数放在前面声明可能会报错 </span><br><span class="line">	printf(&quot;three\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（2.12）/" data-id="ck39j3sy6002mbslae4257kdo"
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" data-id="ck3d31isp0028bklaxm3favlu"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
@@ -339,7 +343,7 @@
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/9/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/11/">下一页</a>
     </nav>
   
 </section>
