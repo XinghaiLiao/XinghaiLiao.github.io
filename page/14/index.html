@@ -61,6 +61,82 @@
       
         
 
+<article id="post-Android控件TimePickerDialog的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/13/Android控件TimePickerDialog的使用/">Android控件TimePickerDialog的使用</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/13/Android控件TimePickerDialog的使用/" class="article-date">
+  <time datetime="2019-08-13T12:18:15.000Z" itemprop="datePublished">2019-08-13</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>TimePickerDialog是用于显示日期的对话框，使用也很简单。下面是使用的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Calendar calendar = Calendar.getInstance();</span><br><span class="line">//第一个参数表示设备上下文 第二个参数表示监听器（实现TimePickerDialog.OnTimeSetListener接口） 最后一个参数表示是否24小时制</span><br><span class="line">TimePickerDialog timePickerDialog = new TimePickerDialog(TimePickerDialogActivity.this, TimePickerDialogActivity.this,</span><br><span class="line">calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);</span><br><span class="line">imePickerDialog.show();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20190813201306761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="TimePickerDialog"></p>
+<h2 id="2-使用例子"><a href="#2-使用例子" class="headerlink" title="2.使用例子"></a>2.使用例子</h2><p>创建TimePickerDialogActivity，代码如下。</p>
+<ol>
+<li><p>activity_time_picker_dialog.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.TimePickerDialogActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:padding=&quot;10dp&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:text=&quot;弹出时间选择对话框&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:id=&quot;@+id/btn_pop_time_picker_dialog&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>TimePickerDialogActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.senior;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.app.TimePickerDialog;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.TimePicker;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">import java.util.Calendar;</span><br><span class="line"></span><br><span class="line">public class TimePickerDialogActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_time_picker_dialog);</span><br><span class="line">        findViewById(R.id.btn_pop_time_picker_dialog).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Calendar calendar = Calendar.getInstance();</span><br><span class="line">                //最后一个参数表示是否24小时制</span><br><span class="line">                TimePickerDialog timePickerDialog = new TimePickerDialog(TimePickerDialogActivity.this, TimePickerDialogActivity.this,</span><br><span class="line">                        calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);</span><br><span class="line">                timePickerDialog.show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onTimeSet(TimePicker timePicker, int i, int i1) &#123;</span><br><span class="line">        Toast.makeText(this, &quot;你选择的时间是&quot; + i + &quot;:&quot; + i1, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/13/Android控件TimePickerDialog的使用/" data-id="ck3jgzxj2001alsla0ol3vnn6"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android菜单栏的使用（弹出菜单）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -128,7 +204,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/13/Android菜单栏的使用（弹出菜单）/" data-id="ck3gozm380019a4lahra153yl"
+      <a data-url="https://xinghailiao.github.io/2019/08/13/Android菜单栏的使用（弹出菜单）/" data-id="ck3jgzxiy0016lslapf67eltt"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -219,88 +295,7 @@ inflater.inflate(R.menu.pop_menu_demo, popup.getMenu());</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/13/Android中菜单栏的使用（上下文菜单）/" data-id="ck3gozm1v000fa4laaqd6nmqz"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android中菜单栏的使用（选项菜单）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/13/Android中菜单栏的使用（选项菜单）/">Android中菜单栏的使用（选项菜单）</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/13/Android中菜单栏的使用（选项菜单）/" class="article-date">
-  <time datetime="2019-08-13T01:42:24.000Z" itemprop="datePublished">2019-08-13</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>菜单是许多应用类型中常见的用户界面组件。要定义菜单，要在项目 res/menu/ 目录内创建一个 XML 文件（如果没有则创建），下面是一个例子，显示效果如图（“更多”也是菜单选项，只是设置了showAsAction属性放到了外面）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;menu xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--item也可以嵌套 &lt;menu&gt; 元素，以便创建子菜单。--&gt;</span><br><span class="line">    &lt;item android:id=&quot;@+id/menu_about_us&quot;</span><br><span class="line">        android:orderInCategory=&quot;1&quot;</span><br><span class="line">        android:title=&quot;关于我们&quot; &gt;</span><br><span class="line">        &lt;menu&gt;</span><br><span class="line">            &lt;item android:title=&quot;不知道&quot;</span><br><span class="line">                android:orderInCategory=&quot;1&quot;</span><br><span class="line">                /&gt;</span><br><span class="line">        &lt;/menu&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">    &lt;item android:title=&quot;联系我们&quot;</span><br><span class="line">        android:orderInCategory=&quot;2&quot;</span><br><span class="line">        android:id=&quot;@+id/menu_contact_us&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">    &lt;item android:id=&quot;@+id/menu_more&quot;</span><br><span class="line">        android:orderInCategory=&quot;3&quot;</span><br><span class="line">        android:title=&quot;更多&quot;</span><br><span class="line">        app:showAsAction=&quot;ifRoom&quot; /&gt;</span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20190813091830772.png" alt="菜单栏图片"><br><img src="https://img-blog.csdnimg.cn/20190813092953739.png" alt="菜单栏图片"><br>创建选项菜单的步骤：重写 onCreateOptionsMenu()，提供菜单的xml文件。重写onOptionsItemSelected()，监听菜单选项的点击事件。下面是一个例子。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;</span><br><span class="line">	this.getMenuInflater().inflate(R.menu.menu_demo, menu);</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line">public boolean onOptionsItemSelected(@NonNull MenuItem item) &#123;</span><br><span class="line">	int id = item.getItemId();</span><br><span class="line">	if(id == R.id.menu_about_us) &#123;</span><br><span class="line">		//do something            </span><br><span class="line">	&#125;</span><br><span class="line">	if (id == R.id.menu_contact_us) &#123;</span><br><span class="line">		//do something                    </span><br><span class="line">	&#125;</span><br><span class="line">	if ((id==R.id.menu_more)) &#123;</span><br><span class="line">		//do something                   </span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2. 例子"></a>2. 例子</h2><p>创建MenuDemoActivity。</p>
-<ol>
-<li><p>menu_demo.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;menu xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--item也可以嵌套 &lt;menu&gt; 元素，以便创建子菜单。--&gt;</span><br><span class="line">    &lt;item android:id=&quot;@+id/menu_about_us&quot;</span><br><span class="line">        android:orderInCategory=&quot;1&quot;</span><br><span class="line">        android:title=&quot;关于我们&quot; &gt;</span><br><span class="line">        &lt;menu&gt;</span><br><span class="line">            &lt;item android:title=&quot;不知道&quot;</span><br><span class="line">                android:orderInCategory=&quot;1&quot;</span><br><span class="line">                /&gt;</span><br><span class="line">        &lt;/menu&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">    &lt;item android:title=&quot;联系我们&quot;</span><br><span class="line">        android:orderInCategory=&quot;2&quot;</span><br><span class="line">        android:id=&quot;@+id/menu_contact_us&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">    &lt;item android:id=&quot;@+id/menu_more&quot;</span><br><span class="line">        android:orderInCategory=&quot;3&quot;</span><br><span class="line">        android:title=&quot;更多&quot;</span><br><span class="line">        app:showAsAction=&quot;ifRoom&quot; /&gt;</span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>activity_menu_demo.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.MenuDemoActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:padding=&quot;10dp&quot;&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>MenuDemoActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.annotation.NonNull;</span><br><span class="line">import androidx.appcompat.app.AlertDialog;</span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.DialogInterface;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.net.Uri;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.Menu;</span><br><span class="line">import android.view.MenuItem;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class MenuDemoActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_menu_demo);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    /**</span><br><span class="line">     * 打开页面时调用 指定菜单的xml文件</span><br><span class="line">     */</span><br><span class="line">    public boolean onCreateOptionsMenu(Menu menu) &#123;</span><br><span class="line">        this.getMenuInflater().inflate(R.menu.menu_demo, menu);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    /**</span><br><span class="line">     * 菜单项被选中时调用</span><br><span class="line">     */</span><br><span class="line">    public boolean onOptionsItemSelected(@NonNull MenuItem item) &#123;</span><br><span class="line">        int id = item.getItemId();</span><br><span class="line">        if(id == R.id.menu_about_us) &#123;</span><br><span class="line">            AlertDialog.Builder builder = new AlertDialog.Builder(MenuDemoActivity.this);</span><br><span class="line">            builder.setTitle(&quot;关于我们&quot;);</span><br><span class="line">            builder.setMessage(&quot;XTUer&quot;);</span><br><span class="line">            builder.setPositiveButton(&quot;好的&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                    Toast.makeText(MenuDemoActivity.this, &quot;你点击了好的&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                    Toast.makeText(MenuDemoActivity.this, &quot;你点击了取消&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            AlertDialog alertDialog = builder.create();</span><br><span class="line">            alertDialog.show();</span><br><span class="line">        &#125;</span><br><span class="line">        if (id == R.id.menu_contact_us) &#123;</span><br><span class="line">            AlertDialog.Builder builder = new AlertDialog.Builder(MenuDemoActivity.this);</span><br><span class="line">            builder.setTitle(&quot;联系我们&quot;);</span><br><span class="line">            builder.setMessage(&quot;201705500216@smail.xtu.edu.cn&quot;);</span><br><span class="line">            builder.setPositiveButton(&quot;好的&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                    Toast.makeText(MenuDemoActivity.this, &quot;你点击了好的&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                    Toast.makeText(MenuDemoActivity.this, &quot;你点击了取消&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            AlertDialog alertDialog = builder.create();</span><br><span class="line">            alertDialog.show();</span><br><span class="line">        &#125;</span><br><span class="line">        if ((id==R.id.menu_more)) &#123;</span><br><span class="line">            Uri uri = Uri.parse(&quot;https://blog.csdn.net/weixin_43219615&quot;);</span><br><span class="line">            Intent intent = new Intent(Intent.ACTION_VIEW, uri);</span><br><span class="line">            startActivity(intent);</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/13/Android中菜单栏的使用（选项菜单）/" data-id="ck3gozm20000ia4lao40humqg"
+      <a data-url="https://xinghailiao.github.io/2019/08/13/Android中菜单栏的使用（上下文菜单）/" data-id="ck3jgzxh2000hlsla5hxtkcvt"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>

@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JavaWeb修改默认主页和把项目放到其他地方的方法</title>
+    <url>/2019/12/02/JavaWeb%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%B8%BB%E9%A1%B5%E5%92%8C%E6%8A%8A%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%88%B0%E5%85%B6%E4%BB%96%E5%9C%B0%E6%96%B9%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<hr>
+<ol>
+<li><p>web项目的默认页面一般是index。我们可以在web.xml文件中添加welcome-file-list节点，并在welcome-file节点添加welcome-file节点来改成其他页面。这时，若有多个welcome-file节点，那么是从上往下匹配到的第一个。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;home.jsp&lt;/welcome-file&gt;</span><br><span class="line">&lt;/welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改虚拟路径。比如我不想把项目放到tomcat的webapp目录下，想放到其他地方。可以在tomcat的server.xml的Engin节点下的Host节点加一个Context节点。如下面的例子项目放在D:\temp\demo。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--path虚拟路径 docBase实际路径 访问虚拟路径实际是访问实际路径--&gt;</span><br><span class="line">&lt;Context docBase=&quot;D:\temp\demo&quot; path=&quot;/test&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+]]></content>
+      <tags>
+        <tag>JavaWeb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>帮助</title>
     <url>/2019/11/24/%E5%B8%AE%E5%8A%A9/</url>
     <content><![CDATA[<hr>

@@ -61,6 +61,93 @@
       
         
 
+<article id="post-Android向下一个Activity传递参数" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/10/Android向下一个Activity传递参数/">Android向下一个Activity传递参数</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/10/Android向下一个Activity传递参数/" class="article-date">
+  <time datetime="2019-08-10T01:21:42.000Z" itemprop="datePublished">2019-08-10</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>利用Intent我们可以从一个页面到另外一个页面（Activity）。这个过程中，我们可以利用Bundle包裹传递消息。Bundle存放数据的结构实际上是Map的映射，我们只需要用put方法把参数放进Bundle，然后再用Intent的putExtras方法把Bundle丢进Intent即可。接收页面接收参数时，先调用getIntent方法获取Intent，然后调用getExtras方法获取Bundle，最后就像使用Map一样取出参数即可。<br><img src="https://img-blog.csdnimg.cn/20190810090605872.png#pic_center" alt="上一个页面传递参数"><br><img src="https://img-blog.csdnimg.cn/20190810090643544.png#pic_center" alt="下一个页面接收参数"></p>
+<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><ol>
+<li>发送参数页面<ul>
+<li>activity_send_parameter.xml<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.SendParameterActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=&quot;@+id/et_name&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:hint=&quot;姓名&quot;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:inputType=&quot;number&quot;</span><br><span class="line">        android:maxLength=&quot;3&quot;</span><br><span class="line">        android:id=&quot;@+id/et_age&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:hint=&quot;年龄&quot;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=&quot;@+id/et_phone&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:inputType=&quot;number&quot;</span><br><span class="line">        android:maxLength=&quot;11&quot;</span><br><span class="line">        android:hint=&quot;电话&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:text=&quot;传递参数给下一个页面&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:id=&quot;@+id/btn_ok&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>SendParameterActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.EditText;</span><br><span class="line"></span><br><span class="line">public class SendParameterActivity extends AppCompatActivity &#123;</span><br><span class="line">    private EditText et_name;</span><br><span class="line">    private EditText et_phone;</span><br><span class="line">    private EditText et_age;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_send_parameter);</span><br><span class="line">        et_name = findViewById(R.id.et_name);</span><br><span class="line">        et_age = findViewById(R.id.et_age);</span><br><span class="line">        et_phone = findViewById(R.id.et_phone);</span><br><span class="line">        findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Intent intent = new Intent(SendParameterActivity.this, ReceiveParameterActivity.class);</span><br><span class="line">                Bundle bundle = new Bundle();</span><br><span class="line">                bundle.putString(&quot;name&quot;, et_name.getText().toString());</span><br><span class="line">                bundle.putInt(&quot;age&quot;, Integer.valueOf(et_age.getText().toString()));</span><br><span class="line">                bundle.putString(&quot;phone&quot;, et_phone.getText().toString());</span><br><span class="line">                intent.putExtras(bundle);</span><br><span class="line">                startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>接收参数页面</li>
+</ol>
+</li>
+<li><p>activity_receive_parameter.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.ReceiveParameterActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/tv_show&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:text=&quot;用于接收上一个页面传来的参数的TextView&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ReceiveParameterActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">public class ReceiveParameterActivity extends AppCompatActivity &#123;</span><br><span class="line">    private TextView tv_show;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_receive_parameter);</span><br><span class="line">        tv_show = findViewById(R.id.tv_show);</span><br><span class="line">        Bundle bundle = this.getIntent().getExtras();</span><br><span class="line">        String name = bundle.getString(&quot;name&quot;);</span><br><span class="line">        String phone = bundle.getString(&quot;phone&quot;);</span><br><span class="line">        int age = bundle.getInt(&quot;age&quot;);</span><br><span class="line">        tv_show.setText(String.format(&quot;姓名：%s\n电话：%s\n年龄：%d&quot;, name, phone, age));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/10/Android向下一个Activity传递参数/" data-id="ck3jgzxix0014lslasbdsgrti"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android基础控件AutoCompleteTextView的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -117,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/09/Android基础控件AutoCompleteTextView的使用/" data-id="ck3gozm2r000xa4la55dfkggy"
+      <a data-url="https://xinghailiao.github.io/2019/08/09/Android基础控件AutoCompleteTextView的使用/" data-id="ck3jgzxia000slslaona9x3j7"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -202,87 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/09/EditText输入完成后自动关闭输入法/" data-id="ck3gozm3l001ja4la7tj6ulpd"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android中SimpleAdapter的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/09/Android中SimpleAdapter的使用/">Android中SimpleAdapter的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/09/Android中SimpleAdapter的使用/" class="article-date">
-  <time datetime="2019-08-09T01:54:52.000Z" itemprop="datePublished">2019-08-09</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>SimpleAdapter配上Spinner，可以在Spinner的列表项中展示多个控件（如文本和图片的组合），显示效果如下图。<br><img src="https://img-blog.csdnimg.cn/2019080909335632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="显示效果"><br>下面是初始化SimpleAdapter的一个例子。在SimpleAdapter的构造函数中：第一个参数是设备上下文；第二个参数是存放Map的容器，Map里面存放的是原材料；第三个参数是选中时的显示；第四个参数是Map中的key；第五个参数是原材料对应存放的位置（比如例子中的icon放到iv_icon）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//文字</span><br><span class="line">private String[] mWeekArray =  &#123;&quot;周一&quot;, &quot;周二&quot;, &quot;周三&quot;, &quot;周四&quot;, &quot;周五&quot;, &quot;周六&quot;, &quot;周日&quot;&#125;;</span><br><span class="line">//图片</span><br><span class="line">int[] mIconArray = &#123;R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,</span><br><span class="line">              R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher&#125;;</span><br><span class="line">      //存放Map的容器</span><br><span class="line">      List&lt;Map&lt;String, Object&gt;&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">      //每个Map里面放的是原材料</span><br><span class="line">      for(int i = 0; i &lt; mIconArray.length; i++) &#123;</span><br><span class="line">          Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">          map.put(&quot;icon&quot;, mIconArray[i]);</span><br><span class="line">          map.put(&quot;week&quot;, mWeekArray[i]);</span><br><span class="line">          list.add(map);</span><br><span class="line">      &#125;</span><br><span class="line">      /*第一个参数是设备上下文 第二个参数是存放Map的容器，Map里面存放的是原材料 第三个参数是选中时的显示 第四个参数是Map中的key 第五个参数是原材料对应存放的位置（icon放iv_icon）*/</span><br><span class="line">      SimpleAdapter adapter = new SimpleAdapter(this, list, R.layout.item_selected, new String[]&#123;&quot;icon&quot;, &quot;week&quot;&#125;, new int[]&#123;R.id.iv_icon, R.id.tv_week&#125;);</span><br><span class="line">      adapter.setDropDownViewResource(R.layout.item_simple);</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><ol>
-<li><p>item_selected.xml。选中时的显示状态，上图中选中时是红色背景绿色字（<del>为了显眼</del> ）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">    &lt;!--选中Spinner中的某项时显示的TextView--&gt;</span><br><span class="line">&lt;TextView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">android:id=&quot;@+id/tv_week&quot;</span><br><span class="line">android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;40dp&quot;</span><br><span class="line">android:singleLine=&quot;true&quot;</span><br><span class="line">android:gravity=&quot;center&quot;</span><br><span class="line">android:textSize=&quot;18sp&quot;</span><br><span class="line">android:textColor=&quot;#0000ff&quot;</span><br><span class="line">android:background=&quot;#FF0000&quot;&gt;</span><br><span class="line">&lt;/TextView&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>item_simple.xml。设置列表项用的（每个列表项都显示为item_simple）。LinearLayout：ImageView+TextView。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:orientation=&quot;horizontal&quot; android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ImageView</span><br><span class="line">        android:id=&quot;@+id/iv_icon&quot;</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;50dp&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;</span><br><span class="line">        android:gravity=&quot;center&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/tv_week&quot;</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;3&quot;</span><br><span class="line">        android:gravity=&quot;center&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>activity_simple_adapter.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.SimpleAdapterActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Spinner</span><br><span class="line">        android:layout_marginTop=&quot;100dp&quot;</span><br><span class="line">        android:id=&quot;@+id/sp_demo&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:spinnerMode=&quot;dialog&quot;&gt;&lt;/Spinner&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>SimpleAdapterActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.AdapterView;</span><br><span class="line">import android.widget.SimpleAdapter;</span><br><span class="line">import android.widget.Spinner;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Map;</span><br><span class="line"></span><br><span class="line">public class SimpleAdapterActivity extends AppCompatActivity &#123;</span><br><span class="line">    private Spinner sp_demo;</span><br><span class="line">    private String[] mWeekArray =  &#123;&quot;周一&quot;, &quot;周二&quot;, &quot;周三&quot;, &quot;周四&quot;, &quot;周五&quot;, &quot;周六&quot;, &quot;周日&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_simple_adapter);</span><br><span class="line">        sp_demo = findViewById(R.id.sp_demo);</span><br><span class="line"></span><br><span class="line">        int[] mIconArray = &#123;R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,</span><br><span class="line">                R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher&#125;;</span><br><span class="line">        //存放Map的容器</span><br><span class="line">        List&lt;Map&lt;String, Object&gt;&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">        //每个Map里面放的是原材料（这里是指图标和文字）</span><br><span class="line">        for(int i = 0; i &lt; mIconArray.length; i++) &#123;</span><br><span class="line">            Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">            map.put(&quot;icon&quot;, mIconArray[i]);</span><br><span class="line">            map.put(&quot;week&quot;, mWeekArray[i]);</span><br><span class="line">            list.add(map);</span><br><span class="line">        &#125;</span><br><span class="line">        /*第一个参数是设备上下文 第二个参数是存放Map的容器，Map里面存放的是原材料 第三个参数是选中时的显示 第四个参数是Map中的key 第五个参数是存放的位置（icon放iv_icon）*/</span><br><span class="line">        SimpleAdapter adapter = new SimpleAdapter(this, list, R.layout.item_selected, new String[]&#123;&quot;icon&quot;, &quot;week&quot;&#125;, new int[]&#123;R.id.iv_icon, R.id.tv_week&#125;);</span><br><span class="line">        //设置下拉列表项（每个列表项都是一个item_simple）</span><br><span class="line">        adapter.setDropDownViewResource(R.layout.item_simple);</span><br><span class="line"></span><br><span class="line">        //设置适配器</span><br><span class="line">        sp_demo.setAdapter(adapter);</span><br><span class="line">        //设置标题</span><br><span class="line">        sp_demo.setPrompt(&quot;请选择星期几&quot;);</span><br><span class="line">        //设置呢初始选项</span><br><span class="line">        sp_demo.setSelection(0);</span><br><span class="line">        //添加监听器</span><br><span class="line">        sp_demo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onItemSelected(AdapterView&lt;?&gt; adapterView, View view, int i, long l) &#123;</span><br><span class="line">                Toast.makeText(SimpleAdapterActivity.this, &quot;你选择了&quot; + mWeekArray[i], Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onNothingSelected(AdapterView&lt;?&gt; adapterView) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/09/Android中SimpleAdapter的使用/" data-id="ck3gozm0v0009a4la89fhr8hu"
+      <a data-url="https://xinghailiao.github.io/2019/08/09/EditText输入完成后自动关闭输入法/" data-id="ck3jgzxkb0027lslal0gzfb3q"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>

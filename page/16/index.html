@@ -61,6 +61,87 @@
       
         
 
+<article id="post-Android轻量级存储工具SharedPreferences的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/11/Android轻量级存储工具SharedPreferences的使用/">Android轻量级存储工具SharedPreferences的使用</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/11/Android轻量级存储工具SharedPreferences的使用/" class="article-date">
+  <time datetime="2019-08-11T12:14:58.000Z" itemprop="datePublished">2019-08-11</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>SharedPreferences是轻量级存储工具，采用的是Key-Value存储方式。一般用于存放App的个性化配置信息、临时保存的片段信息等。SharedPreferences存储键值信息是采用xml文件的形式，保存在/data/data/App包名/shared_prefs/文件名.xml（在安卓的Divice File Explorer栏可以轻易找到，如果创建时采用没有文件名的方法，那么这个xml文件会自动命名为当前activity的名称）。<br><img src="https://img-blog.csdnimg.cn/20190811195324966.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="例子图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--例子中的存储键-值的xml文件--&gt;</span><br><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos; standalone=&apos;yes&apos; ?&gt;</span><br><span class="line">&lt;map&gt;</span><br><span class="line">    &lt;string name=&quot;name&quot;&gt;小明&lt;/string&gt;</span><br><span class="line">    &lt;string name=&quot;hobby&quot;&gt;唱 跳&lt;/string&gt;</span><br><span class="line">&lt;/map&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面是使用SharedPreferences存入信息的核心代码及注释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//第一个参数是文件名 第二个参数是操作模式，一般使用MODE_PRIVATE</span><br><span class="line">SharedPreferences sharedPreferences = getSharedPreferences(&quot;share&quot;, Context.MODE_PRIVATE);</span><br><span class="line">SharedPreferences.Editor editor = sharedPreferences.edit();</span><br><span class="line">editor.putString(&quot;name&quot;, name);</span><br><span class="line">editor.putString(&quot;hobby&quot;, hobby);</span><br><span class="line">//提交</span><br><span class="line">editor.commit();</span><br></pre></td></tr></table></figure>
+
+<p>下面是使用SharedPreferences读取信息的核心代码及注释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sharedPreferences = getSharedPreferences(&quot;share&quot;, Context.MODE_PRIVATE);</span><br><span class="line">//第二个参数表示默认值（没有这个属性的话就返回默认值）</span><br><span class="line">String name = sharedPreferences.getString(&quot;name&quot;,&quot;&quot;);</span><br><span class="line">String hobby = sharedPreferences.getString(&quot;hobby&quot;, &quot;&quot;);</span><br><span class="line">tv_show_data.setText(String.format(&quot;读取到的数据如下:\n姓名：%s\n爱好：%s&quot;, name, hobby));</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><p>下面是一个列子的完整代码。创建SharedPreferencesActivity，代码如下。</p>
+<ol>
+<li><p>activity_shared_preferences.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.SharedPreferencesActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:padding=&quot;10dp&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RelativeLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;50dp&quot;&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_name&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:text=&quot;姓名：&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:gravity=&quot;center_vertical&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:layout_toRightOf=&quot;@id/tv_name&quot;</span><br><span class="line">            android:inputType=&quot;text&quot;</span><br><span class="line">            android:maxLength=&quot;11&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:id=&quot;@+id/et_name&quot;</span><br><span class="line">            android:hint=&quot;姓名&quot;/&gt;</span><br><span class="line">    &lt;/RelativeLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RelativeLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;50dp&quot;&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_hobby&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:text=&quot;爱好：&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:gravity=&quot;center_vertical&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id=&quot;@+id/et_hobby&quot;</span><br><span class="line">            android:inputType=&quot;text&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:hint=&quot;爱好&quot;</span><br><span class="line">            android:layout_toRightOf=&quot;@id/tv_hobby&quot;/&gt;</span><br><span class="line">    &lt;/RelativeLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=&quot;@+id/btn_ok&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;写入共享参数&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:layout_marginTop=&quot;50dp&quot;</span><br><span class="line">        android:text=&quot;读取共享参数&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:id=&quot;@+id/btn_read&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:text=&quot;用于展示读取到的参数&quot;</span><br><span class="line">        android:id=&quot;@+id/tv_show_data&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SharedPreferencesActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.SharedPreferences;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.EditText;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class SharedPreferencesActivity extends AppCompatActivity &#123;</span><br><span class="line">    private EditText et_name;</span><br><span class="line">    private EditText et_hobby;</span><br><span class="line">    private TextView tv_show_data;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_shared_preferences);</span><br><span class="line">        et_name = findViewById(R.id.et_name);</span><br><span class="line">        et_hobby = findViewById(R.id.et_hobby);</span><br><span class="line">        tv_show_data = findViewById(R.id.tv_show_data);</span><br><span class="line">        findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                String name = et_name.getText().toString();</span><br><span class="line">                String hobby = et_hobby.getText().toString();</span><br><span class="line">                //第一个参数是文件名 第二个参数是操作模式，一般使用MODE_PRIVATE</span><br><span class="line">                SharedPreferences sharedPreferences = getSharedPreferences(&quot;share&quot;, Context.MODE_PRIVATE);</span><br><span class="line">                SharedPreferences.Editor editor = sharedPreferences.edit();</span><br><span class="line">                editor.putString(&quot;name&quot;, name);</span><br><span class="line">                editor.putString(&quot;hobby&quot;, hobby);</span><br><span class="line">                editor.commit();</span><br><span class="line">                Toast.makeText(SharedPreferencesActivity.this, &quot;写入共享参数成功&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        findViewById(R.id.btn_read).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                SharedPreferences sharedPreferences = getSharedPreferences(&quot;share&quot;, Context.MODE_PRIVATE);</span><br><span class="line">                //第二个参数表示默认值（没有这个属性的话就返回默认值）</span><br><span class="line">                String name = sharedPreferences.getString(&quot;name&quot;,&quot;&quot;);</span><br><span class="line">                String hobby = sharedPreferences.getString(&quot;hobby&quot;, &quot;&quot;);</span><br><span class="line">                tv_show_data.setText(String.format(&quot;读取到的数据如下:\n姓名：%s\n爱好：%s&quot;, name, hobby));</span><br><span class="line">                Toast.makeText(SharedPreferencesActivity.this, &quot;读取共享参数成功&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/11/Android轻量级存储工具SharedPreferences的使用/" data-id="ck3jgzxj3001clsla0cp7fvns"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android中AlertDialog的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -117,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/11/Android中AlertDialog的使用/" data-id="ck3gozm0b0004a4laegrjhz50"
+      <a data-url="https://xinghailiao.github.io/2019/08/11/Android中AlertDialog的使用/" data-id="ck3jgzxgo0006lslas8cdu7bc"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -207,94 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/11/Android向上一个Activity返回参数/" data-id="ck3gozm2h000ra4lagqo1a04u"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android向下一个Activity传递参数" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/10/Android向下一个Activity传递参数/">Android向下一个Activity传递参数</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/10/Android向下一个Activity传递参数/" class="article-date">
-  <time datetime="2019-08-10T01:21:42.000Z" itemprop="datePublished">2019-08-10</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>利用Intent我们可以从一个页面到另外一个页面（Activity）。这个过程中，我们可以利用Bundle包裹传递消息。Bundle存放数据的结构实际上是Map的映射，我们只需要用put方法把参数放进Bundle，然后再用Intent的putExtras方法把Bundle丢进Intent即可。接收页面接收参数时，先调用getIntent方法获取Intent，然后调用getExtras方法获取Bundle，最后就像使用Map一样取出参数即可。<br><img src="https://img-blog.csdnimg.cn/20190810090605872.png#pic_center" alt="上一个页面传递参数"><br><img src="https://img-blog.csdnimg.cn/20190810090643544.png#pic_center" alt="下一个页面接收参数"></p>
-<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><ol>
-<li>发送参数页面<ul>
-<li>activity_send_parameter.xml<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.SendParameterActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=&quot;@+id/et_name&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:hint=&quot;姓名&quot;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:inputType=&quot;number&quot;</span><br><span class="line">        android:maxLength=&quot;3&quot;</span><br><span class="line">        android:id=&quot;@+id/et_age&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:hint=&quot;年龄&quot;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;EditText</span><br><span class="line">        android:id=&quot;@+id/et_phone&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:inputType=&quot;number&quot;</span><br><span class="line">        android:maxLength=&quot;11&quot;</span><br><span class="line">        android:hint=&quot;电话&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:text=&quot;传递参数给下一个页面&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:id=&quot;@+id/btn_ok&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>SendParameterActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.EditText;</span><br><span class="line"></span><br><span class="line">public class SendParameterActivity extends AppCompatActivity &#123;</span><br><span class="line">    private EditText et_name;</span><br><span class="line">    private EditText et_phone;</span><br><span class="line">    private EditText et_age;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_send_parameter);</span><br><span class="line">        et_name = findViewById(R.id.et_name);</span><br><span class="line">        et_age = findViewById(R.id.et_age);</span><br><span class="line">        et_phone = findViewById(R.id.et_phone);</span><br><span class="line">        findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Intent intent = new Intent(SendParameterActivity.this, ReceiveParameterActivity.class);</span><br><span class="line">                Bundle bundle = new Bundle();</span><br><span class="line">                bundle.putString(&quot;name&quot;, et_name.getText().toString());</span><br><span class="line">                bundle.putInt(&quot;age&quot;, Integer.valueOf(et_age.getText().toString()));</span><br><span class="line">                bundle.putString(&quot;phone&quot;, et_phone.getText().toString());</span><br><span class="line">                intent.putExtras(bundle);</span><br><span class="line">                startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>接收参数页面</li>
-</ol>
-</li>
-<li><p>activity_receive_parameter.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.ReceiveParameterActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/tv_show&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:text=&quot;用于接收上一个页面传来的参数的TextView&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ReceiveParameterActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">public class ReceiveParameterActivity extends AppCompatActivity &#123;</span><br><span class="line">    private TextView tv_show;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_receive_parameter);</span><br><span class="line">        tv_show = findViewById(R.id.tv_show);</span><br><span class="line">        Bundle bundle = this.getIntent().getExtras();</span><br><span class="line">        String name = bundle.getString(&quot;name&quot;);</span><br><span class="line">        String phone = bundle.getString(&quot;phone&quot;);</span><br><span class="line">        int age = bundle.getInt(&quot;age&quot;);</span><br><span class="line">        tv_show.setText(String.format(&quot;姓名：%s\n电话：%s\n年龄：%d&quot;, name, phone, age));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/10/Android向下一个Activity传递参数/" data-id="ck3gozm2k000ta4lad8g07k4r"
+      <a data-url="https://xinghailiao.github.io/2019/08/11/Android向上一个Activity返回参数/" data-id="ck3jgzxiq0012lslaxp82ajg8"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
