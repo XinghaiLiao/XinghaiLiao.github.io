@@ -61,6 +61,119 @@
       
         
 
+<article id="post-Java+coolq实现QQ机器人" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/11/16/Java+coolq实现QQ机器人/">Java+coolq实现QQ机器人</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/16/Java+coolq实现QQ机器人/" class="article-date">
+  <time datetime="2019-11-16T07:25:00.000Z" itemprop="datePublished">2019-11-16</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="植物大战僵尸的BGM真好听"><a href="#植物大战僵尸的BGM真好听" class="headerlink" title="植物大战僵尸的BGM真好听"></a>植物大战僵尸的BGM真好听</h2><div class="music163player">
+    <center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="110" src="//music.163.com/outchain/player?type=0&id=716949760&auto=0&height=90"></iframe></center>
+</div>
+
+<h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1.背景"></a>1.背景</h2><p>&nbsp;&nbsp;这几天有些无聊，就想着自己倒腾个QQ机器人。其实也挺好实现的，主要接口都有人做好了，剩下的功能全靠自己想和爬虫实现了。本文的参考链接如下：<a href="https://www.xiaomingblog.cn/archives/linux%E6%90%AD%E5%BB%BA%E9%85%B7Q%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener">参考一</a>、<a href="https://www.xiaomingblog.cn/archives/java%20+%20coolq%20%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89QQ%E6%9C%BA%E5%99%A8%E4%BA%BA" target="_blank" rel="noopener">参考二</a>、<a href="https://cqp.cc/t/29722" target="_blank" rel="noopener">参考三</a>。还要感谢插件的作者，把接口都写好了。<img src="https://img-blog.csdnimg.cn/20191116152431313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="没有什么的图片"></p>
+<h2 id="2-需要准备的东西"><a href="#2-需要准备的东西" class="headerlink" title="2.需要准备的东西"></a>2.需要准备的东西</h2><ol>
+<li>jdk1.8+。</li>
+<li>linux服务器（windows也行），也可以在本地环境，但是那样每次自己启动很麻烦。</li>
+<li>coolq及插件。</li>
+</ol>
+<h2 id="3-开工"><a href="#3-开工" class="headerlink" title="3.开工"></a>3.开工</h2><ol>
+<li><p>如果你买的linux服务器。先在根目录下创建data/coolq-data目录，然后防火墙添加一个规则暴露一个端口（教程用的8001），其他步骤看<a href="https://www.xiaomingblog.cn/archives/linux%E6%90%AD%E5%BB%BA%E9%85%B7Q%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83" target="_blank" rel="noopener">这里</a>，注意要让coolq后台运行，否则关掉终端就退出了。</p>
+</li>
+<li><p>如果你是windows，那么直接官网下载即可，其他步骤也类似。</p>
+</li>
+<li><p>下载jar包和coolq的插件<a href="https://www.xiaomingblog.cn/upload/2019/8/%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E6%96%87%E4%BB%B6-a94d7cb866c147738f715ed1b36431be.zip" target="_blank" rel="noopener">这里</a>。</p>
+</li>
+<li><p>通过winCSP把插件（org.ruiko.lemoc.cpk）传到服务器的coolq目录下的app目录。<br><img src="https://img-blog.csdnimg.cn/2019111615370562.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="目录"></p>
+</li>
+<li><p>上传完插件之后重载应用。设置时勾选自启动，并把本机连接的√去掉（发方便本地测试）。然后添加防火墙规则开放25303号端口。最后启用lemoc的Server。<br><img src="https://img-blog.csdnimg.cn/20191116154809881.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="lemoc"><br><img src="https://img-blog.csdnimg.cn/20191116154851162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="设置"></p>
+</li>
+<li><p>删除之前的docker容器，增加一个映射端口。其中VNC_PASSWORD是远程连接密码，COOLQ_ACCOUNT是登录的QQ号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rm $(docker ps -aq)</span><br><span class="line">docker run --name=coolq -d -p 8001:9000 -p 25303:25303 -v /data/coolq-data:/home/user/coolq -e VNC_PASSWD=******* -e COOLQ_ACCOUNT=1532152713 coolq/wine-coolq</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入下载的jar包开始写代码。</p>
+<ul>
+<li>MyKQWebClient.java。继承自KQWebClient 然后重写了几个主要方法。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">import java.net.URI;</span><br><span class="line"></span><br><span class="line">import com.alibaba.fastjson.JSONObject;</span><br><span class="line">import com.mumu.webclient.KQWebClient;</span><br><span class="line"></span><br><span class="line">public class MyKQWebClient extends KQWebClient &#123;</span><br><span class="line">    public MyKQWebClient(URI serverURI) &#123;</span><br><span class="line">        super(serverURI);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 发送私聊</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void sendPrivateMSG(String qq, String msg) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(10L);</span><br><span class="line">        &#125; catch (InterruptedException var4) &#123;</span><br><span class="line">            var4.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject sendMsg = new JSONObject();</span><br><span class="line">        sendMsg.put(&quot;act&quot;,106);</span><br><span class="line">        sendMsg.put(&quot;QQID&quot;,qq);</span><br><span class="line">        sendMsg.put(&quot;msg&quot;,msg);</span><br><span class="line">        super.send(sendMsg.toJSONString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 发送群消息</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public void sendGroupMSG(String qq, String groupid, String msg, Boolean isAT) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(10L);</span><br><span class="line">        &#125; catch (InterruptedException var4) &#123;</span><br><span class="line">            var4.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        JSONObject sendMsg = new JSONObject();</span><br><span class="line">        sendMsg.put(&quot;act&quot;,101);</span><br><span class="line">        sendMsg.put(&quot;groupid&quot;,groupid);</span><br><span class="line">        sendMsg.put(&quot;msg&quot;,msg);</span><br><span class="line">        super.send(sendMsg.toJSONString());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void sendPraise(String qq) &#123;</span><br><span class="line">    	super.sendPraise(qq);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>MyQQAdapter.java。适配器，其他都写在注释里。不过public void RE_ASK_ADDFRIEND(AddFriends msg)、public void RE_ASK_ADDGROUP(ADDGroupExample msg)方法经过测试并没有被自动调用，其他在触发相应事件时会被调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">import com.mumu.listenner.KQMSGAdapter;</span><br><span class="line">import com.mumu.msg.ADDGroupExample;</span><br><span class="line">import com.mumu.msg.AddAdmin;</span><br><span class="line">import com.mumu.msg.AddFriends;</span><br><span class="line">import com.mumu.msg.DeleteAdmin;</span><br><span class="line">import com.mumu.msg.RE_MSG_Forum;</span><br><span class="line">import com.mumu.msg.RE_MSG_Group;</span><br><span class="line">import com.mumu.msg.RE_MSG_Private;</span><br><span class="line"></span><br><span class="line">public class MyQQAdapter extends KQMSGAdapter &#123;</span><br><span class="line">	private MyKQWebClient kqWebClient;</span><br><span class="line"></span><br><span class="line">	MyQQAdapter(MyKQWebClient kqWebClient) &#123;</span><br><span class="line">		this.kqWebClient = kqWebClient;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 私聊消息</span><br><span class="line">	 */</span><br><span class="line">	public void Re_MSG_Private(RE_MSG_Private msg) &#123;</span><br><span class="line">		System.out.println(&quot;接收到私聊信息 from:&quot; + msg.getFromqq() + &quot; \t msg:&quot; + msg.getMsg());</span><br><span class="line">		kqWebClient.sendPrivateMSG(msg.getFromqq(), &quot;我只是个robot[CQ:face,id=14]&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 讨论组消息</span><br><span class="line">	 */</span><br><span class="line">	public void RE_MSG_FORUM(RE_MSG_Forum msg) &#123;</span><br><span class="line">		System.out.println(&quot;接收到消息 groupName:&quot; + msg.getFromQQ() + &quot;qq:&quot; + msg.getFromQQ() + &quot;msg:&quot; + msg.getMsg());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 群聊消息</span><br><span class="line">	 */</span><br><span class="line">	public void RE_MSG_Group(RE_MSG_Group msg) &#123;</span><br><span class="line">		String message = msg.getMsg().trim();</span><br><span class="line">		System.out.println(&quot;群:&quot; + msg.getFromGroup() + &quot; qq:&quot; + msg.getFromQQ() + &quot; msg:&quot; + msg.getMsg());</span><br><span class="line">		String[] argv = message.split(&quot; &quot;);</span><br><span class="line">		if (argv[0].equals(&quot;##&quot;)) &#123;</span><br><span class="line">			if (argv[1].equals(&quot;test&quot;)) &#123;</span><br><span class="line">				kqWebClient.sendGroupMSG(msg.getFromQQ(), msg.getFromGroup(), &quot;[CQ:at,qq=&quot; +  msg.getFromQQ() + &quot;]&quot; + &quot; 我在呢&quot;, true);</span><br><span class="line">			&#125; else if (argv[1].equals(&quot;help&quot;)) &#123;</span><br><span class="line">				kqWebClient.sendGroupMSG(msg.getFromQQ(), msg.getFromGroup(), &quot;[CQ:at,qq=&quot; +  msg.getFromQQ() + &quot;] &quot; </span><br><span class="line">						+ &quot;以\&quot;## \&quot;开头即可和我聊天，目前支持命令：\n&quot;</span><br><span class="line">						+ &quot;1.## test 测试我是否正常运行\n&quot;</span><br><span class="line">						+ &quot;2.## help 查看帮助\n&quot;</span><br><span class="line">						+ &quot;3.## en word 查单词(en后面的最后一个空格后面的单词)，输出有道的url\n&quot;</span><br><span class="line">						+ &quot;4.如需其他请联系管理员QQ:1532152713\n&quot;</span><br><span class="line">						+ &quot;例如：## test&quot;, true);</span><br><span class="line">			&#125; else if(argv[1].equals(&quot;en&quot;)) &#123; </span><br><span class="line">				kqWebClient.sendGroupMSG(msg.getFromQQ(), msg.getFromGroup(), &quot;[CQ:at,qq=&quot; +  msg.getFromQQ() + &quot;] &quot; + message.substring(message.lastIndexOf(&apos; &apos;) + 1, message.length()) +</span><br><span class="line">			&quot;:http://www.youdao.com/w/eng/&quot; + message.substring(message.lastIndexOf(&apos; &apos;) + 1, message.length()), true);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				kqWebClient.sendGroupMSG(msg.getFromQQ(), msg.getFromGroup(), &quot;[CQ:at,qq=&quot; +  msg.getFromQQ() + &quot;] &quot; + &quot;命令格式错误\&quot; ## help\&quot;命令可以查看帮助&quot;, true);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 群成员减少</span><br><span class="line">	 */</span><br><span class="line">	public void RE_EXAMPLE_DEMBER(DeleteAdmin msg) &#123;</span><br><span class="line">		System.out.println(&quot;群成员减少&quot;);</span><br><span class="line">		String type = msg.getSubType();</span><br><span class="line">		if(type.equals(&quot;1&quot;)) &#123;</span><br><span class="line">			kqWebClient.sendGroupMSG(msg.getBeingOperateQQ(), msg.getFromGroup(), &quot;有人离开了本群，群地位+1&quot;, true);</span><br><span class="line">		&#125; else if(type.equals(&quot;2&quot;)) &#123;</span><br><span class="line">			kqWebClient.sendGroupMSG(msg.getBeingOperateQQ(), msg.getFromGroup(), &quot;有人被管理员移出本群，群地位+1&quot;, true);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 群成员添加</span><br><span class="line">	 */</span><br><span class="line">	public void RE_EXAMPLE_AMEMBER(AddAdmin msg) &#123;</span><br><span class="line">		System.out.println(&quot;群成员添加&quot;);</span><br><span class="line">		kqWebClient.sendGroupMSG(msg.getBeingOperateQQ(), msg.getFromGroup(), &quot;[CQ:at,qq=&quot; +  msg.getBeingOperateQQ() + &quot;] 欢迎加入本群，我是robot。通过\&quot;## help\&quot;可以查看帮助。群地位-1。&quot;, true);</span><br><span class="line">		kqWebClient.sendPraise(msg.getBeingOperateQQ());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 请求添加好友</span><br><span class="line">	 */</span><br><span class="line">	public void RE_ASK_ADDFRIEND(AddFriends msg) &#123;</span><br><span class="line">		System.out.println(msg.getFromQQ() + &quot;请求添加好友&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 请求添加群</span><br><span class="line">	 */</span><br><span class="line">	public void RE_ASK_ADDGROUP(ADDGroupExample msg) &#123;</span><br><span class="line">		System.out.println(&quot;请求添加群&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>KQClient.java。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.net.URI;</span><br><span class="line"></span><br><span class="line">public class KQClient &#123;</span><br><span class="line">    private static MyKQWebClient kqWebClient;</span><br><span class="line"></span><br><span class="line">    public static void runClient(String host)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            if(kqWebClient == null)&#123;</span><br><span class="line">                kqWebClient = new MyKQWebClient(new URI(host));</span><br><span class="line">            &#125;</span><br><span class="line">            MyQQAdapter myQQAdapter = new MyQQAdapter(kqWebClient);</span><br><span class="line">            kqWebClient.addQQMSGListenner(myQQAdapter);</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            System.err.println(&quot;init KQ client fail e:&quot;+e.getMessage());</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Main.java</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.net.URI;</span><br><span class="line"></span><br><span class="line">public class KQClient &#123;</span><br><span class="line">    private static MyKQWebClient kqWebClient;</span><br><span class="line"></span><br><span class="line">    public static void runClient(String host)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            if(kqWebClient == null)&#123;</span><br><span class="line">                kqWebClient = new MyKQWebClient(new URI(host));</span><br><span class="line">            &#125;</span><br><span class="line">            MyQQAdapter myQQAdapter = new MyQQAdapter(kqWebClient);</span><br><span class="line">            kqWebClient.addQQMSGListenner(myQQAdapter);</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            System.err.println(&quot;init KQ client fail e:&quot;+e.getMessage());</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>打包放到服务器。选择好启动函数，然后打包成Runnable jar再通过WinCSP软件放到服务器。<br><img src="https://img-blog.csdnimg.cn/20191116160351583.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="打包"></li>
+<li>服务器上后台运行这个jar文件。java -jar xxx.jar，这只是前台运行，与断开连接就会退出。我也不太懂linux，各位自己找下资料让它后台一直运行吧（<del>最近也被这个问题搞得头大，试过nohup之类的，还是没解决</del> ）。</li>
+</ol>
+<h2 id="4-更多"><a href="#4-更多" class="headerlink" title="4.更多"></a>4.更多</h2><ol>
+<li>插件的作者及详细接口说明<a href="https://cqp.cc/t/29722" target="_blank" rel="noopener">这里</a>。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/11/16/Java+coolq实现QQ机器人/" data-id="ck7kh7glq0021gwlayttf7g6b"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QQ-Robot/">QQ Robot</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-以太网链路层帧格式分析实验" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -109,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/11/01/以太网链路层帧格式分析实验/" data-id="ck3jgzxla0032lslaq121ywo2"
+      <a data-url="https://xinghailiao.github.io/2019/11/01/以太网链路层帧格式分析实验/" data-id="ck7kh7gnu003wgwlag4mzqax6"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
@@ -181,73 +294,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/24/TabLayout搭配ViewPager/" data-id="ck3jgzxk20023lsla4o3rpqj2"
+      <a data-url="https://xinghailiao.github.io/2019/10/24/TabLayout搭配ViewPager/" data-id="ck7kh7gmr002wgwla84lgfz3o"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-20191024随笔" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/10/24/20191024随笔/">20191024随笔</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/10/24/20191024随笔/" class="article-date">
-  <time datetime="2019-10-24T05:26:18.000Z" itemprop="datePublished">2019-10-24</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1024随笔"><a href="#1024随笔" class="headerlink" title="1024随笔"></a><center>1024随笔</center></h2><p>&ensp;&ensp;先说说这几年吧。高中毕业后什么都不懂，填志愿的时候就填了工业设计，那时候是真什么都不懂，填志愿都是看专业名字 [^1] 。我读工业设计读了一年，其中一年的主修课程都有素描和水粉。 [^2] 而我是一个理科直男，美术基本没接触过。我也是录取了之后才知道这个专业需要很强的美术基础，然后想想也觉得没什么，于是我暑假就学了一段时间的素描和水粉。我的水粉画的比素描好一点，素描我自己画的都不想看。下面是我的一幅水粉画。<br><img src="https://img-blog.csdnimg.cn/20191024093155985.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="我的水粉画"><br>&ensp;&ensp;大一上学期学的课程即使跨度很大的专业除了几门专业相关的基础课基本也差不多，不过这时候我就发现自己很不适合这个专业了。想成为一个设计师，在我看来，基本必备好奇心、一定的美术能力和创新能力了……这些，作为一个内向的理科直男，我还是有自知之明的。大一上学期期末我就打算转专业的，但是我家人说再试试呗，转专业很麻烦的，于是我又学了一个学期（我真后悔那时候没转专业）。然后寒假很无聊的度过了（因为我对我那时所学设计根本没什么目标，反而那时候我在自学C），然后开学又有素描和水粉课（真令人崩溃）。大一下也没什么专业课，就只有一门ps课，就是大量的案例练习。我比较内向，所以也没加社团和学生会，时间很多，我就一直在学C和Java。大一下也是在混日子，因为没什么目标和设计方面的爱好。不过这时候我已经下定决定转专业了。至于为什么是计算机，只能说我挺喜欢的。<br>&ensp;&ensp;大一下的暑假，我本来打算去参加信工院的夏令营，然后参加一个实验室（那时候我觉得我转专业应该没问题，只能说我当时太自信了）。不过，工业设计专业那时有个写生实习，我就没有报名。最让我气愤的是工设的老师又随便找了个理由推迟了。让我错过了夏令营，暑假也没干什么。<br>&ensp;&ensp;大一过得是真的混，唯一做的就是把四六级过了。<br>&ensp;&ensp;在转专业的过程中，我很感谢工设的班主任，她帮了我很多。最开始认为的是只要计算机相关的课程成绩好就可以的（我的高等数学和C语言都是接近满分），不过是大二转了，对方看都没收我的申请表，直接说计算机人太多了，让我考虑其他专业。我当初的想法就是非计算机不转，不可以的话我就回去复读了 [^3] 。最后的最后，这还是社会，我家人帮我弄好了。<br>&ensp;&ensp;说实话我是真喜欢计算机，所以我转来时很努力。最开始我认为计算机专业的学C或C++或Java应该已经学很久了，还担心跟不上，转过去之后才发现是我多虑了，那时候他们才学C++，我自己学了C++，然后考试考了满分 [^4] 。说实话跟我想的还是有点不一样吧，理论更多，实践贼少。最开始的计算机组成原理实验 [^5] 因为我没学过数电差点就挂了（不过他们学了数电的也没好很多，一样不会做），然后把我就自学了一下，看得懂学长的遗留代码了，勉强过了。然后由于我是转专业的，还需要补修大一的一堆课程。我就把线性代数和C语言试验补了（补修分数都不高）。关于大二上好像没什么可说的了。<br>&ensp;&ensp;大二上的寒假我参加了冬令营，然后以优秀营员进入了物联网。对于实验室，更多的我认为是一个自学的地方，这时接触了一下单片机。然后就一直在学Java，之后转到了安卓。<br>&ensp;&ensp;大二下发生的事情最多。我自学了安卓，然后开始写博客记录学习。上线了第一个自己写的App，同时也拥有了自己的个人网站。也参加了一些比赛，得了一些奖项。这一个学期感觉收获是最多的。<br>&ensp;&ensp;最后，对于这两年，后悔的事情挺多，不过都已经过去了。珍惜当下，加油。<br>[^1]:  至于为什么选了工业设计。大概是因为我表哥是这个专业的，然后他说工业设计挺好玩的（我父母文化程度不高，所以不能给我什么帮助，志愿基本看我自己了）。这里还有一个笑话，我和我高中的朋友本来都打算报计算机专业，最后他无声的选择了土木工程，而我无声的选择了工业设计。最后我们都有一样的路，大二的时候我们都转专业了，都转到了计算机相关专业。<br>[^2]: XTU的工业设计专业招的不是美术生。理科生大多没有美术基础，也有一部分压根没接触过（比如我）。<br>[^3]: 现在看来当初的确很冲动。<br>[^4]: 说实话要求太低了，考试贼简单。<br>[^5]: 王毅教的，贼严格。</p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/24/20191024随笔/" data-id="ck3jgzxg70001lsla4igbrs3b"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
 
     </footer>
 
@@ -283,7 +333,7 @@
 </ul>
     </div>
     <ul class="list-inline">
-      <li>&copy; 2019 不想吃泡面</li>
+      <li>&copy; 2020 不想吃泡面</li>
       <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
       <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
     </ul>

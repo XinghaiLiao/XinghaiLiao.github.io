@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>油猴插件安装</title>
+    <url>/2020/03/09/%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p><b>如果你可以访问外网，就不用看下面的了，直接在chrome扩展程序下载即可。 </b><br>Tampermonkey油猴下载地址<br>链接：<a href="https://pan.baidu.com/s/15ouGX7WVQ6lZxnfrcrlK6w" target="_blank" rel="noopener">https://pan.baidu.com/s/15ouGX7WVQ6lZxnfrcrlK6w</a><br>提取码：4xqs<br>下载后为Tampermonkey_v4.5.crx<br>0，改后缀rar（防河蟹），解压。<br>1，然后在chrome浏览器右上角点开竖三点 —&gt; 更多工具 —&gt; 扩展程序亦或是在chrome浏览器输入框输入chrome://extensions/进入扩展程序<br>2，在扩展程序页面，首先打开开发者模式,<br>3，接着点击加载已解压的扩展程序，选择刚才第一步解压的文件夹<br>4，油猴插件网站<a href="https://greasyfork.org/zh-CN，搜索油猴脚本，或者点击脚本列表来查找" target="_blank" rel="noopener">https://greasyfork.org/zh-CN，搜索油猴脚本，或者点击脚本列表来查找</a><br>5，安装想要的插件</p>
+<hr>
+]]></content>
+      <tags>
+        <tag>小知识</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaWeb修改默认主页和把项目放到其他地方的方法</title>
     <url>/2019/12/02/JavaWeb%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%B8%BB%E9%A1%B5%E5%92%8C%E6%8A%8A%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%88%B0%E5%85%B6%E4%BB%96%E5%9C%B0%E6%96%B9%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<hr>

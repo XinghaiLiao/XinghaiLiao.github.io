@@ -61,6 +61,71 @@
       
         
 
+<article id="post-Android中SnackBar的的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/10/18/Android中SnackBar的的使用/">Android中SnackBar的的使用</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/10/18/Android中SnackBar的的使用/" class="article-date">
+  <time datetime="2019-10-18T11:08:49.000Z" itemprop="datePublished">2019-10-18</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p>SnackBar提供一些操作的轻量级反馈，如下面的删除操作在屏幕底部显示一条简短消息。<br><img src="https://img-blog.csdnimg.cn/2019101819280555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70#pic_center" alt="示例"><br>下面示例代码可以显示一个SnackBar。其中静态函数make的第一个参数代表显示在哪个视图，第二个参数代表提示信息，第三个参数代表显示长短（可以是LENGTH_INDEFINITE（一直显示）、LENGTH_LONG、LENGTH_SHORT）。setAction函数是给SnackBar设置事件监听，第一个参数是显示的文字（也可以是xml文件中的），第二个参数是回调接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Snackbar snackbar = Snackbar.make(requireActivity().findViewById(R.id.wordsFragmentView), &quot;删除了一个词汇&quot;, Snackbar.LENGTH_SHORT);</span><br><span class="line">snackbar.setAction(&quot;撤销&quot;, new View.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(View v) &#123;	</span><br><span class="line">		//do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">snackbar.show();</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/10/18/Android中SnackBar的的使用/" data-id="ck7kh7gij000bgwla1xqzw7sj"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -108,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/" data-id="ck3jgzxlf0037lslaew34gqz5"
+      <a data-url="https://xinghailiao.github.io/2019/10/13/利用hexo在GitHub搭建博客改变tag因为大小写问题而404的解决方法/" data-id="ck7kh7go50049gwlawqmp42ub"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -171,70 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/13/Incorrect string value_ '_xE9_x95_xBF_xE6_xB2_x99' for column 'saddress' at row 1/" data-id="ck3jgzxjh001klslauy0c1zy7"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-JavaWeb项目jsp导入包时报错" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/10/08/JavaWeb项目jsp导入包时报错/">JavaWeb项目jsp导入包时报错</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/10/08/JavaWeb项目jsp导入包时报错/" class="article-date">
-  <time datetime="2019-10-08T07:54:06.000Z" itemprop="datePublished">2019-10-08</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p>java文件放在默认包下jsp导入时会报错，新建一个包放下面就好了。<br><img src="https://img-blog.csdnimg.cn/20191008155340851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="提示"><br><img src="https://img-blog.csdnimg.cn/20191008155711571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="好了"><br>还有一点就是web项目导入jar包时直接拷贝放WebContent/WEB-INF/lib目录下就好，按照通常的方法导入反而会报ClassNotFoundException。</p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/10/08/JavaWeb项目jsp导入包时报错/" data-id="ck3jgzxjr001slslagdv2cbmw"
+      <a data-url="https://xinghailiao.github.io/2019/10/13/Incorrect string value_ '_xE9_x95_xBF_xE6_xB2_x99' for column 'saddress' at row 1/" data-id="ck7kh7gl8001rgwlar9iyftmi"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaWeb/">JavaWeb</a></li></ul>
@@ -273,7 +275,7 @@
 </ul>
     </div>
     <ul class="list-inline">
-      <li>&copy; 2019 不想吃泡面</li>
+      <li>&copy; 2020 不想吃泡面</li>
       <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
       <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
     </ul>

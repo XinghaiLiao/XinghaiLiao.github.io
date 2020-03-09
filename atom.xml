@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xinghailiao.github.io/"/>
-  <updated>2019-12-02T11:53:05.709Z</updated>
+  <updated>2020-03-09T13:05:42.499Z</updated>
   <id>https://xinghailiao.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>油猴插件安装</title>
+    <link href="https://xinghailiao.github.io/2020/03/09/%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85/"/>
+    <id>https://xinghailiao.github.io/2020/03/09/油猴插件安装/</id>
+    <published>2020-03-09T12:55:28.000Z</published>
+    <updated>2020-03-09T13:05:42.499Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;b&gt;如果你可以访问外网，就不用看下面的了，直接在chrome扩展程序下载即可。 &lt;/b&gt;&lt;br&gt;Tampermonkey油猴下载地址&lt;br&gt;链接：&lt;a href=&quot;https://pan.baidu.com/s/15ouGX7WVQ6lZxnfrcrlK6w&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="小知识" scheme="https://xinghailiao.github.io/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaWeb修改默认主页和把项目放到其他地方的方法</title>
@@ -509,32 +534,6 @@
           &lt;hr&gt;
 &lt;ol&gt;
 &lt;li&gt;设置了android:showAsAction=”ifRoom”属性但是不在导航栏显示问题。&lt;br&gt;增加命名空间&lt;code&gt;xmlns:app=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;&lt;/c
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Android" scheme="https://xinghailiao.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android中ToolBar的使用</title>
-    <link href="https://xinghailiao.github.io/2019/08/29/Android%E4%B8%ADToolBar%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://xinghailiao.github.io/2019/08/29/Android中ToolBar的使用/</id>
-    <published>2019-08-29T13:23:15.000Z</published>
-    <updated>2019-10-12T05:12:32.464Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;p&gt;Toolbar即顶部的导航栏，使用也非常简单。下面是使用步骤。&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20190829211207549.png&quot;
         
       
     
