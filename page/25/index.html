@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+    <meta name="description" content="邮箱201705500216@smail.xtu.edu.cn">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    
+    不想吃泡面</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="jumbotron">
+  <div class="video">
+    
+      <div class="video-frame">
+        <img src="/images/ocean/overlay-hero.png" alt="Decorative image frame">
+      </div>
+    
+    <div class="video-media">
+      <video playsinline="" autoplay="" loop="" muted="" data-autoplay=""
+             poster="/images/ocean/ocean.png" x5-video-player-type="h5">
+        <source src="/images/ocean/ocean.mp4" type="video/mp4">
+        <source src="/images/ocean/ocean.ogv" type="video/ogg">
+        <source src="/images/ocean/ocean.webm" type="video/webm">
+        <p>Your user agent does not support the HTML5 Video element.</p>
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">不想吃泡面</a></h1>
+      <p>只要有树叶飞舞的地方，火就会燃烧。火的影子就会照耀着村子，并且，让新的树叶发芽。</p>
+      <div><img src="/favicon.ico" class="brand" alt="不想吃泡面"></div>
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    <h1 class="page-type-title"></h1>
+
+    
+      
+        
+
+<article id="post-基于拉格朗日差值算法的BMP图像缩放" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/">基于拉格朗日差值算法的BMP图像缩放</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/" class="article-date">
+  <time datetime="2019-07-02T06:44:39.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-BMP图片文件格式"><a href="#1-BMP图片文件格式" class="headerlink" title="1.BMP图片文件格式"></a>1.BMP图片文件格式</h2><blockquote>
+<p>参见博客<a href="https://www.cnblogs.com/wainiwann/p/7086844.html" target="_blank" rel="noopener">BMP文件格式详解</a>，这篇博客写的非常详细，不想看的话可以看下面的简单介绍，简介大多引用自这里。</p>
+</blockquote>
+<p>BMP文件的数据按照从文件头开始的先后顺序分为四个部分：bmp文件头(bmp file header)；位图信息头(bitmap information)；调色板(color palette)；位图数据(bitmap data)。下面是8位BMP图像和24位BMP图像的简介，如果觉得不详细的话就去看上面的博客。</p>
+<p>BMP文件头：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190702132532490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="BMP文件头"><br>BMP信息头：<br><img src="https://img-blog.csdnimg.cn/20190702132619493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>8位BMP文件格式：</strong> BMP文件头（14Byte），位图信息头（40字节），调色板（256*4字节。是这么来的：8位一共可以表示256种颜色，每种颜色4字节（R，G，B，Alpha）），位图数据（每行（图片的宽×每个像素的Byte）必须是4的倍数，不足会用0填充）。下面以一张图片的数据简单说明一下。</p>
+<p>下面这张图片是256×256的，大小是65.05KB：<br><img src="https://img-blog.csdnimg.cn/20190702133308272.png" alt="8位BMP图片示例"><br>下面是这张图的部分数据及对应的信息，其中数据部分的数据值对应的就是调色板的数据，如47，在调色板（B，G，R，Alpha）中就是（47， 47， 47， 0)，大于一字节的数据是用小端形式存储的（不懂小端模式的话可以参见<a href="https://blog.csdn.net/jelly_9/article/details/79330051" target="_blank" rel="noopener">这篇博客</a>）：<img src="https://img-blog.csdnimg.cn/20190702133418314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="8位BMP图片数据"><br><strong>24位BMP图片格式：</strong> BMP文件头（14Byte），位图信息头（40字节），位图数据（每行（图片的宽×每个像素的Byte）必须是4的倍数，不足会用0填充）。下面以一张图片的数据简单说明一下。</p>
+<p>下面这张图片是256×256的，文件大小是192.05KB<br><img src="https://img-blog.csdnimg.cn/2019070213425764.png" alt="24位BMP图片列子"><br>下面是这张图的部分数据及对应的信息，其中文件头和信息头和8位BMP是一样的，不过没有调色板，直接用24位表示一种颜色（如图中的39，16，52表示R（52）G（16）B（39））。大于一字节的数据也是用小端形式存储的。<br><img src="https://img-blog.csdnimg.cn/20190702135218613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="24位BMP数据示例"></p>
+<h2 id="2-拉格朗日差值简介"><a href="#2-拉格朗日差值简介" class="headerlink" title="2.拉格朗日差值简介"></a>2.拉格朗日差值简介</h2><p> <strong>问题提法(来自XTU数值分析课程的PPT)：</strong><img src="https://img-blog.csdnimg.cn/20190702135718873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="拉格朗日差值问题提法"><br> 通俗一点说也就是通过几个已知的样本点来求估计一个位置的点的函数值。</p>
+<p> <strong>一般求法（来自百度）：</strong><br> <img src="https://img-blog.csdnimg.cn/20190702140106918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="拉格朗日差值一般求法"></p>
+<h2 id="3-运用拉格朗日差值对BMP图片进行处理"><a href="#3-运用拉格朗日差值对BMP图片进行处理" class="headerlink" title="3.运用拉格朗日差值对BMP图片进行处理"></a>3.运用拉格朗日差值对BMP图片进行处理</h2><p><strong>原理（来自XTU数值分析课程的PPT）:</strong><br><img src="https://img-blog.csdnimg.cn/20190702140454162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图像缩放算法"><br><strong>以上图中的6×6缩小到3×3为列子，解释一下此算法的过程：</strong></p>
+<ol>
+<li>求出缩小图片列对应原图列中的位置（g(i)），想象一下缩放的过程就能明白为什么这样算。</li>
+<li>求出每个g(i)附近的n个点（n越大，精度越高）。</li>
+<li>把每个g(i)附近的n个点（对应原图中的点，如2.5附近的三个点是2，3，4这三个点的函数值就是原图中的颜色值（RGB），这n个点也可能有小于0或者大于原图宽度的点，如果有的话就做对称处理，具体参见第6步）当成样本点，利用拉格朗日差值算法算出g(i)的函数值，注意算出来的值要转换成整数。</li>
+<li>以8位图中2.5附近的三个点2，3，4为列子计算（假设2 ，3，4点的数据值分别是22,100,33）：<br><img src="https://img-blog.csdnimg.cn/20190702142545510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="2.5附近的3个点的拉格朗日差值的计算"></li>
+<li>如果是8位图片的话，算出来的值代表的就是该点RGB（8位图中的RGB和数据值是一样的，Alpha为0，有兴趣可以调下Alpha看看有什么效果）。如果是24位图片的话就当成3个8位图片处理，依次对R、G、B进行处理。</li>
+<li>如果算出来的n个值中有小于0或者大于原图宽度的值，就对其进行对称处理，具体方法如下：<strong>假如插值需要3个样本，它们是(-1，f(-1))，(0，f(0))，(1，f(1))，那么其中的(-1，f(-1))要做对称处理。处理后三个样本为(-1，f(1))，(0，f(0))，(1，f(1))，即f(-1)变成f(1)，不过算的时候还是用-1算，只是函数值变了。</strong></li>
+<li>对图片中的每一行都进行行处理。</li>
+<li>经过7步的处理后，我们把6×6缩成了6×3，还要进行行处理来缩成3×3。</li>
+<li>注意每行数据必须是4的倍数，不足的要进行0填充。</li>
+<li>处理后图的第k行，从离它最近的原图行取样进行插值。对于处理后图的第k行，原图中离它最近的行是round(k<em>(H0-1)/(H-1))，H0是原图高度，H是处理后图像的高度。原图共8行，第0行～第7行，即H0=8(即原图高度为8)。缩放后图像的行数为4行，第0行～第3行，即H=4。计算缩放图像的第1行，应从原图的第round(1</em>(8-1)/(4-1))=round(2.333…)=2行取样。计算缩放图像的第2行，应从原图的第round(2<em>(8-1)/(4-1))=round(4.666…)=5行取样。计算缩放图像的第3行，应从原图的round(3</em>(8-1)/(4-1))=round(7)=7行取样。</li>
+<li>放大缩小原理一样。<h2 id="4-代码实现（Java版本）"><a href="#4-代码实现（Java版本）" class="headerlink" title="4.代码实现（Java版本）"></a>4.代码实现（Java版本）</h2>可以下载我写的<a href="https://download.csdn.net/download/weixin_43219615/11261731" target="_blank" rel="noopener">戳这里</a>。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/" data-id="ck7kh7gnx0040gwlasesvw0yr"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+  </article>
+  
+
+  
+    <nav class="page-nav">
+      
+      <a class="extend prev" rel="prev" href="/page/24/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span>
+    </nav>
+  
+</section>
+</div>
+
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2020 不想吃泡面</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+
+  <aside class="sidebar">
+    
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.jpg" alt="不想吃泡面"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/tags">标签</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/ocean.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.5,"jsonPath":"/live2dw/assets/assets/nico.model.json"},"display":{"superSample":2,"width":100,"height":100,"position":"left","hOffset":30,"vOffset":20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.6,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

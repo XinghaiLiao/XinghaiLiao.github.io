@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xinghailiao.github.io/"/>
-  <updated>2020-03-09T13:05:42.499Z</updated>
+  <updated>2020-03-14T14:10:14.204Z</updated>
   <id>https://xinghailiao.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NOI/2.1基本算法之枚举/15:Counterfeit Dollar</title>
+    <link href="https://xinghailiao.github.io/2020/03/14/NOI_2.1%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E4%B9%8B%E6%9E%9A%E4%B8%BE_15_Counterfeit%20Dollar/"/>
+    <id>https://xinghailiao.github.io/2020/03/14/NOI_2.1基本算法之枚举_15_Counterfeit Dollar/</id>
+    <published>2020-03-14T14:05:42.000Z</published>
+    <updated>2020-03-14T14:10:14.204Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;h2 id=&quot;1-题目&quot;&gt;&lt;a href=&quot;#1-题目&quot; class=&quot;headerlink&quot; title=&quot;1.题目&quot;&gt;&lt;/a&gt;1.题目&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://noi.openjudge.cn/ch0201/15/&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="NOI" scheme="https://xinghailiao.github.io/tags/NOI/"/>
+    
+  </entry>
   
   <entry>
     <title>油猴插件安装</title>
@@ -507,33 +533,6 @@
         
           &lt;hr&gt;
 &lt;h2 id=&quot;1-前言&quot;&gt;&lt;a href=&quot;#1-前言&quot; class=&quot;headerlink&quot; title=&quot;1.前言&quot;&gt;&lt;/a&gt;1.前言&lt;/h2&gt;&lt;p&gt;
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Android" scheme="https://xinghailiao.github.io/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决Android溢出菜单栏不显示图标及设置了android:showAsAction=&quot;ifRoom&quot;但不在导航栏显示问题</title>
-    <link href="https://xinghailiao.github.io/2019/08/30/%E8%A7%A3%E5%86%B3Android%E6%BA%A2%E5%87%BA%E8%8F%9C%E5%8D%95%E6%A0%8F%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%9B%BE%E6%A0%87%E5%8F%8A%E8%AE%BE%E7%BD%AE%E4%BA%86android_showAsAction=_ifRoom_%E4%BD%86%E4%B8%8D%E5%9C%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/"/>
-    <id>https://xinghailiao.github.io/2019/08/30/解决Android溢出菜单栏不显示图标及设置了android_showAsAction=_ifRoom_但不在导航栏显示问题/</id>
-    <published>2019-08-30T08:43:31.000Z</published>
-    <updated>2019-10-12T05:06:55.314Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;hr&gt;
-&lt;ol&gt;
-&lt;li&gt;设置了android:showAsAction=”ifRoom”属性但是不在导航栏显示问题。&lt;br&gt;增加命名空间&lt;code&gt;xmlns:app=&amp;quot;http://schemas.android.com/apk/res-auto&amp;quot;&lt;/c
         
       
     

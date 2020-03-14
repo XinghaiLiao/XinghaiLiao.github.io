@@ -61,6 +61,109 @@
       
         
 
+<article id="post-Java单例设计模式" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/07/22/Java单例设计模式/">Java单例设计模式</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/22/Java单例设计模式/" class="article-date">
+  <time datetime="2019-07-22T02:41:53.000Z" itemprop="datePublished">2019-07-22</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-单例模式的介绍"><a href="#1-单例模式的介绍" class="headerlink" title="1.单例模式的介绍"></a>1.单例模式的介绍</h2><blockquote>
+<p>单例模式，也叫单子模式，是一种常用的软件设计模式。在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个的全局对象，这样有利于我们协调系统整体的行为。比如在某个服务器程序中，该服务器的配置信息存放在一个文件中，这些配置数据由一个单例对象统一读取，然后服务进程中的其他对象再通过这个单例对象获取这些配置信息。这种方式简化了在复杂环境下的配置管理。</p>
+</blockquote>
+<h2 id="2-单例模式的两种基本实现"><a href="#2-单例模式的两种基本实现" class="headerlink" title="2.单例模式的两种基本实现"></a>2.单例模式的两种基本实现</h2><ol>
+<li><p><strong>饿汉式：</strong> 饿汉式单例模式在类初始化时就加载了单例对象，本身就是线程安全的。但是当加载类的时间很长，但是后面又没有用这个示例时，就造成了资源浪费。饿汉式示例代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 测试饿汉式单例模式</span><br><span class="line"> * 加载类时创建对象线程安全 调用效率高</span><br><span class="line"> * @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo01 &#123;</span><br><span class="line">    //类初始化时，立即加载这个对象 后面可能根本没有用 造成资源浪费</span><br><span class="line">    private static SingletonDemo01 instance = new SingletonDemo01();</span><br><span class="line"></span><br><span class="line">    private SingletonDemo01() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    //方法不用考虑线程同步问题 调用效率高</span><br><span class="line">    public static SingletonDemo01 getInstance() &#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>懒汉式：</strong> 真正用到单例对象时才加载，但是当多个线程去调用同一个对象的getInstance时会有并发问题。比如线程A调用getInstance的时候发现instance是null，然后进入挂起状态；之后线程B调用getInstance方法new了一个对象，这时线程A接着运行时就又建立了一个新的对象，从而违背类单例模式的初衷。所以懒汉式的单例模式在getInstance方法前面加上synchronized关键字来解决线程同步问题，带来的问题也就是调用效率降低了。懒汉式的示例代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *@author XinghaiLiao</span><br><span class="line"> *懒汉式 延时加载</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo02 &#123;</span><br><span class="line">    private static SingletonDemo02 instance;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo02() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 真正用的时候才加载 但是当多个线程去调用的时候会有并发问题 比如A调用的时候发现instance是null</span><br><span class="line">     * 然后进入了挂起状态 B调用的时候new了一个新对象 这时候就会有两个单例对象</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static synchronized SingletonDemo02 getInstance() &#123;</span><br><span class="line">        if(instance == null) &#123;</span><br><span class="line">            instance = new SingletonDemo02();</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="3-其他方法实现单例模式"><a href="#3-其他方法实现单例模式" class="headerlink" title="3.其他方法实现单例模式"></a>3.其他方法实现单例模式</h2><ol>
+<li><p>双重检测锁来实现。<strong>由于编译器优化原因和JVM底层内部模型原因，偶尔会出现问题。不建议使用。</strong> 但是也给大家介绍一下。这种模式将同步内容放到if内部，只有当instance为空时不同线程访问时才需要同步，当已经有单例实例时则直接获取单例实例。demo代码如下。    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo03 &#123;</span><br><span class="line">    private static SingletonDemo03 instance;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo03() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static SingletonDemo03 getInstance() &#123;</span><br><span class="line">        if(instance == null) &#123;</span><br><span class="line">            SingletonDemo03 s;</span><br><span class="line">            synchronized (SingletonDemo03.class) &#123;</span><br><span class="line">                s = instance;</span><br><span class="line">                if(s == null) &#123;</span><br><span class="line">                    synchronized (SingletonDemo03.class) &#123;</span><br><span class="line">                        if(s == null) &#123;</span><br><span class="line">                            s = new SingletonDemo03();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    instance = s;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>静态内部类来实现优化。这种方法兼备了线程安全、调用效率高和延迟加载等优点。这种方法添加了一个私有静态内部类，由于初始化这个类时并不会初始化静态内部类，只有调用内部类时才会初始化内部类，从而实现延时加载，而且类加载时线程是安全的。demo代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 静态内部类的实现</span><br><span class="line"> 2. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo04 &#123;</span><br><span class="line">    private static class SingletonClassInstance &#123;</span><br><span class="line">        private static final SingletonDemo04 instance = new SingletonDemo04();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private SingletonDemo04() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static SingletonDemo04 getInstance() &#123;</span><br><span class="line">        return SingletonClassInstance.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用枚举实现单例模式。优点是实现简单，枚举类本身就是单例模式，可以避免通过反射和反序列化来创建对象。demo代码如下。这种方法调用效率也比较高，遗憾的是不能实现延时加载。demo代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 枚举实现单例模式</span><br><span class="line"> 2. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public enum SingletonDemo05 &#123;</span><br><span class="line">    //这个枚举元素本身就是单例对象</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 添加自己的方法</span><br><span class="line">     */</span><br><span class="line">    public void singletonOperation() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><ol>
+<li><p><strong>这篇是本人学习笔记，有错误的地方希望大家指正(^_−)☆</strong>。</p>
+</li>
+<li><p>大家可以写个简单的测试程序测试一下单例模式，比如测试demo。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line"></span><br><span class="line">public class Demo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SingletonDemo01 s1 = SingletonDemo01.getInstance();</span><br><span class="line">        SingletonDemo01 s2 = SingletonDemo01.getInstance();</span><br><span class="line">        System.out.println(s1 == s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于暴力反射破解单例模式的测试代码如下，可以发现暴力反射创建的对象和原来的不同。    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package reflection;</span><br><span class="line"></span><br><span class="line">import singleton.SingletonDemo01;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> 1. 暴力反射获取实例</span><br><span class="line"> 2. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class Demo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SingletonDemo01 s1 = SingletonDemo01.getInstance();</span><br><span class="line">        SingletonDemo01 s2 = SingletonDemo01.getInstance();</span><br><span class="line">        System.out.println(s1);</span><br><span class="line">        System.out.println(s2);</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            Class&lt;SingletonDemo01&gt; singletonDemo01Class = (Class&lt;SingletonDemo01&gt;)Class.forName(&quot;singleton.SingletonDemo01&quot;);</span><br><span class="line">            Constructor&lt;SingletonDemo01&gt; constructor = singletonDemo01Class.getDeclaredConstructor(null);</span><br><span class="line">            constructor.setAccessible(true);</span><br><span class="line">            SingletonDemo01 s3 =  constructor.newInstance();</span><br><span class="line">            System.out.println(s3);</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (NoSuchMethodException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (InstantiationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (InvocationTargetException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要防止用暴力反射的方式来创建对象，可以在构造函数中抛出异常来防止。示例代码如下。这时候如果通过反射获取实例时会直接抛出异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package singleton;</span><br><span class="line">/**</span><br><span class="line"> 4. @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class SingletonDemo01 &#123;</span><br><span class="line">    private static SingletonDemo01 instance = new SingletonDemo01();</span><br><span class="line"></span><br><span class="line">    private SingletonDemo01() &#123;</span><br><span class="line">        if(instance != null) &#123;</span><br><span class="line">            throw new RuntimeException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static SingletonDemo01 getInstance() &#123;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要具体比较每种方式的效率，可以通过下面的demo代码来测试（下面是测试饿汉式的效率）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package reflection;</span><br><span class="line"></span><br><span class="line">import singleton.SingletonDemo01;</span><br><span class="line"></span><br><span class="line">import java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 测试效率</span><br><span class="line"> * @author XinghaiLiao</span><br><span class="line"> */</span><br><span class="line">public class Demo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        long start = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        int threadCnt = 10;</span><br><span class="line">        CountDownLatch countDownLatch = new CountDownLatch(threadCnt);</span><br><span class="line"></span><br><span class="line">        for(int i = 0; i &lt; threadCnt; i++) &#123;</span><br><span class="line">            new Thread(() -&gt; &#123;</span><br><span class="line">                for(int j = 0; j &lt; 1000000; j++) &#123;</span><br><span class="line">                    Object o = SingletonDemo01.getInstance();</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            //main线程阻塞，直到计数器清0</span><br><span class="line">            countDownLatch.await();</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        long end = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;总耗时：&quot; + (end-start) + &quot;ms&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/07/22/Java单例设计模式/" data-id="ck7kh7gm30029gwlaqka7ir9f"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Java连接MySQL实现简易学生信息管理系统" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -278,99 +381,13 @@
 
 
       
-        
-
-<article id="post-基于拉格朗日差值算法的BMP图像缩放" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/">基于拉格朗日差值算法的BMP图像缩放</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/" class="article-date">
-  <time datetime="2019-07-02T06:44:39.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-BMP图片文件格式"><a href="#1-BMP图片文件格式" class="headerlink" title="1.BMP图片文件格式"></a>1.BMP图片文件格式</h2><blockquote>
-<p>参见博客<a href="https://www.cnblogs.com/wainiwann/p/7086844.html" target="_blank" rel="noopener">BMP文件格式详解</a>，这篇博客写的非常详细，不想看的话可以看下面的简单介绍，简介大多引用自这里。</p>
-</blockquote>
-<p>BMP文件的数据按照从文件头开始的先后顺序分为四个部分：bmp文件头(bmp file header)；位图信息头(bitmap information)；调色板(color palette)；位图数据(bitmap data)。下面是8位BMP图像和24位BMP图像的简介，如果觉得不详细的话就去看上面的博客。</p>
-<p>BMP文件头：</p>
-<p><img src="https://img-blog.csdnimg.cn/20190702132532490.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="BMP文件头"><br>BMP信息头：<br><img src="https://img-blog.csdnimg.cn/20190702132619493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>8位BMP文件格式：</strong> BMP文件头（14Byte），位图信息头（40字节），调色板（256*4字节。是这么来的：8位一共可以表示256种颜色，每种颜色4字节（R，G，B，Alpha）），位图数据（每行（图片的宽×每个像素的Byte）必须是4的倍数，不足会用0填充）。下面以一张图片的数据简单说明一下。</p>
-<p>下面这张图片是256×256的，大小是65.05KB：<br><img src="https://img-blog.csdnimg.cn/20190702133308272.png" alt="8位BMP图片示例"><br>下面是这张图的部分数据及对应的信息，其中数据部分的数据值对应的就是调色板的数据，如47，在调色板（B，G，R，Alpha）中就是（47， 47， 47， 0)，大于一字节的数据是用小端形式存储的（不懂小端模式的话可以参见<a href="https://blog.csdn.net/jelly_9/article/details/79330051" target="_blank" rel="noopener">这篇博客</a>）：<img src="https://img-blog.csdnimg.cn/20190702133418314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="8位BMP图片数据"><br><strong>24位BMP图片格式：</strong> BMP文件头（14Byte），位图信息头（40字节），位图数据（每行（图片的宽×每个像素的Byte）必须是4的倍数，不足会用0填充）。下面以一张图片的数据简单说明一下。</p>
-<p>下面这张图片是256×256的，文件大小是192.05KB<br><img src="https://img-blog.csdnimg.cn/2019070213425764.png" alt="24位BMP图片列子"><br>下面是这张图的部分数据及对应的信息，其中文件头和信息头和8位BMP是一样的，不过没有调色板，直接用24位表示一种颜色（如图中的39，16，52表示R（52）G（16）B（39））。大于一字节的数据也是用小端形式存储的。<br><img src="https://img-blog.csdnimg.cn/20190702135218613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="24位BMP数据示例"></p>
-<h2 id="2-拉格朗日差值简介"><a href="#2-拉格朗日差值简介" class="headerlink" title="2.拉格朗日差值简介"></a>2.拉格朗日差值简介</h2><p> <strong>问题提法(来自XTU数值分析课程的PPT)：</strong><img src="https://img-blog.csdnimg.cn/20190702135718873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="拉格朗日差值问题提法"><br> 通俗一点说也就是通过几个已知的样本点来求估计一个位置的点的函数值。</p>
-<p> <strong>一般求法（来自百度）：</strong><br> <img src="https://img-blog.csdnimg.cn/20190702140106918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="拉格朗日差值一般求法"></p>
-<h2 id="3-运用拉格朗日差值对BMP图片进行处理"><a href="#3-运用拉格朗日差值对BMP图片进行处理" class="headerlink" title="3.运用拉格朗日差值对BMP图片进行处理"></a>3.运用拉格朗日差值对BMP图片进行处理</h2><p><strong>原理（来自XTU数值分析课程的PPT）:</strong><br><img src="https://img-blog.csdnimg.cn/20190702140454162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图像缩放算法"><br><strong>以上图中的6×6缩小到3×3为列子，解释一下此算法的过程：</strong></p>
-<ol>
-<li>求出缩小图片列对应原图列中的位置（g(i)），想象一下缩放的过程就能明白为什么这样算。</li>
-<li>求出每个g(i)附近的n个点（n越大，精度越高）。</li>
-<li>把每个g(i)附近的n个点（对应原图中的点，如2.5附近的三个点是2，3，4这三个点的函数值就是原图中的颜色值（RGB），这n个点也可能有小于0或者大于原图宽度的点，如果有的话就做对称处理，具体参见第6步）当成样本点，利用拉格朗日差值算法算出g(i)的函数值，注意算出来的值要转换成整数。</li>
-<li>以8位图中2.5附近的三个点2，3，4为列子计算（假设2 ，3，4点的数据值分别是22,100,33）：<br><img src="https://img-blog.csdnimg.cn/20190702142545510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="2.5附近的3个点的拉格朗日差值的计算"></li>
-<li>如果是8位图片的话，算出来的值代表的就是该点RGB（8位图中的RGB和数据值是一样的，Alpha为0，有兴趣可以调下Alpha看看有什么效果）。如果是24位图片的话就当成3个8位图片处理，依次对R、G、B进行处理。</li>
-<li>如果算出来的n个值中有小于0或者大于原图宽度的值，就对其进行对称处理，具体方法如下：<strong>假如插值需要3个样本，它们是(-1，f(-1))，(0，f(0))，(1，f(1))，那么其中的(-1，f(-1))要做对称处理。处理后三个样本为(-1，f(1))，(0，f(0))，(1，f(1))，即f(-1)变成f(1)，不过算的时候还是用-1算，只是函数值变了。</strong></li>
-<li>对图片中的每一行都进行行处理。</li>
-<li>经过7步的处理后，我们把6×6缩成了6×3，还要进行行处理来缩成3×3。</li>
-<li>注意每行数据必须是4的倍数，不足的要进行0填充。</li>
-<li>处理后图的第k行，从离它最近的原图行取样进行插值。对于处理后图的第k行，原图中离它最近的行是round(k<em>(H0-1)/(H-1))，H0是原图高度，H是处理后图像的高度。原图共8行，第0行～第7行，即H0=8(即原图高度为8)。缩放后图像的行数为4行，第0行～第3行，即H=4。计算缩放图像的第1行，应从原图的第round(1</em>(8-1)/(4-1))=round(2.333…)=2行取样。计算缩放图像的第2行，应从原图的第round(2<em>(8-1)/(4-1))=round(4.666…)=5行取样。计算缩放图像的第3行，应从原图的round(3</em>(8-1)/(4-1))=round(7)=7行取样。</li>
-<li>放大缩小原理一样。<h2 id="4-代码实现（Java版本）"><a href="#4-代码实现（Java版本）" class="headerlink" title="4.代码实现（Java版本）"></a>4.代码实现（Java版本）</h2>可以下载我写的<a href="https://download.csdn.net/download/weixin_43219615/11261731" target="_blank" rel="noopener">戳这里</a>。</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/02/基于拉格朗日差值算法的BMP图像缩放/" data-id="ck7kh7gnx0040gwlasesvw0yr"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/课程设计/">课程设计</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
   </article>
   
 
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/23/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span>
+      <a class="extend prev" rel="prev" href="/page/23/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/25/">下一页</a>
     </nav>
   
 </section>

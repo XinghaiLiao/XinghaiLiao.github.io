@@ -61,6 +61,90 @@
       
         
 
+<article id="post-Android利用Application设置和操作全局变量" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/12/Android利用Application设置和操作全局变量/">Android利用Application设置和操作全局变量</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/12/Android利用Application设置和操作全局变量/" class="article-date">
+  <time datetime="2019-08-12T05:32:27.000Z" itemprop="datePublished">2019-08-12</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>Application用于维护全局应用程序状态的基类，在App的运行过程中有且仅有一个Application贯穿整个生命周期。一般通过创建它的子类并设置AndroidManifest.xml中的Application节点的name属性为子类名称来提供自己的实现。子类一般采用单例设计模式，一般在Application中存放频繁读取的信息、网络上下载的临时数据（为了节约流量、减少等待时间）、容易因为频繁分配而导致内存泄漏的对象。<br><img src="https://img-blog.csdnimg.cn/20190812131618129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="例子图片"></p>
+<h2 id="2-使用步骤及例子"><a href="#2-使用步骤及例子" class="headerlink" title="2.使用步骤及例子"></a>2.使用步骤及例子</h2><p>创建ApplicationActivity。</p>
+<ol>
+<li><p>采用单例设计模式创建MainApplication（名字随你）继承自Application。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import android.app.Application;</span><br><span class="line">import android.content.res.Configuration;</span><br><span class="line"></span><br><span class="line">import androidx.annotation.NonNull;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 单例模式</span><br><span class="line"> */</span><br><span class="line">public class MainApplication extends Application &#123;</span><br><span class="line">    private static MainApplication mainApplication;</span><br><span class="line">    public HashMap&lt;String, String&gt; InfoMap = new HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public static MainApplication getInstance() &#123;</span><br><span class="line">        return mainApplication;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    /**</span><br><span class="line">     * App启动时调用</span><br><span class="line">     */</span><br><span class="line">    public void onCreate() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        mainApplication = this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    /**</span><br><span class="line">     * This method is for use in emulated process environments.</span><br><span class="line">     * It will never be called on a production Android device, where processes are removed by simply killing them;</span><br><span class="line">     * no user code (including this callback) is executed when doing so。</span><br><span class="line">     * 注意真机上永远不会被调用</span><br><span class="line">     */</span><br><span class="line">    public void onTerminate() &#123;</span><br><span class="line">        super.onTerminate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    /**</span><br><span class="line">     * 低内存时调用</span><br><span class="line">     */</span><br><span class="line">    public void onLowMemory() &#123;</span><br><span class="line">        super.onLowMemory();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    /**</span><br><span class="line">     * 配置改变时调用 如竖屏变横屏</span><br><span class="line">     */</span><br><span class="line">    public void onConfigurationChanged(@NonNull Configuration newConfig) &#123;</span><br><span class="line">        super.onConfigurationChanged(newConfig);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置AndroidManifest.xml中的Application节点的name属性为子类名称。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:name=&quot;.MainApplication&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Activity中利用getInstance方法获取实例访问公有属性，这样便可以设置全局变量了。</p>
+<ul>
+<li>activity_application.xml<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.ApplicationActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RelativeLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;50dp&quot;&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_name&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:text=&quot;姓名：&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:gravity=&quot;center_vertical&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:layout_toRightOf=&quot;@id/tv_name&quot;</span><br><span class="line">            android:inputType=&quot;text&quot;</span><br><span class="line">            android:maxLength=&quot;10&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:id=&quot;@+id/et_name&quot;</span><br><span class="line">            android:hint=&quot;姓名&quot;/&gt;</span><br><span class="line">    &lt;/RelativeLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;RelativeLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;50dp&quot;&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_hobby&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:text=&quot;爱好：&quot;</span><br><span class="line">            android:textSize=&quot;18sp&quot;</span><br><span class="line">            android:gravity=&quot;center_vertical&quot;</span><br><span class="line">            android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id=&quot;@+id/et_hobby&quot;</span><br><span class="line">            android:inputType=&quot;text&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:hint=&quot;爱好&quot;</span><br><span class="line">            android:layout_toRightOf=&quot;@id/tv_hobby&quot;/&gt;</span><br><span class="line">    &lt;/RelativeLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=&quot;@+id/btn_ok&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;写入全局内存&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:layout_marginTop=&quot;50dp&quot;</span><br><span class="line">        android:text=&quot;读取全局内存&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:id=&quot;@+id/btn_read&quot;</span><br><span class="line">        /&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:hint=&quot;用于展示读取到的参数&quot;</span><br><span class="line">        android:id=&quot;@+id/tv_show_data&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>ApplicationActivity.java<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.text.TextUtils;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.EditText;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line"></span><br><span class="line">public class ApplicationActivity extends AppCompatActivity &#123;</span><br><span class="line">    private EditText et_name;</span><br><span class="line">    private EditText et_hobby;</span><br><span class="line">    private TextView tv_show_data;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_application);</span><br><span class="line">        et_name = findViewById(R.id.et_name);</span><br><span class="line">        et_hobby = findViewById(R.id.et_hobby);</span><br><span class="line">        tv_show_data = findViewById(R.id.tv_show_data);</span><br><span class="line">        findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                String name = et_name.getText().toString();</span><br><span class="line">                String hobby = et_hobby.getText().toString();</span><br><span class="line">                if(TextUtils.isEmpty(name)) &#123;</span><br><span class="line">                    Toast.makeText(ApplicationActivity.this, &quot;名字不能为空&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    return ;</span><br><span class="line">                &#125;</span><br><span class="line">                if(TextUtils.isEmpty(hobby)) &#123;</span><br><span class="line">                    Toast.makeText(ApplicationActivity.this, &quot;爱好不能为空&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    return ;</span><br><span class="line">                &#125;</span><br><span class="line">                HashMap&lt;String, String&gt; infoMap = MainApplication.getInstance().InfoMap;</span><br><span class="line">                infoMap.put(&quot;name&quot;, name);</span><br><span class="line">                infoMap.put(&quot;hobby&quot;, hobby);</span><br><span class="line">                Toast.makeText(ApplicationActivity.this, &quot;写入全局变量成功&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        findViewById(R.id.btn_read).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                HashMap&lt;String, String&gt; infoMap = MainApplication.getInstance().InfoMap;</span><br><span class="line">                tv_show_data.setText(&quot;姓名：&quot; + infoMap.get(&quot;name&quot;) + &quot;\n爱好：&quot; + infoMap.get(&quot;hobby&quot;));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/12/Android利用Application设置和操作全局变量/" data-id="ck7kh7gj5000pgwlaop1q4uig"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android数据库SQLite的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -221,88 +305,13 @@
 
 
       
-        
-
-<article id="post-Android中AlertDialog的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/11/Android中AlertDialog的使用/">Android中AlertDialog的使用</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/11/Android中AlertDialog的使用/" class="article-date">
-  <time datetime="2019-08-11T07:19:17.000Z" itemprop="datePublished">2019-08-11</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p>AlertDialog是安卓中很常用的对话框，只能通过AlertDialog.Builder完成参数设置后才能创建。使用AlertDialog的核心代码及注释如下。<br><img src="https://img-blog.csdnimg.cn/20190811151021431.png" alt="AlertDialog"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">AlertDialog.Builder builder = new AlertDialog.Builder(AlertDialogActivity.this);</span><br><span class="line">//设置标题</span><br><span class="line">builder.setTitle(&quot;Demo&quot;);</span><br><span class="line">//设置显示的消息</span><br><span class="line">builder.setMessage(&quot;我也不知道发生了什么&quot;);</span><br><span class="line">//设置肯定的按钮和监听器</span><br><span class="line">builder.setPositiveButton(&quot;好的&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">//设置中立的按钮和监听器（感觉基本上很少用）</span><br><span class="line">builder.setNeutralButton(&quot;中立&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something        </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">//设置否定的按钮和监听器</span><br><span class="line">builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">		//do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">//构造AlertDialog</span><br><span class="line">AlertDialog alertDialog = builder.create();</span><br><span class="line">//显示AlertDialog</span><br><span class="line">alertDialog.show();</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-例子"><a href="#2-例子" class="headerlink" title="2.例子"></a>2.例子</h2><p>创建AlertDialogActivity，代码如下。</p>
-<ol>
-<li><p>activity_alter_dialog.xml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.AlertDialogActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">        android:id=&quot;@+id/btn_pop_alert_dialog&quot;</span><br><span class="line">        android:layout_marginTop=&quot;30dp&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;弹出AlertDialog&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>AlertDialogActivity.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AlertDialog;</span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.content.DialogInterface;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class AlertDialogActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_alter_dialog);</span><br><span class="line">        findViewById(R.id.btn_pop_alert_dialog).setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                AlertDialog.Builder builder = new AlertDialog.Builder(AlertDialogActivity.this);</span><br><span class="line">                //设置标题</span><br><span class="line">                builder.setTitle(&quot;Demo&quot;);</span><br><span class="line">                //设置显示的消息</span><br><span class="line">                builder.setMessage(&quot;我也不知道发生了什么&quot;);</span><br><span class="line">                //设置肯定的按钮和监听器</span><br><span class="line">                builder.setPositiveButton(&quot;好的&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                        Toast.makeText(AlertDialogActivity.this, &quot;你点击了好的&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                //设置中立的按钮和监听器</span><br><span class="line">                builder.setNeutralButton(&quot;中立&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                        Toast.makeText(AlertDialogActivity.this, &quot;你点击了中立&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                //设置否定的按钮和监听器</span><br><span class="line">                builder.setNegativeButton(&quot;取消&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onClick(DialogInterface dialogInterface, int i) &#123;</span><br><span class="line">                        Toast.makeText(AlertDialogActivity.this, &quot;你点击了取消&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">                //构造AlertDialog</span><br><span class="line">                AlertDialog alertDialog = builder.create();</span><br><span class="line">                //显示AlertDialog</span><br><span class="line">                alertDialog.show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/11/Android中AlertDialog的使用/" data-id="ck7kh7gi50006gwlawpxjgu5q"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
   </article>
   
 
   
     <nav class="page-nav">
       
-      <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
+      <a class="extend prev" rel="prev" href="/page/15/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/17/">下一页</a>
     </nav>
   
 </section>
