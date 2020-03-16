@@ -61,6 +61,73 @@
       
         
 
+<article id="post-Android Studio中的Project和Module" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/05/Android Studio中的Project和Module/">Android Studio中的Project和Module</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/05/Android Studio中的Project和Module/" class="article-date">
+  <time datetime="2019-08-05T08:39:51.000Z" itemprop="datePublished">2019-08-05</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<ol>
+<li>File-&gt;New-&gt;New Project 创建项目。相当于eclipse中的workspace</li>
+<li>File-&gt;New-&gt;New Module创建模块。这里的新模块是指一个单独的App工程，对应于eclipse中的new project。</li>
+<li><del>想想我们一般使用eclipse都是先选择workspace然后再在workspace上创建工程就可以理解了。</del> </li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/05/Android Studio中的Project和Module/" data-id="ck7kh7gh60003gwlae3vxbcuf"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Java文件输入输出字节流" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -217,89 +284,6 @@
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-作为新手开发安卓App所遇到的问题及解决" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/07/30/作为新手开发安卓App所遇到的问题及解决/">作为新手开发Android应用时遇到的问题</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/07/30/作为新手开发安卓App所遇到的问题及解决/" class="article-date">
-  <time datetime="2019-07-30T05:48:43.000Z" itemprop="datePublished">2019-07-30</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>最近和实验室的朋友一起做了一个项目，我主要负责安卓应用开发。开发中遇到了许多新手常见问题，下面就是这些问题和解决方案。</p>
-<h2 id="2-正文"><a href="#2-正文" class="headerlink" title="2.正文"></a>2.正文</h2><ol>
-<li><p>App的主要功能是通过和服务器交互，获取服务器端的json文件，然后通过安卓UI组件动态显示出来。点击对应的按钮则向服务器发出对应请求。<br><img src="https://img-blog.csdnimg.cn/20190730130821586.png" alt="App"></p>
-</li>
-<li><p>做App时主要遇到了两个错误。第一就是直接在主线程中发送网络请求；第二就是在其他线程中修改UI组件。这两个错误其实是安卓开发的常识性错误：不能在主线程中访问网络；不能在其他线程中获取和修改UI组件。</p>
-</li>
-<li><p>具体错误及解决方法</p>
-<ul>
-<li>不能在主线程中访问网络：新开一个线程来访问网络。</li>
-<li>Only the original thread that created a view hierarchy can touch its views（只有原来创建UI组件的线程才能访问这个UI组件）：参考这篇文章<a href="https://blog.csdn.net/breeze666/article/details/7570914" target="_blank" rel="noopener">戳这里</a>。下面是我参考这篇文章后的主要代码片段。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//新建一个Hander</span><br><span class="line">private final Handler mHandler = new Handler();</span><br><span class="line">//更新UI组件的runnable接口</span><br><span class="line">final Runnable mUpdateResults = new Runnable() &#123;</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            updateUI();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">//更新UI组件的具体操作</span><br><span class="line">private void updateUI() &#123;</span><br><span class="line">        tv_light_value.setText(light_value);</span><br><span class="line">        tv_nutrition_value.setText(nutrition_value);</span><br><span class="line">        tv_water_value.setText(water_value);</span><br><span class="line">&#125;</span><br><span class="line">//这个类中把要做的事情做完了之后 调用hander的post方法来更新UI</span><br><span class="line">class jsonThread implements Runnable &#123;</span><br><span class="line">        private String url;</span><br><span class="line"></span><br><span class="line">        public jsonThread(String url) &#123;</span><br><span class="line">            this.url = url + &quot;/guang.json&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while(true) &#123;</span><br><span class="line">                String result = HttpUtil.getHttpResult(url);</span><br><span class="line">                if(result  == null) &#123;</span><br><span class="line">                    Looper.prepare();</span><br><span class="line">                    ToastUtil.showToast(MainActivity.this, &quot;网络连接错误&quot;);</span><br><span class="line">                    Looper.loop();</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        JSONArray array = new JSONArray(result);</span><br><span class="line">                        light_value = array.getJSONObject(0).getString(&quot;guang&quot;);</span><br><span class="line">                        water_value = array.getJSONObject(0).getString(&quot;shidu&quot;);</span><br><span class="line">                        nutrition_value = array.getJSONObject(0).getString(&quot;wendu&quot;);</span><br><span class="line">                        jiaoshui = array.getJSONObject(0).getString(&quot;jiaoshui&quot;);</span><br><span class="line">                        yingyang = array.getJSONObject(0).getString(&quot;shifei&quot;);</span><br><span class="line">                        buguang = array.getJSONObject(0).getString(&quot;buguang&quot;);</span><br><span class="line">                        //上面已经把要处理的东西处理完了，接下来调用post方法来更新UI</span><br><span class="line">                        mHandler.post(mUpdateResults);</span><br><span class="line">                    &#125; catch (JSONException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>还有一些其他错误如用wamp一键搭建web服务器时发现同一局域网下手机访问网站403了。解决方法如下：把箭头所指的文件的里面的<strong>Require local</strong>改成<strong>Require all granted</strong>，然后重启服务器手机就可以访问了。<br><img src="https://img-blog.csdnimg.cn/20190730133855116.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="图片"><br><img src="https://img-blog.csdnimg.cn/20190730134202786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="重启"></p>
-</li>
-</ol>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><ol>
-<li>务必学好Java再碰安卓（当然现在开发安卓也可以用Kotlin）。</li>
-<li>比赛一定要找适合的队友组队（<del>别随缘找队友了</del> ），不然真心觉得憨上加憨。<br><img src="https://img-blog.csdnimg.cn/20190730134648701.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="憨上加憨"></li>
-<li><del>好好学习，天天向上。</del> </li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/07/30/作为新手开发安卓App所遇到的问题及解决/" data-id="ck7kh7gnm003rgwlalj8nlj4y"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
     </footer>
 

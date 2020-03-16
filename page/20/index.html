@@ -61,6 +61,82 @@
       
         
 
+<article id="post-Android基础控件CheckBox的使用" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/08/Android基础控件CheckBox的使用/">Android基础控件CheckBox的使用</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/08/Android基础控件CheckBox的使用/" class="article-date">
+  <time datetime="2019-08-08T04:18:26.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<h2 id="1-简单介绍"><a href="#1-简单介绍" class="headerlink" title="1.简单介绍"></a>1.简单介绍</h2><p> CheckBox有两种状态，勾选和未勾选，是一个很简单的控件。可以通过实现OnCheckedChangeListener接口来监听CheckBox；如果想更改它的图标的话只需更改它的button属性即可实现。<br><img src="https://img-blog.csdnimg.cn/20190808121700754.png" alt="CheckBox"></p>
+<h2 id="2-简单实现"><a href="#2-简单实现" class="headerlink" title="2.简单实现"></a>2.简单实现</h2><p>下面是使用CheckBox的示例代码。</p>
+<ol>
+<li><p>check_box_selector.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;!--勾选状态--&gt;</span><br><span class="line">    &lt;item android:state_checked=&quot;true&quot; android:drawable=&quot;@drawable/check_choose&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--普通状态--&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/check_unchoose&quot;/&gt;</span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>activity_check_box.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.CheckBoxActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--系统自带图标的CheckBox--&gt;</span><br><span class="line">    &lt;CheckBox</span><br><span class="line">        android:id=&quot;@+id/ck_check_box_demo1&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:checked=&quot;true&quot;</span><br><span class="line">        android:text=&quot;这是一个系统自带图标的CheckBox&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--自定义图标的CheckBox--&gt;</span><br><span class="line">    &lt;CheckBox</span><br><span class="line">        android:id=&quot;@+id/ck_check_box_demo2&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:checked=&quot;true&quot;</span><br><span class="line">        android:text=&quot;这是一个改了图标的CheckBox&quot;</span><br><span class="line">        android:textSize=&quot;18sp&quot;</span><br><span class="line">        android:button=&quot;@drawable/check_box_selector&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CheckBoxActivity.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.my;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.CheckBox;</span><br><span class="line">import android.widget.CompoundButton;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class CheckBoxActivity extends AppCompatActivity &#123;</span><br><span class="line">    CheckBox checkBoxDemo1;</span><br><span class="line">    CheckBox checkBoxDemo2;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_check_box);</span><br><span class="line">        checkBoxDemo1 = findViewById(R.id.ck_check_box_demo1);</span><br><span class="line">        checkBoxDemo1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(CheckBoxActivity.this, String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        checkBoxDemo2 = findViewById(R.id.ck_check_box_demo2);</span><br><span class="line">        checkBoxDemo2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(CompoundButton compoundButton, boolean b) &#123;</span><br><span class="line">                Toast.makeText(CheckBoxActivity.this, String.format(&quot;你碰了了控件%s，状态为%b&quot;, compoundButton.getText().toString(), b), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/08/Android基础控件CheckBox的使用/" data-id="ck7kh7gjs0019gwlaqbk1zhhx"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-Android在线程中使用Toast运行时报错" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -174,73 +250,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="https://xinghailiao.github.io/2019/08/07/Android代码和xml文件中设置颜色的问题/" data-id="ck7kh7gj9000tgwla7dvzx43w"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-Android Studio中的Project和Module" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/05/Android Studio中的Project和Module/">Android Studio中的Project和Module</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/05/Android Studio中的Project和Module/" class="article-date">
-  <time datetime="2019-08-05T08:39:51.000Z" itemprop="datePublished">2019-08-05</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<ol>
-<li>File-&gt;New-&gt;New Project 创建项目。相当于eclipse中的workspace</li>
-<li>File-&gt;New-&gt;New Module创建模块。这里的新模块是指一个单独的App工程，对应于eclipse中的new project。</li>
-<li><del>想想我们一般使用eclipse都是先选择workspace然后再在workspace上创建工程就可以理解了。</del> </li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/05/Android Studio中的Project和Module/" data-id="ck7kh7gh60003gwlae3vxbcuf"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>

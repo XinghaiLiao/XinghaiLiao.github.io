@@ -61,6 +61,96 @@
       
         
 
+<article id="post-《C Primer Plus》（第六版）答案（3.11）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/">《C Primer Plus》（第六版）答案（3.11）</a>
+    </h2>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" class="article-date">
+  <time datetime="2019-08-20T11:58:41.000Z" itemprop="datePublished">2019-08-20</time>
+</a>
+        
+      </div>
+    
+	
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+        <hr>
+<p><strong>为使用《C Primer Plus》学习C的初学者准备的。</strong></p>
+<ol>
+<li><p>通过测试（编写有问题的程序）观察系统如何处理整数上溢、浮点数上溢和浮点数下溢的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*32位的有符号整型的上界是2^32-1(4294967295) 再加一就溢出了（想要深入了解可以看看计算机组成原理）*/</span><br><span class="line">	int a = 4294967295;</span><br><span class="line">	a = a + 1;</span><br><span class="line">	printf(&quot;%d\n&quot;, a);</span><br><span class="line">	</span><br><span class="line">	/*10e100次方上溢 0.00000000012下溢*/</span><br><span class="line">	float b = 10e100;</span><br><span class="line">	printf(&quot;%f&quot;, b);</span><br><span class="line">	b = 0.00000000012; </span><br><span class="line">	printf(&quot; %f&quot;, b); </span><br><span class="line">	 </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，要求提示输入ASCII码，然后打印输入的字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	char c;</span><br><span class="line">	printf(&quot;Input a number:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;c);</span><br><span class="line">	//%c表示字符格式输出 </span><br><span class="line">	printf(&quot;%d in ASCII is %c.&quot;, c, c);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，发出一声警报。然后打印下面的文本。<br><img src="https://img-blog.csdnimg.cn/20190820191957869.png#pic_center" alt="文本图片"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*转义字符\a代表警报*/</span><br><span class="line">	printf(&quot;\a&quot;);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Started by the sudden sound, Sally shouted,\n&quot;);</span><br><span class="line">	/*想要输出&quot;得使用转义字符*/ </span><br><span class="line">	printf(&quot;\&quot;By the Great Pumpkin, what was that!\&quot;&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个程序，读取一个浮点数，先打印成小数点形式，再打印成指数形式。然后，如果系统支持，再打印成p计数法（十六进制计数法）。按以下格式输出（实际显示指数位数可能因系统而异）。<br><img src="https://img-blog.csdnimg.cn/20190820192219101.png#pic_center" alt="输出格式"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Enter a float-point value:&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;fixed-point notation:%f\n&quot;, f);</span><br><span class="line">	printf(&quot;exponential notation:%e\n&quot;, f);</span><br><span class="line">	printf(&quot;p notation:%a\n&quot;, f);</span><br><span class="line">	</span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一年大约有3.156*10^7^秒。编写一个程序，提示用户输出年龄，然后输出对应的秒数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	/*用float可能会溢出（我没多想，你可以试试）*/ </span><br><span class="line">	double d = 3.165e7;</span><br><span class="line">	int age;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;Input your age:&quot;);</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;age);</span><br><span class="line">	</span><br><span class="line">	/*整型和浮点型进行运算会自动转成浮点型*/</span><br><span class="line">	printf(&quot;The result is %.0lfs.&quot;, age*d);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1个水分子的质量约为3.0*10^-23^克。1夸脱水大约是950克。编写一个程序，提示用户输入水的夸脱数，并显示水分子的数量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	double d = 3.0e-23;</span><br><span class="line">	double a;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入水的夸脱数：&quot;);</span><br><span class="line">	scanf(&quot;%lf&quot;, &amp;a);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;%lf夸脱水中水分子的数量是：%.0lf&quot;, a, (a*950)/d);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>1英寸相当于2.54厘米。编写一个程序，提示用户输入身高（英寸），然后以厘米为单位显示身高。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入身高（英寸）：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	printf(&quot;你的身高是%.2f(cm)&quot;, f*2.54);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在美国的体积测量系统中，1品脱等于2杯，一杯等于8盎司，1盎司等于2大汤勺，1大汤勺等于3茶勺。编写一个程序，提示用户输入杯数，并以品脱、盎司、汤勺、茶勺显示等价容量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(int argc, char const **argv) &#123;</span><br><span class="line">	float f;</span><br><span class="line">	</span><br><span class="line">	printf(&quot;输入杯数：&quot;);</span><br><span class="line">	scanf(&quot;%f&quot;, &amp;f);</span><br><span class="line">	</span><br><span class="line">	float pint = f / 2;//品脱 </span><br><span class="line">	float ounce = f * 8;//盎司 </span><br><span class="line">	float spoon = ounce * 2;//汤勺 </span><br><span class="line">	float s = spoon * 3;//药勺 不知道英文是什么 就这样命名吧</span><br><span class="line">	printf(&quot;品脱：%.1f	盎司：%.1f	汤勺：%.1f	药勺：%.1f&quot;, pint, ounce, spoon, s);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://xinghailiao.github.io/2019/08/20/《C Primer Plus》（第六版）答案（3.11）/" data-id="ck7kh7gnh003kgwlak1ffxz98"
+         class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+</article>
+
+
+
+      
+        
+
 <article id="post-《C Primer Plus》（第六版）答案（2.12）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
   
   <div class="article-inner">
@@ -206,83 +296,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="https://xinghailiao.github.io/2019/08/19/Android通知推送（解决NotificationService_ No Channel found for___问题）/" data-id="ck7kh7gjv001dgwlamjk8uyyh"
-         class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-</article>
-
-
-
-      
-        
-
-<article id="post-利用Broadcast实现Fragment向Activity传递消息" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-  
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2019/08/16/利用Broadcast实现Fragment向Activity传递消息/">利用Broadcast实现Fragment向Activity传递消息</a>
-    </h2>
-  
-  
-
-
-
-
-      </header>
-    
-
-    
-      <div class="article-meta">
-        <a href="/2019/08/16/利用Broadcast实现Fragment向Activity传递消息/" class="article-date">
-  <time datetime="2019-08-16T04:25:44.000Z" itemprop="datePublished">2019-08-16</time>
-</a>
-        
-      </div>
-    
-	
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-        <hr>
-<p>利用广播可以轻易实现Fragment向Activity传递消息。在Fragment通过广播发送消息，接收页面注册广播接收消息即可。下面是一个例子（当Fragment中的Spinner触发响应事件时，发送广播消息，整个页面的背景颜色改变）。<br><img src="https://img-blog.csdnimg.cn/20190816121506458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxOTYxNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ol>
-<li>创建自己的Fragment，如MyFragment。代码如下（item_dropdown.xml和item_selected.xml比较简单就不贴了）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:orientation=&quot;horizontal&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;</span><br><span class="line">        android:gravity=&quot;center&quot;</span><br><span class="line">        android:text=&quot;改变页面颜色&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:textSize=&quot;17sp&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Spinner</span><br><span class="line">        android:id=&quot;@+id/sp_background&quot;</span><br><span class="line">        android:layout_width=&quot;0dp&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_weight=&quot;5&quot;</span><br><span class="line">        android:spinnerMode=&quot;dropdown&quot;&gt;&lt;/Spinner&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myandroidapplication;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.graphics.Color;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.AdapterView;</span><br><span class="line">import android.widget.ArrayAdapter;</span><br><span class="line">import android.widget.Spinner;</span><br><span class="line"></span><br><span class="line">import androidx.annotation.NonNull;</span><br><span class="line">import androidx.annotation.Nullable;</span><br><span class="line">import androidx.fragment.app.Fragment;</span><br><span class="line">import androidx.localbroadcastmanager.content.LocalBroadcastManager;</span><br><span class="line"></span><br><span class="line">public class MyFragment extends Fragment &#123;</span><br><span class="line">    protected View view;</span><br><span class="line">    protected Context context;</span><br><span class="line">    private Spinner sp_background;</span><br><span class="line">    private int[] mColor = &#123;Color.RED, Color.GREEN, Color.BLUE, Color.CYAN, Color.WHITE&#125;;</span><br><span class="line">    private String[] sColor = &#123;&quot;红色&quot;, &quot;绿色&quot;, &quot;蓝色&quot;, &quot;青色&quot;, &quot;白色&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    @Nullable</span><br><span class="line">    @Override</span><br><span class="line">    //创建Fragment视图</span><br><span class="line">    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">        context = this.getActivity();</span><br><span class="line">        //从xml文件获取对象 以便代码操作</span><br><span class="line">        view = inflater.inflate(R.layout.my_fragment, container, false);</span><br><span class="line">        sp_background = view.findViewById(R.id.sp_background);</span><br><span class="line">        ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(context, R.layout.item_selected, sColor);</span><br><span class="line">        adapter.setDropDownViewResource(R.layout.item_dropdown);</span><br><span class="line">        sp_background.setAdapter(adapter);</span><br><span class="line">        sp_background.setPrompt(&quot;请选择颜色&quot;);</span><br><span class="line">        sp_background.setSelection(0);</span><br><span class="line">        sp_background.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onItemSelected(AdapterView&lt;?&gt; adapterView, View view, int i, long l) &#123;</span><br><span class="line">                Intent intent = new Intent(&quot;MY_EVENT&quot;);</span><br><span class="line">                intent.putExtra(&quot;color&quot;, mColor[i]);</span><br><span class="line">                //发送包裹</span><br><span class="line">                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onNothingSelected(AdapterView&lt;?&gt; adapterView) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        return view;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>创建接受的Activity。代码如下。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;.BroadcastDemoActivity&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:id=&quot;@+id/ll_broadcast_test&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:name=&quot;xyz.strasae.androidlearn.myandroidapplication.MyFragment&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">package xyz.strasae.androidlearn.myandroidapplication;</span><br><span class="line"></span><br><span class="line">import androidx.appcompat.app.AppCompatActivity;</span><br><span class="line">import androidx.localbroadcastmanager.content.LocalBroadcastManager;</span><br><span class="line"></span><br><span class="line">import android.content.BroadcastReceiver;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.Intent;</span><br><span class="line">import android.content.IntentFilter;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.widget.LinearLayout;</span><br><span class="line"></span><br><span class="line">public class BroadcastDemoActivity extends AppCompatActivity &#123;</span><br><span class="line">    private LinearLayout ll_test;</span><br><span class="line">    private BgChangeReceiver bgChangeReceiver;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_broadcast_demo);</span><br><span class="line">        ll_test = findViewById(R.id.ll_broadcast_test);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onStart() &#123;</span><br><span class="line">        super.onStart();</span><br><span class="line">        bgChangeReceiver = new BgChangeReceiver();</span><br><span class="line">        //过滤器</span><br><span class="line">        IntentFilter intentFilter = new IntentFilter(&quot;MY_EVENT&quot;);</span><br><span class="line">        //注册</span><br><span class="line">        LocalBroadcastManager.getInstance(this).registerReceiver(bgChangeReceiver, intentFilter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onStop() &#123;</span><br><span class="line">        //销毁注册</span><br><span class="line">        LocalBroadcastManager.getInstance(this).unregisterReceiver(bgChangeReceiver);</span><br><span class="line">        super.onStop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private class BgChangeReceiver extends BroadcastReceiver &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">            if(intent != null) &#123;</span><br><span class="line">                ll_test.setBackgroundColor(intent.getIntExtra(&quot;color&quot;, 0));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://xinghailiao.github.io/2019/08/16/利用Broadcast实现Fragment向Activity传递消息/" data-id="ck7kh7gnp003ugwlaw3i70fa0"
          class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
